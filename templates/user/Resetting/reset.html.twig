@@ -1,0 +1,29 @@
+{% extends "user/layout.html.twig" %}
+
+{% trans_default_domain 'user' %}
+
+{% form_theme form 'form/form_theme_materialize.html.twig' %}
+
+{% block content_for_layout %}
+
+<div class="row">
+    {{ form_start(form, { 'action': path('user_resetting_reset', {'token': token}), 'attr': { 'class': 'user_resetting_reset col s7 offset-s2' } }) }}
+        <h2>{{ 'resetting.reset.submit'|trans }}</h2>
+        {{ form_widget(form) }}
+
+        <button class="btn waves-effect waves-light" type="submit">
+            {{ 'resetting.reset.submit'|trans }}
+        </button>
+    {{ form_end(form) }}
+</div>
+
+{% endblock content_for_layout %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        (function(d){
+            d.getElementById('{{ form.plainPassword.vars.id }}').focus();
+        })(document);
+    </script>
+{% endblock %}

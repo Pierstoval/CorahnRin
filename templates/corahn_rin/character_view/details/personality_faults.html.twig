@@ -1,0 +1,36 @@
+{% trans_default_domain 'corahn_rin' %}
+
+<div class="main row" id="character-details-personality">
+    <div class="col s12">
+        <h2 class="character-details-subtitle">{{ 'character.personality'|trans }}</h2>
+
+        <div class="row">
+            <div class="col s12">
+                <h3 class="character-details-subtitle">
+                    {{ 'character.consciousness'|trans }}&nbsp;:
+                    <span class="character-details-subitem">
+                        {{ character.consciousness }}
+                    </span>
+                </h3>
+                <h3 class="character-details-subtitle">
+                    {{ 'character.instinct'|trans }}&nbsp;:
+                    <span class="character-details-subitem">
+                        {{ character.instinct }}
+                    </span>
+                </h3>
+                <h3 class="character-details-subtitle">
+                    {{ 'character.orientation.title'|trans }}&nbsp;:
+                    <span class="character-details-subitem">
+                        {{ (character.orientation~'_title')|trans }}
+                    </span>
+                </h3>
+                <h3 class="character-details-subtitle">
+                    {{ 'character.personality_traits'|trans }}&nbsp;:
+                    <span class="character-details-subitem">
+                        {{ character.flaw.name }}, {{ character.quality.name }}
+                    </span>
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>

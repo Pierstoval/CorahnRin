@@ -1,0 +1,113 @@
+{% trans_default_domain 'EsterenMaps' %}
+
+var CONFIRM_DELETE = "{{ 'Supprimer l\'élément ?' | trans }}";
+var FORM_SUBMIT = "{{ 'Envoyer' | trans }}";
+var MSG_MARKERS_TYPES = "{{ 'Types de marqueurs' | trans }}";
+var MSG_ROUTES_TYPES = "{{ 'Types de routes' | trans }}";
+var MSG_ZONES_TYPES = "{{ 'Types de zones' | trans }}";
+var MSG_HIDE_ZONES = "{{ 'map.hide.zones' | trans }}";
+var MSG_HIDE_ROUTES = "{{ 'map.hide.routes' | trans }}";
+var MSG_HIDE_MARKERS = "{{ 'map.hide.markers' | trans }}";
+var MSG_CONTROL_FILTERS_TITLE = "{{ 'Filtres' | trans }}";
+var MSG_CONTROL_DIRECTIONS_TITLE = "{{ 'Calculer un itinéraire' | trans }}";
+var MSG_CONTROL_DIRECTIONS_START = "{{ 'Départ' | trans }}";
+var MSG_CONTROL_DIRECTIONS_END = "{{ 'Arrivée' | trans }}";
+var MSG_CONTROL_TRANSPORTS = "{{ 'Transport' | trans }}";
+var MSG_CONTROL_DIRECTIONS_MARKER_NOT_FOUND = "{{ 'Marqueur(s) non trouvé(s) :' | trans }}";
+var MSG_CONTROL_SEARCH_TITLE = "{{ 'Rechercher un élément sur la carte' | trans }}";
+var MSG_CONTROL_SEARCH_PLACEHOLDER = "{{ 'Ville, route, région...' | trans }}";
+var MSG_CONTROL_SEARCH_NOT_FOUND = "{{ 'Aucun élément trouvé.' | trans }}";
+var MSG_UPDATE_ROUTE_NO_MARKER_START = "{{ 'Vous devez spécifier un marqueur de départ pour cette route.' | trans }}";
+var MSG_UPDATE_ROUTE_NO_MARKER_END = "{{ 'Vous devez spécifier un marqueur d\'arrivée pour cette route.' | trans }}";
+
+window['LeafletDrawTranslations'] = {
+    draw: {
+        toolbar: {
+            actions: {
+                title: '{{ 'Cancel drawing' | trans({},'Leaflet.draw') | escape('js') }}',
+                text: '{{ 'Cancel' | trans({},'Leaflet.draw') | escape('js') }}'
+            },
+            undo: {
+                title: '{{ 'Delete last point drawn' | trans({},'Leaflet.draw') | escape('js') }}',
+                text: '{{ 'Delete last point' | trans({},'Leaflet.draw') | escape('js') }}'
+            },
+            buttons: {
+                polyline: '{{ 'Draw a polyline' | trans({},'Leaflet.draw') | escape('js') }}',
+                polygon: '{{ 'Draw a polygon' | trans({},'Leaflet.draw') | escape('js') }}',
+                rectangle: '{{ 'Draw a rectangle' | trans({},'Leaflet.draw') | escape('js') }}',
+                circle: '{{ 'Draw a circle' | trans({},'Leaflet.draw') | escape('js') }}',
+                marker: '{{ 'Draw a marker' | trans({},'Leaflet.draw') | escape('js') }}'
+            }
+        },
+        handlers: {
+            circle: {
+                tooltip: {
+                    start: '{{ 'Click and drag to draw circle.' | trans({},'Leaflet.draw') | escape('js') }}'
+                }
+            },
+            marker: {
+                tooltip: {
+                    start: '{{ 'Click map to place marker.' | trans({},'Leaflet.draw') | escape('js') }}'
+                }
+            },
+            polygon: {
+                tooltip: {
+                    start: '{{ 'Click to start drawing shape.' | trans({},'Leaflet.draw') | escape('js') }}',
+                    cont: '{{ 'Click to continue drawing shape.' | trans({},'Leaflet.draw') | escape('js') }}',
+                    end: '{{ 'Click first point to close this shape.' | trans({},'Leaflet.draw') | escape('js') }}'
+                }
+            },
+            polyline: {
+                error: '{{ '<strong>Error:</strong> shape edges cannot cross!' | trans({},'Leaflet.draw') | escape('js') }}',
+                tooltip: {
+                    start: '{{ 'Click to start drawing line.' | trans({},'Leaflet.draw') | escape('js') }}',
+                    cont: '{{ 'Click to continue drawing line.' | trans({},'Leaflet.draw') | escape('js') }}',
+                    end: '{{ 'Click last point to finish line.' | trans({},'Leaflet.draw') | escape('js') }}'
+                }
+            },
+            rectangle: {
+                tooltip: {
+                    start: '{{ 'Click and drag to draw rectangle.' | trans({},'Leaflet.draw') | escape('js') }}'
+                }
+            },
+            simpleshape: {
+                tooltip: {
+                    end: '{{ 'Release mouse to finish drawing.' | trans({},'Leaflet.draw') | escape('js') }}'
+                }
+            }
+        }
+    },
+    edit: {
+        toolbar: {
+            actions: {
+                save: {
+                    title: '{{ 'Save changes.' | trans({},'Leaflet.draw') | escape('js') }}',
+                    text: '{{ 'Save' | trans({},'Leaflet.draw') | escape('js') }}'
+                },
+                cancel: {
+                    title: '{{ 'Cancel editing, discards all changes.' | trans({},'Leaflet.draw') | escape('js') }}',
+                    text: '{{ 'Cancel' | trans({},'Leaflet.draw') | escape('js') }}'
+                }
+            },
+            buttons: {
+                edit: '{{ 'Edit layers.' | trans({},'Leaflet.draw') | escape('js') }}',
+                editDisabled: '{{ 'No layers to edit.' | trans({},'Leaflet.draw') | escape('js') }}',
+                remove: '{{ 'Delete layers.' | trans({},'Leaflet.draw') | escape('js') }}',
+                removeDisabled: '{{ 'No layers to delete.' | trans({},'Leaflet.draw') | escape('js') }}'
+            }
+        },
+        handlers: {
+            edit: {
+                tooltip: {
+                    text: '{{ 'Drag handles, or marker to edit feature.' | trans({},'Leaflet.draw') | escape('js') }}',
+                    subtext: '{{ 'Click cancel to undo changes.' | trans({},'Leaflet.draw') | escape('js') }}'
+                }
+            },
+            remove: {
+                tooltip: {
+                    text: '{{ 'Click on a feature to remove' | trans({},'Leaflet.draw') | escape('js') }}'
+                }
+            }
+        }
+    }
+};

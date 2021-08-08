@@ -1,0 +1,87 @@
+{% extends 'corahn_rin/corahnrin-layout.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block title game.name -%}
+
+{% block content_for_layout %}
+    <h1>{{ block('title') }}</h1>
+
+    <h2>{{ 'games.view.characters'|trans }}</h2>
+    <table id="game_characters_list">
+        {% for character in game.characters %}
+            <tr>
+                <td>
+                    {{ character.name }}
+                </td>
+                <td class="right">
+                    <a class="btn btn-large btn-floating" href="{{ path('corahnrin_characters_view', {'id': character.id, 'nameSlug': character.nameSlug}) }}"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">
+                    {{ 'games.view.no_characters'|trans }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% if invitations|length %}
+        <h2>{{ 'games.view.invitations'|trans }}</h2>
+        <table id="game_invitations_list">
+            {% for invitation in invitations %}
+                <tr>
+                    <td>
+                        {{ invitation.character.name }}
+                    </td>
+                    <td class="right">
+                        <a class="btn btn-floating btn-large tooltipped" href="{{ path('game_resend_invitation_email', {token: invitation.token}) }}" data-tooltip="{{ 'games.invite_characters.resend.link'|trans }}">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    {% if invite_characters_form %}
+        {% form_theme invite_characters_form 'form/form_theme_materialize.html.twig' %}
+        <hr>
+        <div class="row">
+            <div class="col s12">
+                <a class="btn btn-flat blue-text text-underline" href="#invite_characters">
+                    {{ 'games.view.new_invitation_button'|trans }}
+                </a>
+
+                <div id="invite_characters" class="col s12{{ not invite_characters_form.vars.submitted ? ' hide' }}">
+                    {{ form_start(invite_characters_form) }}
+                    <br>
+                    {{ form_row(invite_characters_form) }}
+                    <button class="btn" type="submit">{{ 'games.invite_characters.submit'|trans }}</button>
+                    {{ form_end(invite_characters_form) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        var link = document.querySelector('a[href="#invite_characters"]');
+        var tab = document.getElementById('invite_characters');
+        if (link && tab) {
+            link.addEventListener('click', function (e) {
+                if (tab.classList.contains('hide')) {
+                    tab.classList.remove('hide');
+                } else {
+                    tab.classList.add('hide');
+                }
+                e.preventDefault();
+            });
+        } else {
+            console.warn('Invalid link.');
+        }
+    </script>
+{% endblock %}

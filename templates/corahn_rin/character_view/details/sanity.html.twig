@@ -1,0 +1,75 @@
+{% trans_default_domain 'corahn_rin' %}
+
+<div class="main row" id="character-details-sanity">
+    <div class="col s12">
+        <h2 class="character-details-subtitle">{{ 'character.sanity'|trans }}</h2>
+
+        <h3>
+            <span class="character-details-subtitle">
+                {{- 'character.mental_resist'|trans }}&nbsp;:&nbsp;
+            </span>
+            <span id="character-details-mental-resistance-score">
+                {{- character.baseMentalResistance -}}
+                {%- if character.mentalResistanceBonus -%}
+                    &nbsp;{{ character.mentalResistanceBonus > 0 ? '+' : '-' }}&nbsp;{{ character.mentalResistanceBonus|abs -}}
+                    &nbsp;&equals;&nbsp;<strong>{{ character.totalMentalResistance -}}</strong>
+                {%- endif -%}
+            </span>
+        </h3>
+
+        <table class="responsive-table trauma">
+            <thead>
+                <tr>
+                    <th class="text-center">&nbsp;</th>
+                    <th class="text-center">{{ 'character.mental_disorders.balance'|trans }}</th>
+                    <th class="text-center">{{ 'character.mental_disorders.symptom'|trans }}</th>
+                    <th class="text-center">{{ 'character.mental_disorders.syndrome'|trans }}</th>
+                    <th class="text-center">{{ 'character.mental_disorders.madness'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody class="row">
+                <tr>
+                    <td>{{ 'character.trauma.title'|trans }}</td>
+                    {% set trauma = character.temporaryTrauma %}
+                    {% set perma = character.permanentTrauma %}
+                    {% for i in 0..19 -%}
+                        {%- if loop.index0 is divisible by(5) %}<td class="text-center">{% endif -%}
+                        {%- if perma > 0 -%}
+                            <span class="fa fa-circle permanent-trauma"></span>
+                            {%- set perma = perma - 1 -%}
+                        {%- elseif trauma > 0 -%}
+                            <span class="fa fa-circle temporary-trauma"></span>
+                            {%- set trauma = trauma - 1 -%}
+                        {%- else -%}
+                            <span class="far fa-circle"></span>
+                        {%- endif -%}
+                        {%- if loop.index is divisible by(5) %}</td>{% endif -%}
+                    {%- endfor %}
+                </tr>
+                <tr>
+                    <td>{{ 'character.trauma.hardening'|trans }}</td>
+                    {% set hardening = character.hardening %}
+                    {% for i in 0..19 -%}
+                        {%- if loop.index0 is divisible by(5) %}<td class="text-center">{% endif -%}
+                        {%- if hardening > 0 -%}
+                            <span class="fa fa-circle"></span>
+                            {%- set hardening = hardening - 1 -%}
+                        {%- else -%}
+                            <span class="far fa-circle"></span>
+                        {%- endif -%}
+                        {%- if loop.index is divisible by(5) %}</td>{% endif -%}
+                    {%- endfor %}
+                </tr>
+            </tbody>
+            <tfoot class="text-xs">
+                <tr>
+                    <td colspan="5" class="lh1em">
+                        <span class="fa fa-circle permanent-trauma"></span> {{ 'character.trauma.permanent'|trans }}
+                        <br>
+                        <span class="fa fa-circle temporary-trauma"></span> {{ 'character.trauma.curable'|trans }}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

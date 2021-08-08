@@ -1,0 +1,9 @@
+{% apply spaceless %}
+{# Favicons are reused in both frontend & backend #}
+<link rel="apple-touch-icon" sizes="144x144" href="{{ asset('build/favicon-144.png') }}">
+<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('build/favicon-114.png') }}">
+<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('build/favicon-72.png') }}">
+<link rel="apple-touch-icon" sizes="57x57" href="{{ asset('build/favicon-57.png') }}">
+<link rel="icon" type="image/x-icon" href="{{ asset('build/favicon-57.png') }}"/>
+<link rel="shortcut icon" href="{{ asset('build/favicon-57.png') }}">
+{% endapply -%}

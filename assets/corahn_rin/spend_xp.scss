@@ -1,0 +1,40 @@
+form[name="character_spend_xp"] {
+    .spend_xp_panel {
+        padding-top: 1em;
+    }
+
+    #ogham, #miracles {
+
+        label.spend_xp_ogham, label.spend_xp_miracle {
+            height: auto;
+            line-height: 1.75em;
+            display: block;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            border: solid 1px transparent;
+            border-radius: 3px;
+            &.selected {
+                background: #003300;
+                border-color: #008000;
+                box-shadow:
+                    0 8px 17px 2px #00cc0030,
+                    0 3px 14px 2px #00cc0060,
+                    0 5px 5px -3px #00cc0090
+            ;
+                color: white;
+            }
+            &.disabled:before {
+                content: "✔️";
+                color: green;
+            }
+            input + span {
+                padding-left: 0;
+                &:not(.lever):before,
+                &:not(.lever):after
+                {
+                    display: none;
+                }
+            }
+        }
+    }
+}

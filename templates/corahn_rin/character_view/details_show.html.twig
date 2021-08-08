@@ -1,0 +1,49 @@
+{% trans_default_domain 'corahn_rin' %}
+
+{% apply spaceless %}
+<div class="character-details">
+
+    {% set locale = app.request.locale %}
+    {% set printer_friendly = app.request.query.has('printer_friendly') ? ' printer-friendly' %}
+
+    {# First page #}
+    <div id="character-original-page-1" class="{{ printer_friendly }}">
+
+        <div class="row">
+            <div id="character-details-name" class="col l8">
+                <h2>
+                    <span class="character-details-subtitle">{{ 'character.name'|trans }} : </span>
+                    <span class="character-details-subitem">{{ character.name }}</span>
+                </h2>
+            </div>
+            <div id="character-details-player-name" class="col l4">
+                <h2>
+                    <span class="character-details-subtitle">{{ 'character.player_name'|trans }} : </span>
+                    <span class="character-details-subitem">{{ character.playerName }}</span>
+                </h2>
+            </div>
+        </div>
+
+        {{ include('corahn_rin/character_view/details/details.html.twig') }}
+        {{ include('corahn_rin/character_view/details/ways_advantages_health.html.twig') }}
+        {{ include('corahn_rin/character_view/details/domains.html.twig') }}
+    </div>
+
+    {# Second page #}
+    <div id="character-original-page-2" class="{{ printer_friendly }}">
+        {{ include('corahn_rin/character_view/details/weapons_attitudes_defense.html.twig') }}
+        {{ include('corahn_rin/character_view/details/equipment_treasures.html.twig') }}
+        {{ include('corahn_rin/character_view/details/mystical_attributes.html.twig') }}
+    </div>
+
+    {# Third page #}
+    <div id="character-original-page-3" class="{{ printer_friendly }}">
+        {{ include('corahn_rin/character_view/details/sanity.html.twig') }}
+        {{ include('corahn_rin/character_view/details/personality_faults.html.twig') }}
+        {{ include('corahn_rin/character_view/details/experience.html.twig') }}
+        {{ include('corahn_rin/character_view/details/history.html.twig') }}
+        {{ include('corahn_rin/character_view/details/notable_facts.html.twig') }}
+    </div>
+
+</div>
+{% endapply %}

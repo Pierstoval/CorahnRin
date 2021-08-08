@@ -1,0 +1,26 @@
+
+$primary-color: #2c2776;
+$primary-color-light: lighten($primary-color, 15%);
+$primary-color-dark: darken($primary-color, 15%);
+
+$secondary-color: #42777a;
+$success-color: #40653b;
+$warning-color: #838329;
+$error-color: #91494a;
+
+$link-color: #b8b8ff;
+
+$footer-bg-color: #222;
+
+$collection-border-color: #575757;
+$collection-bg-color: #232323;
+$collection-hover-bg-color: #404040;
+$collection-active-bg-color: #004d40;
+
+$dropdown-bg-color: #444;
+$dropdown-hover-bg-color: #555;
+$dropdown-color: #eee;
+
+$tabs-bg-color: #292a33;
+$tabs-text-color: #ccccff;
+$tabs-underline-color: $primary-color-light;

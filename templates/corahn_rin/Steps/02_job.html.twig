@@ -1,0 +1,50 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block step_content %}
+
+<input type="hidden" name="job_value" id="job_value" value="{{ job_value }}" />
+{% for jobs in jobs_list %}
+    <h3>{{ (jobs|first).book.name }}</h3>
+
+        {% for job in jobs %}
+
+                <div id="job_{{ job.id }}"
+                     class="chip bordered chip-link {{ job_value == job.id ? 'active' : '' }}"
+                     data-toggle="btn-gen-choice"
+                     data-input-value="{{ job.id }}"
+                     data-target-node="job_value"
+                >
+                    <a class="modal-trigger" href="#modal_job_{{ job.id }}" title="{{ 'jobs.modal.details'|trans }}">
+                        <i class="fa fa-search modal-icon"></i>
+                    </a>
+                    {{ job.name }}
+                </div>
+
+                <div id="modal_job_{{ job.id }}" class="modal">
+                    <div class="modal-content">
+                        <h4>{{ job.name  }}</small></h4>
+                        <p>{{ job.description | raw }}</p>
+                        <p>{{ 'domain.primary' | trans }} : {{ job.primaryDomain | trans }}</p>
+                        <p>
+                            {{ 'domain.secondary' | trans }} :
+                            {% for domain in job.secondaryDomains %}
+                                {% if loop.index0 > 0 %} &ndash; {% endif %}
+                                {{ domain | trans }}
+                            {% else %}
+                                {{ 'domain.manual' | trans }}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn modal-action modal-close waves-effect btn-flat">{{ 'button.close' | trans({}, 'messages') }}</button>
+                        <button type="button" class="btn modal-action modal-close waves-effect" data-dist-click data-target-node="job_{{ job.id }}">{{ 'button.select' | trans({}, 'messages') }}</button>
+                    </div>
+                </div>
+
+        {% endfor %}{# jobs #}
+
+{% endfor %}{# books #}
+
+{% endblock %}

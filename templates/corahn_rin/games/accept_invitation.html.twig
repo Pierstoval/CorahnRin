@@ -1,0 +1,49 @@
+{% extends 'corahn_rin/corahnrin-layout.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block title -%}
+    {{ 'games.invitation.accept_title'|trans }}
+{%- endblock %}
+
+{% block content_for_layout %}
+    <h1 class="text-xxl">
+        {{ block('title') }}
+    </h1>
+
+    {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col s4">
+                {{ 'games.invitation.accept.form.game_title'|trans }}
+            </div>
+            <div class="col s8">
+                {{ invitation.gameName }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s4">
+                {{ 'games.invitation.accept.form.game_summary'|trans }}
+            </div>
+            <div class="col s8">
+                {{ invitation.gameSummary }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s4">
+                {{ 'games.invitation.accept.form.invited_character'|trans }}
+            </div>
+            <div class="col s8">
+                {{ invitation.characterName }}
+            </div>
+        </div>
+
+        <div class="{{ get_flash_class('warning') }}">
+            <i class="fa fa-exclamation-triangle"></i>
+            &nbsp;
+            {{ 'games.invitation.accept.form.sessions_removal_warning'|trans|nl2br }}
+        </div>
+
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

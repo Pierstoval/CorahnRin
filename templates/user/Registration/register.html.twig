@@ -1,0 +1,39 @@
+{% extends "user/layout.html.twig" %}
+
+{% trans_default_domain 'user' %}
+
+{% block stylesheets %}
+    {% if enable_contact_captcha %}
+        <script src="//www.google.com/recaptcha/api.js" async defer></script>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content_for_layout %}
+
+<div class="row">
+
+    {{ form_start(form, {'method': 'post', 'action': path('user_register'), 'attr': {'id': 'form_login', 'class': 'user_registration_register col s6 offset-s3'}}) }}
+
+    <h2>{{ 'layout.register' | trans }}</h2>
+
+    {{ form_errors(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword) }}
+    {{ form_row(form.optin) }}
+
+    <br>
+
+    {% if enable_contact_captcha %}
+        <div class="g-recaptcha" data-sitekey="{{ google_recaptcha_site_key }}"></div>
+    {% endif %}
+
+    <div>
+        <input class="btn btn-default" type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
+
+    {{ form_end(form) }}
+</div>
+
+{% endblock content_for_layout %}

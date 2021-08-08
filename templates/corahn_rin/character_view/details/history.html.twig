@@ -1,0 +1,61 @@
+{% trans_default_domain 'corahn_rin' %}
+
+<div class="main row" id="character-details-history">
+    <div class="col s12">
+        <div class="row">
+            <div class="col s4" id="character-details-history-title">
+                <h2 class="character-details-subtitle">
+                    {{- 'character.history'|trans -}}
+                </h2>
+            </div>
+            <div class="col s8" id="character-details-history-subitems">
+                <div class="row">
+                    <div class="col s3">
+                        <h3 class="character-details-subtitle">
+                            {{ 'character.birthplace'|trans }}&nbsp;:
+                        </h3>
+                    </div>
+                    <div class="col s3">
+                        <h2  id="character-details-birthplace" class="character-details-subitem">
+                            {{ character.birthplace }}
+                        </h2>
+                    </div>
+                    <div class="col s3">
+                        <h3 class="character-details-subtitle">
+                            {{ 'character.social_class'|trans }}&nbsp;:
+                        </h3>
+                    </div>
+                    <div class="col s3">
+                        <h2 class="character-details-subitem">
+                            {{ character.socialClass.name }}
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s2">
+                        <h3 class="character-details-subtitle">
+                            {{ 'character.setbacks'|trans }}&nbsp;:
+                        </h3>
+                    </div>
+
+                    <div class="col s10" id="character-details-setbacks-list">
+                        {% for charSetback in character.setbacks|filter(s => not s.isAvoided) %}
+                            <h4 class="ib base">
+                                {{ charSetback.setback.name }}
+                            </h4>
+                        {% endfor %}
+
+                        {% for charSetback in character.setbacks|filter(s => s.isAvoided) %}
+                            <h4 class="ib base">
+                                {{ charSetback.setback.name }}
+                                {{ 'character.setback_avoided'|trans }}
+                            </h4>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="story">{{ character.story }}</p>
+    </div>
+</div>

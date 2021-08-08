@@ -1,0 +1,37 @@
+{% trans_default_domain 'corahn_rin' %}
+
+<div class="main hoverable row">
+    <div class="col l3">
+        <h3 id="character-details-gender">
+            <span class="character-details-subtitle">{{ 'character.sex_title'|trans }}&nbsp;:&nbsp;</span>
+            <span class="character-details-subitem">{{ (character.sex|trans)[:1] }}</span>
+        </h3>
+    </div>
+    <div class="col l2">
+        <h3 id="character-details-age">
+            <span class="character-details-subtitle">{{ 'character.age'|trans }}&nbsp;:&nbsp;</span>
+            <span class="character-details-subitem">{{ character.age }}</span>
+        </h3>
+    </div>
+    <div class="col l3">
+        <h3 id="character-details-people">
+            <span class="character-details-subtitle">{{ 'character.people'|trans }}&nbsp;:&nbsp;</span>
+            <span class="character-details-subitem">{{ character.people.name }}</span>
+        </h3>
+    </div>
+    <div class="col l4">
+        <h3 id="character-details-job">
+            <span class="character-details-subtitle">{{ 'character.job'|trans }}&nbsp;:&nbsp;</span>
+            <span class="character-details-subitem">{{ character.job.name }}</span>
+        </h3>
+    </div>
+</div>
+
+<div class="main row">
+    <div class="col l12" id="character-details-description">
+        <h3>
+            <span class="character-details-subtitle">{{ 'character.description'|trans }}&nbsp;:&nbsp;</span>
+            <span class="character-details-subitem">{{ character.description }}</span>
+        </h3>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+    enable_authenticator_manager: false # TODO: set this to true when using the new auth manager
+
+    # http://symfony.com/doc/current/security.html#encoding-the-user-s-password
+    password_hashers:
+        Symfony\Component\Security\Core\User\UserInterface: bcrypt
+
+    # http://symfony.com/doc/current/security.html#hierarchical-roles
+    role_hierarchy:
+
+        # Admins
+        ROLE_PRODUCTS_ADMIN:
+            - ROLE_BACKOFFICE_ACCESS
+        ROLE_ADMIN:
+            - ROLE_BACKOFFICE_ACCESS
+            - ROLE_PRODUCTS_ADMIN
+        ROLE_SUPER_ADMIN:
+            - ROLE_ADMIN
+            - ROLE_ALLOWED_TO_SWITCH
+            - ROLE_VERMINE_BUILDER
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        user_provider:
+            id: User\Repository\UserRepository
+
+    firewalls:
+        dev:
+            pattern: '^/(_(profiler|wdt)|css|images|img|js|fonts|map_tiles|uploads|components|bundles|(%locales_regex%)/js/translations)/'
+            security: false
+        main:
+            pattern: ^/
+            anonymous: true
+            lazy: true
+            provider: user_provider
+            entry_point: User\Security\FormLoginAuthenticator
+            user_checker: User\Security\UserChecker
+            remember_me:
+                secret: '%env(APP_SECRET)%'
+                path: /
+                name: EsterenRememberMe
+            logout:
+                invalidate_session: false
+                path: user_logout
+                target: root
+            guard:
+                authenticators:
+                    - User\Security\FormLoginAuthenticator
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: '^/(?:%locales_regex%)/(login|register|resetting)', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/(?:%locales_regex%)/(profile|games)',            role: ROLE_USER }
+        - { path: '^/(?:%locales_regex%)/admin',                      role: EASYADMIN_BACKEND }

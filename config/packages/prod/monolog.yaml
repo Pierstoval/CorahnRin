@@ -1,0 +1,24 @@
+monolog:
+    handlers:
+        main:
+            type: fingers_crossed
+            action_level: critical
+            handler: grouped
+        grouped:
+            type: group
+            members: [streamed, deduplicated]
+        streamed:
+            type: stream
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            level: debug
+        deduplicated:
+            type: deduplication
+            handler: symfony_mailer
+        symfony_mailer:
+            type: symfony_mailer
+            from_email: 'no-reply@studio-agate.com'
+            to_email: 'pierstoval@gmail.com'
+            subject: 'Error in Agate apps: %%message%%'
+            level: debug
+            formatter: monolog.formatter.html
+            content_type: text/html

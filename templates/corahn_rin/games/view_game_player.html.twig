@@ -1,0 +1,29 @@
+{% extends 'corahn_rin/corahnrin-layout.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block title game.name -%}
+
+{% block content_for_layout %}
+    <h1>{{ block('title') }}</h1>
+
+    <h2>{{ 'games.view.characters'|trans }}</h2>
+    <table id="game_characters_list">
+        {% for character in game.characters %}
+            <tr>
+                <td>
+                    {{ character.name }}
+                </td>
+                <td class="right">
+                    <a class="btn btn-large btn-floating" href="{{ path('corahnrin_characters_view', {'id': character.id, 'nameSlug': character.nameSlug}) }}"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">
+                    {{ 'games.view.no_characters'|trans }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

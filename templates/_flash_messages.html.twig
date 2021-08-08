@@ -1,0 +1,35 @@
+
+{# Flash messages #}
+{% apply spaceless %}
+    {% set flashes = app.session.flashbag.all %}
+    {% if flashes|length %}
+        <div id="flash-messages">
+        {% for key, messageList in flashes %}
+
+            {% set translation_domain = 'messages' %}
+
+            {% if 'user_' in key %}
+                {# Sometimes, user controllers can send specific error messages #}
+                {# And this one is an old legacy from FOSUser #}
+                {% set translation_domain = 'user' %}
+                {% set key = key|replace({"user_": ""}) %}
+            {% endif %}
+
+            {% set class = get_flash_class(key) %}
+
+            <div class="{{ class }} {{ key }}">
+                {% for message in messageList %}
+                    {% set message_translation_domain = translation_domain %}
+
+                    {% if message starts with 'games.' %}
+                        {% set message_translation_domain = 'corahn_rin' %}
+                    {% endif %}
+
+                    {{ message | trans({}, message_translation_domain) | raw }}
+                    {% if not loop.last %}<br />{% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endapply %}

@@ -1,0 +1,53 @@
+field_error: 'Erreur au niveau du paramètre "%field%"'
+
+corahn_rin.character_invitations.similar_exists: 'Le personnage "%character_name%" a déjà été invité à cette campagne.'
+corahn_rin.character_spend_xp.speed: 'Le score de Vitesse doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.defense: 'Le score de Défense doit être entre 0 et 10, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.craft: 'Le score d''Artisanat doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.closeCombat: 'Le score de Combat au Contact doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.stealth: 'Le score de Discrétion doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.magience: 'Le score de Magience doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.naturalEnvironment: 'Le score de Milieu Naturel doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.demorthenMysteries: 'Le score de Mystères Demorthèn doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.occultism: 'Le score d''Occultisme doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.perception: 'Le score de Perception doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.prayer: 'Le score de Prières doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.feats: 'Le score de Prouesses doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.relation: 'Le score de Relations doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.performance: 'Le score de Représentation doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.science: 'Le score de Science doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.shootingAndThrowing: 'Le score de Tir et Lancer doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.travel: 'Le score de Voyages doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+corahn_rin.character_spend_xp.erudition: 'Le score d''Érudition doit être entre 0 et 5, vous avez spécifié "{{ value }}".'
+
+portal_element:
+    image:
+        mandatory: 'Vous devez ajouter une image de fond pour ce portail.'
+
+user:
+    username:
+        already_used: 'Le nom d''utilisateur est déjà utilisé.'
+        blank: 'Entrez un nom d''utilisateur s''il vous plait.'
+        short: 'Le nom d''utilisateur est trop court.'
+        long: 'Le nom d''utilisateur est trop long.'
+    email:
+        already_used: 'L''adresse e-mail est déjà utilisée.'
+        blank: 'Entrez une adresse e-mail s''il vous plait.'
+        short: 'L''adresse e-mail est trop courte.'
+        long: 'L''adresse e-mail est trop longue.'
+        invalid: 'L''adresse e-mail est invalide.'
+    password:
+        blank: 'Entrez un mot de passe s''il vous plait.'
+        short: 'Le mot de passe est trop court.'
+        mismatch: 'Les deux mots de passe ne sont pas identiques.'
+    new_password:
+        blank: 'Entrez un nouveau mot de passe s''il vous plait.'
+        short: 'Le nouveau mot de passe est trop court.'
+    current_password:
+        invalid: 'Le mot de passe est invalide.'
+    group:
+        blank: 'Entrez un nom s''il vous plait.'
+        short: 'Le nom est trop court.'
+        long: 'Le nom est trop long.'
+
+subscriptions.similar_exists: Une autre souscription similaire existe déjà. Veuillez l'annuler si vous souhaitez en créer une, ou vérifiez le formulaire envoyé.

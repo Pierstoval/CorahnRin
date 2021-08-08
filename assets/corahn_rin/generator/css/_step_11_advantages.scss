@@ -1,0 +1,63 @@
+#list_advantages .change_char_advantage,
+#list_disadvantages .change_char_advantage {
+    -webkit-transition: background 400ms;
+       -moz-transition: background 400ms;
+         -o-transition: background 400ms;
+            transition: background 400ms;
+    margin-top: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: normal;
+}
+
+@media (max-width: #{$small-screen}) {
+    #list_advantages {
+        border-bottom: solid 1px black;
+    }
+}
+
+@media (min-width: #{$medium-screen}) {
+    #list_advantages {
+        border-right: solid 1px black;
+    }
+}
+
+/* Setup advantage states */
+#generator_form #generator_11_advantages {
+    .btn {
+        &[class*="btn-state"] {
+            background-color: #e1f5fe;
+        }
+        &[class*="btn-state"]:before {
+            font-family: FontAwesome;
+            display: inline-block;
+            color: #00b400;
+            letter-spacing: 5px;
+        }
+        &.btn-state-1:before {
+            content: "\f058 ";
+        }
+        &.btn-state-2:before {
+            content: "\f058 \f058 ";
+        }
+        &.btn-state-3:before {
+            content: "\f058 \f058 \f058 ";
+        }
+    }
+
+    #xp_chip {
+        width: 260px;
+        background-color: #4fc3f7;
+        font-size: 1.5em;
+        #xp {
+            font-weight: bold;
+        }
+    }
+
+    .indication {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+}

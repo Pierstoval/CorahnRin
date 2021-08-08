@@ -1,0 +1,78 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('step_15_domains_spend_exp') }}
+{% endblock %}
+
+{% block step_content %}
+
+    {% if exp_max < 10 %}
+
+        <div class="card-panel teal darken-4">
+            {{ 'domains_spend_exp.no_exp'|trans }}
+        </div>
+
+    {% else %}
+
+        <div class="card-panel teal darken-4">
+            {{ 'domains_spend_exp.explanation'|trans|raw }}
+        </div>
+
+        <div class="card-panel blue-grey darken-4">
+
+            {{ 'domains_spend_exp.remaining'|trans }}
+
+            <div class="bonus_points_element chip bordered" id="exp_points">
+                <span id="remaining_exp_points" class="text-black">{{ exp_value }}</span>&nbsp;/<span id="max_exp_points" class="text-black">{{ exp_max }}</span>
+            </div>
+        </div>
+
+        {% for domains_chunk in all_domains|batch(4, []) %}
+
+            <div class="row">
+            {% for id, domain in domains_chunk %}
+
+                {% set base_value = domains_base_values[id] %}
+                {% set value = domains_spent_with_exp[id] %}
+
+                <div class="col s3 domain hoverable" data-domain-id="{{ id }}">
+                    <input type="hidden" name="domains_spend_exp[{{ id }}]" id="domains_{{ id }}" data-base-value="{{ base_value }}" value="{{ value|default(0) }}">
+                    <h5>
+                        {{ id|trans }}
+                    </h5>
+                    <div class="domain_button_group">
+                        {% for i in 0..5 %}
+
+                            {% set selected = i == value %}
+
+                            {% set disabled =
+                                i < base_value
+                                or base_value == 5
+                            %}
+
+                            {#
+                                If button is not disabled we add the "domain-change" class.
+                                This will be the one that will receive the event listeners.
+                            #}
+                            {% set class -%}
+                                {{- (value is null and base_value == i) or (value is not null and value == i) ? ' active' -}}
+                                {{- disabled ? ' disabled' : ' domain-change' -}}
+                            {%- endset %}
+                            <button type="button" data-change="{{ i }}" data-domain-id="{{ id }}" class="domain_button_value btn btn-inverse {{ class }}">
+                                {{ i }}
+                            </button>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            {% endfor %}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}{# end if bonus value #}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+
+
+{% for setback in setbacks_list %}
+    {% set setback_defined = setbacks_value[setback.id] is defined %}
+    {% set text_color = setback_defined ? (not setbacks_value[setback.id].avoided and setback.id != 10 ? 'text-red' : 'text-green') : '' %}
+
+    {% if not loop.first %}
+        <hr>
+    {% endif %}
+
+    <div class="row setback{{ setback_defined ? ' active' }}">
+
+        <div class="col s1">
+            <p class="{{ text_color }} right-align">
+                {{ setback_defined ? setback_symbol }}
+            </p>
+        </div>
+        <div class="col s3">
+            <p class="{{ text_color }}">
+                {{ setback.name | trans }}
+                {% if setback_defined and  setbacks_value[setback.id].avoided %}
+                    <small>({{ 'setback.avoided'|trans({}, 'corahn_rin') }})</small>
+                {% endif %}
+            </p>
+        </div>
+        <div class="col s8 {{ text_color }}">
+            <p>{{ setback.description | trans }}</p>
+            {% if setback_defined and setbacks_value[setback.id].avoided == true %}
+                <p><small class="green-text text-lighten-2">{{ 'setback.avoided_long' | trans({}, 'corahn_rin') }}</small></p>
+            {% endif %}
+        </div>
+
+    </div><!-- /.row -->
+
+{% endfor %}{# setbacks #}

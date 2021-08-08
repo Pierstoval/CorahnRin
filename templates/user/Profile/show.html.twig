@@ -1,0 +1,12 @@
+{% extends "user/layout.html.twig" %}
+
+{% trans_default_domain 'user' %}
+
+{% block content_for_layout %}
+
+    <div id="user_profile">
+        <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    </div>
+
+{% endblock content_for_layout %}

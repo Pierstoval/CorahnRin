@@ -1,0 +1,115 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% macro avantage_display(avtg, list_to_check, character_indications, indication_type_single_choice, indication_type_single_value) %}
+
+    {% set prefix = avtg.isDisadvantage() ? 'disadvtg' : 'avtg' %}
+
+    <div class="col m6">
+        {% set class_more = '' %}
+
+        {% if list_to_check[avtg.id] is defined and list_to_check[avtg.id] > 0 %}
+            {% set class_more = ' btn-state-'~list_to_check[avtg.id] %}
+        {% endif %}
+
+        {% set tooltip_text %}
+            {{ avtg.description | escape('html_attr') }}
+            <br>
+            {% if avtg.isDisadvantage() %}
+                ({{ 'disadvantages.xp_gain' | trans | escape('html_attr') }} : {{ avtg.xp }})
+            {% else %}
+                ({{ 'advantages.xp_cost' | trans | escape('html_attr') }} : {{ avtg.xp }})
+            {% endif %}
+        {% endset %}
+
+        <label
+                id="label-char_advantage-{{ avtg.id }}"
+                for="{{ prefix }}-{{ avtg.id }}"
+                data-tooltip="{{ tooltip_text|raw }}"
+                data-position="top"
+                data-delay="50"
+                data-html="true"
+                class="change_char_advantage change_{{ prefix }} btn btn-medium bl tooltipped {{ class_more }}">
+            <input data-bonus="{{ avtg.bonusCount }}"
+                   type="hidden"
+                   name="{{ avtg.isDisadvantage() ? 'dis' }}advantages[{{ avtg.id }}]"
+                   value="{{ list_to_check[avtg.id] is defined and list_to_check[avtg.id] ? list_to_check[avtg.id] : '0' }}"
+                   id="{{ prefix }}-{{ avtg.id }}"
+                   data-element-id="{{ avtg.id }}"
+                   data-element-cost="{{ avtg.xp }}"
+                   class="_hidden input_{{ prefix }}" />
+            <span>
+                {%- if avtg.bonusCount > 0 -%}
+                    <span class="text-red">*</span>&nbsp;
+                {%- endif -%}
+                {{- avtg.name }} <small>(XP&nbsp;:&nbsp;{{ avtg.xp }})</small>
+            </span>
+        </label>
+
+        {% if avtg.requiresIndication %}
+            {% set has_indication = character_indications[avtg.id] is defined and character_indications[avtg.id] is not empty %}
+            <div class="indication row{{ list_to_check[avtg.id] is defined ? ' active' }}" data-indication-for="{{ avtg.id }}">
+                <div class="input-field col-s12">
+                    {% if avtg.indicationType is same as(indication_type_single_choice) %}
+                        <select name="advantages_indications[{{ avtg.id }}]" id="advantages_indications_{{ avtg.id }}">
+                            <option value="">- {{ (avtg.requiresIndication~'.form')|trans }} -</option>
+                            {% for bonus in avtg.bonusesFor %}
+                                <option value="{{ bonus }}" {{ has_indication and character_indications[avtg.id] == bonus ? 'selected="selected"' }}>{{ bonus|trans }}</option>
+                            {% endfor %}
+                        </select>
+                    {% elseif avtg.indicationType is same as(indication_type_single_value) %}
+                        <input type="text" name="advantages_indications[{{ avtg.id }}]" id="advantages_indications_{{ avtg.id }}" {{ has_indication ? ('value="'~character_indications[avtg.id]~'"')|raw }}>
+                        <label for="advantages_indications_{{ avtg.id }}">
+                            {{ (avtg.requiresIndication~'.form')|trans }}
+                        </label>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{% import _self as macros %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('step_11_advantages') }}
+{% endblock %}
+
+{% block step_content %}
+    <div class="row">
+
+        <p class="card-panel teal darken-4">
+            {{ 'advantages.choose_multiple_times' | trans | raw }}
+        </p>
+
+        <p class="text-center">
+            <span id="xp_chip" class="chip bordered">{{ 'experience'|trans }} : <span id="xp">{{ experience }}</span></span>
+        </p>
+
+        <div id="list_advantages" class="col m6">
+            <h4 class="text-center">{{ 'advantages.title' | trans}}</h4>
+            <h6>{{ 'advantages.details'|trans }}</h6>
+            {% for list in advantages_list|batch(2) %}
+            <div class="row mb5">
+                {% for avtg in list %}
+                    {{ macros.avantage_display(avtg, advantages, character_indications, indication_type_single_choice, indication_type_single_value) }}
+                {% endfor %}{# advantages #}
+            </div>
+        {% endfor %}
+        </div>
+        <div id="list_disadvantages" class="col m6">
+            <h4 class="text-center">{{ 'disadvantages.title' | trans }}</h4>
+            <h6>{{ 'disadvantages.details'|trans }}</h6>
+            {% for list in disadvantages_list|batch(2) %}
+                <div class="row mb5">
+                    {% for disadvtg in list %}
+                        {{ macros.avantage_display(disadvtg, disadvantages, character_indications, indication_type_single_choice, indication_type_single_value) }}
+
+                    {% endfor %}
+                </div><!-- /.row -->
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

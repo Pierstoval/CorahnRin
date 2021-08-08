@@ -1,0 +1,70 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('maps_styles') }}
+    {{ encore_entry_link_tags('fa') }}
+    <style type="text/css" id="map_add_style"></style>
+    <style type="text/css">
+        #map_wrapper {
+            height: 600px;
+        }
+    </style>
+{% endblock %}
+
+{% block content_layout_class '' %}
+
+{% block step_content %}
+    <input type="hidden" name="region_value" id="region_value" value="{{ region_value }}" />
+
+    {% apply spaceless %}
+        <div id="map_wrapper">
+            <div id="esterenmap_sidebar" class="row">
+                <div class="col s12">
+                    <ul class="sidebar-links tabs tabs-fixed-width">
+                        <li class="tab active"><a href="#basemaptab"><i class="fa fa-map"></i></a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-content-container col s12">
+                    <div id="basemaptab">
+                        <p>Choose your birthplace</p>
+                    </div>
+                </div>
+            </div>
+            <div id="map"></div>
+        </div>
+    {% endapply %}
+{% endblock %}
+
+{% block javascripts %}
+{# Include necessary scripts #}
+{{ parent() }}
+{#{{ encore_entry_script_tags('maps') }}#}
+
+<script type="text/javascript">
+        try {
+            {#var options = {{ map_corahn_rin_options(map) }};#}
+            var options = {};
+            {% if region_value %}
+            options.loadCallback = function () {
+                var i, polygons;
+                polygons = this._polygons;
+                for (i in polygons) {
+                    if (polygons.hasOwnProperty(i)) {
+                        if (polygons[i]._esterenZone.id === {{ region_value }}) {
+                            polygons[i].fireEvent('click');
+                            polygons[i].hideSidebar();
+                        }
+                    }
+                }
+            };
+            {% endif %}
+            document._map_params = options;
+        } catch (e) {
+            console.error(e);
+        }
+</script>
+
+{# Load this step's JS, where EsterenMap object is created. #}
+{{ encore_entry_script_tags('step_03_birthplace') }}
+{% endblock %}

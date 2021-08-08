@@ -1,0 +1,91 @@
+{% trans_default_domain 'corahn_rin' %}
+
+<div class="main row">
+    <div id="character-details-ways" class="col l4">
+        <h3 class="character-details-subtitle">{{ 'character.ways'|trans }}</h3>
+        {% for way, description in constant('CorahnRin\\Data\\Ways::ALL') %}
+            <h4>
+                <span class="character-details-way">{{ way|trans }}</span>
+                <span class="character-details-way-fault">&nbsp;({{ (way~'.fault')|trans }})</span>
+                <span class="character-details-way-score">{{ character.getWayScore(way) }}</span>
+            </h4>
+        {% endfor %}
+    </div>
+    <div id="character-details-advantages" class="col l4">
+        <h3 class="character-details-subtitle">{{ 'character.advantages'|trans }}</h3>
+        <ul class="list-bullet adv_list character-details-advantages-list">
+            {% for charAdvantage in character.advantages %}
+                <li>
+                    <h4>
+                        {{- charAdvantage.advantage.name -}}
+                        {{- charAdvantage.score > 1 ? (' (x'~charAdvantage.score~')') -}}
+                    </h4>
+                </li>
+            {% else %}
+                <li>-</li>
+            {%- endfor %}
+        </ul>
+        <h3 class="character-details-subtitle character-details-disadvantages-title">{{ 'character.disadvantages'|trans }}</h3>
+        <ul class="list-bullet adv_list character-details-advantages-list">
+            {% for charAdvantage in character.disadvantages -%}
+                <li>
+                    <h4>
+                        {{- charAdvantage.advantage.name -}}
+                        {{- charAdvantage.score > 1 ? (' (x'~charAdvantage.score~')') -}}
+                    </h4>
+                </li>
+            {% else %}
+                <li>-</li>
+            {%- endfor %}
+        </ul>
+    </div>
+    <div id="character-details-health" class="col l4">
+        <h3 class="character-details-subtitle">{{ 'character.health_state'|trans }}</h3>
+        ({{ 'character.max_health'|trans }}&nbsp;: {{ character.maxHealth.sum }})
+        <h4 class="health character-details-subtitle">
+            <span class="left condition">
+                {{ 'character.health.good'|trans }}&nbsp;:
+            </span>
+            <span class="right score">
+                {{ character.health.good }}&nbsp;/&nbsp;{{ character.maxHealth.good }}
+            </span>
+        </h4>
+        <h4 class="health character-details-subtitle">
+            <span class="left condition">
+                {{ 'character.health.okay'|trans }}&nbsp;(-1)&nbsp;:
+            </span>
+            <span class="right score">
+                {{ character.health.okay }}&nbsp;/&nbsp;{{ character.maxHealth.okay }}
+            </span>
+        </h4>
+        <h4 class="health character-details-subtitle">
+            <span class="left condition">
+                {{ 'character.health.bad'|trans }}&nbsp;(-2)&nbsp;:
+            </span>
+            <span class="right score">
+                {{ character.health.bad }}&nbsp;/&nbsp;{{ character.maxHealth.bad }}
+            </span>
+        </h4>
+        <h4 class="health character-details-subtitle">
+            <span class="left condition">
+                {{ 'character.health.critical'|trans }}&nbsp;(-3)&nbsp;:
+            </span>
+            <span class="right score">
+                {{ character.health.critical }}&nbsp;/&nbsp;{{ character.maxHealth.critical }}
+            </span>
+        </h4>
+        <h4 class="health character-details-subtitle">
+            <span class="left condition">
+                {{ 'character.health.agony'|trans }}&nbsp;:
+            </span>
+            <span class="right score">
+                {{ character.health.agony ? 1 : 0 }}&nbsp;/&nbsp;{{ character.maxHealth.agony ? 1 : 0 }}
+            </span>
+        </h4>
+        <hr>
+        <div class="right">
+            <h4 class="mt5">{{ 'character.stamina'|trans }}<span class="ml10 right">{{ character.stamina }}</span></h4>
+            <h4 class="mt5">{{ 'character.survival'|trans }}<span class="ml10 right">{{ character.survival }}</span></h4>
+        </div>
+    </div>
+</div>

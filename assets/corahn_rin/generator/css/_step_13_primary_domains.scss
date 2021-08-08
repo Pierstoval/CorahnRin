@@ -1,0 +1,68 @@
+// Different state colors
+$dataChange0: #777;
+$dataChange1: hsl(hue($primary-color), saturation($primary-color) + 20%, lightness($primary-color) + 35%);
+$dataChange2: hsl(hue($success-color), saturation($success-color) + 20%, lightness($success-color) - 10%);
+$dataChange3: hsl(hue($error-color), saturation($error-color) + 40%, lightness($error-color) - 12%);
+$dataChange4: hsl(hue($warning-color), saturation($warning-color) + 40%, lightness($warning-color) - 12%);
+$dataChange5: #bb0000;
+
+@mixin domainValue0() { color: $dataChange0; }
+@mixin domainValue1() { color: $dataChange1; }
+@mixin domainValue2() { color: $dataChange2; }
+@mixin domainValue3() { color: $dataChange3; }
+@mixin domainValue4() { color: $dataChange4; }
+@mixin domainValue5() { color: $dataChange5; }
+
+#generator_form {
+    #information_table {
+        tr {
+            td {
+                padding: 2px 0 2px 0;
+            }
+        }
+    }
+
+    .domain {
+
+        padding-bottom: 15px;
+
+        button {
+            &.domain_button_value {
+                font-size: 1em;
+                font-weight: bold;
+                line-height: normal;
+                margin: 0 -2px;
+                padding: 3px 10px;
+                border: solid 1px transparent;
+                background: #ddf3fe;
+
+                &.not_selectable {
+                    opacity: 0.5;
+                }
+
+                &.disabled:not(.active) {
+                    opacity: 0.15;
+                }
+
+                &[data-change="0"] {
+                    @include domainValue0();
+                }
+                &[data-change="1"] {
+                    @include domainValue1();
+                }
+                &[data-change="2"] {
+                    @include domainValue2();
+                }
+                &[data-change="3"] {
+                    @include domainValue3();
+                }
+                &[data-change="4"] {
+                    @include domainValue4();
+                }
+                &[data-change="5"] {
+                    @include domainValue5();
+                }
+            }
+        }
+    }
+}

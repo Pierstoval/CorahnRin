@@ -1,0 +1,9 @@
+#generator_form {
+    .domain {
+        border: solid 1px transparent;
+
+        &.active {
+            border-color: gray;
+        }
+    }
+}

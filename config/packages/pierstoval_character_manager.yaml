@@ -1,0 +1,143 @@
+
+# Use PierstovalCharacterManager to setup CorahnRin's character generator.
+# This bundle has to be standalone as much as possible, to only use config and/or override.
+pierstoval_character_manager:
+    managers:
+        "%corahnrin_manager_name%":
+            character_class: 'CorahnRin\Entity\Character'
+            steps:
+
+                01_people:
+                    action: CorahnRin\Step\Step01People
+
+                02_job:
+                    action: CorahnRin\Step\Step02Job
+                    onchange_clear:
+                        - '13_primary_domains'
+                        - '14_use_domain_bonuses'
+                        - '15_domains_spend_exp'
+                        - '16_disciplines'
+                        - '17_combat_arts'
+
+                03_birthplace:
+                    action: CorahnRin\Step\Step03Birthplace
+
+                04_geo:
+                    action: CorahnRin\Step\Step04Geo
+                    onchange_clear:
+                        - '14_use_domain_bonuses'
+
+                05_social_class:
+                    action: CorahnRin\Step\Step05SocialClass
+                    onchange_clear:
+                        - '14_use_domain_bonuses'
+
+                06_age:
+                    action: CorahnRin\Step\Step06Age
+                    onchange_clear:
+                        - '07_setbacks'
+                        - '14_use_domain_bonuses'
+
+                07_setbacks:
+                    action: CorahnRin\Step\Step07Setbacks
+                    dependencies:
+                        - '06_age'
+
+                08_ways:
+                    action: CorahnRin\Step\Step08Ways
+                    onchange_clear:
+                        - '09_traits'
+                        - '10_orientation'
+                        - '17_combat_arts'
+
+                09_traits:
+                    action: CorahnRin\Step\Step09Traits
+                    dependencies:
+                        - '08_ways'
+
+                10_orientation:
+                    action: CorahnRin\Step\Step10Orientation
+                    dependencies:
+                        - '08_ways'
+
+                11_advantages:
+                    action: CorahnRin\Step\Step11Advantages
+                    onchange_clear:
+                        - '13_primary_domains'
+                        - '14_use_domain_bonuses'
+                        - '15_domains_spend_exp'
+                        - '16_disciplines'
+                        - '17_combat_arts'
+
+                12_mental_disorder:
+                    action: CorahnRin\Step\Step12MentalDisorder
+                    dependencies:
+                        - '08_ways'
+
+                13_primary_domains:
+                    action: CorahnRin\Step\Step13PrimaryDomains
+                    dependencies:
+                        - '02_job'
+                        - '11_advantages'
+                    onchange_clear:
+                        - '14_use_domain_bonuses'
+                        - '15_domains_spend_exp'
+                        - '16_disciplines'
+                        - '17_combat_arts'
+
+                14_use_domain_bonuses:
+                    action: CorahnRin\Step\Step14UseDomainBonuses
+                    dependencies:
+                        - '02_job'
+                        - '04_geo'
+                        - '05_social_class'
+                        - '13_primary_domains'
+                    onchange_clear:
+                        - '15_domains_spend_exp'
+                        - '16_disciplines'
+
+                15_domains_spend_exp:
+                    action: CorahnRin\Step\Step15DomainsSpendExp
+                    dependencies:
+                        - '14_use_domain_bonuses'
+                    onchange_clear:
+                        - '16_disciplines'
+
+                16_disciplines:
+                    action: CorahnRin\Step\Step16Disciplines
+                    dependencies:
+                        - '15_domains_spend_exp'
+
+                17_combat_arts:
+                    action: CorahnRin\Step\Step17CombatArts
+                    dependencies:
+                        - '15_domains_spend_exp'
+
+                18_equipment:
+                    action: CorahnRin\Step\Step18Equipment
+
+                19_description:
+                    action: CorahnRin\Step\Step19Description
+
+                20_finish:
+                    action: CorahnRin\Step\Step20Finish
+                    dependencies:
+                        - '01_people'
+                        - '02_job'
+                        - '03_birthplace'
+                        - '04_geo'
+                        - '05_social_class'
+                        - '06_age'
+                        - '07_setbacks'
+                        - '08_ways'
+                        - '09_traits'
+                        - '10_orientation'
+                        - '11_advantages'
+                        - '12_mental_disorder'
+                        - '13_primary_domains'
+                        - '14_use_domain_bonuses'
+                        - '15_domains_spend_exp'
+                        - '16_disciplines'
+                        - '17_combat_arts'
+                        - '18_equipment'
+                        - '19_description'

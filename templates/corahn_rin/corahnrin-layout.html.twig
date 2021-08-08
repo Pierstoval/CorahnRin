@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% import 'menu/macros.html.twig' as menu_macros %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block menu_left_content %}
+    {{ menu_macros.tooltipped_list_link('corahnrin_characters_list', path('corahnrin_characters_list'), 'menu.characters_list' | trans, 'list') }}
+    {{ menu_macros.tooltipped_list_link('pierstoval_character_generator_step', path('pierstoval_character_generator_index'), 'menu.character_create' | trans, 'user-plus') }}
+{% endblock %}
+
+{% block menu_right_content %}
+    {%- if app.user -%}
+        <li class="separator"></li>
+
+        {{- menu_macros.tooltipped_list_link('corahnrin_my_characters', path('corahnrin_my_characters'), 'menu.my_characters' | trans, 'users') -}}
+        {{- menu_macros.tooltipped_list_link('my_games', path('my_games'), 'menu.my_games' | trans, 'dragon') -}}
+    {%- endif -%}
+
+    {{- parent() }}
+{% endblock %}

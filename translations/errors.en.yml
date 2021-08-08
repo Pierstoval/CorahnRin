@@ -1,0 +1,6 @@
+error_403: 'You do not have access to this page.'
+error_404: 'Page not found.'
+error_500: 'An error occured. Our team has been noticed of the issue and will make everything to fix it.'
+
+games.invitation.no_invitation_found: 'No invitation found with this identifier.'
+games.invitation.only_game_master_can_resend_email: 'Only the game master can resend the invitation email'

@@ -1,0 +1,17 @@
+{% extends 'corahn_rin/corahnrin-layout.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block title -%}
+    {{ 'games.create.title'|trans }}
+{%- endblock %}
+
+{% block content_for_layout %}
+    <h1>{{ block('title') }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <button class="btn" type="submit">{{ 'games.create.submit'|trans }}</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>Parallax Template - Materialize</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {{ encore_entry_link_tags('style_global') }}
+    <style type="text/css">
+        /* Custom Stylesheet */
+        /**
+         * Use this file to override Materialize files so you can update
+         * the core Materialize files in the future
+         *
+         * Made By MaterializeCSS.com
+         */
+
+        nav ul a,
+        nav .brand-logo {
+            color: #444;
+        }
+
+        p {
+            line-height: 2rem;
+        }
+
+        .button-collapse {
+            color: #26a69a;
+        }
+
+        .parallax-container {
+            min-height: 380px;
+            line-height: 0;
+            height: auto;
+            color: rgba(255,255,255,.9);
+        }
+        .parallax-container .section {
+            width: 100%;
+        }
+
+        @media only screen and (max-width : 992px) {
+            .parallax-container .section {
+                position: absolute;
+                top: 40%;
+            }
+            #index-banner .section {
+                top: 10%;
+            }
+        }
+
+        @media only screen and (max-width : 600px) {
+            #index-banner .section {
+                top: 0;
+            }
+        }
+
+        .icon-block {
+            padding: 0 15px;
+        }
+        .icon-block .material-icons {
+            font-size: inherit;
+        }
+
+        footer#page-footer {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="javascript:void(0);" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="javascript:void(0);">Navbar Link</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+            <li><a href="javascript:void(0);">Navbar Link</a></li>
+        </ul>
+        <a href="javascript:void(0);" data-target="nav-mobile" class="button-collapse sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+                    <h5 class="center">Speeds up development</h5>
+
+                    <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+                    <h5 class="center">User Experience Focused</h5>
+
+                    <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+                    <h5 class="center">Easy to work with</h5>
+
+                    <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+            <div class="col s12 center">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h4>Contact Us</h4>
+                <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="{{ asset('build/Esteren_Arven_marche.jpg') }}" alt="Unsplashed background img 3"></div>
+</div>
+
+<hr>
+
+<div class="container">
+    <h1>Typography (h1)</h1>
+    <h2>h2</h2>
+    <h3>h3</h3>
+    <h4>h4</h4>
+    <h5>h5</h5>
+    <h6>h6</h6>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolores eius eligendi impedit ipsam labore laboriosam minima mollitia non porro quam sunt ut veritatis vero, voluptates? Ducimus incidunt ipsa soluta?</p>
+    <blockquote>
+        Blockquote Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut dolorem inventore iusto labore magnam minus nesciunt nulla numquam pariatur, possimus quam quidem repellendus rerum sapiente sequi velit vero vitae.
+    </blockquote>
+    <p class="flow-text">I am Flow Text, adaptative depending on device Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur blanditiis deserunt excepturi facere incidunt nemo provident, quam quidem quod sequi sit voluptates! Accusamus accusantium assumenda dignissimos veritatis vero voluptatibus?</p>
+
+</div>
+
+<hr>
+
+<div class="container">
+    <div class="card-panel">Card Panel</div>
+    <div class="card-panel hoverable"> Hoverable Card Panel</div>
+</div>
+
+<hr>
+
+<div class="container">
+    <p>
+        <a class="btn btn-floating pulse"><i class="material-icons">menu</i></a>
+        <a class="btn btn-floating btn-large pulse"><i class="material-icons">cloud</i></a>
+        <a class="btn btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
+    </p>
+</div>
+
+<hr>
+
+<div class="container">
+    <h3>Shadows:</h3>
+    <div class="row">
+        <div class="col s12 m2">
+            <p class="z-depth-1">z-depth-1</p>
+        </div>
+        <div class="col s12 m2">
+            <p class="z-depth-2">z-depth-2</p>
+        </div>
+        <div class="col s12 m2">
+            <p class="z-depth-3">z-depth-3</p>
+        </div>
+        <div class="col s12 m2">
+            <p class="z-depth-4">z-depth-4</p>
+        </div>
+        <div class="col s12 m2">
+            <p class="z-depth-5">z-depth-5</p>
+        </div>
+    </div>
+</div>
+
+<hr>
+<div class="container">
+    <h4>Classic table</h4>
+    <table>
+        <thead><tr><th>Name</th><th>Item Name</th><th>Item Price</th></tr></thead><tbody><tr><td>Alvin</td><td>Eclair</td><td>$0.87</td></tr><tr><td>Alan</td><td>Jellybean</td><td>$3.76</td></tr><tr><td>Jonathan</td><td>Lollipop</td><td>$7.00</td></tr></tbody>
+    </table>
+
+    <br><br><br><br>
+
+    <h4>Table bordered</h4>
+    <table class="bordered">
+        <thead><tr><th>Name</th><th>Item Name</th><th>Item Price</th></tr></thead><tbody><tr><td>Alvin</td><td>Eclair</td><td>$0.87</td></tr><tr><td>Alan</td><td>Jellybean</td><td>$3.76</td></tr><tr><td>Jonathan</td><td>Lollipop</td><td>$7.00</td></tr></tbody>
+    </table>
+
+    <br><br><br><br>
+
+    <h4>Table striped</h4>
+    <table class="striped">
+        <thead><tr><th>Name</th><th>Item Name</th><th>Item Price</th></tr></thead><tbody><tr><td>Alvin</td><td>Eclair</td><td>$0.87</td></tr><tr><td>Alan</td><td>Jellybean</td><td>$3.76</td></tr><tr><td>Jonathan</td><td>Lollipop</td><td>$7.00</td></tr></tbody>
+    </table>
+
+    <br><br><br><br>
+
+    <h4>Table highlight</h4>
+    <table class="highlight">
+        <thead><tr><th>Name</th><th>Item Name</th><th>Item Price</th></tr></thead><tbody><tr><td>Alvin</td><td>Eclair</td><td>$0.87</td></tr><tr><td>Alan</td><td>Jellybean</td><td>$3.76</td></tr><tr><td>Jonathan</td><td>Lollipop</td><td>$7.00</td></tr></tbody>
+    </table>
+
+    <br><br><br><br>
+
+    <h4>Table centered</h4>
+    <table class="centered">
+        <thead><tr><th>Name</th><th>Item Name</th><th>Item Price</th></tr></thead><tbody><tr><td>Alvin</td><td>Eclair</td><td>$0.87</td></tr><tr><td>Alan</td><td>Jellybean</td><td>$3.76</td></tr><tr><td>Jonathan</td><td>Lollipop</td><td>$7.00</td></tr></tbody>
+    </table>
+
+    <br><br><br><br>
+
+    <h4>Table responsive-table</h4>
+    <table class="responsive-table">
+        <thead><tr><th>Name</th><th>Item Name</th><th>Item Price</th></tr></thead><tbody><tr><td>Alvin</td><td>Eclair</td><td>$0.87</td></tr><tr><td>Alan</td><td>Jellybean</td><td>$3.76</td></tr><tr><td>Jonathan</td><td>Lollipop</td><td>$7.00</td></tr></tbody>
+    </table>
+</div>
+
+<hr>
+
+<div class="container">
+    <h4>Transitions</h4>
+    <a id="scale-demo" href="javascript:void(0);" class="btn-floating btn-large scale-transition">
+        <i class="material-icons">add</i>
+    </a>
+    &nbsp;
+    <a id="scale-demo-trigger" href="javascript:void(0);" class="btn">Toggle Scale</a>
+</div>
+
+<hr>
+
+<div class="container">
+    <h4>Badges</h4>
+
+    <h5>In collection</h5>
+    <div class="collection">
+        <a href="javascript:void(0);" class="collection-item"><span class="badge">1</span>Alan</a>
+        <a href="javascript:void(0);" class="collection-item"><span class="new badge">4</span>Alan</a>
+        <a href="javascript:void(0);" class="collection-item">Alan</a>
+        <a href="javascript:void(0);" class="collection-item"><span class="badge">14</span>Alan</a>
+    </div>
+
+    <h5>In dropdown</h5>
+    <ul id="dropdown2" class="dropdown-content">
+        <li><a href="javascript:void(0);">one<span class="badge">1</span></a></li>
+        <li><a href="javascript:void(0);">two<span class="new badge">1</span></a></li>
+        <li><a href="javascript:void(0);">three</a></li>
+    </ul>
+    <a class="btn sidenav-trigger dropdown-button" href="javascript:void(0);" data-target="dropdown2">Dropdown<i class="mdi-navigation-arrow-drop-down right"></i></a>
+
+    <h5>In navbar</h5>
+    <nav class="blue darken-3">
+        <div class="nav-wrapper">
+            <a href="" class="brand-logo">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="">sass</a></li>
+                <li><a href="">sass <span class="new badge">4</span></a></li>
+                <li><a href="">sass</a></li>
+            </ul>
+        </div>
+    </nav>
+
+</div>
+
+<hr>
+
+<div class="container">
+    <h4>Buttons</h4>
+    <a href="javascript:void(0);" class="waves-effect waves-light btn">button</a>
+    <a href="javascript:void(0);" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
+    <a href="javascript:void(0);" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>button</a>
+    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+</div>
+
+
+<hr>
+
+<div class="container">
+    <h4>Breadcrumbs</h4>
+    <nav class="black">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="javascript:void(0);" class="breadcrumb">First</a>
+                <a href="javascript:void(0);" class="breadcrumb">Second</a>
+                <a href="javascript:void(0);" class="breadcrumb">Third</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<hr>
+
+<div class="container">
+    <h4>Cards</h4>
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Card Title</span>
+                    <p>I am a very simple card. I am good at containing small bits of information.
+                       I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action">
+                    <a href="javascript:void(0);">This is a link</a>
+                    <a href="javascript:void(0);">This is a link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h5>Horizontal</h5>
+    <div class="col s12 m7">
+        <h2 class="header">Horizontal Card</h2>
+        <div class="card horizontal">
+            <div class="card-image">
+                <img src="http://lorempixel.com/100/190/nature/6">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">This is a link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr>
+
+<div class="container">
+    <h4>Chips</h4>
+    <div class="chip">
+        <img src="{{ asset('build/favicon-144.png') }}" alt="Contact Person">
+        Jane Doe
+    </div>
+    <div class="chip">
+        Tag
+        <i class="close material-icons">close</i>
+    </div>
+    <div class="chips"></div>
+    <div class="chips chips-initial"></div>
+    <div class="chips chips-placeholder"></div>
+    <div class="chips chips-autocomplete"></div>
+</div>
+
+<hr>
+
+<div class="container">
+    <h4>Pagination</h4>
+    <ul class="pagination">
+        <li class="disabled"><a href="javascript:void(0);"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="javascript:void(0);">1</a></li>
+        <li class="waves-effect"><a href="javascript:void(0);">2</a></li>
+        <li class="waves-effect"><a href="javascript:void(0);">3</a></li>
+        <li class="waves-effect"><a href="javascript:void(0);">4</a></li>
+        <li class="waves-effect"><a href="javascript:void(0);">5</a></li>
+        <li class="waves-effect"><a href="javascript:void(0);"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+</div>
+
+<hr>
+
+<div class="container">
+    <h4>Tooltip</h4>
+    <div class="row">
+        <a class="btn tooltipped col s4 offset-s4 l2 offset-l1" data-html="true" data-position="bottom" data-delay="50" data-tooltip="I am tooltip" data-tooltip-id="608773e1-9937-5d2b-fc7f-58bdcc14b25c"> Bottom</a>
+        <a class="btn tooltipped col s4 offset-s4 l2 offset-l1" data-position="top" data-delay="50" data-tooltip="I am tooltip" data-tooltip-id="87748ef0-a604-dd95-6945-26e292da3e23"> Top</a>
+        <a class="btn tooltipped col s4 offset-s4 l2 offset-l1" data-position="left" data-delay="50" data-tooltip="I am tooltip" data-tooltip-id="781b9cac-3541-a797-f794-bfac58b7735e"> Left</a>
+        <a class="btn tooltipped col s4 offset-s4 l2 offset-l1" data-position="right" data-delay="50" data-tooltip="I am tooltip" data-tooltip-id="1e187063-f9a9-4d06-8cef-c4e6f9144456"> Right</a>
+    </div>
+</div>
+
+<hr>
+
+<div class="container">
+    <h4>Dropdown</h4>
+    <!-- Dropdown Trigger -->
+    <a class='dropdown-button sidenav-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+
+    <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="javascript:void(0);">one</a></li>
+        <li><a href="javascript:void(0);">two</a></li>
+        <li class="divider"></li>
+        <li><a href="javascript:void(0);">three</a></li>
+        <li><a href="javascript:void(0);"><i class="material-icons">view_module</i>four</a></li>
+        <li><a href="javascript:void(0);"><i class="material-icons">cloud</i>five</a></li>
+    </ul>
+</div>
+
+<hr>
+
+<div class="container">
+    <h4>Modals</h4>
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn" href="#modal1">Modal</a>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:void(0);" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+<footer id="page-footer" class="teal">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Company Bio</h5>
+                <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Settings</h5>
+                <ul>
+                    <li><a class="white-text" href="javascript:void(0);">Link 1</a></li>
+                    <li><a class="white-text" href="javascript:void(0);">Link 2</a></li>
+                    <li><a class="white-text" href="javascript:void(0);">Link 3</a></li>
+                    <li><a class="white-text" href="javascript:void(0);">Link 4</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Connect</h5>
+                <ul>
+                    <li><a class="white-text" href="javascript:void(0);">Link 1</a></li>
+                    <li><a class="white-text" href="javascript:void(0);">Link 2</a></li>
+                    <li><a class="white-text" href="javascript:void(0);">Link 3</a></li>
+                    <li><a class="white-text" href="javascript:void(0);">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Made by <a class="brown-text text-lighten-3" href="javascript:void(0);">Materialize</a>
+        </div>
+    </div>
+</footer>
+
+
+<!--  Scripts-->
+{{ encore_entry_script_tags('global') }}
+<script>
+    (function($){
+        $(function(){
+            $('.button-collapse').sideNav();
+            $('.parallax').parallax();
+            if ($('#scale-demo').length &&
+                    $('#scale-demo-trigger').length) {
+                $('#scale-demo-trigger').click(function() {
+                    $('#scale-demo').toggleClass('scale-out');
+                });
+        });
+    })(jQuery);
+</script>
+
+</body>
+</html>

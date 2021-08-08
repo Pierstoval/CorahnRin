@@ -1,0 +1,13 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% block step_content %}
+    <div class="input-field">
+        <select name="age" id="age_value">
+            {% for i in 16..35 %}
+                <option value="{{ i }}" {{ age == i ? 'selected' }}>{{ i }}</option>
+            {% endfor %}
+        </select>
+        <label for="age_value">{{ 'age.select' | trans({}, 'corahn_rin') | raw }}</label>
+    </div>
+    <p class="help-block">{{ 'age.min_max' | trans({}, 'corahn_rin') }}</p>
+{% endblock %}

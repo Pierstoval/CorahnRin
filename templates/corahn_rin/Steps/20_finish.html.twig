@@ -1,0 +1,45 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('character_details') }}
+{% endblock %}
+
+{% block step_content %}
+
+    <div class="divider"></div>
+
+    <div class="blue darken-4 main row">
+        <div class="col s12">
+            <p>
+                {{ 'steps.20_finish.message'|trans|raw }}
+            </p>
+
+            {% if app.user %}
+                <p>
+                    {{ 'steps.20_finish.save_to_database_message'|trans|raw }}
+                </p>
+                <form action="" method="post">
+                    <button class="btn green lighten-2 mb15">
+                        {{ 'steps.20_finish.save_to_database_button_text'|trans }}
+                    </button>
+                </form>
+            {% else %}
+                <p>
+                    {{ 'steps.20_finish.no_user_message'|trans|raw }}
+                </p>
+                <a href="{{ path('user_login', {'redirect_url': app.request.pathInfo}) }}" class="btn blue darken-2 white-text mb15">
+                    {{ 'steps.20_finish.login_button_text'|trans|raw }}
+                </a>
+                <br>
+                <a href="{{ path('user_register', {'redirect_url': app.request.pathInfo}) }}" class="btn blue darken-3 white-text mb15">
+                    {{ 'steps.20_finish.register_button_text'|trans|raw }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    {{ include('corahn_rin/character_view/details_show.html.twig', {'character': character}) }}
+{% endblock %}

@@ -1,0 +1,33 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/StofDoctrineExtensionsBundle/index.html
+# See the official DoctrineExtensions documentation for more details: https://github.com/Atlantic18/DoctrineExtensions/tree/master/doc/
+stof_doctrine_extensions:
+    default_locale: '%locale%'
+    translation_fallback: true
+    persist_default_translation: true
+    uploadable:
+        default_file_path: '%kernel.project_dir%/public/uploads'
+        mime_type_guesser_class: Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
+        default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
+    orm:
+        default:
+            uploadable: true
+            sluggable: true
+            loggable: true
+            timestampable: true
+            translatable: true
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    gedmo_loggable:
+                        type: annotation
+                        prefix: Gedmo\Loggable\Entity
+                        dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Loggable/Entity"
+                        is_bundle: false
+                    gedmo_translatable:
+                        type: annotation
+                        prefix: Gedmo\Translatable\Entity
+                        dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Translatable/Entity"
+                        is_bundle: false

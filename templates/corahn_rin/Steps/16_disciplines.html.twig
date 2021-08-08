@@ -1,0 +1,64 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('step_16_disciplines') }}
+{% endblock %}
+
+{% block step_content %}
+
+    {% if can_have_disciplines  %}
+
+        <div class="card-panel teal darken-4">
+            {{ 'disciplines_spend_exp.explanation'|trans|raw }}
+        </div>
+
+        <div class="card-panel blue-grey darken-4">
+            {{ 'disciplines_spend_exp.remaining'|trans }}
+            <div class="bonus_points_element chip bordered" id="exp_points">
+                <span id="remaining_exp_points" class="text-black">{{ exp_value }}</span>&nbsp;/<span id="max_exp_points" class="text-black">{{ exp_max }}</span>
+            </div>
+            <br>
+            <div class="{{ bonus_max is same as(0) ? 'hide' }}">
+                {{ 'disciplines_spend_exp.remaining_bonus_points'|trans }}
+                <div class="bonus_points_element chip bordered" id="bonus_points">
+                    <span id="remaining_bonus_points" class="text-black">{{ bonus_value }}</span>&nbsp;/<span id="max_bonus_points" class="text-black">{{ bonus_max }}</span>
+                </div>
+            </div>
+        </div>
+
+        {% for domain_id, disciplines in all_disciplines %}
+
+            <h5>
+                {{ all_domains[domain_id].title | trans }}
+            </h5>
+
+            <div class="row">
+            {% for id, discipline in disciplines %}
+
+                {% set value = disciplines_spent_with_exp[domain_id][id]|default(0) %}
+
+                <div class="col s3">
+                    {% set input_id = 'dse_'~domain_id~'_'~id %}
+                    <label for="{{ input_id }}">
+                        <input type="checkbox" id="{{ input_id }}" name="disciplines_spend_exp[{{ domain_id }}][{{ id }}]" data-discipline-id="{{ id }}" data-domain-id="{{ domain_id }}" class="filled-in" {{ value ? ' checked' }}>
+                        <span>{{ discipline.name }}</span>
+                    </label>
+                </div>
+
+            {% endfor %}
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="card-panel teal darken-4">
+            {{ 'disciplines_spend_exp.no_exp_or_bonus_points'|trans }}
+        </div>
+
+    {% endif %}{# end if can_have_disciplines #}
+
+{% endblock %}

@@ -1,0 +1,221 @@
+#character-original-page-1 {
+    padding-top: 165px;
+}
+
+[id^="character-details-"] {
+    overflow: hidden;
+}
+
+#character-details-name {
+    margin-left: 55px;
+    width: 430px;
+    .character-details-subitem {
+        font-size: 16pt;
+        padding-left: 10px;
+    }
+}
+#character-details-player-name {
+    width: 260px;
+    .character-details-subitem {
+        font-size: 16pt;
+    }
+}
+#character-details-gender {
+    margin-left: 54px;
+    width: 95px;
+    font-size: 16pt;
+    .character-details-subitem {
+        font-size: 14pt;
+    }
+}
+#character-details-age {
+    margin-left: 10px;
+    font-size: 16pt;
+    .character-details-subitem {
+        font-size: 14pt;
+    }
+}
+#character-details-people {
+    margin-left: 15px;
+    width: 220px;
+    font-size: 16pt;
+    .character-details-subitem {
+        font-size: 14pt;
+    }
+}
+#character-details-job {
+    width: 280px;
+    font-size: 16pt;
+    .character-details-subitem {
+        font-size: 14pt;
+    }
+}
+#character-details-description {
+    margin-left: 54px;
+    max-width: 695px;
+    overflow: hidden;
+    font-size: 14px;
+    .character-details-subitem {
+        font-size: 10pt;
+        white-space: normal;
+        line-height: 9pt;
+        display: inline-block;
+        vertical-align: text-top;
+        height: 27pt;
+    }
+}
+#character-details-ways {
+    margin-top: 27px;
+    margin-left: 54px;
+    font-size: 14pt;
+    width: 195px;
+    h3.character-details-subtitle {
+        text-align: center;
+    }
+    h4:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    .character-details-way {
+        font-size: 15pt;
+        text-align: left;
+        display: block;
+    }
+    .character-details-way-fault {
+        float: left;
+        display: block;
+        font-size: 12pt;
+        padding-left: 10px;
+    }
+    .character-details-way-score {
+        float: right;
+        display: block;
+        margin-right: 5px;
+        margin-top: -25px;
+    }
+}
+#character-details-advantages {
+    margin: 28px 0 0 30px;
+    width: 200px;
+    h3.character-details-subtitle {
+        text-align: center;
+        font-size: 16pt;
+        margin-bottom: 10px;
+    }
+    .character-details-advantages-list {
+        width: 200px;
+        height: 85px;
+        margin: 0 0 5px;
+        overflow: hidden;
+        font-size: 11pt;
+        text-align: center;
+        color: black;
+        h4 {
+            font-size: 12pt;
+        }
+    }
+}
+#character-details-domains {
+    margin-top: 34px;
+    margin-left: 38px;
+    width: 722px;
+
+    .character-details-domain {
+        padding: 0 3px;
+        height: 112px;
+        overflow: hidden;
+
+        &:not(:last-child) {
+            border-right: solid 1px #a9b1b7;
+        }
+        &[data-domain="domains.close_combat"] h3.character-details-domain-title,
+        &[data-domain="domains.demorthen_mysteries"] h3.character-details-domain-title
+        {
+            font-size: 10pt;
+        }
+        &[data-domain="domains.natural_environment"] h3.character-details-domain-title,
+        &[data-domain="domains.performance"] h3.character-details-domain-title
+        {
+            font-size: 12pt;
+        }
+        img.domain-triskel {
+            display: inline-block;
+            width: 20px;
+            position: relative;
+            margin-right: 5px;
+            top: 8px;
+            filter: none;
+        }
+        .character-details-domain-discipline {
+            font-size: 8.75pt;
+            font-family: "Times New Roman", serif;
+            line-height: 8.25pt;
+            .character-details-subitem {
+                width: 107px;
+                display: inline-block;
+            }
+            .discipline-score-container {
+                display: inline-block;
+                margin-left: 2px;
+                text-align: right;
+                width: 67px;
+            }
+            .discipline-total-score {
+                font-family: 'LettrinEsteren-Regular', cursive;
+                font-size: 12pt;
+            }
+        }
+        .character-details-domain-bonuses {
+            margin: 0;
+            display: flex;
+            .character-details-domain-way,
+            .character-details-domain-bonus {
+                flex: 1;
+                text-align: center;
+                font-family: "Times New Roman", serif;
+            }
+        }
+    }
+    h2.character-details-subtitle {
+        text-align: center;
+    }
+    h3.character-details-domain-title {
+        white-space: normal;
+        font-size: 15pt;
+        line-height: 14pt;
+        text-shadow: 0 0 5px white;
+    }
+}
+.character-details-domain-score {
+    margin: 0;
+    font-size: 9pt;
+    .fa-circle {
+        margin-right: 1px;
+    }
+}
+.character-details-domain-score-total {
+    font-size: 18pt;
+    text-align: right;
+    float: right;
+    margin-top: -4px;
+    margin-right: 5px;
+}
+#character-details-health {
+    margin-top: 32px;
+    margin-left: 35px;
+    width: 225px;
+    h3 {
+        padding-left: 40px;
+    }
+    h4.health {
+        .left {
+            float: left;
+            font-size: 14pt;
+        }
+        .right {
+            float: right;
+            font-size: 16pt;
+        }
+    }
+}

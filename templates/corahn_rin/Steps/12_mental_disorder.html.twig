@@ -1,0 +1,24 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% block step_content %}
+
+    <p>{{ 'mental_disorders.text'|trans({}, 'corahn_rin') }}</p>
+
+    <input type="hidden" name="gen-div-choice" id="gen-div-choice" value="{{ disorder_value }}" />
+    {% for list in disorders|batch(2) %}
+        <div class="row">
+        {% for disorder in list %}
+            <div class="col s6 gen-div-choice{% if disorder_value == disorder.id %} selected{% endif %}"
+                 data-divchoice-value="{{ disorder.id }}">
+                <article class="hoverable">
+                    <header>
+                        <h4 class="text-center">{{ disorder.name | trans({}, 'corahn_rin') }}</h4>
+                    </header>
+                    <p>{{ disorder.description | trans({}, 'corahn_rin') | raw }}</p>
+                </article>
+            </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+
+{% endblock %}

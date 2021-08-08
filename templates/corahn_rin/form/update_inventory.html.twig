@@ -1,0 +1,16 @@
+{% block update_inventory_widget %}
+    <div class="row">
+        <div class="col s6" id="items_container">
+            <h4>{{ form.items.vars.label|trans({}, form.items.vars.translation_domain) }}</h4>
+            {{ form_widget(form.items) }}
+            {{ form_errors(form.items) }}
+            <a class="equipment_add btn-floating waves-effect waves-light teal"><i class="fa fa-plus"></i></a>
+        </div>
+        <div class="col s6" id="treasures_container">
+            <h4>{{ form.preciousObjects.vars.label|trans({}, form.preciousObjects.vars.translation_domain) }}</h4>
+            {{ form_widget(form.preciousObjects) }}
+            {{ form_errors(form.preciousObjects) }}
+            <a class="equipment_add btn-floating waves-effect waves-light teal"><i class="fa fa-plus"></i></a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,147 @@
+{%- trans_default_domain 'corahn_rin' -%}
+
+{%- block character_spend_xp_widget -%}
+    <ul class="tabs">
+        <li class="tab col">
+            <a href="#combat">
+                {{- 'character_spend_xp.form.combat'|trans -}}
+            </a>
+        </li>
+        <li class="tab col">
+            <a href="#domains">
+                {{- 'character.domains'|trans -}}
+            </a>
+        </li>
+        <li class="tab col">
+            <a href="#disciplines">
+                {{- 'character.disciplines'|trans -}}
+            </a>
+        </li>
+        {% if form.ogham is defined %}
+            <li class="tab col">
+                <a href="#ogham">
+                    {{- 'character.ogham'|trans -}}
+                </a>
+            </li>
+        {% endif %}
+        {% if form.miracles is defined %}
+            <li class="tab col">
+                <a href="#miracles">
+                    {{- 'character.miracles'|trans -}}
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <div id="combat" class="spend_xp_panel">
+        <div class="row">
+            <div class="col s6">
+                {{- form_row(form.speed) -}}
+            </div>
+            <div class="col s6">
+                {{- form_row(form.defense) -}}
+            </div>
+        </div>
+    </div>
+
+    <div id="domains" class="spend_xp_panel">
+        {{- form_widget(form.domains) -}}
+    </div>
+
+    <div id="disciplines" class="spend_xp_panel">
+        {{- form_widget(form.disciplines) -}}
+    </div>
+
+    {% if form.ogham is defined %}
+        <div id="ogham" class="spend_xp_panel">
+            {{- form_widget(form.ogham) -}}
+        </div>
+    {% endif %}
+
+    {% if form.miracles is defined %}
+        <div id="miracles" class="spend_xp_panel">
+            {{- form_widget(form.miracles) -}}
+        </div>
+    {% endif %}
+{%- endblock -%}
+
+{%- block domains_spend_xp_widget -%}
+    {%- for list in form.children|batch(4) -%}
+        <div class="row">
+            {%- for short_domain, child in list -%}
+                <div class="col s3">
+                    {{- form_row(child, {
+                        attr: child.vars.attr|merge({
+                            'data-domain': short_domain|short_domain_to_title
+                        })
+                    }) -}}
+                </div>
+            {%- endfor -%}
+        </div>
+    {%- endfor -%}
+{%- endblock -%}
+
+{%- block disciplines_spend_xp_widget -%}
+    <div class="row mb0">
+        {%- for short_domain, disciplines_form in form.children -%}
+            {%- set domain = short_domain|short_domain_to_title -%}
+            <div class="col m6 disciplines-container" data-domain="{{- domain -}}" style="display: none;">
+                <h3 class="text-center">{{- domain|trans -}}</h3>
+                {%- for discipline in disciplines_form -%}
+                    {{- form_row(discipline) -}}
+                {%- endfor -%}
+                <hr>
+            </div>
+        {%- endfor -%}
+    </div>
+{%- endblock -%}
+
+{%- block disciplines_spend_xp_score_hidden_widget -%}
+    {#
+    The goal is to hide disciplines from the form, but keep them as EntityType.
+    This way, EntityType transforms the data to an object,
+    and we still hide it from the HTML since it's useless because we don't change it.
+    #}
+    {%- set type = 'hidden' -%}
+    {{- block('form_widget_simple') -}}
+{%- endblock -%}
+
+{%- block discipline_domain_score_spend_xp_widget -%}
+    {{- form_widget(form.domain) -}}
+    <div class="row mb0">
+        <div class="col s6">
+            {{- form_widget(form.discipline) -}}
+            <h4 class="m0 text-xl">{{- form.discipline.vars.data -}}</h4>
+        </div>
+        <div class="col s6">
+            {{- form_row(form.score) -}}
+        </div>
+    </div>
+{%- endblock -%}
+
+{% block ogham_spend_xp_widget %}
+    {% for batch in form.children|batch(4) %}
+        <div class="row">
+            {% for child in batch %}
+                <div class="col s3">
+                    {{ form_row(child) }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block miracles_spend_xp_widget %}
+    {% for minor_or_major in ['minor', 'major'] %}
+        <h3>{{ ('character.miracles.'~minor_or_major)|trans(domain='corahn_rin') }}</h3>
+        {% for batch in form[minor_or_major].children|batch(4) %}
+            <div class="row">
+                {% for child in batch %}
+                    <div class="col s3">
+                        {{ form_row(child) }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

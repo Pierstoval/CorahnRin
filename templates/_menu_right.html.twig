@@ -1,0 +1,36 @@
+{% import 'menu/macros.html.twig' as menu_macros %}
+
+{% apply spaceless %}
+
+{% set dropdown = dropdown|default(false) %}
+
+{% if not app.user %}
+    <li><a class="login_link" href="{{ path('user_login') }}">{{ 'layout.login' | trans({}, 'user') }}</a></li>
+    <li><a class="register_link" href="{{ path('user_register') }}">{{ 'layout.register' | trans({}, 'user') }}</a></li>
+{% else %}
+    {% set links %}
+        {% if not is_granted('ROLE_VISITOR') %}
+            {{- menu_macros.tooltipped_list_link('user_profile_edit', path('user_profile_edit'), 'layout.profile' | trans({}, 'user'), 'user-circle', '', 'profile_link') -}}
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('easyadmin') }}">{{ 'links.admin' | trans }}</a></li>
+        {% endif %}
+        {{- menu_macros.tooltipped_list_link('user_logout', path('user_logout'), 'layout.logout' | trans({}, 'user'), 'sign-out-alt') -}}
+    {% endset %}
+
+    {% if dropdown %}
+        <li>
+            <a href="#" class="dropdown-button" data-target="profile-dropdown">
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'user') -}}
+                &nbsp;<span class="fa fa-caret-down"></span>
+            </a>
+            <ul id="profile-dropdown" class="dropdown-content">
+                {{ links }}
+            </ul>
+        </li>
+    {% else %}
+        {{ links }}
+    {% endif %}
+{% endif %}
+
+{% endapply %}

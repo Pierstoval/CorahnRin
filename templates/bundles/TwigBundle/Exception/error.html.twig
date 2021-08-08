@@ -1,0 +1,9 @@
+{% extends 'error_layout.html.twig' %}
+
+{% block content_for_layout %}
+    <div class="card">
+        <div class="card-content red darken-3 red-text text-lighten-4">
+            {{ 'error_500' | trans({}, 'errors') }}
+        </div>
+    </div>
+{% endblock %}

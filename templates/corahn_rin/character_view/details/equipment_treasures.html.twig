@@ -1,0 +1,72 @@
+{% trans_default_domain 'corahn_rin' %}
+
+{%- set max_text_size = 30 -%}
+
+<div class="main row" id="character-details-inventory">
+    <div class="col s8" id="character-details-inventory-equipment">
+        <h2 class="character-details-subtitle">
+            {{- 'character.equipment'|trans -}}
+        </h2>
+
+        <div class="row" id="character-details-inventory-list">
+            {% for item in character.inventory %}
+                <div class="col s3"><h3>
+                    {{- item|slice(0, max_text_size) -}}
+                    {{- (item|length) >= max_text_size ? ' (...)' -}}
+                </h3></div>
+            {% endfor %}
+        </div>
+
+        <h2 class="character-details-subtitle">
+            {{- 'character.combat_arts'|trans -}}
+        </h2>
+
+        <div class="row" id="character-details-combat-arts-list">
+            {% for combat_art in character.combatArts %}
+                <div class="col s3"><h3>
+                    {{- combat_art.name -}}
+                </h3></div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col s4" id="character-details-treasures">
+        <h2 class="character-details-subtitle">
+            {{- 'character.money'|trans -}}
+        </h2>
+
+        <div id="character-details-money">
+            <h3 id="money-ember">
+                <span class="hide-print">
+                    {{- 'money.ember'|trans -}} :
+                </span>
+                {{- character.money.ember -}}
+            </h3>
+            <h3 id="money-azure">
+                <span class="hide-print">
+                    {{- 'money.azure'|trans -}} :
+                </span>
+                {{- character.money.azure -}}
+            </h3>
+            <h3 id="money-frost">
+                <span class="hide-print">
+                    {{- 'money.frost'|trans -}} :
+                </span>
+                {{- character.money.frost -}}
+            </h3>
+        </div>
+
+        <h2 id="character-details-treasures-title" class="character-details-subtitle">
+            {{- 'character.treasures'|trans -}}
+        </h2>
+
+        <ul id="character-details-treasures-list">
+            {% for item in character.treasures %}
+                <li>
+                    {{- item|slice(0, max_text_size) -}}
+                    {{- (item|length) >= max_text_size ? ' (...)' -}}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

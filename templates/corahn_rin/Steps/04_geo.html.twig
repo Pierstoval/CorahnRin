@@ -1,0 +1,26 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block step_content %}
+
+<input type="hidden" name="gen-div-choice" id="gen-div-choice" value="{{ geoEnvironment_value }}" />
+
+{% for list in geoEnvironments|batch(2) %}
+    <div class="row">
+        {% for geoEnvironment in list %}
+            <div class="col l6 gen-div-choice{% if geoEnvironment_value == geoEnvironment.id %} selected{% endif %}"
+                 data-divchoice-value="{{ geoEnvironment.id }}">
+                <article class="hoverable">
+                    <header>
+                        <h3 class="center">{{ geoEnvironment.name | trans }}</h3>
+                    </header>
+                    <p>{{ geoEnvironment.description | trans | raw }}</p>
+                    <p class="text-underline"><small>{{ 'geo_environments.bonus' | trans }} {{ geoEnvironment.domain|trans }}</small></p>
+                </article>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+{% endblock %}

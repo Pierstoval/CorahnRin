@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="60" height="60">
+    <polygon fill="#E25822" stroke="none" stroke-width="5" points="60,185 151,11 242,185 151,251"/>
+    <polygon fill="#E25822" stroke="none" stroke-width="5" points="250,178 160,8 291,126 290,172"/>
+    <polygon fill="#E25822" stroke="none" stroke-width="5" points="158,295 158,259 251,191 290,185"/>
+    <polygon fill="#E25822" stroke="none" stroke-width="5" points="51,179 141,9 10,127 11,173"/>
+    <polygon fill="#E25822" stroke="none" stroke-width="5" points="144,295 144,260 51,192 12,186"/>
+    <text transform="matrix(1,0,0,1,97,195) " fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="90">
+        10
+    </text>
+</svg>

@@ -1,0 +1,50 @@
+{#
+These macros are used in email templates to avoid redundant recoding of all components.
+#}
+
+{# Simply shows already formatted text #}
+{% macro text(content, font_size, font_family) -%}
+    <p style="font-family: {{ font_family|default('sans-serif') }}; font-size: {{ font_size|default(14) }}px; font-weight: normal; margin: 0; margin-bottom: 15px;">
+        {{- content|raw -}}
+    </p>
+{%- endmacro %}
+
+{# Shows a link as a button #}
+{% macro link_btn(url, text) -%}
+    <a href="{{ url }}" target="_blank" style="display: inline-block; color: #ffffff; background-color: #284a7c; border: solid 1px #236592; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px;">
+        {{- text -}}
+    </a>
+{%- endmacro %}
+
+{# Shows a link as a button and centers it in the viewport #}
+{% macro link_btn_center(url, text) -%}
+    {%- import _self as macros -%}
+    <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;" width="100%">
+        <tbody>
+        <tr>
+            <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;" valign="top">
+                {{- macros.link_btn(url, text) -}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{%- endmacro -%}
+
+{# Generates a formatted image #}
+{% macro image(src, alt = '', width = '', height = '') -%}
+    <img src="{{ src }}" alt="{{ alt }}" width="{{ width }}" height="{{ height }}" border="0" style="border:0; outline:none; text-decoration:none; display:block;">
+{%- endmacro %}
+
+{# Generates an image and centers it according to the current viewport #}
+{% macro image_center(src, alt = '', width = '', height = '') -%}
+    {%- import _self as macros -%}
+    <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;" width="100%">
+        <tbody>
+        <tr>
+            <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;" valign="top">
+                {{- macros.image(src, alt, width, height) -}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{%- endmacro %}

@@ -1,0 +1,471 @@
+errors:
+    incorrect_values: 'Certaines valeurs envoyées sont incorrectes, veuillez recommencer (et sans tricher).'
+    character_not_complete: 'Le personnage ne semble pas terminé... Veuillez vérifier toutes les valeurs à chaque étape et recommencez.'
+
+steps:
+    step: 'Étape'
+    next: 'Étape suivante'
+    reset: 'Réinitialiser cette étape'
+
+jobs:
+    modal:
+        details: 'Voir les détails'
+
+geo_environments:
+    bonus: 'Offre un bonus de +1 au domaine suivant :'
+
+domain:
+    primary: 'Domaine primaire'
+    secondary: 'Domaine secondaire'
+    manual: 'Au choix'
+    add_to_two_others: '+1 dans deux domaine parmi les suivants :'
+
+age:
+    select: 'Sélectionnez l''âge de votre personnage'
+    min_max: 'Minimum : 16, maximum : 35'
+
+setback:
+    avoided: 'Évité'
+    avoided_long: 'Par chance, votre personnage a évité ce revers !'
+    none: 'Votre personnage n''a aucun revers.'
+    question:
+        manual: 'Voulez-vous déterminer les revers manuellement ?'
+        auto: 'Voulez-vous déterminer les revers automatiquement ?'
+    drawn: 'Les revers tirés sont indiqués par le symbole "%symbol%".'
+    quantity: 'Votre personnage a <span class="badge fln blue text-black lighten-3">%age%</span> ans, il a donc au moins <span class="label label-warning">%count%</span> revers.'
+
+ways:
+    total: 'Total :'
+    explanation: >
+        Les voies sont comprises entre 1 et 5, et la somme totale des voies doit être égale à 15.
+        <br>
+        Pour obtenir des valeurs idéales, répartissez simplement les valeurs 1, 2, 3, 4 et 5 dans chacune des voies.
+
+advantages:
+    choose_multiple_times: 'Les avantages / désavantages marqués du symbole <span class="text-red">*</span> peuvent être sélectionnés plusieurs fois'
+    title: 'Avantages'
+    xp_cost: 'Coût en XP'
+    details: 'Les avantages coûtent de l''expérience'
+disadvantages:
+    title: 'Désavantages'
+    xp_gain: 'Gain en XP'
+    details: 'Les désavantages vous font gagner de l''expérience'
+
+experience: 'Expérience'
+
+mental_disorders:
+    text: 'Vous pouvez choisir un désordre mental, celui-ci déterminera la tendance de votre personnage lorsqu''il est choqué, effrayé ou pris par surprise.'
+
+traits:
+    qualities: 'Qualités'
+    flaws: 'Défauts'
+
+primary_domains:
+    explanation: >
+        Vous devez définir quels sont les domaines primaires et secondaires de votre personnage.<br>
+        Chaque score peut être attribué seulement un certain nombre de fois, voici leur répartition:
+    additionnal_options: 'Options supplémentaires'
+    ost_service_button: >
+        Domaine acquis lors du service d'ost (service militaire).<br>
+        Si votre personnage n'a pas effectué de service militaire, vous pouvez sélectionner un autre domaine.
+    scholar_button: >
+        Votre personnage possède l'avantage "Lettré", par conséquent vous pouvez obtenir un bonus de +1 à ce domaine grâce à cet avantage.
+    info_table:
+        number_of_1: 'Nombre de domaines avec le score "1"'
+        number_of_2: 'Nombre de domaines avec le score "2"'
+        number_of_3: 'Nombre de domaines avec le score "3"'
+    number_of_scholar: 'Domaine pour l''avantage "Lettré"'
+    scholar_button_use: 'Utiliser l''avantage "Lettré"'
+    ost_button_title: 'Service militaire'
+
+domains_bonuses:
+    explanation: 'D''après les informations fournies, votre personnage bénéficie d''un certain nombre de points bonus que vous pouvez répartir dans différents domaines.'
+    remaining: 'Points bonus restants :'
+    explanation_disciplines: 'Sachez que vous pouvez <strong>conserver jusqu''à 2 points</strong> pour <strong>obtenir des disciplines</strong> dans les étapes suivantes.'
+    errors:
+        more_than_two: >
+            Il vous reste actuellement <strong>%count%</strong> points à dépenser.<br>
+            Sachez que s'il vous reste plus de deux points, tous les points au-delà seront <strong>perdus</strong> !<br>
+            Ainsi, nous vous recommandons de les utiliser, et d'en garder deux pour obtenir des disciplines dans les étapes suivantes.
+        too_many_points: 'Vous avez utilisé %spent% points bonus alors que vous aviez droit à %base% points, veuillez recommencer.'
+    no_bonus_point: 'Vous ne disposez pas de points bonus'
+
+domains_spend_exp:
+    no_exp: 'Vous n''avez plus assez de points d''expérience à pour améliorer vos domaines.'
+    remaining: 'Expérience restante :'
+    explanation: >
+        Vous pouvez dépenser de l'expérience pour améliorer vos domaines.<br>
+        <strong>Chaque point supplémentaire coûte 10XP</strong>
+
+disciplines_spend_exp:
+    no_exp_or_bonus_points: 'Il ne vous reste pas assez de points bonus ou d''expérience pour obtenir des disciplines'
+    remaining: 'Expérience restante'
+    remaining_bonus_points: 'Points bonus restants'
+    explanation: >
+        Vous pouvez dépenser de l'expérience pour obtenir des disciplines.<br>
+        <strong>Chaque discipline coûte 25XP</strong>, et celles-ci ne peuvent être acquises
+        que pour vos domaines principaux et secondaires, qui dépendent de votre métier (vous pouvez
+        les consulter à l'étape 2 si besoin).
+
+equipment:
+    base_elements:
+        title: 'Éléments d''équipement'
+        description: 'Vous avez la possibilité de choisir quelques objets à ajouter à votre inventaire.'
+    weapons:
+        title: 'Armes'
+    armors:
+        title: 'Armures'
+    reminder_if_poor: |
+        Rappel : Votre personnage a le désavantage "Pauvreté", ce qui signifie que vous devez limiter le nombre d'éléments
+        d'équipements de votre personnage, ne l'oubliez pas !
+
+description:
+    name: 'Nom du personnage'
+    male: 'Homme'
+    female: 'Femme'
+    player_name: 'Nom du joueur'
+    character_description: 'Description physique'
+    character_story: 'Histoire'
+    character_notable_facts: 'Faits notables'
+    sex: 'Sexe'
+    errors:
+        name: 'Le nom du personnage est obligatoire'
+        player_name: 'Le nom du joueur est obligatoire'
+        sex: 'Le sexe du personnage est obligatoire'
+        name_too_long: 'Le nom ne doit pas contenir plus de 100 caractères'
+        description: 'La description ne doit pas contenir plus de 255 caractères'
+        story: 'L''histoire ne doit pas contenir plus de 65535 caractères'
+        facts: 'Les faits notables ne doivent pas contenir plus de 65535 caractères'
+
+combat_arts_spend_exp:
+    domains_not_enough: |
+        L'un de vos domaines parmi "Combat au contact" ou "Tir et lancer" doit avoir un score de 5 obtenir des arts de combat
+    not_enough_exp: 'Vous n''avez pas assez d''expérience pour bénéficier d''arts de combat'
+    explanation: 'Vous pouvez ici choisir des arts de combat, chacun coûte 20XP'
+    remaining: 'Expérience :'
+
+menu.steps: 'Étapes'
+menu.character_create: 'Créer un personnage'
+menu.characters_list: 'Liste des personnages'
+menu.my_characters: 'Mes personnages'
+menu.my_games: 'Mes campagnes virtuelles'
+
+money.ember: 'Daols de braise'
+money.azure: 'Daols d''azur'
+money.frost: 'Daols de givre'
+
+generator.home.title: La plateforme de gestion de personnages pour « Les Ombres d'Esteren »
+generator.home.start_creating: Commencer la création d'un personnage
+generator.home.text: |
+    <p>Ce générateur permet de créer un personnage pour "Les Ombres d'Esteren", directement en ligne, mais également de modifier son contenu, d'assister &agrave; des parties et de dépenser ses points d'expérience, et plein d'autres choses encore.</p>
+
+    <ul>
+        <li>Plus besoin de se reporter au livre &agrave; chaque étape</li>
+        <li>Peu de valeurs chiffrée pour une immersion maximale dans le personnage</li>
+        <li>Tr&egrave;s simple : une étape, une information sur le personnage</li>
+        <li>La possibilité de revenir aux étapes précédentes</li>
+    </ul>
+
+    <p>Deux mots d'ordre : Lisez les instructions, et surtout <strong>immergez-vous dans les Ombres...</strong></p>
+
+character:
+    orientation:
+        instinctive: Instinctive
+        rational: Rationnelle
+        instinctive.description: |
+            L'Instinct concerne toute l'énergie pulsionnelle d'un être vivant. Cet Aspect regroupe notamment les
+            instincts de survie et d'autoconservation ainsi que tout ce qui a trait à la sexualité.
+        rational.description: |
+            Cet Aspect rend compte de l'importance de la rationalité pour le PJ, de son ancrage dans la réalité,
+            de sa capacité de logique et de réflexion, et de sa solidité.
+        instinctive_title: Instinctive
+        rational_title: Rationnelle
+        title: 'Orientation'
+    sex:
+        female: 'Femme'
+        male: 'Homme'
+    combat_attitude:
+        standard: 'Standard'
+        offensive: 'Offensive'
+        defensive: 'Défensive'
+        quick: 'Rapide'
+        movement: 'Mouvement'
+        sheet_explanation: |
+            Le premier score d'attaque est au corps-à-corps, et le deuxième est à distance.
+    health:
+        good: 'Bon'
+        okay: 'Moyen'
+        bad: 'Grave'
+        critical: 'Critique'
+        agony: 'Agonie'
+    combat:
+        atk: 'Att'
+        def: 'Def'
+        spd: 'Rap'
+    weapon:
+        dmg: 'dom.'
+    miracles.minor: 'Miracles mineurs'
+    miracles.major: 'Miracles majeurs'
+    details: 'Détails du personnage'
+    domains: 'Domaines'
+    name: 'Nom'
+    player_name: 'Joueur'
+    job: 'Métier'
+    sex_title: 'Sexe'
+    age: 'Âge'
+    people: 'Peuple'
+    ways: 'Voies'
+    advantages: 'Avantages'
+    disadvantages: 'Désavantages'
+    health_state: 'État de santé'
+    max_health: 'Santé maximale'
+    stamina: 'Vigueur'
+    survival: 'Survie'
+    disciplines: 'Disciplines'
+    combat_attitudes: 'Attitudes de combat'
+    weapons: 'Armes'
+    defense: 'Défense'
+    speed: 'Rapidité'
+    armors: 'Armures'
+    potential: 'Potentiel'
+    equipment: 'Équipement'
+    combat_arts: 'Arts de combat'
+    money: 'Argent'
+    treasures: 'Trésors'
+    flux: 'Flux'
+    exaltation: 'Exaltation'
+    rindath: 'Rindath'
+    rindath_score: 'Score'
+    exaltation_score: 'Score'
+    history: 'Histoire'
+    birthplace: 'Lieu de naissance'
+    social_class: 'Classe sociale'
+    setbacks: 'Revers'
+    setback_avoided: '(a été évité !)'
+    sanity: 'Santé mentale'
+    mental_resist: 'Résistance mentale'
+    mental_disorders:
+        balance: 'Équilibre'
+        symptom: 'Symptôme'
+        syndrome: 'Syndrome'
+        madness: 'Folie'
+    trauma:
+        title: 'Trauma'
+        permanent: 'Trauma permanent'
+        curable: 'Trauma curable'
+        hardening: 'Endurcissement'
+    instinct: 'Instinct'
+    consciousness: 'Conscience'
+    personality: 'Personnalité'
+    personality_traits: 'Traits de caractère'
+    faults: 'Travers'
+    experience:
+        title: 'Points d''expérience'
+        actual: 'Restants'
+        spent: 'Dépensés'
+    notable_facts: 'Faits marquants'
+    ogham_list: 'Ogham à disposition'
+    ogham: 'Ogham'
+    miracles: Miracles
+    description: 'Description'
+    artifacts: 'Artefacts'
+    domain.bonus: 'Bonus'
+    domain.malus: 'Malus'
+    domain.score.total: 'Total :'
+
+domains.craft: Artisanat
+domains.craft.description: __domains.craft.description
+domains.close_combat: Combat au Contact
+domains.close_combat.description: __domains.close_combat.description
+domains.stealth: Discrétion
+domains.stealth.description: __domains.stealth.description
+domains.magience: Magience
+domains.magience.description: __domains.magience.description
+domains.natural_environment: Milieu Naturel
+domains.natural_environment.description: __domains.natural_environment.description
+domains.demorthen_mysteries: Mystères Demorthèn
+domains.demorthen_mysteries.description: __domains.demorthen_mysteries.description
+domains.occultism: Occultisme
+domains.occultism.description: __domains.occultism.description
+domains.perception: Perception
+domains.perception.description: __domains.perception.description
+domains.prayer: Prière
+domains.prayer.description: __domains.prayer.description
+domains.feats: Prouesses
+domains.feats.description: __domains.feats.description
+domains.relation: Relation
+domains.relation.description: __domains.relation.description
+domains.performance: Représentation
+domains.performance.description: __domains.performance.description
+domains.science: Science
+domains.science.description: __domains.science.description
+domains.shooting_and_throwing: Tir et Lancer
+domains.shooting_and_throwing.description: __domains.shooting_and_throwing.description
+domains.travel: Voyage
+domains.travel.description: __domains.travel.description
+domains.erudition: Érudition
+domains.erudition.description: __domains.erudition.description
+
+home:
+    title: 'Corahn-Rin, le générateur de personnage pour Les Ombres d''Esteren'
+
+ways.combativeness: Combativité
+ways.combativeness.fault: Passion
+ways.combativeness.description: |
+    Cette Voie traduit la pugnacité, l'énergie qui pousse à agir, la rage de vivre.
+
+ways.creativity: Créativité
+ways.creativity.fault: Subversion
+ways.creativity.description: |
+    La capacité à imaginer, à donner à sa vie un sens original, l'inventivité, la débrouillardise.
+
+ways.empathy: Empathie
+ways.empathy.fault: Émotivité
+ways.empathy.description: |
+    Le lien qui relie un être humain à son environnement.
+    Par exemple, les Demorthèn se servent de leur Empathie pour communiquer avec la nature.
+    Au niveau relationnel, l'Empathie désigne la faculté de ressentir les émotions d'une autre personne.
+
+ways.reason: Raison
+ways.reason.fault: Doute
+ways.reason.description: |
+    La rationnalisation, mais aussi la recherche et la réflexion. Elle traduit la capacité d'apprentissage d'un personnage, sa curiosité, etc.
+
+ways.conviction: Idéal
+ways.conviction.fault: Culpabilité
+ways.conviction.description: |
+    Généralement, un humain se raccroche à un idéal ou des convictions qui guident sa vie.
+    Certains se tournent vers la religion, d'autres vers des préceptes de chevalerie, d'autres encore suivent un code personnel.
+
+title.generator: 'Créateur de personnage'
+
+steps.01_people: 'Peuple'
+steps.02_job: 'Métier'
+steps.03_birthplace: 'Lieu de naissance'
+steps.04_geo: 'Environnement de vie'
+steps.05_social_class: 'Classe sociale'
+steps.06_age: 'Âge'
+steps.07_setbacks: 'Revers'
+steps.08_ways: 'Voies'
+steps.09_traits: 'Traits'
+steps.10_orientation: 'Personnalité'
+steps.11_advantages: 'Avantages'
+steps.12_mental_disorder: 'Psychologie'
+steps.13_primary_domains: 'Domaines primaires'
+steps.14_use_domain_bonuses: 'Bonus aux domaines'
+steps.15_domains_spend_exp: 'XP dépensées pour les domaines'
+steps.16_disciplines: 'Disciplines'
+steps.17_combat_arts: 'Arts de combat'
+steps.18_equipment: 'Équipment'
+steps.19_description: 'Description'
+steps.20_finish: 'Finalisation'
+steps.20_finish.message: |
+    Votre personnage est terminé !<br>
+    Vous pouvez examiner ses détails sur cette page et remplir votre feuille de personnage avec les valeurs pré-calculées.<br>
+steps.20_finish.no_user_message: |
+    Pour sauvegarder le personnage sur Corahn-Rin, nous vous invitons à vous <strong>inscrire</strong> ou vous <strong>connecter</strong>,
+    de cette façon, vous pourrez utiliser votre personnage dans une partie de jeu et lui faire gagner
+    de l'expérience pour le faire évoluer.
+steps.20_finish.register_button_text: Je m'<strong>inscris</strong> pour sauvegarder mon personnage
+steps.20_finish.login_button_text: Je me <strong>connecte</strong> pour sauvegarder mon personnage
+steps.20_finish.save_to_database_message: |
+    Vous pouvez désormais <strong>sauvegarder votre personnage</strong> dans Corahn-Rin pour pouvoir l'utiliser dans une
+    partie et lui faire gagner de l'expérience.
+steps.20_finish.save_to_database_button_text: Sauvegarder mon personnage
+
+advantages.indication.ally_isolated.form: Indiquez un détail sur l'allié
+advantages.indication.ally_mentor.form: Indiquez un détail sur l'allié
+advantages.indication.ally_influent.form: Indiquez un détail sur l'allié
+advantages.indication.scholar.form: Choisissez un domaine
+
+advantages.indication.dependence.form: Déterminez l'addiction
+advantages.indication.enemy.form: Nommez ou définissez votre ennemi
+advantages.indication.phobia.form: Déterminez la phobie
+
+character_view.menu.details: Détails
+character_view.menu.print_to_pdf: Imprimer en PDF
+character_view.menu.edit: Modifier
+character_view.menu.character_game: Campagne de jeu
+character_view.menu.spend_xp: Dépenser de l'XP
+
+character_edit.page_title: 'Modifier'
+
+character_edit.form.submit: 'Mettre à jour'
+character_edit.message.success: 'Mise à jour réussie !'
+
+character_edit.description_and_facts: 'Détails'
+character_edit.description_and_facts.form.description: 'Description'
+character_edit.description_and_facts.form.story: 'Histoire'
+character_edit.description_and_facts.form.notableFacts: 'Faits marquants'
+
+character_edit.inventory: 'Inventaire'
+character_edit.inventory.form.items: 'Possessions'
+character_edit.inventory.form.precious_objects: 'Objets précieux'
+
+character_spend_xp.page_title: 'Dépenser de l''expérience'
+character_spend_xp.form.combat: 'Combat'
+character_spend_xp.form.speed: 'Rapidité'
+character_spend_xp.form.defense: 'Défense'
+character_spend_xp.form.submit: 'Dépenser l''expérience'
+character_spend_xp.form.success: 'Vous avez dépensé avec succès %xp% points d''expérience !'
+character_spend_xp.form.no_xp_spent: 'Vous n''avez pas dépensé d''expérience... 😟 Avez-vous oublié de sélectionner vos bonus ?'
+character_spend_xp.form.tried_discipline_for_invalid_domain_score: 'Vous avez tenté d''acheter une discipline pour un domaine qui n''a qu''un score de %current_score%. Un score de domaine de %min_required_score% minimum est obligatoire pour pouvoir acheter une discipline.'
+character_spend_xp.form.score_not_in_range: 'Le score de discipline doit être compris entre 0 et 10. Veuillez vérifier les valeurs. Ou ne tentez pas de tricher.'
+character_spend_xp.remaining_experience: 'XP restante :'
+
+games.no_games: 'Aucune partie'
+
+games.create: 'Créer une nouvelle campagne'
+games.create.title: 'Créer une nouvelle campagne virtuelle'
+games.create.submit: 'Créer la campagne'
+games.create.name: 'Nom'
+games.create.summary: 'Résumé'
+games.create.charactersToInvite: 'Personnages à inviter'
+games.create.success_message: |
+    La campagne a été créée!<br>
+    Si vous avez invité des personnages à rejoindre cette partie, les joueurs associés vont recevoir un e-mail avec un
+    lien leur permettant de valider l'invitation.
+
+games.invitation.accept_title: 'Accepter une invitation à une campagne de jeu'
+games.mail.invitation.form.accept.button: 'Accepter l''invitation'
+games.invitation.accept.form.game_title: 'Nom de la campagne :'
+games.invitation.accept.form.game_summary: 'Résumé de la campagne :'
+games.invitation.accept.form.invited_character: 'Personnage invité à rejoindre la campagne :'
+games.invitation.accept.form.sessions_removal_warning: |
+    Attention !
+
+    Si votre personnage avait été invité à d'autres campagnes, toutes les autres invitations seront supprimées.
+
+    Un personnage ne peut être que dans une seule campagne à la fois.
+
+    Si vous souhaitez que votre personnage rejoigne une autre campagne, vous devrez d'abord quitter la campagne en
+    cours, et ensuite demander à l'autre MJ d'inviter votre personnage dans la nouvelle campagne.
+games.invitation.email_has_been_resent: L'invitation a été renvoyée !
+
+games.invite_characters.title: 'Inviter des personnages à votre campagne'
+games.invite_characters.submit: 'Inviter les personnages'
+games.invite_characters.success: 'Invitations envoyées aux personnages !'
+games.invite_characters.resend.success: 'Invitation renvoyée au personnage'
+games.invite_characters.resend.link: 'Renvoyer l''invitation par email'
+
+games.mail.invitation.form.success: 'Vous avez bien rejoint la partie !'
+
+games.mail.invitation.subject: 'Invitation à une campagne des Ombres d''Esteren'
+games.mail.invitation.link: 'Accepter l''invitation !'
+games.mail.invitation.body: |
+    Bonjour %invited_player_name% !
+
+    Le/la MJ <strong>%game_master_name%</strong> invite votre personnage <strong>%invited_character_name%</strong> à rejoindre sa campagne de jeu :
+
+    <strong>%game_name%</strong>
+
+    Si vous acceptez cette invitation, veuillez cliquer sur le lien suivant :
+
+games.view.no_characters: 'Aucun personnage'
+games.view.characters: 'Personnages'
+games.view.invitations: 'Invitations en attente'
+games.view.new_invitation_button: 'Inviter d''autres personnages'
+
+games.list.as_game_master: 'En tant que MJ'
+games.list.as_player: 'En tant que PJ'
+games.list.received_invitations: 'Invitations reçues'

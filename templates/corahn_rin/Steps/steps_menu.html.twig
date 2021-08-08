@@ -1,0 +1,46 @@
+{% set steps_length = steps|length %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% macro menu_items(current_step, steps, mobile, current_character) %}
+    {% apply spaceless %}
+    {% set previous = null %}
+
+    {% for stepName, loop_step in steps %}
+        {% set is_superior_to_current = current_step.number >= loop_step.number %}
+        {% set is_defined_step = current_character[loop_step.name] is defined %}
+        {% set is_last_undefined_step = (previous and current_character[loop_step.name] is not defined and current_character[previous.name] is defined) %}
+
+        {% if is_superior_to_current or is_defined_step or is_last_undefined_step %}
+            <li class=" step_available{% if current_step and current_step.number == loop_step.number %} active{% endif %}">
+                <a href="{{ path('pierstoval_character_generator_step', {'requestStep': stepName}) }}" class="bl">
+                    {{- current_step.number == loop_step.number ? '&raquo;' }} {{ loop_step.number }}. {{ ('steps.'~loop_step.name) | trans -}}
+                </a>
+            </li>
+        {% else %}
+            <li>
+                <span>{{ loop_step.number }}. {{ ('steps.'~loop_step.name) | trans -}}</span>
+            </li>
+        {% endif %}
+
+        {% set previous = loop_step %}
+    {% endfor %}
+    {% if app.session.get('step') > 1 %}
+        <li>
+            <a href="{{ path('pierstoval_character_generator_reset') }}">{{ 'steps.reset' | trans }}</a>
+        </li>
+    {% endif %}
+    {% endapply %}
+{% endmacro %}
+
+{% import _self as macros %}
+
+<nav>
+    <a href="#" data-target="steps-side" class="right button-collapse sidenav-trigger text-l"><i class="fa fa-bars"></i> {{ 'menu.steps'|trans }}</a>
+    <ul class="sidenav" id="steps-side">
+        {{ macros.menu_items(current_step, steps, true, current_character) }}
+    </ul>
+    <div class="step_progress progress">
+        <div class="determinate" style="width: {{ (100 * current_step.number / (steps|length)) }}%"></div>
+    </div>
+</nav>

@@ -1,0 +1,19 @@
+{% extends "user/layout.html.twig" %}
+
+{% trans_default_domain 'user' %}
+
+{% block content_for_layout %}
+    <h1 class="center text-4xl">{{ 'layout.edit_profile'|trans }}</h1>
+
+    <nav class="nav-extended">
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a href="#edit_profile">{{ 'layout.edit_profile'|trans }}</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="edit_profile" class="col s12">
+        {{ include('user/Profile/forms/edit_profile.html.twig', {'form': form_edit_profile}, with_context=false) }}
+    </div>
+{% endblock content_for_layout %}

@@ -1,0 +1,24 @@
+parameters:
+    # This is just to make Twig bootable in case the env var is not set (necessary to compile the container)
+    env(FATHOM_SITE_ID): ''
+
+twig:
+    default_path: '%kernel.project_dir%/templates'
+
+    form_themes:
+        - 'form/form_theme_materialize.html.twig'
+        - 'form/range_button_form.html.twig'
+        - 'corahn_rin/form/update_inventory.html.twig'
+        - 'corahn_rin/form/spend_xp_form.html.twig'
+
+    globals:
+        version_code: '%version_code%'
+        version_date: '%version_date%'
+        locales: '%locales%'
+        locales_regex: '%locales_regex%'
+
+        fathom_site_id: '%env(FATHOM_SITE_ID)%'
+
+when@test:
+    twig:
+        strict_variables: true

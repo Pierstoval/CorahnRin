@@ -1,0 +1,46 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('step_17_combat_arts') }}
+{% endblock %}
+
+{% block step_content %}
+
+    {% if not can_have_combat_arts  %}
+
+        <div class="card-panel teal darken-4">
+            {% if exp_max < 20 %}
+                {{ 'combat_arts_spend_exp.not_enough_exp'|trans({}, 'corahn_rin') }}
+            {% elseif close_combat < 5 or shooting_and_throwing < 5 %}
+                {{ 'combat_arts_spend_exp.domains_not_enough'|trans({}, 'corahn_rin') }}
+            {% endif %}
+        </div>
+
+    {% else %}
+
+        <div class="card-panel teal darken-4">
+            {{ 'combat_arts_spend_exp.explanation'|trans({}, 'corahn_rin')|raw }}
+        </div>
+
+        <div class="card-panel blue-grey darken-4">
+            {{ 'combat_arts_spend_exp.remaining'|trans({}, 'corahn_rin') }}
+            <div class="bonus_points_element chip bordered" id="exp_points">
+                <span id="remaining_exp_points" class="text-black">{{ exp_value }}</span>&nbsp;/<span id="max_exp_points" class="text-black">{{ exp_max }}</span>
+            </div>
+        </div>
+
+        {% for id, combat_art in combat_arts %}
+            {% set value = character_combat_arts[id]|default(0) %}
+            <div>
+                {% set input_id = 'combat_art_'~id %}
+                <label for="{{ input_id }}">
+                    <input type="checkbox" id="{{ input_id }}" name="combat_arts_spend_exp[{{ id }}]" data-combat-art-id="{{ id }}" class="filled-in" {{ value ? ' checked' }}>
+                    <span>{{ combat_art.name }}</span>
+                </label>
+            </div>
+        {% endfor %}
+
+    {% endif %}{# end if bonus value #}
+
+{% endblock %}

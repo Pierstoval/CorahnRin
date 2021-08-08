@@ -1,0 +1,56 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% block step_content %}
+
+<input type="hidden" name="quality" id="quality" value="{{ quality }}" />
+<input type="hidden" name="flaw" id="flaw" value="{{ flaw }}" />
+<div class="row">
+    <div id="list_qualities" class="col s6">
+        <h4 class="text-center">{{ 'traits.qualities' | trans({}, 'corahn_rin') }}</h4>
+        {% for list in traits_list.qualities|batch(2) %}
+
+            <div class="row mb5">
+
+            {% for trait in list %}
+                <div class="col s6">
+                    <button type="button"
+                        data-group="qualities"
+                        id="btn-gen-choice-{{ trait.id }}"
+                        data-toggle="btn-gen-choice"
+                        data-input-value="{{ trait.id }}"
+                        data-target-node="quality"
+                        class="btn w100p btn-medium{{ quality == trait.id ? ' active' : '' }}"
+                    >{{ trait.name | trans({}, 'corahn_rin') }}</button>
+                </div>
+            {% endfor %}{# qualities #}
+
+            </div>
+
+        {% endfor %}{# qualities #}
+    </div>
+    <div id="list_flaws" class="col s6">
+        <h4 class="text-center">{{ 'traits.flaws' | trans({}, 'corahn_rin') }}</h4>
+        {% for list in traits_list.flaws|batch(2) %}
+
+            <div class="row mb5">
+
+            {% for trait in list %}
+                <div class="col s6">
+                    <button type="button"
+                        data-group="flaws"
+                        id="btn-gen-choice-{{ trait.id }}"
+                        data-toggle="btn-gen-choice"
+                        data-input-value="{{ trait.id }}"
+                        data-target-node="flaw"
+                        class="btn w100p btn-medium{{ flaw == trait.id ? ' active' : '' }}"
+                    >{{ trait.name | trans({}, 'corahn_rin') }}</button>
+                </div>
+            {% endfor %}{# flaws #}
+
+            </div>
+
+        {% endfor %}{# flaws #}
+    </div>
+</div>
+
+{% endblock %}

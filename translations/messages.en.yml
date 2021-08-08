@@ -1,0 +1,222 @@
+security.bad_credentials: 'User name or password invalid.'
+security.email_not_confirmed: |
+    Your e-mail address has not yet been confirmed. Please check your email account and possibly the "spam" folder, so
+    you can copy or click on the link that will allow you to confirm your e-mail address.
+
+links.admin: 'Admin panel'
+links.menu: 'Menu'
+links.home: 'Home'
+links.fateforge: Fateforge
+
+footer.version_text: |
+    Version %version% (%version_date%)
+footer.full_text: |
+    Copyright &copy; 2012-%year% <a href="https://www.studio-agate.com/en/">Studio Agate</a>, All rights reserved.
+    %more%
+    <br> Design &amp; development: Pierstoval &amp; Nel
+footer.links: 'Links'
+footer.contact: 'Contact the team'
+footer.subscribe: 'Subscribe to the newsletter'
+footer.agate_rpg_discord: 'Discord'
+footer.agate_rpg_blog: 'Blog'
+footer.agate_rpg_forum: 'Forum'
+footer.agate_rpg_portal: 'Portal of the studio'
+footer.meet_the_team: 'Meet the team'
+footer.logo_totem_tooltip: Generic game system for Vermine 2047 under licence
+footer.team: 'The team'
+footer.legal_mentions: 'Legal terms'
+footer.social_networks: 'Social networks'
+footer.about: 'About'
+
+templates:
+    base: 'Bootstrap'
+    material: 'Materialize'
+
+page:
+    preview:
+        return_to_backoffice: 'Back to admin panel'
+        admin_link: 'Preview'
+        previewing: 'Preview'
+
+button:
+    select: 'Select'
+    close: 'Close'
+
+admin.menu.site: 'Site'
+admin.menu.users: Users management
+admin.menu.types: 'Reference types'
+admin.menu.transports: 'Transports'
+admin.menu.esterenmaps: Esteren Maps
+admin.menu.esterenmaps_data: Données
+admin.menu.corahn_rin: 'Corahn-Rin'
+admin.menu.corahn_rin.import_character: 'Import character'
+admin.menu.corahn_rin.ogham: 'Ogham'
+
+admin.product.products: Products
+admin.product.product_files: Products files
+admin.product.files: Files
+admin.product.categories: Categories
+admin.product.vermine_products: Vermine products
+admin.product.file_leave_empty_to_keep_existing: Leave empty to keep existing file.
+
+admin.permissions.none: None
+admin.permissions.vermine_builder: Vermine builder
+admin.permissions.vermine_customer: Vermine customer
+
+admin.links.admin_home: 'Admin home'
+admin.links.config: Configuration
+admin.links.back_to_site: 'Back to website'
+admin.config.updated: 'Config updated successfully!'
+admin.config.holiday_start_date: "Customer service holiday start date"
+admin.config.holiday_end_date: "Customer service holiday end date"
+admin.config.holiday_text_en: "Customer service holiday text (in English 🇬🇧)"
+admin.config.holiday_text_fr: "Customer service holiday text (in French 🇫🇷)"
+admin.config.esteren_maps.step_3_zones: "Available birthplace zones for CorahnRin Step 3"
+
+admin:
+    sections:
+        general: General information
+        associations: Associations
+        design: Design
+        seo: SEO
+
+    maps:
+        markers: Markers
+        marker: Marker
+        routes: Routes
+        zones: Zones
+        factions: Factions
+        maps: Maps
+        markers_types: Markers types
+        routes_types: Routes types
+        zones_types: Zones types
+        transports_types: Transports
+        transportsModifiers: Transports speed modifiers
+
+    entities:
+        faction: Faction
+
+        common:
+            id: 'ID'
+            name: 'Name'
+            nameSlug: 'URL name'
+            slug: 'URL'
+            description: 'Description'
+            book: 'Book'
+            color: 'Color'
+            title: 'Title'
+            type: 'Type'
+            file: 'File'
+            file_name: 'File name'
+            locale: 'Language'
+            requiredPermission: 'Required permission'
+            coordinates: 'Coordinates'
+            translatable_fields: 'Translatable fields'
+            general: 'General'
+
+        portalElement:
+            buttonLink: 'Button URL'
+            buttonText: 'Button text'
+            image: 'Image'
+            locale: 'Locale'
+            portal: 'Portal'
+            subtitle: 'Subtitle'
+            title: 'Title'
+            image_help: |
+                A width of more than 1000px is recommended to avoid pixellisation.
+                An image width/height ratio of more than 1.3 is also recommended to keep the correct parallax movement.
+                If you do not update this field, the previous image will be kept.
+                Any image change will remove the previous image!
+
+
+        factions:
+            maxZoom: 'Maximum zoom'
+            startZoom: 'Start zoom'
+            startX: 'Start "X" position'
+            startY: 'Start "Y" position'
+            image: 'Used image'
+            bounds: 'Coordinates bounds'
+            coordinatesRatio: 'Ratio for distance calculation'
+
+        zones_types:
+            parent: 'Parent zone'
+            zones: 'Associated zones'
+
+        transports:
+            speed: 'Transport Speed'
+            modifiers: 'Speed modifiers'
+            percentage: 'Percentage'
+            positive_ratio: 'Positive ratio (rises speed)'
+
+        routes:
+            distance: 'Distance'
+            forced_distance: 'Override distance'
+            distance_help: |
+                If you enter a value in this field, it will replace the distance value that is automatically calculated by the application.
+                Be careful though: this can add confusion if the distance is really different than the map's proportions!
+            markerStart: 'Start marker'
+            markerEnd: 'End marker'
+            guarded: 'Route is guarded by Brambles Knights or other groups'
+
+        markers:
+            latitude: 'Latitude'
+            longitude: 'Longitude'
+            altitude: 'Altitude'
+            web_icon: 'Icon'
+
+        marker_type:
+            icon_override_help: Leave this field empty if you want to keep the current image.
+
+        users:
+            password_help: Keep empty to generate a random password (recommended)
+            roles:
+                backer_travels: '"Travels" backer'
+
+admin.corahn_rin.ogham: 'Ogham'
+
+PortalElement: Portal elements
+Pages: 'Page'
+ZonesTypes: 'Zones type'
+TransportTypes: 'Transport type'
+RoutesTypes: 'Route type'
+RouteTypes: 'Route type'
+Factions: 'Faction'
+Zones: 'Zones'
+Routes: 'Routes'
+Markers: 'Markers'
+MarkersTypes: 'Marker type'
+MarkerType: 'Marker type'
+Users: Users
+Subscriptions: Subscriptions
+'(Km/h)': '(Km/h)'
+
+actions:
+    interactive: Interactive edit
+Maps: Maps
+
+subscription.esteren_maps: Esteren Maps access
+subscription.esteren_maps.used_voucher: |
+    You just used a voucher code for an Esteren Maps access.
+    Your subscription is active right now and will be for 90
+    days.<br>
+    A notification has been sent to you by e-mail.
+
+voucher.redeem.title: Activate a code
+voucher.redeem.message: |
+    You may have received a code to activate here for a subscription or a special access.
+    By submitting the code in this form, you can enjoy its advantage if possible.
+voucher.redeem.code_label: Code
+voucher.redeem.submit: Activate
+voucher.redeem.code_does_not_exist: Specified code does not exist.
+voucher.redeem.confirmation_message: Do you really want to use this code?
+voucher.redeem.confirmation_button: Activate this code
+
+voucher.redeem.error.no_handler: This code seems to not have been implemented yet.
+voucher.redeem.error.save_error: Could not save voucher of type "%voucher_type%" for user "%username%".
+voucher.redeem.error.not_available: This code is not available.
+voucher.redeem.error.exceeded_uses: This code is no longer available.
+voucher.redeem.error.already_used: You already have used this code.
+voucher.redeem.success: Thanks for using this code!
+
+product.downloadable_files.title: 'Downloadable files:'
+product.no_products_yet: "No downloadable products yet"

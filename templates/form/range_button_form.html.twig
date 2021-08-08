@@ -1,0 +1,34 @@
+{%- block range_button_row -%}
+    <div class="input-field range-button-container m0">
+        {%- if label -%}
+            <p class="m0 text-center">
+                {{- form_label(form) -}}
+            </p>
+        {%- endif -%}
+        <div class="range-button-field">
+            {%- if not disabled -%}
+                <button type="button" data-increment="-1" data-range-button="{{ id }}" class="btn btn-flat">&minus;</button>
+            {%- endif -%}
+            {{- form_widget(form) -}}
+            {%- if not disabled -%}
+                <button type="button" data-increment="1" data-range-button="{{ id }}" class="btn btn-flat">&plus;</button>
+            {%- endif -%}
+        </div>
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock -%}
+
+{%- block range_button_widget -%}
+    {%- set attr = attr|merge({
+        'class': ((attr.class??'')~' range-button'),
+        'data-base': attr['data-base'] ?? data
+    }) -%}
+    {{- block('form_widget_simple', 'form_div_layout.html.twig') -}}
+{%- endblock -%}
+
+{%- block range_button_label -%}
+    {%- set label_attr = label_attr|merge({
+        'class': ((label_attr.class??'')~' text-3xl')|trim
+    }) -%}
+    {{- block('form_label', 'form_div_layout.html.twig') -}}
+{%- endblock -%}

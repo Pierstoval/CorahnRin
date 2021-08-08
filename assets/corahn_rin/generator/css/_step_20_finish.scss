@@ -1,0 +1,21 @@
+@media only screen and (max-width : 992px) {
+    #generator_form {
+        .character-details {
+            h2 {
+                font-size: 1.2em;
+                margin: 1.1rem 1em;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width : 1200px) {
+    #generator_form {
+        .character-details {
+            h2 {
+                font-size: 1.4em;
+                margin: 1.175rem 1em;
+            }
+        }
+    }
+}

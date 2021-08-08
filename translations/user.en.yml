@@ -1,0 +1,115 @@
+security.login.username: Username
+security.login.password: Password
+security.login.remember_me: 'Remember me'
+security.login.submit: 'Log in'
+security.login.password_forgotten: 'Forgot password?'
+security.login.no_account_register: 'No account yet? Register!'
+
+profile:
+    go_back: 'Go back to my profile'
+    show:
+        username: Username
+        email: Email
+    edit:
+        submit: Update
+        general_information: 'General information'
+        ulule_connect: 'Connect my Ulule account'
+    flash:
+        updated: 'The profile has been updated.'
+
+change_password:
+    submit: 'Change password'
+    flash:
+        success: 'The password has been changed.'
+
+registration:
+    check_email: |
+        An email has been sent to %email%. It contains an activation link you must click to activate your account.
+    confirmed: 'Congrats! Your account is now activated, you can now log in.'
+    back: 'Back to the originating page.'
+    submit: Register
+    flash:
+        user_created: 'The user has been created successfully.'
+    email:
+        subject: 'Welcome %username%!'
+        message: |
+            Hello <strong>%username%</strong>!
+
+            To validate your e-mail address, please <a href="%confirmationUrl%">click this link</a>.
+
+            If the link does not work, please copy this URL and paste it in your web browser:
+            <a href="%confirmationUrl%">%confirmationUrl%</a>
+
+            This link can be used only once to activate your account
+
+            Regards,
+
+            Studio Agate team
+
+resetting:
+    check_email: |
+        If an account exists with this email address, an email has been sent. It contains a link you must click to reset
+        your password.<br>
+
+        If you don't get an email check your spam folder or try again.
+
+    request:
+        username: 'Username or email address'
+        submit: 'Reset password'
+    reset:
+        submit: 'Change password'
+    flash:
+        success: 'The password has been reset successfully.'
+    email:
+        subject: 'Reset Password'
+        message: |
+            Hello <strong>%username%</strong>!
+
+            To reset your password, please <a href="%confirmationUrl%">click this link</a>.
+
+            If the link does not work, please copy this URL and paste it in your web browser:
+            <a href="%confirmationUrl%">%confirmationUrl%</a>
+
+            Regards,
+
+            Studio Agate team
+    email_failed: |
+        An error occured when sending the email to reset your password. Our services have been informed. Please try
+        later.
+        <br><br>
+        Thanks for your understanding.
+
+# Global strings
+layout:
+    logout: 'Log out'
+    login: 'Log in'
+    register: Register
+    logged_in_as: 'Logged in as %username%'
+    profile: 'Profile'
+    edit_profile: 'Edit my profile'
+
+form:
+    group_name: 'Group name'
+    username: Username
+    email: Email
+    current_password: 'Please fill your current password'
+    password: Password
+    password_confirmation: 'Repeat password'
+    new_password: 'New password'
+    new_password_confirmation: 'Repeat new password'
+
+registration.optin: >
+    I grant Studio Agate and its partners to do nothing with my data. <small>Anyway, Studio Agate
+    will not do anything with these data, they're used only to make the website work properly for you,
+    so we will never spread your data anywhere to anyone, nor sell them, nothing. These are your
+    property.</small>
+
+subscription.email:
+    subscription.esteren_maps.subject: Thank you for subscribing to Esteren Maps access!
+    subscription.esteren_maps.link: Go to Esteren Maps
+    subscription.esteren_maps.content: |
+        This subscription grants you access to all features of Esteren Maps.
+
+        The subscription ends at: %end_date%
+
+        You can visit Esteren Maps right now!

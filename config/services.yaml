@@ -1,0 +1,67 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    container.dumper.inline_class_loader: true
+    container.autowiring.strict_mode: true
+
+    version_code: '%env(RELEASE_VERSION)%'
+    version_date: '%env(RELEASE_DATE)%'
+    locale: fr
+    locales:
+        fr: fr
+        en: en
+    locales_regex: 'fr|en'
+
+    corahnrin_manager_name: 'corahn_rin'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            bool $debug:                      '%kernel.debug%'
+            string $defaultLocale:            '%locale%'
+            array $locales:                   '%locales%'
+            string $corahnRinManagerName:     '%corahnrin_manager_name%'
+            string $characterFilesOutputDir:  '%kernel.cache_dir%/character_output'
+            string $corahnRinSender:          'no-reply@%env(ESTEREN_DOMAIN)%'
+            string $chromiumPath:             '%env(CHROMIUM_PATH)%'
+            Doctrine\DBAL\Connection $legacyConnection: '@doctrine.dbal.legacy_connection'
+            Gedmo\Translatable\Entity\Repository\TranslationRepository $translationRepository: '@Gedmo\Translatable\Entity\Repository\TranslationRepository'
+    _instanceof:
+        Main\DependencyInjection\PublicService:
+            public: true
+        CorahnRin\Legacy\ConversionProcessor\LegacyCharacterConversionProcessor:
+            tags: ['corahn_rin.legacy_character_conversion_processor']
+
+    Admin\:
+        resource: '../src/Admin/*'
+        exclude: '../src/Admin/{DTO,DependencyInjection}'
+
+    CorahnRin\:
+        resource: '../src/CorahnRin/*'
+        exclude: '../src/CorahnRin/{Data,Constraint,Entity,Exception,DTO,Legacy\Exception,Model,Resources}'
+
+    Main\:
+        resource: '../src/Main/*'
+        exclude: '../src/Main/{Entity,DTO}'
+
+    EsterenMaps\:
+        resource: '../src/EsterenMaps/*'
+        exclude: '../src/EsterenMaps/{Id}'
+
+    User\:
+        resource: '../src/User/*'
+        exclude: '../src/User/{Entity,Model,Security/Exception}'
+
+    CorahnRin\Legacy\LegacyCharacterImporter:
+        $processors: !tagged corahn_rin.legacy_character_conversion_processor
+
+    Gedmo\Translatable\Entity\Repository\TranslationRepository:
+        factory: ['@doctrine', 'getRepository']
+        arguments: ['Gedmo\Translatable\Entity\Translation']

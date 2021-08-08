@@ -1,0 +1,21 @@
+{% extends 'email/email_layout_internal.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% import 'email/_macros.html.twig' as macros %}
+
+{% block title 'games.mail.invitation.subject'|trans %}
+
+{% block content -%}
+    {%- apply spaceless %}
+        {{ 'games.mail.invitation.body'|trans({
+            '%game_master_name%': invitation.gameMasterName,
+            '%invited_player_name%': invitation.invitedPlayerName,
+            '%game_name%': invitation.gameName,
+            '%invited_character_name%': invitation.characterName
+        })|raw|nl2br }}
+        <br>
+        {{ macros.link_btn_center(path('game_invitation_accept', {'token': invitation.token}), 'games.mail.invitation.link'|trans) }}
+    {% endapply -%}
+{%- endblock %}
+

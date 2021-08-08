@@ -1,0 +1,75 @@
+name: PHP
+
+on: [push]
+
+env:
+    MAPS_USERNAME: ${{ secrets.MAPS_USERNAME }}
+    MAPS_PASSWORD: ${{ secrets.MAPS_PASSWORD }}
+
+jobs:
+    build:
+        name: Corahn-Rin CI
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v1
+
+            - name: Docker Layer Caching
+              uses: satackey/action-docker-layer-caching@v0.0.11
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@1.7.2
+              with:
+                  php-version: '8.0'
+                  extensions: gd, zip
+
+            - name: Validate composer.json and composer.lock
+              run: composer validate
+
+            - name: Get composer cache directory
+              id: composer-cache
+              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+            - name: Cache composer dependencies
+              uses: actions/cache@v1
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: ${{ runner.os }}-composer-
+
+            - name: '[Run] Install the project'
+              id: install
+              run: make -e MAPS_USERNAME=${{ secrets.MAPS_USERNAME }} MAPS_PASSWORD=${{ secrets.MAPS_PASSWORD }} install-php
+
+            - name: '[Run] 🚀 QA'
+              run: make qa
+              if: always()
+
+            - name: '[Run] 🚀 PHPStan'
+              run: make phpstan
+              if: always()
+
+            - name: '[Run] 🚀 CS'
+              run: make cs-dry-run
+              if: always()
+
+            - name: 'Setup PHPUnit'
+              run: make setup-phpunit
+              if: always()
+
+            - name: '[Run] 🚀 Unit tests'
+              run: make phpunit-unit
+              if: always()
+
+            - name: '[Run] 🚀 Integration tests'
+              run: make phpunit-integration
+              if: always()
+
+            - name: '[Run] 🚀 Functional tests'
+              run: make phpunit-functional
+              if: always()
+
+            - name: '[Run] 🚀 UX tests'
+              run: make phpunit-ux
+              if: always()

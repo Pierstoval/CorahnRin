@@ -1,0 +1,68 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% block step_content %}
+
+{% apply spaceless %}
+<div class="card-panel teal darken-4">
+    {{ 'ways.explanation' | trans({}, 'corahn_rin') | raw }}
+</div>
+
+<div class="card-panel teal darken-2">
+    {% set total = 0 %}
+    {% for value in ways_values %}
+        {% set total = total + value %}
+    {% endfor %}
+    {{ 'ways.total'|trans({}, 'corahn_rin') }}
+    <span id="sum_output" class="btn {{ total == 15 ? 'green' : 'red' }} lighten-2">{{ total }}</span>
+</div>
+
+{% for way, description in ways_list %}
+    <div class="row mb10">
+        <div class="col m2">
+            <p>{{ way | trans({}, 'corahn_rin') }}</p>
+        </div>
+        <div class="col m4">
+            <div class="input-field inline">
+
+                {# "minus" button #}
+                <button
+                    class="btn"
+                    data-toggle-increment
+                    data-ti-increment-min="1"
+                    data-ti-increment-max="5"
+                    data-ti-increment="-1"
+                    data-ti-target-node="way_{{ way }}"
+                    data-ti-sum-max="15"
+                    data-ti-sum-output="sum_output"
+                    data-ti-sum-output-html
+                    data-ti-sum-selector=".input_way"
+                    type="button"
+                >&minus;</button>
+
+                {# Input that stores the sum for each way#}
+                <input id="way_{{ way }}" name="ways[{{ way }}]" type="text" class="input_way w50 center" value="{{ ways_values[way] }}" title="{{ way | trans({}, 'corahn_rin') }}"/>
+
+                {# "plus" button #}
+                <button
+                    class="btn"
+                    data-toggle-increment
+                    data-ti-increment-min="1"
+                    data-ti-increment-max="5"
+                    data-ti-increment="1"
+                    data-ti-target-node="way_{{ way }}"
+                    data-ti-sum-max="15"
+                    data-ti-sum-output="sum_output"
+                    data-ti-sum-output-html
+                    data-ti-sum-selector=".input_way"
+                    type="button"
+                >&plus;</button>
+            </div><!-- /input-group -->
+        </div>
+        <div class="col m6">
+            <p>{{ description | trans({}, 'corahn_rin') | raw }}</p>
+        </div>
+    </div>
+{% endfor %}
+{% endapply %}
+
+{% endblock %}

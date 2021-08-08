@@ -1,0 +1,337 @@
+#character-original-page-2 {
+    padding-top: 35px;
+
+    #character-details-weapons-armors {
+        width: 230px;
+        margin-left: 100px;
+        height: 295px;
+        h2.character-details-subtitle {
+            text-align: center;
+            width: 203px;
+        }
+    }
+
+    ul#character-details-weapons-list
+    {
+        height: 104px;
+    }
+
+    ul#character-details-armors-list {
+        height: 104px;
+    }
+
+    ul#character-details-weapons-list,
+    ul#character-details-armors-list
+    {
+        margin: 0 0 10px;
+        li {
+            h3 {
+                font-size: 11pt;
+                line-height: 10.2pt;
+                font-family: 'Times New Roman', serif;
+                clear: both;
+                span.character-details-subitem {
+                    width: 177px;
+                    display: inline-block;
+                    overflow: hidden;
+                    float: left;
+                }
+            }
+        }
+    }
+
+    ul#character-details-weapons-list li h3 span.right
+    {
+        font-size: 12pt;
+    }
+    ul#character-details-armors-list li h3 span.right
+    {
+        font-size: 10pt;
+    }
+
+    #character-details-potential {
+        width: 170px;
+        margin-left: 10px;
+        #character-details-potential-score {
+            font-size: 22pt;
+            color: black;
+            float: right;
+        }
+    }
+
+    #character-details-combat-attitudes {
+        margin-top: 0;
+        margin-left: 20px;
+        width: 385px;
+        p.character-details-subitem {
+            margin: 0;
+            white-space: normal;
+            font-family: "Times New Roman", serif;
+        }
+        h3.character-details-subtitle {
+            margin: 0;
+            font-size: 14pt;
+            float: left;
+            clear: left;
+            width: 125px;
+        }
+        h3.character-details-subtitle,
+        .character-details-attitudes-row {
+            line-height: 14pt;
+        }
+        .character-details-attitudes-row {
+            font-size: 11pt;
+            float: left;
+            width: 255px;
+            text-align: right;
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        }
+    }
+
+    #character-details-defense {
+        margin-top: 10px;
+        margin-left: 10px;
+        width: 400px;
+        h2.character-details-subtitle {
+            font-size: 16pt;
+            .character-details-defense-score {
+                font-size: 9pt;
+                margin-top: 5px;
+                margin-left: 43px;
+            }
+            .character-details-defense-total {
+                font-size: 13pt;
+                margin-left: 10px;
+                .fa:before,.far:before {
+                    font-size: 9pt;
+                }
+            }
+        }
+    }
+
+    #character-details-speed {
+        margin-left: 10px;
+        width: 290px;
+        h2.character-details-subtitle {
+            #character-details-speed-bonus {
+                margin-left: 19px;
+            }
+            #character-details-speed-base {
+                display: inline-block;
+                vertical-align: bottom;
+            }
+            .fa:before,.far:before {
+                font-size: 9pt;
+            }
+            #character-details-speed-total {
+                font-size: 13pt;
+                margin-left: 15px;
+                .fa:before,.far:before {
+                    font-size: 9pt;
+                }
+            }
+        }
+    }
+
+    #character-details-inventory {
+        margin-top: 33px;
+        margin-left: 46px;
+        width: 700px;
+    }
+    #character-details-inventory-equipment {
+        h2.character-details-subtitle {
+            margin-left: 32px;
+        }
+        #character-details-inventory-list {
+            font-size: 8pt;
+            line-height: 12pt;
+            width: 450px;
+            height: 240px;
+            font-family: 'Times New Roman', serif;
+            .col {
+                display: inline-block;
+                width: auto;
+                height: auto;
+                h3 {
+                    display: inline-block;
+                }
+                & + .col {
+                    margin-left: 8px;
+                    &:before {
+                        content: "–";
+                        display: inline-block;
+                    }
+                    h3 {
+                        padding-left: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    #character-details-combat-arts-list {
+        font-family: 'Times New Roman', serif;
+        padding-left: 10px;
+        height: 100px;
+        overflow: hidden;
+        .col {
+            display: inline-block;
+            width: auto;
+            height: auto;
+            h3 {
+                font-size: 15pt;
+                display: inline-block;
+            }
+            & + .col {
+                margin-left: 8px;
+                &:before {
+                    content: "–";
+                    display: inline-block;
+                }
+                h3 {
+                    padding-left: 8px;
+                }
+            }
+        }
+    }
+
+    #character-details-money {
+        margin-top: 32px;
+        margin-left: 70px;
+        h3#money-ember, h3#money-azure, h3#money-frost
+        {
+            font-size: 24pt;
+            margin-bottom: 4px;
+        }
+    }
+
+    #character-details-treasures {
+        margin-left: 10px;
+        width: 223px;
+        height: 400px;
+        overflow: hidden;
+        h2.character-details-subtitle {
+            margin-left: 40px;
+        }
+        #character-details-treasures-title {
+            margin-top: 20px;
+        }
+    }
+    #character-details-treasures-list {
+        white-space: normal;
+        padding-left: 5px;
+        font-size: 10pt;
+        line-height: 10pt;
+        height: 132px;
+        font-family: 'Times New Roman', serif;
+        li {
+            display: inline-block;
+            margin-left: 5px;
+            & + li:before {
+                content: "–";
+                margin-right: 5px;
+                display: inline-block;
+            }
+        }
+    }
+
+    #character-details-mysteries-demorthen {
+        margin-top: 30px;
+        margin-left: 50px;
+        width: 220px;
+        h3 {
+            margin-top: 10px;
+            .right {
+                float: none !important;
+                padding-left: 10px;
+            }
+        }
+        #character-details-ogham-list {
+            h4 {
+                margin-left: 25px;
+                font-size: 13pt;
+                margin-top: 10px;
+            }
+            ul {
+                margin: 7px 0 0 0;
+                height: 171px;
+            }
+            h5 {
+                font-size: 13pt;
+                line-height: 21pt;
+                margin-left: 30px;
+            }
+        }
+    }
+
+    #character-details-mysteries-temple {
+        margin-left: 20px;
+        margin-top: 30px;
+        width: 200px;
+        h3 {
+            margin-top: 9px;
+            .right {
+                float: none !important;
+                padding-left: 10px;
+            }
+        }
+        h4 {
+            margin: 0 0 0 30px;
+        }
+        h4#character-details-miracles-minor-title {
+            margin-top: 12px;
+        }
+        h4#character-details-miracles-major-title {
+            margin-top: 13px;
+        }
+        ul {
+            height: 68px;
+            font-size: 9pt;
+            margin: 5px 0 0 10px;
+        }
+    }
+
+    #character-details-mysteries-magience {
+        margin-left: 45px;
+        margin-top: 30px;
+        width: 200px;
+    }
+    #character-details-flux-list {
+        margin: 17px 0 0 0;
+        height: 100px;
+        li {
+            clear: both;
+        }
+        span.right {
+            font-size: 16pt;
+        }
+        h5 {
+            line-height: 15pt;
+        }
+    }
+    #character-details-artifacts-list {
+        margin: 0;
+        font-family: 'Times New Roman', serif;
+        display: block;
+        font-size: 8pt;
+        width: 200px;
+        white-space: normal;
+        height: 64px;
+        li {
+            display: inline-block;
+            margin-left: 5px;
+            & + li:before {
+                content: "–";
+                margin-right: 5px;
+                display: inline-block;
+            }
+        }
+        h5 {
+            display: inline-block;
+        }
+    }
+}

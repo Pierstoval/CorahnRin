@@ -1,0 +1,30 @@
+{% extends 'corahn_rin/corahnrin-layout.html.twig' %}
+
+{% block title %}{{'Visualiser un personnage'}} : {{ character.name }} - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('character_details') }}
+    {% for file in encore_entry_css_files('character_details_print') %}
+        <link rel="stylesheet" href="{{ asset(file) }}" type="text/css" media="print">
+    {% endfor %}
+    <style type="text/css">* { -webkit-print-color-adjust:exact !important; }</style>
+{% endblock %}
+
+{% block content_for_layout %}
+    <div id="character-view-header">
+        {{ include('corahn_rin/character_view/character_view_header.html.twig', {character: character}, with_context=false) }}
+    </div>
+
+    {{ include('corahn_rin/character_view/details_show.html.twig', {'character': character}, with_context=false) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        var el = document.getElementById('character-print');
+        if (el) {
+            el.addEventListener('click', function(e){window.print();e.preventDefault();return false;});
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'error_layout.html.twig' %}
+
+{% trans_default_domain 'errors' %}
+
+{% block content_for_layout %}
+    <div class="card">
+        <div class="card-content yellow darken-4 yellow-text text-lighten-4">
+            {{ 'error_403' | trans }}
+
+            {% if exception.message %}
+                <br>
+                {{ exception.message|trans }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

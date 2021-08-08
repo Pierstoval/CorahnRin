@@ -1,0 +1,9 @@
+#generator_form {
+    div.equipment {
+        padding-right: 10px;
+        display: inline-block;
+        &:not(:last-of-type) a.equipment_add {
+            display: none;
+        }
+    }
+}

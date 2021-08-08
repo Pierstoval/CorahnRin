@@ -1,0 +1,70 @@
+{% trans_default_domain 'corahn_rin' %}
+
+<div class="main row">
+    <div class="col s4" id="character-details-mysteries-demorthen">
+        <h2 class="character-details-subtitle">{{ 'character.rindath'|trans }}</h2>
+
+        <h3>{{ 'character.rindath_score'|trans }}<span class="right">{{ character.rindath }}/{{ character.rindathMax }}</span></h3>
+
+        <div class="row" id="character-details-ogham-list">
+            <h4>{{ 'character.ogham_list'|trans }}</h4>
+
+            <ul>
+                {% for ogham in character.ogham %}
+                    <li><h5>&bull; {{ ogham.name }}</h5></li>
+                {% else %}
+                    <li class="hide-print"><h5>&mdash;</h5></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col s4" id="character-details-mysteries-temple">
+        <h2 class="character-details-subtitle">{{ 'character.exaltation'|trans }}</h2>
+
+        <h3>
+            {{- 'character.exaltation_score'|trans -}}
+            <span class="right">{{ character.exaltation }}/{{ character.exaltationMax }}</span>
+        </h3>
+
+        <h4 class="character-details-subtitle" id="character-details-miracles-minor-title">{{ 'character.miracles.minor'|trans }}</h4>
+        <ul id="character-details-miracles-list-minor">
+            {% for miracle in character.miracles|filter((m) => m.isMinor) %}
+                <li><h5>&bull; {{ miracle.name }}</h5></li>
+            {% else %}
+                <li class="hide-print"><h5>&mdash;</h5></li>
+            {% endfor %}
+        </ul>
+
+        <h4 class="character-details-subtitle" id="character-details-miracles-major-title">{{ 'character.miracles.major'|trans }}</h4>
+        <ul id="character-details-miracles-list-major">
+            {% for miracle in character.miracles|filter((m) => m.isMajor) %}
+                <li><h5>&bull; {{ miracle.name }}</h5></li>
+            {% else %}
+                <li class="hide-print"><h5>&mdash;</h5></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="col s4" id="character-details-mysteries-magience">
+        <h2 class="character-details-subtitle">{{ 'character.flux'|trans }}</h2>
+
+        <ul id="character-details-flux-list">
+            {% for charFlux in character.flux %}
+                <li><h5>{{ charFlux.flux.name }}<span class="right">{{ charFlux.quantity }}</span></h5></li>
+            {% else %}
+                <li class="hide-print">&mdash;</li>
+            {% endfor %}
+        </ul>
+
+        <h2 class="character-details-subtitle">{{ 'character.artifacts'|trans }}</h2>
+
+        <ul id="character-details-artifacts-list">
+            {% for artifact in character.artifacts %}
+                <li><h5>{{ artifact.name }}</h5></li>
+            {% else %}
+                <li class="hide-print">&mdash;</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

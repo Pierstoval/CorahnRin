@@ -1,0 +1,13 @@
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    # Check the manual provider to know why it's overriden in tests.
+    Tests\CorahnRin\ManualRandomSetbacksProvider: ~
+    CorahnRin\GeneratorTools\RandomSetbacksProvider: '@Tests\CorahnRin\ManualRandomSetbacksProvider'
+
+    DataFixtures\:
+        resource: '../src/DataFixtures/*'

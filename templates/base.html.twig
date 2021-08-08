@@ -1,0 +1,207 @@
+{%- if locale is not defined -%}
+    {%- set locale = app.request.locale -%}
+{%- endif -%}
+{%- set facebook_url = locale == 'en'
+    ? 'https://www.facebook.com/ShadowsOfEsteren/'
+    : 'https://www.facebook.com/pages/Les-Ombres-dEsteren/257938482620'
+-%}
+<!DOCTYPE html>
+<html id="corahnrin" lang="{{ app.request.locale|default(app.request.defaultLocale)|default('fr') }}" {% block html_params %}{% endblock %}>
+<head>
+    {%- apply spaceless %}
+
+        <meta charset="utf-8">
+
+        <title>
+            {% block title %}
+                {%- if title is defined -%}
+                    {{- title ~ ' ' -}}
+                    {%- if title != 'Esteren' -%}
+                        - Esteren
+                    {%- endif -%}
+                {%- else -%}
+                    Esteren
+                {%- endif -%}
+            {% endblock %}
+        </title>
+
+        <meta name="generator" content="Pierstoval"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% block more_headers %}{% endblock %}
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('style_global') }}
+            {{ encore_entry_link_tags('initializer') }}
+            {{ encore_entry_link_tags('fa') }}
+        {% endblock %}
+
+        {{ include('_favicons.html.twig') }}
+
+        <style type="text/css">* { -webkit-print-color-adjust: exact; }</style>
+    {% endapply -%}
+</head>
+
+<body {% block body_params %}{% endblock %}>
+
+{% block body %}
+
+    <div id="wrapper" class="{% block wrapper_class %}{% endblock %}">
+
+        {% block layout %}
+
+            {% block menus %}
+                {% apply spaceless %}
+
+                    <nav id="main_navigation" role="navigation">
+                        <div class="nav-wrapper container blue-text">
+                            {% block menu_brand_link %}
+                                <a href="{{ path('root') }}" class="brand-logo position-static left" title="{{ 'links.home' | trans }}">
+                                    <img id="esteren_logo" src="{{ asset('build/Esteren_logo_400.png') }}" alt="{{ 'links.home' | trans }}">
+                                </a>
+                            {% endblock %}
+
+                            {% block menu_left %}
+                                <ul class="left hide-on-med-and-down">
+                                    {% block menu_left_content %}{% endblock %}
+                                </ul>
+                            {% endblock %}
+                            {% block menu_right %}
+                                <ul class="right hide-on-med-and-down">
+                                    {% block menu_right_content %}
+                                        {{ include('_menu_right.html.twig', {'dropdown': false}) }}
+                                    {% endblock %}
+                                </ul>
+                            {% endblock %}
+
+                            {% block menu_mobile %}
+                                <ul id="nav-mobile" class="sidenav">
+                                    {% block menu_mobile_content %}
+                                        {{ block('menu_left_content') }}
+                                        {{ include('_menu_right.html.twig', {'dropdown': false}) }}
+                                    {% endblock %}
+                                </ul>
+                            {% endblock %}
+                            {% if block('menu_mobile')|trim|length %}
+                                <a href="#" id="nav-mobile-link" data-target="nav-mobile" class="button-collapse sidenav-trigger right" title="{{ 'links.menu'|trans }}">
+                                    <i class="fa fa-bars text-white"></i> Menu
+                                </a>
+                            {% endif %}
+                        </div>
+                    </nav>
+                {% endapply %}
+            {% endblock %}
+
+            <div id="layout">
+
+                <div id="content" class="{% block content_layout_class %}container{% endblock %}">
+
+                    {% block flash_messages %}
+                        {{ include('_flash_messages.html.twig') }}
+                    {% endblock %}
+
+                    {% block content_for_layout %}{% endblock %}
+
+                </div><!--/#content-->
+
+            </div><!--/#layout-->
+
+            {# FOOTER #}
+            {% block footer %}
+                {% apply spaceless %}
+                <footer id="page-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col l6 s12" id="footer-about">
+                                {# Margin is half the margin of the h2 tag at the bottom-right of the footer -#}
+                                {%- block footer_about %}{% endblock -%}
+                            </div>
+                            <div class="col l4 offset-l2 s12">
+                                <h2>{{ 'footer.links'|trans }}</h2>
+                                <ul>
+                                {% block footer_links_content %}
+                                    {% if app.request.locale == 'fr' %}
+                                        <li><a href="{{ path('legal_mentions') }}">{{ 'footer.legal_mentions'|trans }}</a></li>
+                                    {% endif %}
+                                {% endblock %}
+                                </ul>
+
+                                {% block footer_social_networks %}
+                                    <h2>{{ 'footer.social_networks'|trans }}</h2>
+                                    <ul>
+                                        {% block footer_social_networks_content %}{% endblock %}
+                                    </ul>
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-copyright">
+                        <div class="container">
+                            <p class="left">
+                            {{ 'footer.version_text'|trans({
+                                '%version%': version_code|replace({'v':''}),
+                                '%version_date%': version_date|format_datetime('medium', 'short', locale=app.request.locale)
+                            })|raw }}
+                            <br>
+                            {{ 'footer.full_text'|trans({
+                                '%year%': 'now'|date('Y'),
+                                '%more%': '',
+                            })|raw }}
+                            </p>
+
+                            <p class="right light">
+                                {% block footer_locales %}
+                                    {%- set route_name = app.request.attributes.get('_route') -%}
+                                    {%- set route_params = app.request.attributes.get('_route_params', {}) -%}
+                                    {%- if route_name -%}
+                                        {%- for loc in locales %}
+                                            {%- if loc == locale -%}
+                                                <span class="locale-link">
+                                                    <img class="change-language-flag" src="{{ asset('build/flags/'~loc~'.svg') }}" alt="">
+                                                    {{- loc | trans({}, 'Languages') -}}
+                                                </span>
+                                            {%- else -%}
+                                                <a class="locale-link" href="{{ path(route_name, (route_params | merge({'_locale':loc})) ) }}">
+                                                    <img class="change-language-flag" src="{{ asset('build/flags/'~loc~'.svg') }}" alt="">
+                                                    {{ loc | trans({}, 'Languages') }}
+                                                </a>
+                                            {%- endif -%}
+                                            {%- if not loop.last %} &ndash; {% endif -%}
+                                        {%- endfor -%}
+                                    {%- endif -%}
+                                {% endblock %}
+
+                            </p>
+
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </footer>
+                {% endapply %}
+            {% endblock %}
+
+        {% endblock %}
+
+    </div><!--/#wrapper-->
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('global') }}
+    <script type="text/javascript" src="{{ path('pierstoval_tools_assets_jstranslations', {'_locale': app.request.locale}) }}"></script>
+{% endblock %}
+
+<script type="text/javascript">
+{% if app.environment == 'prod' and app.debug == false %}
+(function(f, a, t, h, o, m){
+    a[h]=a[h]||function(){(a[h].q=a[h].q||[]).push(arguments)};o=f.createElement('script'),m=f.getElementsByTagName('script')[0];o.async=1; o.src=t; o.id='fathom-script';m.parentNode.insertBefore(o,m);
+})(document, window, '//{{ app.request.host }}/tracker.js', 'fathom');
+fathom('set', 'siteId', '{{ fathom_site_id }}');
+fathom('trackPageview');
+{% else %}
+fathom=function(){};
+{% endif %}
+</script>
+
+</body>
+</html>

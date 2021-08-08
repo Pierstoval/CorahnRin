@@ -1,0 +1,125 @@
+
+@font-face {
+    font-family: 'LettrinEsteren-Regular';
+    font-style: normal;
+    font-weight: normal;
+    font-display: auto;
+    src: url('../../../esteren/fonts/LettrinEsteren-Regular.ttf') format('truetype');
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+
+    body {
+        width: 21cm !important;
+        height: 297mm !important;
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
+
+    .hide-print {
+        display: none !important;
+    }
+
+    .show-print-inline-block {
+        display: inline-block !important;
+    }
+
+    #corahnrin {
+        color: black;
+        text-align: left;
+        font-family: 'LettrinEsteren-Regular', serif;
+
+        #main_navigation,
+        #page-footer,
+        #content > h1,
+        #character-view-header,
+        .sf-toolbar,
+        /* Materialize stuff that automatically displays */
+        .sidenav-overlay,
+        .drag-target {
+            display: none;
+            visibility: hidden;
+        }
+
+        * {
+            border: none 0 transparent;
+            white-space: nowrap;
+        }
+
+        ul, ol, li {
+            list-style-type: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 100%;
+        }
+        .row .col {
+            padding: 0;
+            margin: 0;
+        }
+
+        .character-details {
+            .row.main {
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+                margin-bottom: 0;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                margin: 0;
+                padding: 0;
+                text-align: left;
+            }
+        }
+
+        .character-details-subtitle {
+            color: #482b23;
+            text-shadow: 0 0 20px white;
+        }
+
+        [id^="character-original-page"] {
+            background: transparent no-repeat;
+            background-size: 210mm 297mm;
+            width: 210mm;
+            height: 297mm;
+      }
+
+        #character-original-page-1 {
+            page-break-after: always;
+            overflow: hidden;
+
+            &:not(.printer-friendly) {
+                background-image: url('../../pdf_sources/original_1_npf.jpg');
+            }
+        }
+        #character-original-page-2 {
+            page-break-after: always;
+            overflow: hidden;
+
+            &:not(.printer-friendly) {
+              background-image: url('../../pdf_sources/original_2_npf.jpg');
+            }
+        }
+        #character-original-page-3 {
+            page-break-after: always;
+            overflow: hidden;
+
+            &:not(.printer-friendly) {
+              background-image: url('../../pdf_sources/original_3_npf.jpg');
+            }
+        }
+
+        @import "character_details_print/page1";
+        @import "character_details_print/page2";
+        @import "character_details_print/page3";
+    }
+
+}
+
+// end @media

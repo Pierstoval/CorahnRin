@@ -1,0 +1,224 @@
+security.bad_credentials: 'Nom d''utilisateur ou mot de passe invalide.'
+security.email_not_confirmed: |
+    Votre adresse e-mail n'a pas été confirmée. Merci de vérifier votre boîte mail, et éventuellement le dossier "spams",
+    afin de pouvoir copier ou cliquer sur le lien vous permettant de confirmer votre adresse e-mail.
+
+links.admin: 'Administration'
+links.menu: 'Menu'
+links.home: 'Accueil'
+links.fateforge: Fateforge
+
+footer.version_text: |
+    Version %version% (%version_date%)
+footer.full_text: |
+    Copyright &copy; 2012-%year% <a href="https://www.studio-agate.com/fr/">Studio Agate</a>, Tous droits réservés.
+    %more%
+    <br> Design &amp; développement&nbsp;: Pierstoval &amp; Nel
+footer.links: 'Liens'
+footer.contact: 'Contact'
+footer.subscribe: 'Inscription à la newsletter'
+footer.agate_rpg_discord: 'Discord'
+footer.agate_rpg_blog: 'Blog'
+footer.agate_rpg_forum: 'Forum'
+footer.agate_rpg_portal: 'Portail du studio'
+footer.meet_the_team: 'Rencontrer l''équipe'
+footer.logo_totem_tooltip: Moteur de jeu générique de Vermine 2047 sous license
+footer.team: 'Qui sommes-nous ?'
+footer.legal_mentions: 'Mentions légales'
+footer.social_networks: 'Réseaux sociaux'
+footer.about: 'À propos'
+
+templates:
+    base: 'Bootstrap'
+    material: 'Materialize'
+
+page:
+    preview:
+        return_to_backoffice: 'Retourner à l''administration'
+        admin_link: 'Prévisualiser'
+        previewing: 'Prévisualisation'
+
+button:
+    select: 'Sélectionner'
+    close: 'Fermer'
+
+cnil_disclaimer: |
+    En poursuivant votre navigation sur ce site, vous acceptez l'utilisation des cookies telles qu'exposées dans les
+    <a href="%url%">mentions légales</a>.
+
+admin.menu.site: 'Site'
+admin.menu.users: 'Gestion des utilisateurs'
+admin.menu.types: 'Types de référence'
+admin.menu.transports: 'Transport'
+admin.menu.esterenmaps: Esteren Maps
+admin.menu.esterenmaps_data: Données
+admin.menu.corahn_rin: 'Corahn-Rin'
+admin.menu.corahn_rin.import_character: 'Importer un personnage'
+
+admin.product.products: Produits
+admin.product.product_files: Fichiers des produits
+admin.product.files: Fichiers
+admin.product.categories: Catégories
+admin.product.vermine_products: Produits Vermine
+admin.product.file_leave_empty_to_keep_existing: Laisser vide pour garder le fichier existant.
+
+admin.permissions.none: Aucune
+admin.permissions.vermine_builder: Bâtisseur Vermine
+admin.permissions.vermine_customer: Client Vermine
+
+admin.links.admin_home: 'Accueil de l''administration'
+admin.links.config: Configuration
+admin.links.back_to_site: 'Retour au site'
+admin.config.updated: 'Configuration mise à jour avec succès !'
+admin.config.holiday_start_date: "Date de début des vacances du SAV"
+admin.config.holiday_end_date: "Date de fin des vacances du SAV"
+admin.config.holiday_text_en: "Texte affiché lors des vacances du SAV (en anglais 🇬🇧)"
+admin.config.holiday_text_fr: "Texte affiché lors des vacances du SAV (en français 🇫🇷)"
+admin.config.esteren_maps.step_3_zones: "Zones de naissance disponibles pour CorahnRin étape 3"
+
+admin:
+    sections:
+        general: Informations générales
+        associations: Associations
+        design: Design
+        seo: Référencement
+
+    maps:
+        markers: Marqueurs
+        marker: Marqueur
+        routes: Routes
+        zones: Zones
+        factions: Factions
+        maps: Cartes
+        markers_types: Types de marqueurs
+        routes_types: Types de routes
+        zones_types: Types de zones
+        transports_types: Moyens de transport
+        transportsModifiers: Modificateurs de vitesse
+
+    entities:
+        faction: Faction
+
+        common:
+            id: 'ID'
+            name: 'Name'
+            nameSlug: 'Nom d''URL'
+            slug: 'URL'
+            description: 'Description'
+            book: 'Livre'
+            color: 'Couleur'
+            title: 'Titre'
+            locale: 'Langue'
+            type: 'Type'
+            file: 'Fichier'
+            file_name: 'Nom du fichier'
+            requiredPermission: 'Permission requise'
+            coordinates: 'Coordonnées'
+            translatable_fields: 'Champs traduisibles'
+            general: 'Général'
+
+        portalElement:
+            buttonLink: 'URL du bouton'
+            buttonText: 'Texte du bouton'
+            image: 'Image'
+            locale: 'Langue'
+            portal: 'Portail'
+            subtitle: 'Sous-titre'
+            title: 'Titre'
+            image_help: |
+                Une largeur de plus de 1000px est recommandée pour éviter la pixellisation.<br>
+                Un ratio largeur/hauteur d'image supérieur à 1.3 est nécessaire pour conserver le mouvement de la parallaxe.<br>
+                Si vous ne modifiez pas ce champ, la précédente image sera conservée.<br>
+                Tout changement d'image va supprimer la précédente image!
+
+        factions:
+            maxZoom: 'Zoom maximum'
+            startZoom: 'Zoom de départ'
+            startX: 'Position "X" de départ'
+            startY: 'Position "Y" de départ'
+            image: 'Image utilisée'
+            bounds: 'Limites des coordonnées'
+            coordinatesRatio: 'Ratio du calcul de distance'
+
+        zones_types:
+            parent: 'Zone parente'
+            zones: 'Zones associées'
+
+        transports:
+            speed: 'Vitesse moyenne'
+            modifiers: 'Modificateurs de vitesse'
+            percentage: 'Pourcentage'
+            positive_ratio: 'Ratio positif (augmente la vitesse)'
+
+        routes:
+            distance: 'Distance'
+            forced_distance: 'Écraser la distance'
+            distance_help: |
+                Si vous entrez une valeur dans ce champ, cette distance remplacera la valeur de distance calculée automatiquement
+                par l'application.
+                Attention cependant : cela peut ajouter de la confusion si la distance rompt trop avec les proportions de la carte !
+            markerStart: 'Marqueur de départ'
+            markerEnd: 'Marqueur de fin'
+            guarded: 'La route est gardée par des Chevaliers Ronces ou d''autres groupes'
+
+        markers:
+            latitude: 'Latitude'
+            longitude: 'Longitude'
+            altitude: 'Altitude'
+            web_icon: 'Icône'
+
+        marker_type:
+            icon_override_help: Laissez ce champ vide pour conserver l'image existante.
+
+        users:
+            password_help: Laissez vide pour générer un mot de passe aléatoire (recommended)
+            roles:
+            backer_travels: 'Contributeur "Voyages"'
+
+PortalElement: Éléments du portail
+Pages: 'Page'
+ZonesTypes: 'Type de zone'
+TransportTypes: 'Moyen de transport'
+RoutesTypes: 'Type de route'
+RouteTypes: 'Type de route'
+Factions: 'Faction'
+Zones: 'Zone'
+Routes: 'Route'
+Markers: 'Marqueur'
+MarkersTypes: 'Type de marqueur'
+MarkerType: 'Type de marqueur'
+Users: Utilisateurs
+Subscriptions: Souscriptions
+'(Km/h)': '(Km/h)'
+
+actions:
+    interactive: Édition interactive
+Maps: Cartes
+
+subscription.esteren_maps: Accès à Esteren Maps
+subscription.esteren_maps.used_voucher: |
+    Vous venez d'utiliser un code d'accès à Esteren Maps.
+    Votre souscription est effective dès maintenant, et
+    celle-ci sera effective pendant une durée de 90 jours.<br>
+    Un e-mail de notification vous a été envoyé pour vous en informer.
+
+voucher.redeem.title: Activer un code
+voucher.redeem.message: |
+    Vous pouvez avoir reçu un code à activer ici-même dans le cadre d'une souscription ou d'un accès particulier à
+    une ressource.
+    En entrant ce code dans ce formulaire, vous pourrez profiter de ses bénéfices si possible.
+voucher.redeem.code_label: Code
+voucher.redeem.submit: Activer
+voucher.redeem.code_does_not_exist: Le code spécifié n'existe pas
+voucher.redeem.confirmation_message: Voulez-vous vraiment utiliser ce code ?
+voucher.redeem.confirmation_button: Activer ce code
+
+voucher.redeem.error.no_handler: Ce code ne semble pas avoir été implémenté.
+voucher.redeem.error.save_error: Une erreur est survenue lors de l'enregistrement de votre souscription.
+voucher.redeem.error.not_available: Ce code n'est pas disponible.
+voucher.redeem.error.exceeded_uses: Ce code ne peut plus être utilisé.
+voucher.redeem.error.already_used: Vous avez déjà utilisé ce code.
+voucher.redeem.success: Merci d'avoir utilisé votre code !
+
+product.downloadable_files.title: 'Fichiers téléchargeables :'
+product.no_products_yet: "Aucun produit téléchargeable pour l'instant"

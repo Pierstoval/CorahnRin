@@ -1,0 +1,136 @@
+
+strong { font-weight: bold; } /* Overriding Materialize errors... */
+
+.hoverable:hover {
+    transition: box-shadow .25s;
+    box-shadow: 0 0 17px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.4);
+}
+
+#corahnrin {
+    .btn-small {
+        height: 24px;
+        line-height: 24px;
+        padding: 0 0.5rem;
+        font-size: 0.8em;
+    }
+}
+
+.help-text {
+    margin-top: 0;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.modal {
+    color: #111;
+}
+
+.chip {
+    &.hoverable {
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 3px 10px 0 rgba(255, 255, 255, 0.2);
+            background: #bbb;
+            border-color: #26a69a;
+        }
+    }
+
+    &.chip-link {
+        cursor: pointer;
+
+        .modal-icon {
+            font-size: 1.3em;
+            vertical-align: top;
+            background: white;
+            width: 30px;
+            height: 30px;
+            padding: 5px 0 0 6px;
+            margin: 0 0 0 -13px;
+            border-radius: 50%;
+            border: solid 1px #d3d3d3;
+            &:hover {
+                color: #7575ff;
+                border-color: #a0a0a0;
+            }
+        }
+    }
+
+    &.bordered {
+        border: solid 1px gray;
+        min-width: 50px;
+        background: #eee;
+
+        & {
+            -webkit-transition: 0.2s background-color ease-in-out;
+            -moz-transition: 0.2s background-color ease-in-out;
+            -o-transition: 0.2s background-color ease-in-out;
+            transition: 0.2s background-color ease-in-out;
+        }
+        .chip-link .modal-img {
+            -webkit-transition: 0.2s border-color ease-in-out;
+            -moz-transition: 0.2s border-color ease-in-out;
+            -o-transition: 0.2s border-color ease-in-out;
+            transition: 0.2s border-color ease-in-out;
+        }
+
+        &:hover {
+            background: #bbb;
+        }
+        &.active {
+            background: #aaa;
+            border-color: #26a69a;
+        }
+        &.active .chip-link .modal-img {
+            border-color: #26a69a;
+        }
+        &.active:hover {
+            background: #999;
+        }
+    }
+}
+
+.range-button-container {
+    border: solid 1px transparent;
+    border-radius: 4px;
+    padding: 4px;
+
+    &.active {
+        background: #003300;
+        border-color: #008000;
+        box-shadow:
+            0 8px 17px 2px #00cc0030,
+            0 3px 14px 2px #00cc0060,
+            0 5px 5px -3px #00cc0090
+        ;
+    }
+
+    label {
+        color: white;
+    }
+    button[data-increment] {
+        border: solid 1px #00695c;
+        color: #eee;
+        &:hover {
+            @extend .teal, .darken-4;
+        }
+        &:active {
+            border-color: #004d40;
+        }
+    }
+}
+.range-button-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    input.range-button {
+        width: 35px;
+        text-align: center;
+        margin: 0 20px;
+        font-size: 1.5em;
+        border: none transparent;
+        &.disabled, &[disabled] {
+            color: #999;
+        }
+    }
+}

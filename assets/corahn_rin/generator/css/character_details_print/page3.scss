@@ -1,0 +1,126 @@
+#character-original-page-3 {
+    padding-top: 55px;
+
+    #character-details-sanity {
+        margin-left: 60px;
+        h2.character-details-subtitle {
+            margin-left: 35px;
+            margin-bottom: 10px;
+        }
+        table.trauma {
+            font-family: 'Times New Roman', serif;
+            line-height: 17pt;
+            font-size: 14pt;
+            width: 515px;
+            td, th {
+                padding: 5px 0;
+            }
+            .fa, .far {
+                font-size: 12pt;
+                margin-right: 1px;
+            }
+        }
+        .fa.permanent-trauma {
+            color: black;
+        }
+    }
+
+    #character-details-personality {
+        margin-top: 42px;
+        margin-left: 55px;
+        h2.character-details-subtitle {
+            margin-left: 40px;
+        }
+        h3.character-details-subtitle {
+            width: 400px;
+            clear: both;
+            span.character-details-subitem {
+                color: black;
+                width: 150px;
+                float: right;
+            }
+        }
+    }
+
+    #character-details-experience {
+        margin-top: 7px;
+        margin-left: 96px;
+        #character-details-experience-title {
+            width: 250px;
+        }
+        #character-details-experience-scores {
+            width: 400px;
+            h3 {
+                width: 50%;
+                display: inline-block;
+            }
+        }
+    }
+
+    #character-details-history {
+        margin-top: 45px;
+    }
+
+    #character-details-history-title {
+        width: 140px;
+        margin-left: 95px;
+    }
+
+    #character-details-history-subitems {
+        width: 515px;
+        h3.character-details-subtitle {
+            font-size: 12pt;
+        }
+        h2.character-details-subitem,
+        h4 {
+            font-size: 10pt;
+            font-family: 'Times New Roman', serif;
+        }
+        h4 {
+            margin-left: 5px;
+            & + h4:before {
+                content: "–";
+                display: inline-block;
+            }
+        }
+        #character-details-birthplace {
+            padding-left: 15px;
+        }
+        #character-details-setbacks-list {
+            white-space: normal;
+            overflow: hidden;
+            height: 26px;
+            text-align: left;
+            font-family: 'Times New Roman', serif;
+        }
+    }
+
+    p.story {
+        margin: 0 0 0 60px;
+        width: 680px;
+        height: 241px;
+        white-space: normal;
+        font-family: 'Times New Roman', serif;
+        line-height: 12pt;
+        font-size: 12pt;
+        text-shadow: 0 0 10px white;
+    }
+
+    #character-details-notable-facts {
+        margin-top: 40px;
+        margin-left: 50px;
+        h2.character-details-subtitle {
+            margin-left: 50px;
+        }
+        p.notable-facts {
+            margin: 0;
+            width: 580px;
+            height: 191px;
+            white-space: normal;
+            font-family: 'Times New Roman', serif;
+            line-height: 12pt;
+            font-size: 12pt;
+            text-shadow: 0 0 10px white;
+        }
+    }
+}

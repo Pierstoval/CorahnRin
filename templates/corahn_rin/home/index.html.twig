@@ -1,0 +1,23 @@
+{% extends 'corahn_rin/corahnrin-layout.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block title -%}
+    {{ 'home.title'|trans }}
+{%- endblock %}
+
+{% block content_for_layout %}
+    <div class="hero-unit">
+        <h2 class="text-xxl">{{ 'generator.home.title'|trans }}</h2>
+
+        {{ 'generator.home.text'|trans|raw }}
+
+        <p>
+            <a class="btn waves-effect waves-light blue blue-darken-4" href="{{ path('pierstoval_character_generator_index') }}">
+                {{ 'generator.home.start_creating'|trans }} &raquo;
+            </a>
+        </p>
+
+    </div>
+
+{% endblock %}

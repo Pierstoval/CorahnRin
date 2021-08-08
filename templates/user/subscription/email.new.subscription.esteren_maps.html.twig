@@ -1,0 +1,21 @@
+{% extends 'email/email_layout_internal.html.twig' %}
+
+{% trans_default_domain 'user' %}
+{% import 'email/_macros.html.twig' as macros %}
+
+{% block title %}
+    {{- 'subscription.email.subscription.esteren_maps.subject'|trans -}}
+{% endblock %}
+
+{% block content -%}
+    {%- apply spaceless %}
+        {{ macros.text(block('title')) }}
+        <hr>
+        {{- macros.text('subscription.email.subscription.esteren_maps.content'|trans({
+            '%end_date%': subscription.endsAt|format_date('medium')
+        }))|nl2br -}}
+        <hr>
+        {{ macros.link_btn_center(url('esterenmaps_maps_list'), 'subscription.email.subscription.esteren_maps.link'|trans) }}
+    {% endapply -%}
+{%- endblock %}
+

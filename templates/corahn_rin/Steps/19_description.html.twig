@@ -1,0 +1,50 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% block step_content %}
+
+    {% set female = constant('\\CorahnRin\\Entity\\Character::FEMALE') %}
+    {% set male = constant('\\CorahnRin\\Entity\\Character::MALE') %}
+
+    <div class="row">
+        <div class="input-field col s6">
+            <input type="text" id="character_name" name="details[name]" value="{{ details.name }}">
+            <label for="character_name"><span class="text-red">*&nbsp;</span>{{ 'description.name'|trans({}, 'corahn_rin') }}</label>
+        </div>
+
+        <div class="input-field col s6">
+            <input type="text" name="details[player_name]" id="player" value="{{ details.player_name }}">
+            <label for="player"><span class="text-red">*&nbsp;</span>{{ 'description.player_name'|trans({}, 'corahn_rin') }}</label>
+        </div>
+    </div>
+
+    <h6><span class="text-red">*&nbsp;</span>{{ 'description.sex'|trans({}, 'corahn_rin') }}</h6>
+    <p>
+        <label for="sex_female">
+            <input type="radio" name="details[sex]" id="sex_female" {{ details.sex is defined and details.sex == female ? 'checked' }} value="{{ female }}">
+            <span>{{ 'description.female'|trans({}, 'corahn_rin') }}</span>
+        </label>
+
+        <label for="sex_male">
+            <input type="radio" name="details[sex]" id="sex_male" {{ details.sex is defined and details.sex == male ? 'checked' }} value="{{ male }}">
+            <span>{{ 'description.male'|trans({}, 'corahn_rin') }}</span>
+        </label>
+    </p>
+
+    <div class="input-field">
+        <input type="text" name="details[description]" id="description" value="{{ details.description }}">
+        <label for="description">{{ 'description.character_description'|trans({}, 'corahn_rin') }}</label>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s6">
+            <textarea id="story" class="materialize-textarea" name="details[story]">{{ details.story }}</textarea>
+            <label for="story">{{ 'description.character_story'|trans({}, 'corahn_rin') }}</label>
+        </div>
+
+        <div class="input-field col s6">
+            <textarea id="facts" class="materialize-textarea" name="details[facts]">{{ details.facts }}</textarea>
+            <label for="facts">{{ 'description.character_notable_facts'|trans({}, 'corahn_rin') }}</label>
+        </div>
+    </div>
+
+{% endblock %}

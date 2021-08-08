@@ -1,0 +1,23 @@
+{% trans_default_domain 'corahn_rin' %}
+
+<div class="main row" id="character-details-experience">
+    <div class="col s3" id="character-details-experience-title">
+        <h2 class="character-details-subtitle">
+            {{ 'character.experience.title'|trans }}
+        </h2>
+    </div>
+    <div class="col s9" id="character-details-experience-scores">
+        <h3 class="character-details-subtitle">
+            {{ 'character.experience.actual'|trans }}&nbsp;:
+            <span class="character-details-subitem">
+                {{ character.experienceActual }}
+            </span>
+        </h3>
+        <h3 class="character-details-subtitle">
+            {{ 'character.experience.spent'|trans }}&nbsp;:
+            <span class="character-details-subitem">
+                {{ character.experienceSpent }}
+            </span>
+        </h3>
+    </div>
+</div>

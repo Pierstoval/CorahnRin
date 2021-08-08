@@ -1,0 +1,57 @@
+{% extends "user/layout.html.twig" %}
+
+{% trans_default_domain 'user' %}
+
+{% block title %}
+    {{ 'layout.login' | trans }} - {{ parent() }}
+{% endblock %}
+
+{% block content_for_layout %}
+    <div class="row">
+        <form class="col s6 offset-s3" action="{{ path("user_login_check") }}" method="post" id="form_login">
+            <h2>{{ 'layout.login' | trans }}</h2>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token(csrf_token_intention) }}" />
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="username">
+                        {{- 'security.login.username'|trans }} / {{ 'form.email'|trans -}}
+                    </label>
+                    <input type="text" id="username" name="{{ username_parameter }}" value="{{ last_username }}" required="required" class="validate">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="password">{{ 'security.login.password'|trans }}</label>
+                    <input type="password" id="password" name="{{ password_parameter }}" required="required" class="validate">
+                </div>
+            </div>
+
+            <button class="btn waves-effect waves-light" type="submit">
+                {{ 'security.login.submit'|trans }}
+            </button>
+
+            <a href="{{ path('user_resetting_request') }}" class="bl mt10">
+                {{ 'security.login.password_forgotten'|trans }}
+            </a>
+            <a href="{{ path('user_register') }}" class="bl mt10">
+                {{ 'security.login.no_account_register'|trans }}
+            </a>
+        </form>
+    </div>
+{% endblock content_for_layout %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        (function(d){
+            {%- if last_username -%}
+                d.getElementById('password').focus();
+            {%- else -%}
+                d.getElementById('username').focus();
+            {%- endif -%}
+        })(document);
+    </script>
+{% endblock %}

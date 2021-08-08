@@ -1,0 +1,116 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('step_13_primary_domains') }}
+{% endblock %}
+
+{% block step_content %}
+
+    <h3>{{ job.name }}</h3>
+
+    <div class="card-panel teal darken-4">
+
+        <strong>{{ 'primary_domains.additionnal_options'|trans }}&nbsp;:</strong>
+        <br>
+        <br>
+
+        <input type="hidden" name="ost" id="ost" value="{{ domains_values['ost'] }}">
+        <button type="button" class="btn btn-small btn-inverse"><span class="fa fa-asterisk"></span></button>&nbsp;&equals;
+        {{ 'primary_domains.ost_service_button'|trans|raw }}
+    </div>
+
+    <div class="card-panel blue-grey darken-3">
+        {{ 'primary_domains.explanation'|trans|raw }}
+    </div>
+    <div class="card-panel blue-grey darken-3">
+        <table id="information_table">
+            <tbody>
+                <tr>
+                    <td class="domainValue1">
+                        <strong>{{ 'primary_domains.info_table.number_of_1'|trans }}</strong>&nbsp;:
+                    </td>
+                    <td>
+                        <span id="numberOf1">{{ number_of[1] }}</span>&nbsp;/&nbsp;2
+                    </td>
+                </tr>
+                <tr>
+                    <td class="domainValue2">
+                        <strong>{{ 'primary_domains.info_table.number_of_2'|trans }}</strong>&nbsp;:
+                    </td>
+                    <td>
+                        <span id="numberOf2">{{ number_of[2] }}</span>&nbsp;/&nbsp;2
+                    </td>
+                </tr>
+                <tr>
+                    <td class="domainValue3">
+                        <strong>{{ 'primary_domains.info_table.number_of_3'|trans }}</strong>&nbsp;:
+                    </td>
+                    <td>
+                        <span id="numberOf3">{{ number_of[3] }}</span>&nbsp;/&nbsp;1
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="numberOfCompleted" style="display: none;">
+            <div class="chip">
+                Ok !
+            </div>
+        </div>
+    </div>
+
+    {# For jobs that have no secondary domain, we allow the user to choose any. #}
+    {% set show_all_secondary_domains = (secondary_domains|length) == 0 %}
+
+    {% for domains_chunk in all_domains|batch(4, []) %}
+
+        <div class="row">
+        {% for id, domain in domains_chunk %}
+
+            {% set value = domains_values['domains'][id] %}
+
+            <div class="col s3 domain hoverable" data-domain-id="{{ id }}">
+                <input type="hidden" name="domains[{{ id }}]" value="{{ value }}">
+                <h5>
+                    {{ id|trans }}
+                </h5>
+                <div class="suppl">
+                    <button type="button" data-type="ost" data-domain-id="{{ id }}" class="btn btn-inverse btn-small{{ domains_values['ost'] == id ? ' active' }}" data-toggle="tooltip" title="{{ 'primary_domains.ost_button_title' | trans }}">
+                        <span class="fa fa-asterisk"></span>
+                    </button>
+                </div>
+                <hr>
+                <div class="domain_button_group">
+                    {% for i in [0, 1, 2, 3, 5] %}
+
+                        {% set selected = i == value %}
+
+                        {% set disabled =
+                            value == 5
+                            or (i == 3 and id not in secondary_domains and not show_all_secondary_domains)
+                            or (i == 5 and value != 5)
+                        %}
+
+                        {#
+                            If button is not disabled we add the "domain-change" class.
+                            This will be the one that will receive the event listeners.
+                        #}
+                        {% set class -%}
+                            {{- value == i ? ' active' -}}
+                            {{- disabled ? ' disabled' : ' domain-change' -}}
+                        {%- endset %}
+                        <button type="button" data-change="{{ i }}" class="domain_button_value btn btn-inverse {{ class }}">
+                            {{ i }}
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+
+        {% endfor %}
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

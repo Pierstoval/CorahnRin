@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+@import "../../../../node_modules/@materializecss/materialize/sass/components/color-variables";
+@import "../../../../node_modules/@materializecss/materialize/sass/components/color-classes";
+@import "../../../../node_modules/@materializecss/materialize/sass/components/variables";
+@import "../../../esteren/sass/materialize-override-variables";
+
+#generator_form {
+    .btn {
+        background-color: #b3e5fc;
+        color: black;
+        height: auto;
+        &.active {
+            background-color: #e1f5fe;
+        }
+    }
+
+    div.gen-div-choice {
+
+        & article {
+            border: solid 1px #555;
+            padding: 10px;
+
+            -webkit-transition: 0.2s background-color ease-in-out;
+            -moz-transition: 0.2s background-color ease-in-out;
+            -o-transition: 0.2s background-color ease-in-out;
+            transition: 0.2s background-color ease-in-out;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &.selected article {
+            background-color: #333;
+        }
+
+        &.selected:hover article {
+            background-color: #444;
+        }
+
+        & div.divchoice-inside {
+            display: none;
+            padding-bottom: 10px;
+        }
+    }
+
+    .bonus_points_element {
+        font-size: 18px;
+        text-align: right;
+        color: black;
+    }
+}
+
+/* Materialize setup */
+.step_menu {
+    nav {
+        height: auto;
+        a.button-collapse {
+            display: block;
+        }
+    }
+    .sidenav {
+        width: 350px;
+        li {
+            transition: background-color .3s;
+            display: block;
+            color: rgba(0, 0, 0, 0.3);
+            font-size: 14px;
+            font-weight: 500;
+            height: 48px;
+            line-height: 48px;
+            padding-left: 0;
+            margin-left: 0;
+            & > a {
+                cursor: pointer;
+                color: rgba(0, 0, 0, 0.87);
+            }
+            & > a,
+            & > span {
+                padding: 0 16px 0 32px;
+                display: block;
+            }
+            &.step_available {
+                border-left: solid 5px #666;
+            }
+        }
+    }
+    .step_progress {
+        height: 10px;
+        background-color: #666;
+        .determinate {
+            background-color: #2c2776;
+        }
+    }
+}
+
+@import '_step_03_naissance';
+@import '_step_09_traits';
+@import '_step_11_advantages';
+@import '_step_13_primary_domains';
+@import '_step_14_use_domain_bonuses';
+@import '_step_18_equipment';
+@import '_step_20_finish';

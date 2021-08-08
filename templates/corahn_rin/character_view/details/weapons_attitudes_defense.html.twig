@@ -1,0 +1,114 @@
+{% trans_default_domain 'corahn_rin' %}
+
+<div class="main row">
+    <div class="col s4" id="character-details-weapons-armors">
+        <h2 class="character-details-subtitle">{{ 'character.weapons'|trans }}</h2>
+
+        <ul id="character-details-weapons-list">
+            {% for weapon in character.weapons %}
+                <li>
+                    <h3>
+                        <span class="character-details-subitem">
+                            {{- weapon.name -}}
+                        </span>
+                        <span class="right">{{ 'character.weapon.dmg'|trans }}&nbsp;{{ weapon.damage }}</span>
+                    </h3>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2 class="character-details-subtitle">{{ 'character.armors'|trans }}</h2>
+        <ul id="character-details-armors-list">
+            {% for armor in character.armors %}
+                <li>
+                    <h3>
+                        <span class="character-details-subitem">
+                            {{- armor.name -}}
+                        </span>
+                        <span class="right">({{ armor.protection }})</span>
+                    </h3>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="col s4" id="character-details-combat-attitudes">
+        <h2 class="character-details-subtitle">{{ 'character.combat_attitudes'|trans }}</h2>
+
+        <p class="character-details-subitem"><i class="fa fa-hand-o-right blue-text"></i> {{ 'character.combat_attitude.sheet_explanation'|trans }}</p>
+
+        {% for attitude in constant('CorahnRin\\Entity\\Character::COMBAT_ATTITUDES') %}
+            <h3 class="character-details-subtitle">{{ attitude|trans }}</h3>
+
+            <div class="row character-details-attitudes-row">
+                <div class="col s4 text-left">
+                    {{ 'character.combat.atk'|trans }}&nbsp;:
+                    {{ character.attackScore('melee', null, attitude) -}}&nbsp;/&nbsp;{{- character.attackScore('ranged', null, attitude) -}}
+                </div>
+                <div class="col s4">
+                    {{ 'character.combat.def'|trans }}&nbsp;:
+                    {{ character.totalDefense(attitude) }}
+                </div>
+                <div class="col s4">
+                    {{ 'character.combat.spd'|trans }}&nbsp;:
+                    {{ character.totalSpeed(attitude) }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="col s4">
+        <div id="character-details-defense">
+            <h2 class="text-left character-details-subtitle">
+                {{ 'character.defense'|trans }}
+                <span class="character-details-defense-score">
+                    {% set defenseBonus = character.defenseBonus %}
+                    {%- for i in 1..10 -%}
+                        {%- if defenseBonus >= i -%}
+                            <span class="fa fa-circle"></span>
+                        {%- else -%}
+                            <span class="far fa-circle"></span>
+                        {%- endif -%}
+                        {%- if i == 5 -%}&nbsp;{% endif -%}
+                    {%- endfor -%}
+                </span>
+                <span class="character-details-defense-total">
+                    <i class="fa fa-plus"></i>
+                    {{ character.baseDefense }}
+                    <i class="fa fa-equals"></i>
+                    {{ character.totalDefense }}
+                </span>
+            </h2>
+        </div>
+
+        <div id="character-details-speed">
+            <h2 class="text-left character-details-subtitle">
+                {{ 'character.speed'|trans }}
+                {% set speedBonus = character.speedBonus %}
+                <span id="character-details-speed-bonus">
+                    {%- for i in 1..5 -%}
+                        {%- if speedBonus >= i -%}
+                            <span class="fa fa-circle"></span>
+                        {%- else -%}
+                            <span class="far fa-circle"></span>
+                        {%- endif -%}
+                    {%- endfor -%}
+                    &nbsp;
+                </span>
+                <span id="character-details-speed-total">
+                    <i class="fa fa-plus"></i> 
+                    {{ character.baseSpeed }}
+                    <i class="fa fa-equals"></i>
+                    {{ character.totalSpeed }}
+                </span>
+            </h2>
+        </div>
+
+        <h3 id="character-details-potential" class="character-details-subtitle">
+            {{- 'character.potential'|trans -}}
+            <span class="hide-print"> : </span>
+            <span id="character-details-potential-score">{{ character.potential }}</span>
+        </h3>
+    </div>
+</div>

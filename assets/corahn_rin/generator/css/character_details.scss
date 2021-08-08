@@ -1,0 +1,148 @@
+
+.show-print-inline-block {
+    display: none;
+}
+
+.character-details {
+    .row {
+        margin: 0;
+        padding: 0;
+        border-bottom: solid 1px;
+        &.main {
+            margin-bottom: 45px;
+            border: none 0 transparent;
+            -webkit-transition: -webkit-box-shadow 0.4s;
+            -moz-transition: -moz-box-shadow 0.4s;
+            transition: box-shadow 0.4s;
+            -webkit-box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            -moz-box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            &:hover {
+                -webkit-box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+                -moz-box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            }
+        }
+    }
+    .row, hr {
+        border-color: #444;
+    }
+    .col {
+        height: inherit;
+    }
+    h2, h3, h4, h5, h6, p {
+        margin: 1.1rem 0.8em;
+        line-height: normal;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.8em;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }
+    h3 {
+        font-size: 1.6em;
+        &.character-details-domain-title {
+            margin: 0;
+        }
+    }
+    h4 {
+        font-size: 1.4em;
+        &.health {
+            margin: 2px 0;
+            padding: 0;
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        }
+    }
+    h5 {
+        font-size: 1.2em;
+    }
+    h6 {
+        font-size: 1em;
+    }
+    &, p {
+        font-size: 0.9em;
+    }
+    p.story {
+        font-size: 1.2em;
+        line-height: 1.5em;
+        margin-bottom: 20px;
+    }
+    ul.list-bullet {
+        margin-left: 17px;
+        h4 {
+            display: inline-block;
+            margin: 0;
+            position: relative;
+            left: -5px;
+        }
+    }
+    .trauma {
+        font-size: 1.6em;
+    }
+    .domain-triskel {
+        // Will be displayed only in print.
+        display: none;
+    }
+
+    .character-details-domain-way,
+    .character-details-domain-bonus {
+        display: block;
+    }
+
+    .character-details-domain-score-total {
+        font-size: 25px;
+        float: right;
+        margin-top: -10px;
+    }
+
+    .discipline-total-score {
+        float: right;
+    }
+
+    .character-details-way-score{
+        float: right;
+        font-size: 24px;
+        margin-top: -5px;
+    }
+
+    .character-details-defense-score {
+        font-size: 9pt;
+        margin-right: 10px;
+    }
+    .character-details-defense-total,
+    #character-details-speed {
+        .fa, .far {
+            font-size: 9pt;
+        }
+    }
+    #character-details-speed {
+        h2.character-details-subtitle {
+            .character-details-speed-score {
+                font-size: 9pt;
+                margin-right: 10px;
+            }
+            .character-details-speed-total {
+                .fa {
+                    font-size: 9pt;
+                }
+            }
+        }
+    }
+
+    table.trauma {
+        .fa.permanent-trauma {
+            color: white;
+        }
+        .fa.temporary-trauma {
+            color: #795548;
+        }
+    }
+}

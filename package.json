@@ -1,0 +1,46 @@
+{
+    "name": "esteren",
+    "description": "Global Esteren project",
+    "homepage": "http://www.esteren.org/",
+    "author": "Alex \"Pierstoval\" Ancelet <alex@orbitale.io>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Pierstoval/corahn_rin"
+    },
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.3",
+        "@symfony/webpack-encore": "^1.4.0",
+        "core-js": "^3.14.0",
+        "flatpickr": "^4.6.9",
+        "file-loader": "^6.2.0",
+        "jquery": "^3.6.0",
+        "leaflet": "^1.7.1",
+        "leaflet-draw": "^1.0.4",
+        "less": "^4.1.1",
+        "less-loader": "^9.1.0",
+        "@materializecss/materialize": "^1.1.0-alpha",
+        "node-sass": "^6.0.0",
+        "regenerator-runtime": "^0.13.7",
+        "sass-loader": "^12.1.0",
+        "ts-loader": "^9.2.3",
+        "typescript": "^4.3.2",
+        "webpack-notifier": "^1.13.0"
+    },
+    "contributors": [
+        {
+            "name": "Nelyhann",
+            "email": "nelyhann@gmail.com"
+        },
+        {
+            "name": "Joelle \"Iris\" Deschamp",
+            "email": "iris.d.automne@gmail.com"
+        }
+    ],
+    "private": true
+}

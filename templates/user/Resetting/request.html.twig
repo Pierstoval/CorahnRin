@@ -1,0 +1,31 @@
+{% extends "user/layout.html.twig" %}
+
+{% trans_default_domain 'user' %}
+
+{% block content_for_layout %}
+<div class="row">
+    <form class="user_resetting_request col s7 offset-s2" action="{{ path('user_resetting_send_email') }}" method="POST">
+        <h2>{{ 'resetting.request.submit' | trans }}</h2>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                <input type="text" id="username" name="username" required="required" />
+            </div>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit">
+            {{ 'resetting.request.submit'|trans }}
+        </button>
+    </form>
+</div>
+{% endblock content_for_layout %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        (function(d){
+            d.getElementById('username').focus();
+        })(document);
+    </script>
+{% endblock %}

@@ -1,0 +1,114 @@
+security.login.username: 'Nom d''utilisateur'
+security.login.password: 'Mot de passe'
+security.login.remember_me: 'Se souvenir de moi'
+security.login.submit: Connexion
+security.login.password_forgotten: 'Mot de passe oublié ?'
+security.login.no_account_register: 'Pas encore de compte ? Inscrivez-vous !'
+
+profile:
+    go_back: 'Retourner à mon profil'
+    show:
+        username: 'Nom d''utilisateur'
+        email: 'Adresse e-mail'
+    edit:
+        submit: 'Mettre à jour'
+        general_information: 'Informations générales'
+        ulule_connect: 'Connecter mon compte Ulule'
+    flash:
+        updated: 'Le profil a été mis à jour.'
+
+change_password:
+    submit: 'Modifier le mot de passe'
+    flash:
+        success: 'Le mot de passe a été modifié.'
+
+registration:
+    check_email: |
+        Un e-mail a été envoyé à l'adresse %email%. Il contient un lien d'activation sur lequel il vous faudra cliquer afin d'activer votre compte.'
+    confirmed: 'Félicitations ! Votre compte est maintenant activé, vous pouvez désormais vous connecter.'
+    back: 'Retour à la page d''origine.'
+    submit: 'Créer un compte'
+    flash:
+        user_created: 'L''utilisateur a été créé avec succès.'
+    email:
+        subject: 'Bienvenue %username% !'
+        message: |
+            Bonjour <strong>%username%</strong> !
+
+            Pour valider votre adresse e-mail, merci de <a href="%confirmationUrl%">cliquer sur ce lien</a>.
+
+            Si le lien ne fonctionne pas, copiez cette URL et collez-la dans votre navigateur :
+            <a href="%confirmationUrl%">%confirmationUrl%</a>
+
+            Ce lien ne peut être utilisé qu'une seule fois pour valider votre compte.
+
+            Cordialement,
+
+            L'équipe Agate
+
+resetting:
+    check_email: |
+        Si un compte existe avec cette adresse e-mail, un e-mail a été envoyé contenant un lien sur lequel il vous
+        faudra cliquer pour réinitialiser votre mot de passe.<br>
+
+        Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
+
+    request:
+        username: 'Nom d''utilisateur ou adresse e-mail'
+        submit: 'Réinitialiser le mot de passe'
+    reset:
+        submit: 'Modifier le mot de passe'
+    flash:
+        success: 'Le mot de passe a été réinitialisé avec succès.'
+    email:
+        subject: 'Réinitialisation de votre mot de passe'
+        message: |
+            Bonjour <strong>%username%</strong> !
+
+            Pour réinitialiser votre mot de passe , merci de <a href="%confirmationUrl%">cliquer sur ce lien</a>.
+
+            Si le lien ne fonctionne pas, copiez cette URL et collez-la dans votre navigateur :
+            <a href="%confirmationUrl%">%confirmationUrl%</a>
+
+            Cordialement,
+
+            L'équipe Agate
+    email_failed: |
+        L'envoi de l'email de réinitialisation a échoué. Nos services en ont été informés. Merci de réessayer plus tard.
+        <br><br>
+        Merci de votre compréhension.
+
+# Global strings
+layout:
+    logout: Déconnexion
+    login: Connexion
+    register: Inscription
+    logged_in_as: 'Connecté en tant que %username%'
+    profile: 'Profil'
+    edit_profile: 'Modifier mon profil'
+
+form:
+    group_name: 'Nom du groupe'
+    username: 'Nom d''utilisateur'
+    email: 'Adresse e-mail'
+    current_password: 'Veuillez indiquer votre mot de passe actuel'
+    password: 'Mot de passe'
+    password_confirmation: 'Répéter le mot de passe'
+    new_password: 'Nouveau mot de passe'
+    new_password_confirmation: 'Répéter le nouveau mot de passe'
+
+registration.optin: >
+    J'autorise le studio Agate et ses partenaires à ne rien faire de mes données. <small>De toute façon,
+    le studio Agate ne fera rien du tout avec ces données, elles servent uniquement au bon fonctionnement
+    de ce site, donc nous ne diffuserons jamais vos données à qui que ce soit, ni ne les vendrons, ni rien.
+    Elles sont votre propriété.</small>
+
+subscription.email:
+    subscription.esteren_maps.subject: Merci d'avoir souscrit à l'accès à Esteren Maps!
+    subscription.esteren_maps.link: Allez à Esteren Maps
+    subscription.esteren_maps.content: |
+        Cette souscription vous donne l'accès à toutes les fonctionnalités d'Esteren Maps.
+
+        La souscription durera jusqu'à cette date: %end_date%
+
+        Vous pouvez dès à présenter visiter Esteren Maps !

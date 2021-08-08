@@ -1,0 +1,18 @@
+
+{% macro tooltipped_list_link(
+    active_route,
+    href,
+    label,
+    icon = "",
+    additionnal_text = "",
+    html_id = ""
+) -%}
+    <li {{ app.request.attributes.get('_route') == active_route ? 'class="selected"' }}>
+        <a href="{{ href }}" aria-label="{{ label }}" class="tooltipped" data-position="bottom" data-tooltip="{{ label }}"{{ html_id ? (' id="'~html_id~'"')|raw }}>
+            {%- if icon -%}
+                <i class="fa fa-{{ icon }}" aria-hidden="true"></i>
+            {%- endif -%}
+            {{- additionnal_text -}}
+        </a>
+    </li>
+{%- endmacro %}

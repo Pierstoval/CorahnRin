@@ -1,0 +1,59 @@
+{% trans_default_domain 'corahn_rin' %}
+
+{% macro route_active(route) -%}
+    {%- set current_route = app.request.attributes.get('_route') -%}
+    {{- current_route == route ? 'active ' -}}
+{%- endmacro %}
+
+{% import _self as macros %}
+
+<h1>{{ character.name }}</h1>
+
+<nav>
+    <div class="nav-wrapper">
+        <ul >
+            <li class="{{ macros.route_active('corahnrin_characters_view') }}">
+                <a href="{{ path('corahnrin_characters_view', { id: character.id, nameSlug: character.nameSlug }) }}">
+                    <i class="material-icons left fa fa-file-alt"></i>
+                    {{- 'character_view.menu.details'|trans -}}
+                </a>
+            </li>
+
+            <li>
+                {# TODO: change when we can find a way to print this from the server instead of the client#}
+                {#<a href="{{ path('corahnrin_characters_print', { id: character.id, nameSlug: character.nameSlug }) }}">#}
+                <a href="#character-print" id="character-print">
+                    <i class="material-icons left fa fa-file-pdf"></i>
+                    {{- 'character_view.menu.print_to_pdf'|trans -}}
+                </a>
+            </li>
+
+            {% if is_granted(constant('CorahnRin\\Security\\CharacterEditVoter::CHARACTER_EDIT'), character) %}
+                <li class="{{ macros.route_active('corahnrin_characters_edit') }}">
+                    <a href="{{ path('corahnrin_characters_edit', { id: character.id, nameSlug: character.nameSlug }) }}">
+                        <i class="material-icons left fa fa-pencil-alt"></i>
+                        {{ 'character_view.menu.edit'|trans }}
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if is_granted(constant('CorahnRin\\Security\\CharacterSpendXpVoter::SPEND_XP'), character) %}
+                <li class="{{ macros.route_active('character_spend_xp') }}">
+                    <a href="{{ path('character_spend_xp', { id: character.id, nameSlug: character.nameSlug }) }}">
+                        <i class="material-icons left fa fa-book-open"></i>
+                        {{ 'character_view.menu.spend_xp'|trans }}
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if character.game is not null %}
+                <li class="{{ macros.route_active('game_view') }}">
+                    <a href="{{ path('game_view', { id: character.game.id }) }}">
+                        <i class="material-icons left fa fa-campground"></i>
+                        {{ 'character_view.menu.character_game'|trans }}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,82 @@
+{% extends 'corahn_rin/corahnrin-layout.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block title -%}
+    {{ 'menu.my_games'|trans }}
+{%- endblock %}
+
+{% block content_for_layout %}
+    <h1>{{ block('title') }}</h1>
+
+    <h2>{{ 'games.list.as_game_master'|trans }}</h2>
+    <table id="games_as_game_master">
+        {% for game in games_as_game_master %}
+            <tr>
+                <td>
+                    {{ game.name }}
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-floating btn-large" href="{{ path('game_view', {'id': game.id}) }}"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">
+                    {{ 'games.no_games'|trans }}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2">
+                <a href="{{ path('create_game') }}" class="btn">
+                    {{ 'games.create'|trans }}
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2>{{ 'games.list.as_player'|trans }}</h2>
+    <table id="games_as_player">
+        {% for game in games_as_player %}
+            <tr>
+                <td>
+                    {{ game.name }}
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-floating btn-large" href="{{ path('game_view', {'id': game.id}) }}"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">
+                    {{ 'games.no_games'|trans }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% if games_invitations|length %}
+        <hr>
+
+        <h2>{{ 'games.list.received_invitations'|trans }}</h2>
+        <table id="received_game_invitations">
+            {% for invitation in games_invitations %}
+                <tr>
+                    <td>
+                        {{ invitation.gameName }}
+                        &ndash;
+                        {{ invitation.characterName }}
+                    </td>
+                    <td class="right">
+                        <a class="btn" href="{{ path('game_invitation_accept', {'token': invitation.token}) }}">
+                            {{ 'games.mail.invitation.form.accept.button'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

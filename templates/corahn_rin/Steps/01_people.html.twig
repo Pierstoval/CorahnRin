@@ -1,0 +1,24 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block step_content %}
+
+<input type="hidden" name="gen-div-choice" id="gen-div-choice" value="{{ people_value }}" />
+{% for list in peoples|batch(2) %}
+    <div class="row">
+        {% for people in list %}
+            <div class="col l6 gen-div-choice{% if people_value == people.id %} selected{% endif %}"
+                 data-divchoice-value="{{ people.id }}">
+                <article class="hoverable">
+                    <header>
+                        <h3 class="center">{{ people.name | trans }}</h3>
+                    </header>
+                    <p>{{ people.description | trans | raw }}</p>
+                </article>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+{% endblock %}

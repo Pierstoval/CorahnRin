@@ -1,0 +1,69 @@
+{% trans_default_domain 'corahn_rin' %}
+
+<div id="character-details-domains" class="main row">
+    <div class="col s12">
+        <h2 class="character-details-subtitle">{{ 'character.domains'|trans }}</h2>
+        {% for domains in character.domains.scores|batch(4) %}
+            <div class="row">
+                {% for domain_name, score in domains %}
+                    {% set char_domain = domain_name|domain_as_object %}
+                    {% set way = char_domain.way %}
+                    <div class="col s3 character-details-domain" data-domain="{{ domain_name }}">
+                        <h3 class="character-details-domain-title character-details-subtitle">
+                            <img class="domain-triskel" src="{{ asset('build/generator/triskel_original_40.png') }}" alt="">
+                            {{- domain_name | trans -}}
+                        </h3>
+
+                        {% set bonus_or_malus = score.bonusOrMalus %}
+
+                        <p class="character-details-domain-bonuses">
+                            <span class="character-details-domain-way">
+                                {{- (way|trans) }} {{ character.getWayScore(way) -}}
+                            </span>
+                            <span class="character-details-domain-bonus">
+                                {%- if bonus_or_malus > 0 %}
+                                    {{- 'character.domain.bonus'|trans -}} :
+                                {%- elseif bonus_or_malus < 0 %}
+                                    {{- 'character.domain.malus'|trans -}} :
+                                {%- endif -%}
+                                <strong class="bolder"> {{ (bonus_or_malus|abs) ?: '' }}</strong>
+                            </span>
+                        </p>
+
+                        <p class="character-details-domain-score">
+                            {%- for i in 1..5 -%}
+                                {%- if score.base >= i -%}
+                                    <span class="fa fa-circle"></span>
+                                {%- else -%}
+                                    <span class="far fa-circle"></span>
+                                {%- endif -%}
+                            {%- endfor -%}
+                            <span class="character-details-domain-score-total">
+                                {{- score.total -}}
+                            </span>
+                        </p>
+
+                        {% set disciplines = character.disciplineFromDomain(domain_name) %}
+                        {% if disciplines|length %}
+                            <h4 class="hide-print">{{ 'character.disciplines'|trans }}&nbsp;:</h4>
+                        {% endif %}
+                        {% for charDiscipline in disciplines %}
+                            <h5 class="character-details-domain-discipline">
+                                <span class="character-details-subitem">
+                                    {{ charDiscipline.discipline.name }}
+                                    (<strong class="bolder">{{ charDiscipline.score }}</strong>)
+                                </span>
+                                <span class="discipline-score-container">
+                                    <span class="discipline-total-score">
+                                        <span class="hide-print">{{ 'character.domain.score.total'|trans }}</span>
+                                        {{- charDiscipline.totalScore -}}
+                                    </span>
+                                </span>
+                            </h5>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

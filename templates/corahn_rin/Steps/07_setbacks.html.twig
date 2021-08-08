@@ -1,0 +1,39 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% block step_content %}
+
+    {% if age >= 21 %}
+
+        {% set setback_symbol -%}
+            <span class="fa fa-hand-o-right"><span class="sr-only">&raquo;</span></span>
+        {%- endset %}
+
+        <div class="card-panel teal darken-4">
+            {{ 'setback.quantity' | transchoice(setbacks_number, {'%age%':age}, 'corahn_rin') | raw }}
+            <br>
+
+            <br>
+            {% if choice_available %}
+                <a href="{{ path('pierstoval_character_generator_step', {'requestStep': current_step.name}) }}">
+                    {{ 'setback.question.auto'|trans({}, 'corahn_rin') }}
+                </a>
+            {% else %}
+                <p>{{ 'setback.drawn' | trans({'%symbol%': setback_symbol}, 'corahn_rin') | raw }}</p>
+
+                <a href="{{ path('pierstoval_character_generator_step', {'requestStep': current_step.name, 'manual': ''}) }}">
+                    {{ 'setback.question.manual'|trans({}, 'corahn_rin') }}
+                </a>
+            {% endif %}
+        </div>
+
+        {% if choice_available %}
+            {{ include('corahn_rin/Steps/setbacks/manual.html.twig', with_context = true) }}
+        {% else %}
+            {{ include('corahn_rin/Steps/setbacks/auto.html.twig', with_context = true) }}
+        {% endif %}
+
+    {% else %}
+        <p class="card-panel green green-text text-darken-3 lighten-4">{{ 'setback.none' | trans({}, 'corahn_rin') }}</p>
+    {% endif %}
+
+{% endblock %}

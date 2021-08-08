@@ -1,0 +1,22 @@
+{% extends 'email/email_layout_internal.html.twig' %}
+
+{% trans_default_domain 'agate' %}
+{% import 'email/_macros.html.twig' as macros %}
+
+{% block title "[#{message.subject|trans}] #{message.title}"|striptags|raw %}
+
+{% block content -%}
+    {%- apply spaceless %}
+    {{ macros.text('['~(message.subject|trans)~']', 20) }}
+    {{ macros.text('contact.email.sender'|trans({'%sender%': message.name~' &lt;'~message.email~'&gt;'}), 18) }}
+    <hr>
+    {{ 'contact.form.subject'|trans }}:
+    {{ macros.text(message.title, 16) }}
+    <hr>
+    {{ 'contact.email.message'|trans }}:
+    {{ macros.text(message.message, 14)|nl2br }}
+    <hr>
+    {{ macros.link_btn_center('mailto:'~message.email, 'Répondre') }}
+    {% endapply -%}
+{%- endblock %}
+

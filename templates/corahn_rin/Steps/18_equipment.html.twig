@@ -1,0 +1,70 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('step_18_equipment') }}
+{% endblock %}
+
+{% block step_content %}
+    <div>
+        <p class="card-panel teal darken-3">{{ 'equipment.base_elements.description'|trans({}, 'corahn_rin') }}</p>
+        {% if is_poor %}
+            <p class="card-panel materialize-red darken-4">{{ 'equipment.reminder_if_poor'|trans({}, 'corahn_rin') }}</p>
+        {% endif %}
+    </div>
+    <div>
+        <h4>{{ 'equipment.weapons.title'|trans({}, 'corahn_rin') }}</h4>
+        <div class="row">
+            {% for id, weapon in weapons %}
+                <div class="col s3">
+                    <label for="weapon_{{ id }}">
+                        <input type="checkbox" id="weapon_{{ id }}" name="weapons[{{ id }}]"{{ selected_weapons[id] is defined ? ' checked' }} value="{{ id }}">
+                        <span>{{ weapon.name }}</span>
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+    <div>
+        <h4>{{ 'equipment.armors.title'|trans({}, 'corahn_rin') }}</h4>
+        <div class="row">
+            {% for id, armor in armors %}
+                <div class="col s3">
+                    <label for="armor_{{ id }}">
+                        <input type="checkbox" id="armor_{{ id }}" name="armors[{{ id }}]"{{ selected_armors[id] is defined ? ' checked'  }} value="{{ id }}">
+                        <span>{{ armor.name }}</span>
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+    <div id="equipment_panel">
+        <h4>{{ 'equipment.base_elements.title'|trans({}, 'corahn_rin') }}</h4>
+
+        {% if equipment|length %}
+            {% for value in equipment %}
+                <div class="equipment">
+                    <div class="input-field inline">
+                        <input id="equipment_{{ loop.index0 }}" name="equipment[]" type="text" value="{{ value }}">
+                        <label for="equipment_{{ loop.index0 }}">{{ 'equipment.base_elements.title'|trans({}, 'corahn_rin') }}</label>
+                    </div>
+                    <a class="equipment_remove btn-floating waves-effect waves-light red"><i class="fa fa-times"></i></a>
+                    <a class="equipment_add btn-floating waves-effect waves-light teal"><i class="fa fa-plus"></i></a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="equipment">
+                <div class="input-field inline">
+                    <input id="equipment_0" name="equipment[]" type="text">
+                    <label for="equipment_0">{{ 'equipment.base_elements.title'|trans({}, 'corahn_rin') }}</label>
+                </div>
+                <a class="equipment_remove btn-floating waves-effect waves-light red"><i class="fa fa-times"></i></a>
+                <a class="equipment_add btn-floating waves-effect waves-light teal"><i class="fa fa-plus"></i></a>
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

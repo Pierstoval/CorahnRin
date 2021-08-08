@@ -1,0 +1,16 @@
+{% trans_default_domain 'user' %}
+
+{% form_theme form 'form/form_theme_materialize.html.twig' %}
+
+{{ form_start(form, { 'action': path('user_profile_edit'), 'attr': { 'class': 'user_profile_edit' } }) }}
+    {{ form_errors(form) }}
+    <div class="row">
+        <div class="col s6 offset-s2">
+            <h2 class="text-xxl">{{ 'profile.edit.general_information'|trans }}</h2>
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.currentPassword) }}
+        </div>
+    </div>
+    <button class="btn bl mid" type="submit">{{ 'profile.edit.submit'|trans }}</button>
+{{ form_end(form) }}

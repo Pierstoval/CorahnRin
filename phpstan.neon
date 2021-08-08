@@ -1,0 +1,38 @@
+includes:
+    - /home/.config/composer/vendor/phpstan/phpstan-symfony/extension.neon
+    - /home/.config/composer/vendor/phpstan/phpstan-doctrine/extension.neon
+    - /home/.config/composer/vendor/phpstan/phpstan-phpunit/extension.neon
+    - /home/.config/composer/vendor/phpstan/phpstan-phpunit/rules.neon
+    - /home/.config/composer/vendor/phpstan/phpstan-deprecation-rules/rules.neon
+
+parameters:
+    level: 3
+
+    inferPrivatePropertyTypeFromConstructor: true
+
+    paths:
+        - %currentWorkingDirectory%/src/
+        - %currentWorkingDirectory%/tests/
+
+    bootstrapFiles:
+        - %currentWorkingDirectory%/vendor/bin/.phpunit/phpunit/vendor/autoload.php
+        - %currentWorkingDirectory%/tests/bootstrap_phpstan.php
+
+    excludes_analyse:
+        - %currentWorkingDirectory%/src/Migrations
+        - %currentWorkingDirectory%/src/DataFixtures/Internal
+        - %currentWorkingDirectory%/src/CorahnRin/PDF
+
+    symfony:
+        container_xml_path: %currentWorkingDirectory%/var/cache/test/KernelTestDebugContainer.xml
+
+    # FIXME: uncommenting these lines makes phpstan throw "Cannot declare interface" fatal errors:
+    #doctrine:
+    #    objectManagerLoader: tests/phpstan-object-manager.php
+
+    ignoreErrors:
+          # These actions are so complex that we sometimes need dirty hacks. That's life...
+        - { message: '#Fixtures::getObjects\(\)#', path: %currentWorkingDirectory%/src/ }
+        - { message: '#.*#', path: %currentWorkingDirectory%/src/CorahnRin/Command/ImportLegacyCharactersCommand.php }
+        - { message: '#.*#', path: %currentWorkingDirectory%/tests/Stubs/ExecutionContextStubFactory.php }
+        - { message: '#since Symfony 5\.3, use the new authenticator system instead#', path: %currentWorkingDirectory% }

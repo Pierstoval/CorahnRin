@@ -1,0 +1,61 @@
+
+.parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255, 255, 255, .9);
+
+    .parallax img {
+        opacity: 1;
+        max-width: none;
+    }
+
+    .section {
+        width: 100%;
+        padding-bottom: 0;
+    }
+}
+
+#index-banner {
+    img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &.parallax-container {
+        min-height: 350px;
+        height: 350px;
+    }
+    .section {
+        top: 10%;
+        &.valign-wrapper {
+            height: 100%;
+            top: -10px;
+            padding-top: 0;
+        }
+    }
+}
+
+@media only screen and (max-width: #{$medium-screen}) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+
+    #index-banner {
+        &.parallax-container {
+            min-height: 350px;
+            height: 350px;
+        }
+    }
+}
+
+@media only screen and (max-width: #{$small-screen}) {
+    #index-banner {
+        &.parallax-container {
+            min-height: 200px;
+        }
+    }
+    #esteren_logo,#fateforge-logo {
+        max-height: 50px;
+    }
+}

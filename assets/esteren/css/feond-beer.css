@@ -1,0 +1,15 @@
+
+html, body, #wrapper {
+    height: 100%;
+    width: 100%;
+}
+html.feond-beer {
+    background: url('../images/feond-beer/feond-beer-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+#layout {
+    width: 100%;
+}
+.feond-beer-logo {
+    opacity: 0.9;
+}

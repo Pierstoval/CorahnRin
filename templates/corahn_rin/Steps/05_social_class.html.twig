@@ -1,0 +1,38 @@
+{% extends 'corahn_rin/Steps/step_base.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% block step_content %}
+
+<input type="hidden" name="gen-div-choice" id="gen-div-choice" value="{{ socialClass_value }}" />
+
+{% for row in socialClasses|batch(2) %}
+    <div class="row">
+    {% for socialClass in row|filter(s => (s|length)) %}
+        <div class="col s6 gen-div-choice{% if socialClass_value == socialClass.id %} selected{% endif %}"
+             data-divchoice-value="{{ socialClass.id }}"
+             data-divchoice-inside="true"
+             data-divchoice-max-selected="2">
+            <article>
+                <header>
+                    <h3 class="text-center">{{ socialClass.name | trans }}</h3>
+                </header>
+                <p>{{ socialClass.description | trans | raw }}</p>
+                <div class="divchoice-inside"{{ socialClass_value == socialClass.id ? ' style="display:block;"' : '' }}>
+                    <p>{{ 'domain.add_to_two_others' | trans }}</p>
+                    <div data-toggle="buttons" data-max-buttons="2">
+                        {% for domain in socialClass.domains %}
+                        <label for="button_{{ socialClass.id }}_{{ domain }}" class="mt5 btn {{ socialClassDomains[domain] is defined ? ' active' : '' }}">
+                            <input type="checkbox" id="button_{{ socialClass.id }}_{{ domain }}" name="domains[]" value="{{ domain }}" {{ socialClassDomains[domain] is defined ? ' checked="checked"' : '' }} />
+                            {{ domain|trans }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </article>
+        </div>
+    {% endfor %}
+    </div><!--/.row-->
+{% endfor %}
+
+{% endblock %}

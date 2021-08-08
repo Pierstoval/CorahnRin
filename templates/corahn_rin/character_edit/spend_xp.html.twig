@@ -1,0 +1,42 @@
+{% extends 'corahn_rin/corahnrin-layout.html.twig' %}
+
+{% trans_default_domain 'corahn_rin' %}
+
+{% form_theme form 'form/form_theme_materialize.html.twig' %}
+
+{% block page_title 'character_spend_xp.page_title'|trans %}
+
+{% block title %}{{ block('page_title') }} - {{ parent() }}{% endblock %}
+
+{% block content_for_layout %}
+    <h2>{{ block('page_title') }}</h2>
+
+    <div class="row">
+        {{ form_start(form) }}
+
+            <h3>
+                {{- 'character_spend_xp.remaining_experience'|trans -}}
+                &nbsp;
+                <span id="xp">{{- base_xp -}}</span>
+            </h3>
+
+            {{ form_errors(form)}}
+            {{ form_widget(form)}}
+
+            <button type="submit" class="btn waves-effect waves-light teal darken-3">
+                {{ 'character_spend_xp.form.submit'|trans }}
+            </button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('character_spend_xp') }}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('character_spend_xp') }}
+{% endblock %}

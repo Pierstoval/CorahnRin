@@ -1,0 +1,27 @@
+html
+{
+    color: black;
+    background-color: white;
+    a {
+        color: #45608f;
+    }
+}
+
+#page-footer {
+    background-color: #ddd;
+    .footer-copyright {
+        color: #333;
+    }
+}
+
+nav ul a,
+.parallax-container,
+#nav-mobile-link
+{
+    color: black;
+}
+
+.hoverable:hover {
+    transition: box-shadow .25s;
+    box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}

@@ -1,0 +1,39 @@
+{% extends 'corahn_rin/corahnrin-layout.html.twig' %}
+
+{% block title 'menu.my_characters'|trans({}, 'corahn_rin') %}
+
+{% block content_for_layout %}
+
+    <h2>{{ block('title') }}</h2>
+
+    <h5>{{ 'Nombre total de personnages :' | trans }} {{ characters|length }}</h5>
+
+    <table class="table table-condensed table-striped">
+        <tr>
+            <th>
+                {{ 'Nom' | trans }}
+            </th>
+            <th>
+                {{ 'Métier' | trans }}
+            </th>
+            <th>
+                {{ 'Peuple' | trans }}
+            </th>
+            <th>
+                {{ 'Région de naissance' | trans }}
+            </th>
+        </tr>
+        {% for character in characters %}
+            <tr>
+                <td><a href="{{ path('corahnrin_characters_view', {'id': character.id,'nameSlug': character.nameSlug}) }}" title="{{ 'Voir le personnage %character_name%' | trans({'%character_name%': character.name}) }}">{{ character.name }}</a></td>
+                <td>
+                    {% if character.job %}
+                        {{ character.job.name | trans }}
+                    {% endif %}
+                </td>
+                <td>{{ character.people.name | trans }}</td>
+                <td>{{ character.birthplace | trans }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
