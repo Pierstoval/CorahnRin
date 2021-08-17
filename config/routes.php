@@ -11,6 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+use EsterenMaps\Controller\MapApiController;
 use Main\Controller\RootController;
 use Symfony\Component\Routing\Loader\Configurator\ImportConfigurator;
 use Symfony\Component\Routing\Loader\Configurator\RouteConfigurator;
@@ -70,6 +71,12 @@ return static function (RoutingConfigurator $routes, Kernel $kernel) {
 
     $_import('@PierstovalCharacterManagerBundle/Resources/config/routing.xml', 'xml')
         ->prefix('/{_locale}/character', false)
+    ;
+
+    $_route('map_api', '/{_locale}/api/maps/{id}')
+        ->methods(['GET'])
+        ->requirements(['id' => '\d+'])
+        ->controller(MapApiController::class)
     ;
 
     $_import($projectDir.'/src/Admin/Controller/AdminController.php')

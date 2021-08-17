@@ -58,4 +58,22 @@ final class Map
     {
         return $this->zones;
     }
+
+    public function getMaxZoom(): int
+    {
+        return $this->maxZoom;
+    }
+
+    public function getStartZoom(): int
+    {
+        return $this->startZoom;
+    }
+
+    /**
+     * @return MapBounds
+     */
+    public function getBounds(): MapBounds
+    {
+        return $this->bounds;
+    }
 }

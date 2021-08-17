@@ -111,6 +111,8 @@
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
         "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
         "symfony/polyfill-php80": "*"
     },
     "scripts": {
@@ -139,7 +141,7 @@
         {
             "name":     "Alex Rock Ancelet",
             "email":    "pierstoval@gmail.com",
-            "homepage": "http://www.pierstoval.com",
+            "homepage": "https://www.pierstoval.com",
             "role":     "Lead Developer"
         }
     ]

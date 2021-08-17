@@ -55,4 +55,9 @@ class MapsRepository implements PublicService
 
         \file_put_contents($this->mapPhpFile, $content, \LOCK_EX);
     }
+
+    public function getJsonMap(): string
+    {
+        return \file_get_contents($this->mapJsonFile);
+    }
 }

@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace CorahnRin\Step;
 
+use EsterenMaps\Entity\Zone;
+use EsterenMaps\Map\MapOptions;
 use EsterenMaps\Repository\MapsRepository;
 use EsterenMaps\Repository\ZonesRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,29 +34,34 @@ class Step03Birthplace extends AbstractStepAction
      */
     public function execute(): Response
     {
-        $tmp = $this->zonesRepository->findAll();
-        $regions = [];
-        foreach ($tmp as $item) {
-            $id = $item->getId()->getValue();
-            $regions[$id] = $id;
+        $validRegions = MapOptions::ESTEREN_MAPS_STEP_3_ZONES;
+
+        $allZonesIds = array_map(static fn(Zone $zone) => $zone->getId()->getValue(), $this->zonesRepository->findAll());
+
+        foreach ($validRegions as $regionId) {
+            if (!\in_array($regionId, $allZonesIds, true)) {
+                throw new \RuntimeException(\sprintf('Could not find region ID "%d". Are your maps data corrupted?', $regionId));
+            }
         }
 
         $map = $this->mapsRepository->getMap();
 
         if ($this->request->isMethod('POST')) {
             $regionValue = (int) $this->request->request->get('region_value');
-            if (isset($regions[$regionValue])) {
+
+            if (\in_array($regionValue, $validRegions)) {
                 $this->updateCharacterStep($regionValue);
 
                 return $this->nextStep();
             }
+
             $this->flashMessage('Veuillez choisir une région de naissance correcte.');
         }
 
         return $this->renderCurrentStep([
-            'map' => $map->getId(),
+            'map' => $map,
             'tile_size' => self::TILE_SIZE,
-            'regions_list' => $regions,
+            'regions_list' => $validRegions,
             'region_value' => $this->getCharacterProperty(),
         ], 'corahn_rin/Steps/03_birthplace.html.twig');
     }

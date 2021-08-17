@@ -39,12 +39,10 @@
 {% block javascripts %}
 {# Include necessary scripts #}
 {{ parent() }}
-{#{{ encore_entry_script_tags('maps') }}#}
 
 <script type="text/javascript">
         try {
-            {#var options = {{ map_corahn_rin_options(map) }};#}
-            var options = {};
+            const options = {{ map_corahn_rin_options(map) }};
             {% if region_value %}
             options.loadCallback = function () {
                 var i, polygons;

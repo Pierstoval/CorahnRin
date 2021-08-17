@@ -33,13 +33,11 @@ final class MapBounds
         return $self;
     }
 
-    public function getSouthWest(): LatLng
+    public function toArray(): array
     {
-        return $this->southWest;
-    }
-
-    public function getNorthEast(): LatLng
-    {
-        return $this->northEast;
+        return [
+            $this->southWest->toArray(),
+            $this->northEast->toArray(),
+        ];
     }
 }

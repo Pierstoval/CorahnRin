@@ -1,6 +1,10 @@
-(function($, d){
+(function(d){
     var params, basePolygonOptions;
     if (d.getElementById('generator_03_birthplace')) {
+
+        if (d.map) {
+            throw new Error('Seems like map is already initialized.');
+        }
 
         if (!d._map_params) {
             throw new Error('Seems like map is not initialized correctly.');
@@ -68,4 +72,4 @@
             d.map = new EsterenMap(params);
         }
     }
-})(jQuery, document);
+})(document);

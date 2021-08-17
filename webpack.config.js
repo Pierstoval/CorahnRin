@@ -58,35 +58,35 @@ Encore
 
     .copyFiles({
         from: './node_modules/@fortawesome/fontawesome-free/webfonts/',
-        to: '/fonts/[path][name].[ext]'
+        to: 'fonts/[path][name].[ext]'
     })
     /*
      * Commented here because leaflet-draw uses the same base images as Leaflet.
      * If it ever changes, feel free to check it out and uncomment this ;)
     .copyFiles({
         from: './node_modules/leaflet/dist/images/',
-        to: '/images/[path][name].[ext]'
+        to: 'images/[path][name].[ext]'
     })
      */
     .copyFiles({
         from: './node_modules/leaflet-draw/dist/images/',
-        to: '/images/[path][name].[ext]'
+        to: 'images/[path][name].[ext]'
     })
     .copyFiles({
         from: './assets/esteren/fonts/',
-        to: '/fonts/[path][name].[ext]'
+        to: 'fonts/[path][name].[ext]'
     })
     .copyFiles({
         from: './assets/flags/',
-        to: '/flags/[path][name].[ext]'
+        to: 'flags/[path][name].[ext]'
     })
     .copyFiles({
         from: './assets/corahn_rin/img/',
-        to: '/generator/[path][name].[ext]'
+        to: 'generator/[path][name].[ext]'
     })
     .copyFiles({
         from: './assets/esteren/images/',
-        to: '/[path][name].[ext]'
+        to: '[path][name].[ext]'
     })
 
 

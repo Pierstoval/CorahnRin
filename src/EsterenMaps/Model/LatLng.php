@@ -26,13 +26,8 @@ final class LatLng
         return new self($lat, $lng);
     }
 
-    public function getLat(): float
+    public function toArray(): array
     {
-        return $this->lat;
-    }
-
-    public function getLng(): float
-    {
-        return $this->lng;
+        return [$this->lat, $this->lng];
     }
 }
