@@ -65,7 +65,16 @@ reset: kill install ## Stop and start a fresh install of the project
 .PHONY: reset
 
 clean: kill ## Stop the project and remove generated files and configuration
-	rm -rf vendor node_modules build var/cache/* var/log/* var/sessions/*
+	rm -rf \
+		vendor \
+		node_modules \
+		data/map_data* \
+		build/* \
+		public/build \
+		public/bundles \
+		var/cache \
+		var/log \
+		var/sessions
 .PHONY: clean
 
 ##
@@ -148,6 +157,7 @@ watch: ## Run Webpack to compile assets on change
 assets: node_modules ## Run Webpack to compile assets
 	@mkdir -p public/build/
 	$(YARN) run dev
+	$(EXEC_PHP) php _dev_files/get_maps_assets.php
 .PHONY: assets
 
 vendor: ## Install PHP vendors

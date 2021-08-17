@@ -7,9 +7,6 @@ volumes:
 services:
 
     php:
-        # Docker build here:
-        # https://hub.docker.com/r/pierstoval/studio-agate-portal/
-        # https://github.com/StudioAgate/DockerPortalApp
         build:
             dockerfile: ./docker/php/Dockerfile
             context: .
@@ -30,12 +27,12 @@ services:
             - ./:/srv
         command: 'sleep 99999d'
 
-    # Dump can be saved in var/ that's why it's the only directory we share
+    # Dump can be saved in data/ that's why it's the only directory we share
     database:
         image: 'mysql:5.7'
         working_dir: /srv/
         volumes:
-            - ./var/:/srv/:ro
+            - ./data/:/srv/:ro
             - ./docker/mysql/etc/bind.cnf:/etc/mysql/conf.d/bind.cnf
             - ./docker/mysql/etc/docker-override.cnf:/etc/mysql/conf.d/docker.cnf
             - db_data:/var/lib/mysql
