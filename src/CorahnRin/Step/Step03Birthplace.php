@@ -36,7 +36,7 @@ class Step03Birthplace extends AbstractStepAction
     {
         $validRegions = MapOptions::ESTEREN_MAPS_STEP_3_ZONES;
 
-        $allZonesIds = array_map(static fn(Zone $zone) => $zone->getId()->getValue(), $this->zonesRepository->findAll());
+        $allZonesIds = \array_map(static fn (Zone $zone) => $zone->getId()->getValue(), $this->zonesRepository->findAll());
 
         foreach ($validRegions as $regionId) {
             if (!\in_array($regionId, $allZonesIds, true)) {
@@ -49,7 +49,7 @@ class Step03Birthplace extends AbstractStepAction
         if ($this->request->isMethod('POST')) {
             $regionValue = (int) $this->request->request->get('region_value');
 
-            if (\in_array($regionValue, $validRegions)) {
+            if (\in_array($regionValue, $validRegions, true)) {
                 $this->updateCharacterStep($regionValue);
 
                 return $this->nextStep();

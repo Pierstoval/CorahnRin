@@ -16,6 +16,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 require \dirname(__DIR__).'/vendor/autoload.php';
+
 require __DIR__.'/_login_to_esteren_maps.php';
 
 $input = new ArgvInput();

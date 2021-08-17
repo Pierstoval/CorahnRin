@@ -40,6 +40,11 @@ class MapsRepository implements PublicService
         return require $this->mapPhpFile;
     }
 
+    public function getJsonMap(): string
+    {
+        return \file_get_contents($this->mapJsonFile);
+    }
+
     private function generatePhpMapFile(): void
     {
         $json = \json_decode(\file_get_contents($this->mapJsonFile), true, 512, JSON_THROW_ON_ERROR);
@@ -54,10 +59,5 @@ class MapsRepository implements PublicService
         PHP;
 
         \file_put_contents($this->mapPhpFile, $content, \LOCK_EX);
-    }
-
-    public function getJsonMap(): string
-    {
-        return \file_get_contents($this->mapJsonFile);
     }
 }

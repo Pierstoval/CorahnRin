@@ -69,9 +69,6 @@ final class Map
         return $this->startZoom;
     }
 
-    /**
-     * @return MapBounds
-     */
     public function getBounds(): MapBounds
     {
         return $this->bounds;
