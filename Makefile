@@ -4,7 +4,7 @@ DOCKER_COMPOSE  = docker-compose
 
 EXEC_JS         = $(DOCKER_COMPOSE) exec -T node entrypoint
 EXEC_DB         = $(DOCKER_COMPOSE) exec -T database
-EXEC_QA         = $(DOCKER_COMPOSE) run -T -e --rm APP_ENV=test php
+EXEC_QA         = $(DOCKER_COMPOSE) run -T -e APP_ENV=test --rm php
 EXEC_PHP        = $(DOCKER_COMPOSE) exec -e MAPS_USERNAME="Backer" -e MAPS_PASSWORD="EsterenBacker" -T php entrypoint
 
 SYMFONY_CONSOLE = $(EXEC_PHP) php bin/console
@@ -238,9 +238,8 @@ node-tests: start ## Execute checks & tests
 .PHONY: node-tests
 
 qa: ## Execute CS, linting, security checks, etc
-	$(EXEC_QA) bin/console lint:twig templates src
-	$(EXEC_QA) bin/console lint:yaml --parse-tags config
-	$(EXEC_QA) bin/console lint:yaml --parse-tags src
+	$(EXEC_QA) bin/console lint:twig templates src templates
+	$(EXEC_QA) bin/console lint:yaml --parse-tags config translations
 .PHONY: qa
 
 setup-phpunit: check-phpunit
