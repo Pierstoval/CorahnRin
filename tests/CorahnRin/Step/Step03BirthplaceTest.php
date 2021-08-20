@@ -21,12 +21,12 @@ class Step03BirthplaceTest extends AbstractStepTest
     public function testValidBirthplace(): void
     {
         $result = $this->submitAction([], [
-            'region_value' => 1,
+            'region_value' => 25,
         ]);
 
         static::assertSame(302, $result->getResponse()->getStatusCode());
         static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/04_geo'));
-        static::assertSame([$this->getStepName() => 1], $result->getSession()->get('character.corahn_rin'));
+        static::assertSame([$this->getStepName() => 25], $result->getSession()->get('character.corahn_rin'));
     }
 
     /**

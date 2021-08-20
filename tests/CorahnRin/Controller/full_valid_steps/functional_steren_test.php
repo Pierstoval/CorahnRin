@@ -31,9 +31,9 @@ return [
     '03_birthplace' => [
         'next_step' => '04_geo',
         'form_values' => [
-            'region_value' => 1,
+            'region_value' => 25,
         ],
-        'session_value' => 1,
+        'session_value' => 25,
     ],
 
     '04_geo' => [
