@@ -1,3 +1,6 @@
+[![PHP](https://github.com/Pierstoval/CorahnRin/actions/workflows/php.yml/badge.svg)](https://github.com/Pierstoval/CorahnRin/actions/workflows/php.yml)
+[![Node.js](https://github.com/Pierstoval/CorahnRin/actions/workflows/node.yml/badge.svg)](https://github.com/Pierstoval/CorahnRin/actions/workflows/node.yml)
+
 Corahn-Rin
 ==========
 
