@@ -201,7 +201,7 @@
     /**
      * Used in social classes:
      * Allows to select a specific number of checkboxes in a group of multiple inputs.
-     * Processed with bootstrap's radio buttons.
+     * Processed with materialize's radio buttons.
      */
     if (d.querySelector('[data-max-buttons] label.btn')) {
         $('[data-max-buttons] label.btn')
@@ -223,23 +223,24 @@
                 }
             })
             .on('click', function(e){
+                debugger;
                 // Remove other active labels for this group of inputs
                 var $this = $(this);
-                var max = $this.data('jq_max_number');
+                var maxNumberOfSelectedInputs = $this.data('jq_max_number');
 
                 // Disable activated elements if count is superior to maximum value
-                var elements = $this.data('jq_parent').querySelectorAll('label.active');
-                if (elements.length >= (max-1)) {
-                    for (var i = max, c = elements.length; i < c ; i++) {
-                        elements[i].classList.remove('active');
-                        elements[i].querySelector('input').checked = false;
+                var activeElements = $this.data('jq_parent').querySelectorAll('label.active');
+                if (activeElements.length >= (maxNumberOfSelectedInputs-1)) {
+                    for (var i = maxNumberOfSelectedInputs, c = activeElements.length; i < c ; i++) {
+                        activeElements[i].classList.remove('active');
+                        activeElements[i].querySelector('input').checked = false;
                     }
                 }
 
                 if (this.classList.contains('active')) {
                     this.classList.remove('active');
                     this.querySelector('input').checked = false;
-                } else if (elements.length < max) {
+                } else if (activeElements.length < maxNumberOfSelectedInputs) {
                     // Activate current label
                     this.classList.add('active');
                     this.querySelector('input').checked = true;
