@@ -28,8 +28,8 @@ Encore
      * list of features, see:
      * https://symfony.com/doc/current/frontend.html#adding-more-features
      */
-    .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
+    //.cleanupOutputBeforeBuild()
+    //.enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(true)
@@ -123,5 +123,9 @@ Encore
     .addEntry('step_18_equipment', ['./assets/corahn_rin/generator/js/step_18_equipment.js'])
     .addEntry('admin', ['./assets/admin/main.js'])
 ;
+
+if (Encore.isProduction()) {
+    Encore.cleanupOutputBeforeBuild();
+}
 
 module.exports = Encore.getWebpackConfig();
