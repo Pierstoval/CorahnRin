@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
-use User\Entity\User;
+use User\Document\User;
 use User\Form\Handler\UserRegistrator;
 use User\Form\Type\RegistrationFormType;
 use User\Repository\UserRepository;

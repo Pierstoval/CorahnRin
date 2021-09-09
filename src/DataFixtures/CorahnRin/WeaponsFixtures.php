@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Data\ItemAvailability;
-use CorahnRin\Entity\Weapon;
+use CorahnRin\Document\Weapon;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 

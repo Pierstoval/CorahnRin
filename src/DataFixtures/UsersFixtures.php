@@ -17,7 +17,7 @@ use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
-use User\Entity\User;
+use User\Document\User;
 use User\Util\CanonicalizerTrait;
 
 final class UsersFixtures extends ArrayFixture implements ORMFixtureInterface

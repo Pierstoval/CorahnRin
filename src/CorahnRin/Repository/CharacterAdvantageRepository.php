@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Advantage;
+use CorahnRin\Document\Advantage;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

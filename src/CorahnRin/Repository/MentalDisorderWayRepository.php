@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\MentalDisorderWay;
+use CorahnRin\Document\MentalDisorderWay;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

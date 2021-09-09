@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Mailer;
 
-use CorahnRin\Entity\GameInvitation;
+use CorahnRin\Document\GameInvitation;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;

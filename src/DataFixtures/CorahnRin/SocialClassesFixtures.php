@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Data\DomainsData;
-use CorahnRin\Entity\SocialClass;
+use CorahnRin\Document\SocialClass;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 

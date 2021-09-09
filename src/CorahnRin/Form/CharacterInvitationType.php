@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace CorahnRin\Form;
 
 use CorahnRin\Constraint\HasNoSimilarInvitation;
-use CorahnRin\Entity\Character;
-use CorahnRin\Entity\Game;
+use CorahnRin\Document\Character;
+use CorahnRin\Document\Game;
 use CorahnRin\Repository\CharactersRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

@@ -23,7 +23,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
-use User\Entity\User;
+use User\Document\User;
 use User\Util\Canonicalizer;
 
 class RegistrationFormType extends AbstractType

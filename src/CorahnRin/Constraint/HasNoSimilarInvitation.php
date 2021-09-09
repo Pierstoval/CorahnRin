@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Constraint;
 
-use CorahnRin\Entity\Game;
+use CorahnRin\Document\Game;
 use CorahnRin\Validator\HasNoSimilarInvitationValidator;
 use Symfony\Component\Validator\Constraint;
 

@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use User\Entity\User;
+use User\Document\User;
 use User\Util\CanonicalizerTrait;
 
 /**

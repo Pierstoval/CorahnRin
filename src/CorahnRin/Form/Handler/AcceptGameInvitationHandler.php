@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace CorahnRin\Form\Handler;
 
-use CorahnRin\Entity\Game;
-use CorahnRin\Entity\GameInvitation;
+use CorahnRin\Document\Game;
+use CorahnRin\Document\GameInvitation;
 use CorahnRin\Repository\GameInvitationRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ODM\MongoDB\DocumentManager;
 
 class AcceptGameInvitationHandler
 {
     private $em;
     private $invitationRepository;
 
-    public function __construct(EntityManagerInterface $em, GameInvitationRepository $invitationRepository)
+    public function __construct(DocumentManager $em, GameInvitationRepository $invitationRepository)
     {
         $this->em = $em;
         $this->invitationRepository = $invitationRepository;

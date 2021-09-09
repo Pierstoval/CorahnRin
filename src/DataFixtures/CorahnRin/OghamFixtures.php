@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Data\OghamType;
-use CorahnRin\Entity\Book;
-use CorahnRin\Entity\Ogham;
+use CorahnRin\Document\Book;
+use CorahnRin\Document\Ogham;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;

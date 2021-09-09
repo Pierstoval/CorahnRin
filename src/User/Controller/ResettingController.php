@@ -21,7 +21,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 use Symfony\Component\Security\Core\Security;
-use User\Entity\User;
+use User\Document\User;
 use User\Form\Type\ResettingFormType;
 use User\Mailer\UserMailer;
 use User\Repository\UserRepository;

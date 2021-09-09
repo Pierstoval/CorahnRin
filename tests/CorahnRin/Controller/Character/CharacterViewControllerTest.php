@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Tests\CorahnRin\Controller\Character;
 
 use CorahnRin\Controller\Character\CharacterViewController;
-use CorahnRin\Entity\Character;
+use CorahnRin\Document\Character;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Tests\GetHttpClientTestTrait;
 

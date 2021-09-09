@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\CombatArt;
+use CorahnRin\Document\CombatArt;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

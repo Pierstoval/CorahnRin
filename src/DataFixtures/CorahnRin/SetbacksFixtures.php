@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace DataFixtures\CorahnRin;
 
-use CorahnRin\Entity\CharacterProperties\Bonuses;
-use CorahnRin\Entity\Setback;
+use CorahnRin\Document\CharacterProperties\Bonuses;
+use CorahnRin\Document\Setback;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;

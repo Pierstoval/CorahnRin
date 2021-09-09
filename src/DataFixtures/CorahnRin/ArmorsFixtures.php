@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace DataFixtures\CorahnRin;
 
-use CorahnRin\Entity\Armor;
+use CorahnRin\Document\Armor;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;

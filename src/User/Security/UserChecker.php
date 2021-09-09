@@ -15,7 +15,7 @@ namespace User\Security;
 
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use User\Entity\User;
+use User\Document\User;
 use User\Security\Exception\EmailNotConfirmedException;
 
 class UserChecker implements UserCheckerInterface

@@ -1,7 +1,7 @@
 easy_admin:
     entities:
         Users:
-            class: User\Entity\User
+            class: User\Document\User
 
             controller: Admin\CustomController\AdminUserController
 

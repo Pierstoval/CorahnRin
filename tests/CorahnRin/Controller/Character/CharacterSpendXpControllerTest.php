@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\CorahnRin\Controller\Character;
 
-use CorahnRin\Entity\Character;
+use CorahnRin\Document\Character;
 use CorahnRin\Repository\CharactersRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;

@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace CorahnRin\Form\Handler;
 
 use CorahnRin\DTO\CreateGameDTO;
-use CorahnRin\Entity\Game;
-use CorahnRin\Entity\GameInvitation;
+use CorahnRin\Document\Game;
+use CorahnRin\Document\GameInvitation;
 use CorahnRin\Mailer\CampaignInvitationMailer;
-use Doctrine\ORM\EntityManagerInterface;
-use User\Entity\User;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use User\Document\User;
 
 class CreateGameHandler
 {
@@ -27,7 +27,7 @@ class CreateGameHandler
 
     public function __construct(
         CampaignInvitationMailer $mailer,
-        EntityManagerInterface $em
+        DocumentManager $em
     ) {
         $this->mailer = $mailer;
         $this->em = $em;

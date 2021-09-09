@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Ogham;
+use CorahnRin\Document\Ogham;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;

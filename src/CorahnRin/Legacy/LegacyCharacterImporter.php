@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace CorahnRin\Legacy;
 
 use CorahnRin\DTO\LegacyCharacterDTO;
-use CorahnRin\Entity\Game;
+use CorahnRin\Document\Game;
 use CorahnRin\Legacy\ConversionProcessor\LegacyCharacterConversionProcessor;
 use CorahnRin\Legacy\ConversionProcessor\PrioritizedLegacyProcessor;
 use CorahnRin\Legacy\Exception\LegacyCharacterNotFoundException;
@@ -22,9 +22,9 @@ use CorahnRin\Legacy\Exception\ProcessorException;
 use CorahnRin\Legacy\Exception\StopLegacyCharacterProcessingException;
 use CorahnRin\Legacy\Model\LegacyCharacterData;
 use CorahnRin\Legacy\Repository\LegacyCharacterRepository;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ODM\DocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use User\Entity\User;
+use User\Document\User;
 use User\Repository\UserRepository;
 
 class LegacyCharacterImporter

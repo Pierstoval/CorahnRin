@@ -18,21 +18,21 @@ use CorahnRin\Data\Orientation;
 use CorahnRin\DTO\AdvantageDTO;
 use CorahnRin\DTO\SetbackDTO;
 use CorahnRin\DTO\WaysDTO;
-use CorahnRin\Entity\Armor;
-use CorahnRin\Entity\Character;
-use CorahnRin\Entity\CharacterProperties\HealthCondition;
-use CorahnRin\Entity\CharacterProperties\Money;
-use CorahnRin\Entity\CombatArt;
-use CorahnRin\Entity\GeoEnvironment;
-use CorahnRin\Entity\Job;
-use CorahnRin\Entity\MagienceArtifact;
-use CorahnRin\Entity\MentalDisorder;
-use CorahnRin\Entity\People;
-use CorahnRin\Entity\PersonalityTrait;
-use CorahnRin\Entity\SocialClass;
-use CorahnRin\Entity\Weapon;
+use CorahnRin\Document\Armor;
+use CorahnRin\Document\Character;
+use CorahnRin\Document\CharacterProperties\HealthCondition;
+use CorahnRin\Document\CharacterProperties\Money;
+use CorahnRin\Document\CombatArt;
+use CorahnRin\Document\GeoEnvironment;
+use CorahnRin\Document\Job;
+use CorahnRin\Document\MagienceArtifact;
+use CorahnRin\Document\MentalDisorder;
+use CorahnRin\Document\People;
+use CorahnRin\Document\PersonalityTrait;
+use CorahnRin\Document\SocialClass;
+use CorahnRin\Document\Weapon;
 use EsterenMaps\Id\ZoneId;
-use User\Entity\User;
+use User\Document\User;
 
 class SessionCharacterDTO
 {

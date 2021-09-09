@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Data\Ways;
-use CorahnRin\Entity\MentalDisorderWay;
+use CorahnRin\Document\MentalDisorderWay;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;

@@ -22,33 +22,33 @@ use CorahnRin\DTO\Session\SessionCharacterDTO;
 use CorahnRin\DTO\Session\SessionDisciplineDTO;
 use CorahnRin\DTO\SetbackDTO;
 use CorahnRin\DTO\WaysDTO;
-use CorahnRin\Entity\Advantage;
-use CorahnRin\Entity\Armor;
-use CorahnRin\Entity\Character;
-use CorahnRin\Entity\CharacterProperties\Bonuses;
-use CorahnRin\Entity\CharacterProperties\HealthCondition;
-use CorahnRin\Entity\CharacterProperties\Money;
-use CorahnRin\Entity\CombatArt;
-use CorahnRin\Entity\Discipline;
-use CorahnRin\Entity\GeoEnvironment;
-use CorahnRin\Entity\Job;
-use CorahnRin\Entity\MentalDisorder;
-use CorahnRin\Entity\People;
-use CorahnRin\Entity\PersonalityTrait;
-use CorahnRin\Entity\Setback;
-use CorahnRin\Entity\SocialClass;
-use CorahnRin\Entity\Weapon;
+use CorahnRin\Document\Advantage;
+use CorahnRin\Document\Armor;
+use CorahnRin\Document\Character;
+use CorahnRin\Document\CharacterProperties\Bonuses;
+use CorahnRin\Document\CharacterProperties\HealthCondition;
+use CorahnRin\Document\CharacterProperties\Money;
+use CorahnRin\Document\CombatArt;
+use CorahnRin\Document\Discipline;
+use CorahnRin\Document\GeoEnvironment;
+use CorahnRin\Document\Job;
+use CorahnRin\Document\MentalDisorder;
+use CorahnRin\Document\People;
+use CorahnRin\Document\PersonalityTrait;
+use CorahnRin\Document\Setback;
+use CorahnRin\Document\SocialClass;
+use CorahnRin\Document\Weapon;
 use CorahnRin\Exception\CharacterException;
 use CorahnRin\Exception\InvalidSessionToCharacterValue;
 use CorahnRin\Repository\CharacterAdvantageRepository;
 use CorahnRin\Repository\SetbacksRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\DocumentRepository;
 use Doctrine\Persistence\ObjectRepository;
 use EsterenMaps\Id\ZoneId;
 use EsterenMaps\Repository\ZonesRepository;
 use Pierstoval\Bundle\CharacterManagerBundle\Resolver\StepResolverInterface;
-use User\Entity\User;
+use User\Document\User;
 
 final class SessionToCharacter
 {
@@ -83,7 +83,7 @@ final class SessionToCharacter
         StepResolverInterface $resolver,
         DomainsCalculator $domainsCalculator,
         ZonesRepository $zonesRepository,
-        EntityManagerInterface $em,
+        DocumentManager $em,
         string $corahnRinManagerName
     ) {
         $this->resolver = $resolver;

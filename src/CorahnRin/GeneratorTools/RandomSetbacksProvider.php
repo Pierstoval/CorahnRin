@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\GeneratorTools;
 
-use CorahnRin\Entity\Setback;
+use CorahnRin\Document\Setback;
 
 class RandomSetbacksProvider
 {

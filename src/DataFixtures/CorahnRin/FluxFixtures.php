@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace DataFixtures\CorahnRin;
 
-use CorahnRin\Entity\Flux;
+use CorahnRin\Document\Flux;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 

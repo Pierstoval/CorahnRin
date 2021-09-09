@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Character;
+use CorahnRin\Document\Character;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use User\Entity\User;
+use User\Document\User;
 
 class CharactersRepository extends ServiceEntityRepository
 {

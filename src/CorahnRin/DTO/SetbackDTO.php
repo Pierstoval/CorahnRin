@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\DTO;
 
-use CorahnRin\Entity\Setback;
+use CorahnRin\Document\Setback;
 
 class SetbackDTO
 {

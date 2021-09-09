@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Character;
-use CorahnRin\Entity\Game;
-use CorahnRin\Entity\GameInvitation;
+use CorahnRin\Document\Character;
+use CorahnRin\Document\Game;
+use CorahnRin\Document\GameInvitation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use User\Entity\User;
+use User\Document\User;
 
 class GameInvitationRepository extends ServiceEntityRepository
 {

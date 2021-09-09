@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace User\Command;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -29,7 +29,7 @@ class UserRoleCommand extends Command
     private $userRepository;
     private $em;
 
-    public function __construct(UserRepository $userRepository, EntityManagerInterface $em)
+    public function __construct(UserRepository $userRepository, DocumentManager $em)
     {
         parent::__construct(static::$defaultName);
         $this->userRepository = $userRepository;

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace CorahnRin\Form\SpendXp;
 
 use CorahnRin\DTO\SpendXp\DisciplineDomainScoreSpendXpDTO;
-use CorahnRin\Entity\Discipline;
+use CorahnRin\Document\Discipline;
 use Main\Form\RangeButtonType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

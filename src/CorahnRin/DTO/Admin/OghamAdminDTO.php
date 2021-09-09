@@ -15,8 +15,8 @@ namespace CorahnRin\DTO\Admin;
 
 use Admin\DTO\EasyAdminDTOInterface;
 use CorahnRin\Data\OghamType;
-use CorahnRin\Entity\Book;
-use CorahnRin\Entity\Ogham;
+use CorahnRin\Document\Book;
+use CorahnRin\Document\Ogham;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
@@ -49,7 +49,7 @@ class OghamAdminDTO implements EasyAdminDTOInterface
      * @var Book
      *
      * @Assert\NotBlank
-     * @Assert\Type("CorahnRin\Entity\Book")
+     * @Assert\Type("CorahnRin\Document\Book")
      */
     public $book;
 
@@ -64,7 +64,7 @@ class OghamAdminDTO implements EasyAdminDTOInterface
         $self->name = $entity->getName();
         $self->description = $entity->getDescription();
         $self->type = $entity->getType();
-        $self->book = $entity->getBook();
+        $self->book = $entity->getBookId();
 
         return $self;
     }

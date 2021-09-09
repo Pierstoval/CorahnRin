@@ -22,7 +22,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
-use User\Entity\User;
+use User\Document\User;
 use User\Util\CanonicalizerTrait;
 
 class ProfileFormType extends AbstractType

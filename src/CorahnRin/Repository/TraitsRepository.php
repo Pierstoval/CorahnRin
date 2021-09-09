@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace CorahnRin\Repository;
 
 use CorahnRin\Data\Ways;
-use CorahnRin\Entity\PersonalityTrait;
+use CorahnRin\Document\PersonalityTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

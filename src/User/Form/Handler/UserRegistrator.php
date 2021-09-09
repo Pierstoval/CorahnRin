@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace User\Form\Handler;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use User\Entity\User;
+use User\Document\User;
 use User\Mailer\UserMailer;
 use User\Util\TokenGenerator;
 
@@ -26,12 +26,12 @@ class UserRegistrator
 {
     private UserPasswordHasherInterface $passwordEncoder;
     private UserMailer $mailer;
-    private EntityManagerInterface $em;
+    private DocumentManager $em;
     private TranslatorInterface $translator;
 
     public function __construct(
         UserPasswordHasherInterface $passwordEncoder,
-        EntityManagerInterface $em,
+        DocumentManager $em,
         TranslatorInterface $translator,
         UserMailer $mailer
     ) {

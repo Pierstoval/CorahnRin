@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace CorahnRin\Controller\Character;
 
 use CorahnRin\DTO\CharacterEdit\CharacterEditDTO;
-use CorahnRin\Entity\Character;
+use CorahnRin\Document\Character;
 use CorahnRin\Form\CharacterEditType;
 use CorahnRin\Repository\CharactersRepository;
 use CorahnRin\Security\CharacterEditVoter;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Main\DependencyInjection\PublicService;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -38,7 +38,7 @@ class CharacterEditController implements PublicService
     private Environment $twig;
     private AuthorizationCheckerInterface $authChecker;
     private FormFactoryInterface $formFactory;
-    private EntityManagerInterface $em;
+    private DocumentManager $em;
     private UrlGeneratorInterface $router;
     private TranslatorInterface $translator;
     private CharactersRepository $charactersRepository;
@@ -48,7 +48,7 @@ class CharacterEditController implements PublicService
         CharactersRepository $charactersRepository,
         AuthorizationCheckerInterface $authorizationChecker,
         FormFactoryInterface $formFactory,
-        EntityManagerInterface $em,
+        DocumentManager $em,
         UrlGeneratorInterface $router,
         TranslatorInterface $translator
     ) {

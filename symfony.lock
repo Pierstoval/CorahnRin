@@ -115,6 +115,23 @@
     "doctrine/migrations": {
         "version": "3.2.1"
     },
+    "doctrine/mongodb-odm": {
+        "version": "2.2.2"
+    },
+    "doctrine/mongodb-odm-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "1fd8598bf42227a1c8905edd32f640e4c5d15eff"
+        },
+        "files": [
+            "config/packages/doctrine_mongodb.yaml",
+            "config/packages/prod/doctrine_mongodb.yaml",
+            "src/Document/.gitignore"
+        ]
+    },
     "doctrine/orm": {
         "version": "2.9.3"
     },
@@ -146,11 +163,17 @@
     "gedmo/doctrine-extensions": {
         "version": "v3.1.0"
     },
+    "jean85/pretty-package-versions": {
+        "version": "1.6.0"
+    },
     "joshtronic/php-loremipsum": {
         "version": "1.0.6"
     },
     "laminas/laminas-code": {
         "version": "4.4.2"
+    },
+    "mongodb/mongodb": {
+        "version": "1.9.0"
     },
     "monolog/monolog": {
         "version": "2.3.2"

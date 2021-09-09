@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace DataFixtures\CorahnRin;
 
-use CorahnRin\Entity\Book;
+use CorahnRin\Document\Book;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 

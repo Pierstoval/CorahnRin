@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Exception;
 
-use CorahnRin\Entity\CharacterProperties\Bonuses;
+use CorahnRin\Document\CharacterProperties\Bonuses;
 use InvalidArgumentException;
 
 class InvalidBonus extends InvalidArgumentException

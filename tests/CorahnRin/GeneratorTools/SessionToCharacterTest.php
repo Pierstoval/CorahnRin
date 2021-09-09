@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\CorahnRin\GeneratorTools;
 
-use CorahnRin\Entity\Character;
+use CorahnRin\Document\Character;
 use CorahnRin\Exception\CharacterException;
 use CorahnRin\GeneratorTools\SessionToCharacter;
 use Doctrine\Common\Collections\Collection;

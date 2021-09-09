@@ -3,7 +3,7 @@ easy_admin:
 
         Ogham:
             label: admin.corahn_rin.ogham
-            class: CorahnRin\Entity\Ogham
+            class: CorahnRin\Document\Ogham
             controller: Admin\CustomController\CorahnRin\AdminOghamController
             list:
                 fields:

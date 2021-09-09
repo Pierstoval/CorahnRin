@@ -19,7 +19,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use User\Entity\User;
+use User\Document\User;
 use User\Mailer\UserMailer;
 use User\Util\CanonicalizerTrait;
 use User\Util\TokenGenerator;

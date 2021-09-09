@@ -27,7 +27,7 @@ class CreateGameDTO
     /**
      * @Assert\All({
      *     @Assert\NotBlank,
-     *     @Assert\Type("CorahnRin\Entity\Character"),
+     *     @Assert\Type("CorahnRin\Document\Character"),
      * })
      */
     public $charactersToInvite = [];

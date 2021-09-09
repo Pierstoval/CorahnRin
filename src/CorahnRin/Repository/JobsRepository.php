@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Job;
+use CorahnRin\Document\Job;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -40,7 +40,7 @@ class JobsRepository extends ServiceEntityRepository
         $books = [];
 
         foreach ($jobs as $job) {
-            $books[$job->getBook()->getId()][$job->getId()] = $job;
+            $books[$job->getBookId()][$job->getId()] = $job;
         }
 
         return $books;

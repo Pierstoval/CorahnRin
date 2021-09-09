@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Job;
-use CorahnRin\Entity\Miracle;
+use CorahnRin\Document\Job;
+use CorahnRin\Document\Miracle;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;

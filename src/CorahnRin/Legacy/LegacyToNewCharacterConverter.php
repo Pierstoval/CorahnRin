@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace CorahnRin\Legacy;
 
 use CorahnRin\DTO\LegacyCharacterDTO;
-use CorahnRin\Entity\Character;
+use CorahnRin\Document\Character;
 
 class LegacyToNewCharacterConverter
 {
