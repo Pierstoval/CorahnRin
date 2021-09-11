@@ -26,6 +26,10 @@ class CharacterPdfControllerTest extends WebTestCase
      */
     public function test Steren Slaine pdf(): void
     {
+        if (isset($_SERVER['DISABLE_PDF_TEST'])) {
+            static::markTestSkipped();
+        }
+
         $client = $this->getHttpClient();
 
         $client->request('GET', '/fr/characters/1-steren-slaine/print');

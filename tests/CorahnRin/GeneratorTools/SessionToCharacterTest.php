@@ -30,13 +30,13 @@ class SessionToCharacterTest extends KernelTestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::bootKernel();
+        //self::bootKernel();
         self::$propertyAccessor = PropertyAccess::createPropertyAccessor();
     }
 
     public static function tearDownAfterClass(): void
     {
-        self::ensureKernelShutdown();
+        //self::ensureKernelShutdown();
         self::$propertyAccessor = null;
     }
 
