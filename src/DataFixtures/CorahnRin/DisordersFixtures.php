@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Document\MentalDisorder;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class DisordersFixtures extends ArrayFixture implements ORMFixtureInterface
+class DisordersFixtures extends ArrayFixture implements ODMFixtureInterface
 {
     public const ID_FRENZY = 1;
     public const ID_EXALTATION = 2;

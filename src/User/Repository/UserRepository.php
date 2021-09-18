@@ -13,24 +13,21 @@ declare(strict_types=1);
 
 namespace User\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use User\Document\User;
-use User\Util\CanonicalizerTrait;
+use User\Util\Canonicalizer;
 
 /**
  * @method null|User findOneBy(array $criteria, array $orderBy = null)
  * @method null|User find($id, $lockMode = null, $lockVersion = null)
  */
-class UserRepository extends ServiceEntityRepository implements UserProviderInterface
+class UserRepository extends ServiceDocumentRepository implements UserProviderInterface
 {
-    use CanonicalizerTrait;
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
@@ -53,9 +50,10 @@ class UserRepository extends ServiceEntityRepository implements UserProviderInte
     public function findByUsernameOrEmail(string $usernameOrEmail): ?User
     {
         return $this->createQueryBuilder('user')
-            ->where('user.usernameCanonical = :usernameOrEmail')
-            ->orWhere('user.emailCanonical = :usernameOrEmail')
-            ->setParameter('usernameOrEmail', $this->canonicalize($usernameOrEmail))
+            ->where('user.username = :username')
+            ->orWhere('user.email = :email')
+            ->setParameter('username', Canonicalizer::urlize($usernameOrEmail))
+            ->setParameter('email', $usernameOrEmail)
             ->getQuery()
             ->getOneOrNullResult()
         ;
@@ -63,7 +61,7 @@ class UserRepository extends ServiceEntityRepository implements UserProviderInte
 
     public function findOneByEmail($email): ?User
     {
-        return $this->findOneBy(['emailCanonical' => $this->canonicalize($email)]);
+        return $this->findOneBy(['email' => $email]);
     }
 
     public function findOneByConfirmationToken($token): ?User
@@ -71,6 +69,9 @@ class UserRepository extends ServiceEntityRepository implements UserProviderInte
         return $this->findOneBy(['confirmationToken' => $token]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function loadUserByUsername($username): User
     {
         return $this->loadUserByIdentifier($username);
@@ -86,7 +87,7 @@ class UserRepository extends ServiceEntityRepository implements UserProviderInte
         }
 
         if (null === $reloadedUser = $this->find($user->getId())) {
-            throw new UsernameNotFoundException(\sprintf('User with ID "%s" could not be reloaded.', $user->getId()));
+            throw new UserNotFoundException(\sprintf('User with ID "%s" could not be reloaded.', $user->getId()));
         }
 
         return $reloadedUser;

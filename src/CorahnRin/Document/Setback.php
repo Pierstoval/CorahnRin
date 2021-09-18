@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * 
+ *
  * @ODM\Document(repositoryClass="CorahnRin\Repository\SetbacksRepository")
  */
 class Setback
@@ -31,37 +31,37 @@ class Setback
      *
      * @ODM\Field(name="id", type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * 
+     *
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
-     * @ODM\Field(type="string", nullable=false, unique=true)
+     * @ODM\Field(type="string", nullable=false)
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    protected $description;
+    private $description;
 
     /**
      * @var string
      *
-     * @ODM\Field(type="string", options={"default" = ""})
+     * @ODM\Field(type="string")
      */
-    protected $malus = '';
+    private $malus = '';
 
     /**
      * Unlucky means that we pick another setback after picking this one.
      *
      * @var bool
      *
-     * @ODM\Field(name="is_unlucky", type="boolean", options={"default" = "0"})
+     * @ODM\Field(name="is_unlucky", type="boolean")
      */
     private $isUnlucky = false;
 
@@ -70,7 +70,7 @@ class Setback
      *
      * @var bool
      *
-     * @ODM\Field(name="is_lucky", type="boolean", options={"default" = "0"})
+     * @ODM\Field(name="is_lucky", type="boolean")
      */
     private $isLucky = false;
 
@@ -79,9 +79,9 @@ class Setback
      *
      * @var Advantage[]|Collection
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\Advantage")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\Advantage")
      */
-    private $disabledAdvantages;
+    private array|Collection|ArrayCollection $disabledAdvantages;
 
     public function __construct()
     {

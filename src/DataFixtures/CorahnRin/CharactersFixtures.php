@@ -27,14 +27,14 @@ use CorahnRin\Document\CharacterProperties\Money;
 use CorahnRin\Document\CharacterProperties\Ways;
 use CorahnRin\Document\Setback;
 use DataFixtures\UsersFixtures;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use EsterenMaps\Id\ZoneId;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class CharactersFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public const ZONE_ID_DEFAULT = 1;
 

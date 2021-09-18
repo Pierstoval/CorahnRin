@@ -18,22 +18,23 @@ use CorahnRin\Document\Miracle;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * 
  * @ODM\Document
  */
 class CharacterMiracle
 {
     /**
+     * @ODM\Field(name="id", type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\Character", inversedBy="miracles")
-     * @ORM\JoinColumn(name="character_id", nullable=false)
+     */
+    private int $id;
+
+    /**
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Character", inversedBy="miracles")
      */
     private Character $character;
 
     /**
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\Miracle")
-     * @ORM\JoinColumn(name="miracle_id", nullable=false)
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Miracle")
      */
     private Miracle $miracle;
 
@@ -44,6 +45,11 @@ class CharacterMiracle
 
     private function __construct()
     {
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public static function create(Character $character, Miracle $miracle, bool $isMajor): self

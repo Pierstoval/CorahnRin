@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace CorahnRin\Repository;
 
 use CorahnRin\Data\DomainsData;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class DomainsRepository extends ServiceEntityRepository
+class DomainsRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

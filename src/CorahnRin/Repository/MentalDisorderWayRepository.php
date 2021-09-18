@@ -14,13 +14,13 @@ declare(strict_types=1);
 namespace CorahnRin\Repository;
 
 use CorahnRin\Document\MentalDisorderWay;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method array|MentalDisorderWay[] findAll()
  */
-class MentalDisorderWayRepository extends ServiceEntityRepository
+class MentalDisorderWayRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

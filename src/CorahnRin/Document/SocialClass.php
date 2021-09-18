@@ -19,7 +19,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 /**
  * SocialClass.
  *
- * 
+ *
  * @ODM\Document(repositoryClass="CorahnRin\Repository\SocialClassRepository")
  */
 class SocialClass
@@ -29,30 +29,30 @@ class SocialClass
      *
      * @ODM\Field(name="id", type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * 
+     *
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
-     * @ODM\Field(type="string", nullable=false, unique=true)
+     * @ODM\Field(type="string", nullable=false)
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    protected $description;
+    private $description;
 
     /**
      * @var string[]
      *
-     * @ODM\Field(name="domains", type="simple_array")
+     * @ODM\Field(name="domains", type="collection")
      */
-    protected $domains = [];
+    private $domains = [];
 
     public function getId(): int
     {

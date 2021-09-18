@@ -3,6 +3,7 @@ version: '3'
 volumes:
     node_modules:
     db_data:
+    mongo_data:
 
 services:
 
@@ -27,11 +28,20 @@ services:
             - ./:/srv
         command: 'sleep 99999d'
 
-    # Dump can be saved in data/ that's why it's the only directory we share
+    mongodb:
+        image: 'mongo:3.7'
+        working_dir: /srv/
+        volumes:
+            - mongo_data:/data/db
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+
     database:
         image: 'mysql:5.7'
         working_dir: /srv/
         volumes:
+            # Dump can be saved in the "data/" directory if you need.
             - ./data/:/srv/:ro
             - ./docker/mysql/etc/bind.cnf:/etc/mysql/conf.d/bind.cnf
             - ./docker/mysql/etc/docker-override.cnf:/etc/mysql/conf.d/docker.cnf

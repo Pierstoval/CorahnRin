@@ -13,22 +13,26 @@ declare(strict_types=1);
 
 namespace CorahnRin\Document;
 
-use CorahnRin\Data\Ways;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * 
+ *
  * @ODM\Document
  */
 class MentalDisorderWay
 {
     /**
+     * @ODM\Field(name="id", type="integer", nullable=false)
+     * @ODM\Id(type="integer", strategy="INCREMENT")
+     */
+    private int $id;
+
+    /**
      * @var MentalDisorder
      *
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\MentalDisorder")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\MentalDisorder")
      */
-    protected $disorder;
+    private MentalDisorder $disorder;
 
     /**
      * @var string
@@ -36,18 +40,23 @@ class MentalDisorderWay
      * @ODM\Id(type="integer", strategy="INCREMENT")
      * @ODM\Field(name="way", type="string")
      */
-    protected $way;
+    private string $way;
 
     /**
      * @var bool
      *
-     * @ODM\Field(type="boolean", options={"default" = 0})
+     * @ODM\Field(type="boolean")
      */
-    protected $major = false;
+    private bool $major = false;
 
     public function __toString()
     {
         return $this->disorder->getName().' - '.$this->way;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public function getDisorder()

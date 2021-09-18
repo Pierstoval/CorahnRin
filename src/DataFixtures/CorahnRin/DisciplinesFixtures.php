@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Document\Discipline;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class DisciplinesFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class DisciplinesFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public const ID_ACROBATICS = 1;
     public const ID_AGRICULTUR = 2;

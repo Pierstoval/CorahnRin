@@ -1,8 +1,6 @@
 doctrine:
     dbal:
         default_connection: default
-        types:
-            zone_id: EsterenMaps\Id\ZoneIdType
         connections:
             default:
                 driver: pdo_mysql

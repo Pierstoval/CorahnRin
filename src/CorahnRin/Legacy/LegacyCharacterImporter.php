@@ -22,7 +22,7 @@ use CorahnRin\Legacy\Exception\ProcessorException;
 use CorahnRin\Legacy\Exception\StopLegacyCharacterProcessingException;
 use CorahnRin\Legacy\Model\LegacyCharacterData;
 use CorahnRin\Legacy\Repository\LegacyCharacterRepository;
-use Doctrine\ODM\DocumentRepository;
+use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use User\Document\User;
 use User\Repository\UserRepository;
@@ -41,7 +41,7 @@ class LegacyCharacterImporter
     /** @var User[] */
     private $users = [];
 
-    /** @var EntityRepository[] */
+    /** @var DocumentRepository[] */
     private $repositories = [];
 
     /** @var Game[] */

@@ -13,23 +13,31 @@ declare(strict_types=1);
 
 namespace User\Document;
 
+use DateTime;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use User\Util\Canonicalizer;
+use function array_search;
+use function array_unique;
+use function array_values;
+use function in_array;
+use function strtoupper;
+use function serialize;
+use function unserialize;
 
 /**
  * @ODM\Document(repositoryClass="User\Repository\UserRepository")
  *
- *
- * @UniqueEntity("emailCanonical", message="user.email.already_used")
- * @UniqueEntity("usernameCanonical", message="user.username.already_used")
+ * @UniqueEntity("email", message="user.email.already_used")
+ * @UniqueEntity("username", message="user.username.already_used")
  */
-class User implements UserInterface, \Serializable, EquatableInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, Serializable, EquatableInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableDocument;
 
@@ -38,9 +46,9 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
 
     /**
      * @var int
+     *
+     * @ODM\Field(name="id", type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * @ODM\Field(type="integer")
-     * 
      */
     protected $id;
 
@@ -50,14 +58,7 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
      *
      * @Assert\NotBlank
      */
-    protected $username;
-
-    /**
-     * @var string
-     *
-     * @ODM\Field(name="username_canonical", type="string", unique=true)
-     */
-    protected $usernameCanonical;
+    private string $username;
 
     /**
      * @var string
@@ -66,14 +67,7 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
      *
      * @Assert\NotBlank
      */
-    protected $email;
-
-    /**
-     * @var string
-     *
-     * @ODM\Field(name="email_canonical", type="string", unique=true)
-     */
-    protected $emailCanonical;
+    private string $email;
 
     /**
      * Encrypted password. Must be persisted.
@@ -82,35 +76,35 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
      *
      * @ODM\Field(name="password", type="string")
      */
-    protected $password;
+    private string $password;
 
     /**
      * Plain password. Used for model validation. Must not be persisted.
      *
      * @var null|string
      */
-    protected $plainPassword;
+    private ?string $plainPassword;
 
     /**
      * @var null|string
      *
-     * @ODM\Field(name="confirmation_token", type="string", unique=true, nullable=true)
+     * @ODM\Field(name="confirmation_token", type="string", nullable=true)
      */
-    protected $confirmationToken;
+    private ?string $confirmationToken;
 
     /**
      * @var array
      *
-     * @ODM\Field(name="roles", type="array")
+     * @ODM\Field(name="roles", type="collection")
      */
-    protected $roles;
+    private array $roles;
 
     /**
      * @var bool
      *
-     * @ODM\Field(name="email_confirmed", type="boolean", options={"default" = "0"})
+     * @ODM\Field(name="email_confirmed", type="boolean")
      */
-    private $emailConfirmed = false;
+    private bool $emailConfirmed = false;
 
     public function __construct()
     {
@@ -119,17 +113,15 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
 
     public function __toString()
     {
-        return (string) $this->username;
+        return $this->username;
     }
 
     public static function create(string $username, string $email, string $encodedPassword): self
     {
         $user = new self();
 
-        $user->username = $username;
-        $user->usernameCanonical = Canonicalizer::urlize($username);
+        $user->username = Canonicalizer::urlize($username);
         $user->email = $email;
-        $user->emailCanonical = Canonicalizer::urlize($email);
         $user->password = $encodedPassword;
 
         return $user;
@@ -137,17 +129,17 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
 
     public function addRole($role): void
     {
-        $role = \mb_strtoupper($role);
+        $role = strtoupper($role);
 
         if ($role === static::ROLE_DEFAULT) {
             return;
         }
 
-        if (!\in_array($role, $this->roles, true)) {
+        if (!in_array($role, $this->roles, true)) {
             $this->roles[] = $role;
         }
 
-        $this->roles = \array_unique($this->roles);
+        $this->roles = array_unique($this->roles);
     }
 
     public function getRoles(): array
@@ -157,7 +149,7 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
         // we need to make sure to have at least one role
         $roles[] = static::ROLE_DEFAULT;
 
-        return \array_unique($roles);
+        return array_unique($roles);
     }
 
     public function hasRole($role): bool
@@ -166,7 +158,7 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
             return true;
         }
 
-        return \in_array(\mb_strtoupper($role), $this->getRoles(), true);
+        return in_array(strtoupper($role), $this->getRoles(), true);
     }
 
     public function isSuperAdmin(): bool
@@ -180,9 +172,9 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
             return $this;
         }
 
-        if (false !== $key = \array_search(\mb_strtoupper($role), $this->roles, true)) {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
             unset($this->roles[$key]);
-            $this->roles = \array_values($this->roles);
+            $this->roles = array_values($this->roles);
         }
 
         return $this;
@@ -220,7 +212,15 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
         return null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getUsername(): ?string
+    {
+        return $this->getUserIdentifier();
+    }
+
+    public function getUserIdentifier(): string
     {
         return $this->username;
     }
@@ -242,28 +242,11 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
         return $this->id;
     }
 
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->id;
-    }
-
     public function setUsername($username): self
     {
         $this->username = $username;
 
         return $this;
-    }
-
-    public function setUsernameCanonical($usernameCanonical): self
-    {
-        $this->usernameCanonical = $usernameCanonical;
-
-        return $this;
-    }
-
-    public function getUsernameCanonical(): ?string
-    {
-        return $this->usernameCanonical;
     }
 
     public function setEmail($email): self
@@ -276,18 +259,6 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
     public function getEmail(): ?string
     {
         return $this->email;
-    }
-
-    public function setEmailCanonical($emailCanonical): self
-    {
-        $this->emailCanonical = $emailCanonical;
-
-        return $this;
-    }
-
-    public function getEmailCanonical(): ?string
-    {
-        return $this->emailCanonical;
     }
 
     public function setPassword(string $password): self
@@ -335,7 +306,7 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
 
     public function serialize()
     {
-        return \serialize([
+        return serialize([
             $this->id,
             $this->createdAt->format('Y-m-d H:i:s'),
             $this->updatedAt->format('Y-m-d H:i:s'),
@@ -344,7 +315,7 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
 
     public function unserialize($serialized): void
     {
-        $data = \unserialize($serialized, ['allowed_classes' => false]);
+        $data = unserialize($serialized, ['allowed_classes' => false]);
 
         [
             $this->id,
@@ -352,8 +323,8 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
             $this->updatedAt,
         ] = $data;
 
-        $this->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $this->createdAt);
-        $this->updatedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $this->updatedAt);
+        $this->createdAt = DateTime::createFromFormat('Y-m-d H:i:s', $this->createdAt);
+        $this->updatedAt = DateTime::createFromFormat('Y-m-d H:i:s', $this->updatedAt);
     }
 
     public function isEqualTo(UserInterface $user)

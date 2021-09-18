@@ -50,6 +50,7 @@ RUN set -xe \
         php${PHP_VERSION}-gd \
         php${PHP_VERSION}-intl \
         php${PHP_VERSION}-mbstring \
+        php${PHP_VERSION}-mongodb \
         php${PHP_VERSION}-mysql \
         php${PHP_VERSION}-opcache \
         php${PHP_VERSION}-readline \

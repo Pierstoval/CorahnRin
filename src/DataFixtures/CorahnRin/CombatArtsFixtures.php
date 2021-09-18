@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Document\CombatArt;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class CombatArtsFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class CombatArtsFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public function getEntityClass(): string
     {

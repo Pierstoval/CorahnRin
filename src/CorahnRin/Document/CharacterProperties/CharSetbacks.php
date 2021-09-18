@@ -20,40 +20,46 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * CharSetbacks.
- *
- * 
  * @ODM\Document
  */
 class CharSetbacks
 {
     /**
+     * @ODM\Field(name="id", type="integer", nullable=false)
+     * @ODM\Id(type="integer", strategy="INCREMENT")
+     */
+    private int $id;
+
+    /**
      * @var Character
      *
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\Character", inversedBy="setbacks")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Character", inversedBy="setbacks")
      * @Assert\NotNull
      */
-    protected $character;
+    private Character $character;
 
     /**
      * @var Setback
      *
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\Setback")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Setback")
      * @Assert\NotNull
      */
-    protected $setback;
+    private Setback $setback;
 
     /**
      * @var bool
      *
      * @ODM\Field(type="boolean")
      */
-    protected $isAvoided = false;
+    private bool $isAvoided = false;
 
     private function __construct()
     {
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public static function createFromSessionDTO(Character $character, SetbackDTO $setbackDTO): self

@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace CorahnRin\Repository;
 
 use CorahnRin\Document\Weapon;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class WeaponsRepository extends ServiceEntityRepository
+final class WeaponsRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

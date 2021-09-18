@@ -15,10 +15,10 @@ namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Data\DomainsData;
 use CorahnRin\Document\SocialClass;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class SocialClassesFixtures extends ArrayFixture implements ORMFixtureInterface
+class SocialClassesFixtures extends ArrayFixture implements ODMFixtureInterface
 {
     public const ID_PEASANT = 1;
     public const ID_ARTISAN = 2;

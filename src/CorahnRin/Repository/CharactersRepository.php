@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace CorahnRin\Repository;
 
 use CorahnRin\Document\Character;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use User\Document\User;
 
-class CharactersRepository extends ServiceEntityRepository
+class CharactersRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

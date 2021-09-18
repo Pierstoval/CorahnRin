@@ -21,13 +21,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use User\Document\User;
 use User\Mailer\UserMailer;
-use User\Util\CanonicalizerTrait;
+use User\Util\Canonicalizer;
 use User\Util\TokenGenerator;
 
 class AdminUserController extends AdminController
 {
-    use CanonicalizerTrait;
-
     private UserPasswordHasherInterface $passwordEncoder;
     private UserMailer $mailer;
 
@@ -48,16 +46,13 @@ class AdminUserController extends AdminController
 
     protected function createEntityFormBuilder($entity, $view): FormBuilderInterface
     {
-        $canonicalizer = \Closure::fromCallable([$this, 'canonicalize']);
-
         $builder = parent::createEntityFormBuilder($entity, $view);
 
         $builder
-            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($canonicalizer): void {
+            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
                 /** @var User $user */
                 $user = $event->getForm()->getData();
-                $user->setUsernameCanonical($canonicalizer((string) $user->getUsername()));
-                $user->setEmailCanonical($canonicalizer((string) $user->getEmail()));
+                $user->setUsername(Canonicalizer::urlize((string) $user->getUsername()));
             })
         ;
 

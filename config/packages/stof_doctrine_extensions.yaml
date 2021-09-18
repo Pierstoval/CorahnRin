@@ -15,6 +15,13 @@ stof_doctrine_extensions:
             loggable: true
             timestampable: true
             translatable: true
+    mongodb:
+        default:
+            uploadable: true
+            sluggable: true
+            loggable: true
+            timestampable: true
+            translatable: true
 
 doctrine:
     orm:

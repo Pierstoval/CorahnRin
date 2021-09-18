@@ -31,42 +31,42 @@ class Armor
      * @ODM\Id(type="integer", strategy="INCREMENT")
      * 
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
-     * @ODM\Field(type="string", nullable=false, unique=true)
+     * @ODM\Field(type="string", nullable=false)
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    protected $description;
+    private $description;
 
     /**
      * @var int
      *
-     * @ODM\Field(type="smallint")
+     * @ODM\Field(type="integer")
      */
-    protected $protection;
+    private $protection;
 
     /**
      * @var int
      *
-     * @ODM\Field(type="smallint")
+     * @ODM\Field(type="integer")
      */
-    protected $price;
+    private $price;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
-    protected $availability;
+    private $availability;
 
     public function getId()
     {

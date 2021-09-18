@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace CorahnRin\Repository;
 
 use CorahnRin\Document\SocialClass;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class SocialClassRepository extends ServiceEntityRepository
+class SocialClassRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

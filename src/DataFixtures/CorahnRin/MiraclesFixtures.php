@@ -15,11 +15,11 @@ namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Document\Job;
 use CorahnRin\Document\Miracle;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class MiraclesFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class MiraclesFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public const ID_CANTICLE = 1;
     public const ID_CIRCLE_OF_PROTECTION = 2;

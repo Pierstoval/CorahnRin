@@ -22,7 +22,7 @@ use User\Document\User;
 
 /**
  * @ODM\Document(repositoryClass="CorahnRin\Repository\GameRepository")
- * 
+ *
  */
 class Game
 {
@@ -33,45 +33,44 @@ class Game
      *
      * @ODM\Field(type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * 
+     *
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=false)
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    private $summary;
+    private string $summary;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    private $gmNotes;
+    private string $gmNotes;
 
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User\Document\User")
-     * @ORM\JoinColumn(name="game_master_id", nullable=false)
+     * @ODM\ReferenceOne(targetDocument="User\Document\User")
      */
-    private $gameMaster;
+    private User $gameMaster;
 
     /**
      * @var Character[]|Collection
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\Character")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\Character")
      */
-    private $characters;
+    private array|Collection|ArrayCollection $characters;
 
     private function __construct()
     {

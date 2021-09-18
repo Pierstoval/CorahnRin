@@ -19,40 +19,46 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * CharFlux.
- *
- * 
  * @ODM\Document
  */
 class CharFlux
 {
     /**
+     * @ODM\Field(name="id", type="integer", nullable=false)
+     * @ODM\Id(type="integer", strategy="INCREMENT")
+     */
+    private int $id;
+
+    /**
      * @var Character
      *
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\Character", inversedBy="flux")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Character", inversedBy="flux")
      * @Assert\NotNull
      */
-    protected $character;
+    private Character $character;
 
     /**
      * @var Flux
      *
      * @ODM\Field(type="integer")
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\Flux")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Flux")
      * @Assert\NotNull
      */
-    protected $flux;
+    private Flux $flux;
 
     /**
      * @var int
      *
-     * @ODM\Field(type="smallint")
+     * @ODM\Field(type="integer")
      * @Assert\NotNull
      * @Assert\GreaterThanOrEqual(value=0)
      */
-    protected $quantity;
+    private int $quantity;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     public function getFlux(): Flux
     {

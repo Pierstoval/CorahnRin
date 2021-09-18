@@ -23,7 +23,6 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
  * @ODM\Document
- * 
  */
 class CharacterDomains
 {
@@ -32,89 +31,89 @@ class CharacterDomains
      *
      * @ODM\Field(name="id", type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * 
+     *
      */
     private int $id;
 
     private Character $character;
 
     /**
-     * @ODM\Field(name="craft", type="smallint")
+     * @ODM\Field(name="craft", type="integer")
      */
     private int $craft = 0;
 
     /**
-     * @ODM\Field(name="close_combat", type="smallint")
+     * @ODM\Field(name="close_combat", type="integer")
      */
     private int $closeCombat = 0;
 
     /**
-     * @ODM\Field(name="stealth", type="smallint")
+     * @ODM\Field(name="stealth", type="integer")
      */
     private int $stealth = 0;
 
     /**
-     * @ODM\Field(name="magience", type="smallint")
+     * @ODM\Field(name="magience", type="integer")
      */
     private int $magience = 0;
 
     /**
-     * @ODM\Field(name="natural_environment", type="smallint")
+     * @ODM\Field(name="natural_environment", type="integer")
      */
     private int $naturalEnvironment = 0;
 
     /**
-     * @ODM\Field(name="demorthen_mysteries", type="smallint")
+     * @ODM\Field(name="demorthen_mysteries", type="integer")
      */
     private int $demorthenMysteries = 0;
 
     /**
-     * @ODM\Field(name="occultism", type="smallint")
+     * @ODM\Field(name="occultism", type="integer")
      */
     private int $occultism = 0;
 
     /**
-     * @ODM\Field(name="perception", type="smallint")
+     * @ODM\Field(name="perception", type="integer")
      */
     private int $perception = 0;
 
     /**
-     * @ODM\Field(name="prayer", type="smallint")
+     * @ODM\Field(name="prayer", type="integer")
      */
     private int $prayer = 0;
 
     /**
-     * @ODM\Field(name="feats", type="smallint")
+     * @ODM\Field(name="feats", type="integer")
      */
     private int $feats = 0;
 
     /**
-     * @ODM\Field(name="relation", type="smallint")
+     * @ODM\Field(name="relation", type="integer")
      */
     private int $relation = 0;
 
     /**
-     * @ODM\Field(name="performance", type="smallint")
+     * @ODM\Field(name="performance", type="integer")
      */
     private int $performance = 0;
 
     /**
-     * @ODM\Field(name="science", type="smallint")
+     * @ODM\Field(name="science", type="integer")
      */
     private int $science = 0;
 
     /**
-     * @ODM\Field(name="shooting_and_throwing", type="smallint")
+     * @ODM\Field(name="shooting_and_throwing", type="integer")
      */
     private int $shootingAndThrowing = 0;
 
     /**
-     * @ODM\Field(name="travel", type="smallint")
+     * @ODM\Field(name="travel", type="integer")
      */
     private int $travel = 0;
 
     /**
-     * @ODM\Field(name="erudition", type="smallint")
+     * @ODM\Field(name="erudition", type="integer")
      */
     private int $erudition = 0;
 

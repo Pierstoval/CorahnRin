@@ -14,13 +14,13 @@ declare(strict_types=1);
 namespace CorahnRin\Repository;
 
 use CorahnRin\Document\GeoEnvironment;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method null|GeoEnvironment find($id, $lockMode = null, $lockVersion = null)
  */
-class GeoEnvironmentsRepository extends ServiceEntityRepository
+class GeoEnvironmentsRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

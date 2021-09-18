@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace CorahnRin\Repository;
 
 use CorahnRin\Document\CombatArt;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class CombatArtsRepository extends ServiceEntityRepository
+final class CombatArtsRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

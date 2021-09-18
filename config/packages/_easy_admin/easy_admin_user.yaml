@@ -25,9 +25,7 @@ easy_admin:
                 fields:
                     - id
                     - username
-                    - usernameCanonical
                     - email
-                    - emailCanonical
                     - roles
                     - emailConfirmed
                     - ululeUsername

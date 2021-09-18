@@ -31,57 +31,57 @@ class Weapon
      * @ODM\Id(type="integer", strategy="INCREMENT")
      * 
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
-     * @ODM\Field(type="string", nullable=false, unique=true)
+     * @ODM\Field(type="string", nullable=false)
      * @Assert\NotBlank
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    protected $description;
+    private $description;
 
     /**
      * @var bool
      *
-     * @ODM\Field(type="smallint")
+     * @ODM\Field(type="integer")
      */
-    protected $damage;
+    private $damage;
 
     /**
      * @var int
      *
-     * @ODM\Field(type="smallint")
+     * @ODM\Field(type="integer")
      */
-    protected $price;
+    private $price;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
-    protected $availability;
+    private $availability;
 
     /**
      * @var bool
      *
      * @ODM\Field(type="boolean")
      */
-    protected $melee = true;
+    private $melee = true;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="weapon_range", type="smallint")
+     * @ODM\Field(name="weapon_range", type="integer")
      */
-    protected $range;
+    private $range;
 
     public function getId()
     {

@@ -31,21 +31,21 @@ class People
      * @ODM\Id(type="integer", strategy="INCREMENT")
      * 
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
      * @ODM\Field(name="name", type="string")
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    protected $description;
+    private $description;
 
     public function getId()
     {

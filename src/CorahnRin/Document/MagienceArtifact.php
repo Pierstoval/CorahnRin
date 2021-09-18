@@ -28,88 +28,88 @@ class MagienceArtifact
      * @ODM\Id(type="integer", strategy="INCREMENT")
      * 
      */
-    protected int $id;
+    private int $id;
 
     /**
      *
-     * @ODM\Field(type="string", nullable=false, unique=true)
+     * @ODM\Field(type="string", nullable=false)
      */
-    protected string $name;
+    private string $name;
 
     /**
      * @ODM\Field(type="string", nullable=true)
      */
-    protected string $description;
+    private string $description;
 
     /**
      *
-     * @ODM\Field(type="smallint")
+     * @ODM\Field(type="integer")
      */
-    protected int $price;
+    private int $price;
 
     /**
-     * @ODM\Field(type="smallint")
+     * @ODM\Field(type="integer")
      */
-    protected int $consumption;
+    private int $consumption;
 
     /**
-     * @ODM\Field(type="smallint")
+     * @ODM\Field(type="integer")
      */
-    protected int $consumptionInterval;
-
-    /**
-     *
-     * @ODM\Field(type="smallint", nullable=true)
-     */
-    protected ?int $tank;
+    private int $consumptionInterval;
 
     /**
      *
-     * @ODM\Field(type="smallint", nullable=false)
+     * @ODM\Field(type="integer", nullable=true)
      */
-    protected int $resistance;
+    private ?int $tank;
 
     /**
      *
-     * @ODM\Field(type="string", nullable=true)
+     * @ODM\Field(type="integer", nullable=false)
      */
-    protected ?string $vulnerability;
+    private int $resistance;
 
     /**
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    protected ?string $handling;
+    private ?string $vulnerability;
 
     /**
      *
-     * @ODM\Field(type="smallint", nullable=true)
+     * @ODM\Field(type="string", nullable=true)
      */
-    protected ?int $damage;
+    private ?string $handling;
+
+    /**
+     *
+     * @ODM\Field(type="integer", nullable=true)
+     */
+    private ?int $damage;
 
     /**
      *
      * @ODM\EmbedOne(targetDocument="CorahnRin\Document\Flux", nullable=false)
      */
-    protected Flux $flux;
+    private Flux $flux;
 
     /**
      * @Gedmo\Timestampable(on="create")
-     * @ODM\Field(type="datetime", nullable=false)
+     * @ODM\Field(type="date", nullable=false)
      */
-    protected \DateTime $created;
+    private \DateTime $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
-     * @ODM\Field(type="datetime", nullable=false)
+     * @ODM\Field(type="date", nullable=false)
      */
-    protected \DateTime $updated;
+    private \DateTime $updated;
 
     /**
      *
-     * @ODM\Field(name="deleted", type="datetime", nullable=true)
+     * @ODM\Field(name="deleted", type="date", nullable=true)
      */
-    protected \DateTime $deleted;
+    private \DateTime $deleted;
 
     public function getId(): int
     {

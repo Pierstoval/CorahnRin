@@ -32,28 +32,28 @@ class GeoEnvironment
      * @ODM\Id(type="integer", strategy="INCREMENT")
      * 
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
      * @ODM\Field(name="name", type="string")
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
      * @ODM\Field(name="description", type="string", nullable=true)
      */
-    protected $description;
+    private $description;
 
     /**
      * @var string
      *
      * @ODM\Field(name="domain", type="string")
      */
-    protected $domain;
+    private $domain;
 
     public function __construct(int $id, string $name, string $description, string $domain)
     {

@@ -20,29 +20,29 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  */
 class Money
 {
-    protected static $name = 'Daol';
-    protected static $names = ['ember', 'azure', 'frost'];
+    private static $name = 'Daol';
+    private static $names = ['ember', 'azure', 'frost'];
 
     /**
      * @var int
      *
      * @ODM\Field(name="ember", type="integer")
      */
-    protected $ember;
+    private $ember;
 
     /**
      * @var int
      *
      * @ODM\Field(name="azure", type="integer")
      */
-    protected $azure;
+    private $azure;
 
     /**
      * @var int
      *
      * @ODM\Field(name="frost", type="integer")
      */
-    protected $frost;
+    private $frost;
 
     /**
      * @param int  $ember

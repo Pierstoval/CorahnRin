@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace User\Util;
 
-abstract class TokenGenerator
+final class TokenGenerator
 {
     public static function generateToken(): string
     {

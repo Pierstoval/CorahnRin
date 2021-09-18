@@ -15,10 +15,10 @@ namespace CorahnRin\Repository;
 
 use CorahnRin\Data\Ways;
 use CorahnRin\Document\PersonalityTrait;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class TraitsRepository extends ServiceEntityRepository
+class TraitsRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

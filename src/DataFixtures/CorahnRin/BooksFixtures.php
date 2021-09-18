@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Document\Book;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class BooksFixtures extends ArrayFixture implements ORMFixtureInterface
+class BooksFixtures extends ArrayFixture implements ODMFixtureInterface
 {
     public const ID_BOOK_1_UNIVERSE = 2;
     public const ID_COMMUNITY = 13;

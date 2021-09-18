@@ -31,42 +31,42 @@ class Ways
      * @ODM\Id(type="integer", strategy="INCREMENT")
      * 
      */
-    protected int $id;
+    private int $id;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="combativeness", type="smallint")
+     * @ODM\Field(name="combativeness", type="integer")
      */
-    protected int $combativeness;
+    private int $combativeness;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="creativity", type="smallint")
+     * @ODM\Field(name="creativity", type="integer")
      */
-    protected int $creativity;
+    private int $creativity;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="empathy", type="smallint")
+     * @ODM\Field(name="empathy", type="integer")
      */
-    protected int $empathy;
+    private int $empathy;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="reason", type="smallint")
+     * @ODM\Field(name="reason", type="integer")
      */
-    protected int $reason;
+    private int $reason;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="conviction", type="smallint")
+     * @ODM\Field(name="conviction", type="integer")
      */
-    protected int $conviction;
+    private int $conviction;
 
     private function __construct()
     {

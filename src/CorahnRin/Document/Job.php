@@ -18,7 +18,7 @@ use CorahnRin\Document\Traits\HasBook;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * 
+ *
  * @ODM\Document(repositoryClass="CorahnRin\Repository\JobsRepository")
  */
 class Job
@@ -30,44 +30,44 @@ class Job
      *
      * @ODM\Field(name="id", type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * 
+     *
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
-     * @ODM\Field(type="string", nullable=false, unique=true)
+     * @ODM\Field(type="string", nullable=false)
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    protected $description;
+    private $description;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="daily_salary", type="integer", options={"default" = "0"})
+     * @ODM\Field(name="daily_salary", type="integer")
      */
-    protected $dailySalary = 0;
+    private $dailySalary = 0;
 
     /**
      * @var string
      *
      * @ODM\Field(name="primary_domain", type="string")
      */
-    protected $primaryDomain;
+    private $primaryDomain;
 
     /**
      * @var string[]
      *
-     * @ODM\Field(name="secondary_domains", type="simple_array", nullable=true)
+     * @ODM\Field(name="secondary_domains", type="collection", nullable=true)
      */
-    protected $secondaryDomains = [];
+    private $secondaryDomains = [];
 
     public function getId(): int
     {

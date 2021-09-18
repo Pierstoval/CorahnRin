@@ -15,11 +15,11 @@ namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Document\CharacterProperties\Bonuses;
 use CorahnRin\Document\Setback;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class SetbacksFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class SetbacksFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public const ID_UNLUCKY = 1;
     public const ID_AFTEREFFECT = 2;

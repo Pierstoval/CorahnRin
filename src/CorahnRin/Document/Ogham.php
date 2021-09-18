@@ -34,24 +34,24 @@ class Ogham
      * @ODM\Id(type="integer", strategy="INCREMENT")
      * 
      */
-    protected ?int $id;
+    private ?int $id;
 
     /**
-     * @ODM\Field(name="name", type="string", nullable=false, unique=true)
+     * @ODM\Field(name="name", type="string", nullable=false)
      */
-    protected string $name;
+    private string $name;
 
     /**
      * @var string
      *
      * @ODM\Field(name="description", type="string", nullable=true)
      */
-    protected ?string $description;
+    private ?string $description;
 
     /**
      * @ODM\Field(name="type", type="string")
      */
-    protected string $type;
+    private string $type;
 
     private function __construct()
     {

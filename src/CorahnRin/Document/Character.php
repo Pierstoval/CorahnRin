@@ -72,7 +72,6 @@ class Character extends BaseCharacter
     /**
      * @ODM\Field(name="id", type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * 
      */
     private int $id;
 
@@ -119,14 +118,14 @@ class Character extends BaseCharacter
     /**
      * @var array
      *
-     * @ODM\Field(name="inventory", type="array")
+     * @ODM\Field(name="inventory", type="collection")
      */
     private array $inventory = [];
 
     /**
      * @var array
      *
-     * @ODM\Field(name="treasures", type="array")
+     * @ODM\Field(name="treasures", type="collection")
      */
     private array $treasures = [];
 
@@ -145,32 +144,32 @@ class Character extends BaseCharacter
     /**
      * @var GeoEnvironment
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\GeoEnvironment")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\GeoEnvironment")
      */
     private GeoEnvironment $geoLiving;
 
     /**
-     * @ODM\Field(name="temporary_trauma", type="smallint", options={"default" = 0})
+     * @ODM\Field(name="temporary_trauma", type="integer")
      */
     private int $temporaryTrauma = 0;
 
     /**
-     * @ODM\Field(name="permanent_trauma", type="smallint", options={"default" = 0})
+     * @ODM\Field(name="permanent_trauma", type="integer")
      */
     private int $permanentTrauma = 0;
 
     /**
-     * @ODM\Field(name="hardening", type="smallint", options={"default" = 0})
+     * @ODM\Field(name="hardening", type="integer")
      */
     private int $hardening = 0;
 
     /**
-     * @ODM\Field(name="age", type="smallint", nullable=false)
+     * @ODM\Field(name="age", type="integer", nullable=false)
      */
     private int $age = 16;
 
     /**
-     * @ODM\Field(name="mental_resistance_bonus", type="smallint")
+     * @ODM\Field(name="mental_resistance_bonus", type="integer")
      */
     private int $mentalResistanceBonus = 0;
 
@@ -194,62 +193,62 @@ class Character extends BaseCharacter
     private HealthCondition $maxHealth;
 
     /**
-     * @ODM\Field(name="stamina", type="smallint")
+     * @ODM\Field(name="stamina", type="integer")
      */
     private int $stamina = 10;
 
     /**
-     * @ODM\Field(name="stamina_bonus", type="smallint")
+     * @ODM\Field(name="stamina_bonus", type="integer")
      */
     private int $staminaBonus = 0;
 
     /**
-     * @ODM\Field(name="survival", type="smallint")
+     * @ODM\Field(name="survival", type="integer")
      */
     private int $survival = 3;
 
     /**
-     * @ODM\Field(name="speed_bonus", type="smallint")
+     * @ODM\Field(name="speed_bonus", type="integer")
      */
     private int $speedBonus = 0;
 
     /**
-     * @ODM\Field(name="defense_bonus", type="smallint")
+     * @ODM\Field(name="defense_bonus", type="integer")
      */
     private int $defenseBonus = 0;
 
     /**
-     * @ODM\Field(name="rindath", type="smallint")
+     * @ODM\Field(name="rindath", type="integer")
      */
     private int $rindath = 0;
 
     /**
-     * @ODM\Field(name="rindathMax", type="smallint")
+     * @ODM\Field(name="rindathMax", type="integer")
      */
     private int $rindathMax = 0;
 
     /**
-     * @ODM\Field(name="exaltation", type="smallint")
+     * @ODM\Field(name="exaltation", type="integer")
      */
     private int $exaltation = 0;
 
     /**
-     * @ODM\Field(name="exaltation_max", type="smallint")
+     * @ODM\Field(name="exaltation_max", type="integer")
      */
     private int $exaltationMax = 0;
 
     /**
-     * @ODM\Field(name="experience_actual", type="smallint")
+     * @ODM\Field(name="experience_actual", type="integer")
      */
     private int $experienceActual = 0;
 
     /**
-     * @ODM\Field(name="experience_spent", type="smallint")
+     * @ODM\Field(name="experience_spent", type="integer")
      */
     private int $experienceSpent = 0;
 
     /**
-     * @ODM\EmbedOne(targetDocument="CorahnRin\Document\People")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\People")
      */
     private People $people;
 
@@ -257,54 +256,54 @@ class Character extends BaseCharacter
      * This will be used to add some metadata to characters.
      * Such metadata can be for example "is it a Dearg-based character", "is it imported from v1", etc.
      *
-     * @ODM\Field(name="tags", type="simple_array", nullable=true)
+     * @ODM\Field(name="tags", type="collection", nullable=true)
      */
     private array $tags = [];
 
     /**
      * @var array<Armor>|Collection<Armor>
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\Armor")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\Armor")
      */
     private array|Collection $armors;
 
     /**
      * @var array<MagienceArtifact>|Collection<MagienceArtifact>
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\MagienceArtifact")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\MagienceArtifact")
      */
     private array|Collection $artifacts;
 
     /**
      * @var array<CharacterMiracle>|Collection<CharacterMiracle>
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CharacterProperties\CharacterMiracle")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CharacterProperties\CharacterMiracle")
      */
     private array|Collection $miracles;
 
     /**
      * @var array<Ogham>|Collection<Ogham>
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\Ogham")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\Ogham")
      */
     private array|Collection $ogham;
 
     /**
      * @var array<Weapon>|Collection<Weapon>
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\Weapon")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\Weapon")
      */
     private array|Collection $weapons;
 
     /**
      * @var array<CombatArt>|Collection<CombatArt>
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CombatArt")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CombatArt")
      */
     private array|Collection $combatArts;
 
     /**
-     * @ODM\EmbedOne(targetDocument="CorahnRin\Document\SocialClass")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\SocialClass")
      */
     private SocialClass $socialClass;
 
@@ -324,12 +323,12 @@ class Character extends BaseCharacter
     private string $ostService;
 
     /**
-     * @ODM\EmbedOne(targetDocument="CorahnRin\Document\MentalDisorder")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\MentalDisorder")
      */
     private MentalDisorder $mentalDisorder;
 
     /**
-     * @ODM\EmbedOne(targetDocument="CorahnRin\Document\Job")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Job")
      */
     private Job $job;
 
@@ -339,19 +338,19 @@ class Character extends BaseCharacter
     private ZoneId $birthPlace;
 
     /**
-     * @ODM\EmbedOne(targetDocument="CorahnRin\Document\PersonalityTrait")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\PersonalityTrait")
      */
     private PersonalityTrait $flaw;
 
     /**
-     * @ODM\EmbedOne(targetDocument="CorahnRin\Document\PersonalityTrait")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\PersonalityTrait")
      */
     private PersonalityTrait $quality;
 
     /**
      * @var CharacterAdvantageItem[]|Collection
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CharacterProperties\CharacterAdvantageItem")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CharacterProperties\CharacterAdvantageItem")
      */
     private array|Collection|ArrayCollection $advantages;
 
@@ -363,33 +362,33 @@ class Character extends BaseCharacter
     /**
      * @var CharDisciplines[]|Collection
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CharacterProperties\CharDisciplines")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CharacterProperties\CharDisciplines")
      */
     private array|Collection|ArrayCollection $disciplines;
 
     /**
      * @var CharFlux[]|Collection
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CharacterProperties\CharFlux")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CharacterProperties\CharFlux")
      */
     private array|Collection|ArrayCollection $flux;
 
     /**
      * @var CharSetbacks[]|Collection
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CharacterProperties\CharSetbacks")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CharacterProperties\CharSetbacks")
      */
     private array|Collection|ArrayCollection $setbacks;
 
     /**
      * @var User
-     * @ODM\EmbedOne(targetDocument="User\Document\User")
+     * @ODM\ReferenceOne(targetDocument="User\Document\User")
      */
     private User $user;
 
     /**
      * @var null|Game
-     * @ODM\EmbedOne(targetDocument="CorahnRin\Document\Game", inversedBy="characters")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Game", inversedBy="characters")
      */
     private ?Game $game;
 

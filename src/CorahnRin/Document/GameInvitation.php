@@ -18,7 +18,7 @@ use User\Util\TokenGenerator;
 
 /**
  * @ODM\Document(repositoryClass="CorahnRin\Repository\GameInvitationRepository")
- * 
+ *
  */
 class GameInvitation
 {
@@ -27,23 +27,21 @@ class GameInvitation
      *
      * @ODM\Field(type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * 
+     *
      */
     private $id;
 
     /**
      * @var Game
      *
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\Game")
-     * @ORM\JoinColumn(name="game_id", referencedColumnName="id", nullable=false)
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Game")
      */
     private $game;
 
     /**
      * @var Character
      *
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\Character")
-     * @ORM\JoinColumn(name="character_id", referencedColumnName="id", nullable=false)
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Character")
      */
     private $character;
 

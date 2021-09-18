@@ -58,8 +58,7 @@ class RegistrationFormType extends AbstractType
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
                 /** @var User $user */
                 $user = $event->getForm()->getData();
-                $user->setUsernameCanonical(Canonicalizer::urlize($user->getUsername()));
-                $user->setEmailCanonical(Canonicalizer::urlize($user->getEmail()));
+                $user->setUsername(Canonicalizer::urlize($user->getUsername()));
             })
         ;
     }

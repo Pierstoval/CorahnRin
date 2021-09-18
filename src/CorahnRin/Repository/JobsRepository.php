@@ -14,13 +14,13 @@ declare(strict_types=1);
 namespace CorahnRin\Repository;
 
 use CorahnRin\Document\Job;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method null|Job find($id, $lockMode = null, $lockVersion = null)
  */
-class JobsRepository extends ServiceEntityRepository
+class JobsRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

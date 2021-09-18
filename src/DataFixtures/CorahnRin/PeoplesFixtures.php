@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Document\People;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class PeoplesFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class PeoplesFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public const ID_TRI_KAZEL = 1;
     public const ID_TARISH = 2;

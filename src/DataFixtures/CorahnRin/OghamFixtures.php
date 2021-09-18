@@ -16,11 +16,11 @@ namespace DataFixtures\CorahnRin;
 use CorahnRin\Data\OghamType;
 use CorahnRin\Document\Book;
 use CorahnRin\Document\Ogham;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class OghamFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class OghamFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public function getEntityClass(): string
     {

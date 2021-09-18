@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * 
+ *
  * @ODM\Document(repositoryClass="CorahnRin\Repository\MiraclesRepository")
  */
 class Miracle
@@ -31,37 +31,37 @@ class Miracle
      *
      * @ODM\Field(name="id", type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * 
+     *
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=false)
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    protected $description;
+    private $description;
 
     /**
      * @var Collection<Job>
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\Job")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Job")
      */
-    protected $minorForJobs;
+    private $minorForJobs;
 
     /**
      * @var Collection<Job>
      *
-     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\Job")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Job")
      */
-    protected $majorForJobs;
+    private $majorForJobs;
 
     public function __construct()
     {

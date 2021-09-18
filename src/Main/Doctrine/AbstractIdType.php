@@ -15,17 +15,17 @@ namespace Main\Doctrine;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
-use Doctrine\DBAL\Types\IntegerType;
+use Doctrine\ODM\MongoDB\Types\Type;
 use Main\Id\AbstractId;
 
-abstract class AbstractIdType extends IntegerType
+abstract class AbstractIdType extends Type
 {
     /**
      * @psalm-return class-string<AbstractId>
      */
     abstract public function getTypeClassName(): string;
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): ?AbstractId
+    public function convertToPHPValue($value): static
     {
         /** @var class-string<AbstractId> $class */
         $class = $this->getTypeClassName();
@@ -37,7 +37,7 @@ abstract class AbstractIdType extends IntegerType
         return $class::fromString($value);
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?int
+    public function convertToDatabaseValue($value): ?int
     {
         if (\is_string($value)) {
             if (!\is_numeric($value)) {
@@ -55,6 +55,7 @@ abstract class AbstractIdType extends IntegerType
         $class = $this->getTypeClassName();
 
         if ($value instanceof $class) {
+            /** @var AbstractId $value */
             return $value->getValue();
         }
 

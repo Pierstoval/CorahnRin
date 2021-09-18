@@ -19,7 +19,7 @@ use CorahnRin\Document\Traits\HasBook;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * 
+ *
  * @ODM\Document(repositoryClass="CorahnRin\Repository\CharacterAdvantageRepository")
  */
 class Advantage
@@ -72,81 +72,81 @@ class Advantage
      *
      * @ODM\Field(name="id", type="integer", nullable=false)
      * @ODM\Id(type="integer", strategy="INCREMENT")
-     * 
-     */
-    protected $id;
-
-    /**
-     * @var string
      *
-     * @ODM\Field(type="string", nullable=false, unique=true)
      */
-    protected $name;
+    private $id;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=false)
      */
-    protected $nameFemale;
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ODM\Field(type="string", nullable=false)
+     */
+    private $nameFemale;
 
     /**
      * @var int
      *
-     * @ODM\Field(type="smallint")
+     * @ODM\Field(type="integer")
      */
-    protected $xp;
+    private $xp;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    protected $description;
+    private $description;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="bonus_count", type="smallint", options={"default" = 0}, nullable=false)
+     * @ODM\Field(name="bonus_count", type="integer", nullable=false)
      */
-    protected $bonusCount;
+    private $bonusCount;
 
     /**
      * @var string[]
      *
-     * @ODM\Field(name="bonuses_for", type="simple_array", nullable=true)
+     * @ODM\Field(name="bonuses_for", type="collection", nullable=true)
      */
-    protected $bonusesFor;
+    private $bonusesFor;
 
     /**
      * @var string
      *
      * @ODM\Field(name="requires_indication", type="string", nullable=true)
      */
-    protected $requiresIndication;
+    private $requiresIndication;
 
     /**
      * If type is "choice", the list will be fetched from self::$bonusesFor.
      *
      * @var string
      *
-     * @ODM\Field(name="indication_type", type="string", nullable=false, options={"default" = "single_value"})
+     * @ODM\Field(name="indication_type", type="string", nullable=false)
      */
-    protected $indicationType = self::INDICATION_TYPE_SINGLE_VALUE;
+    private $indicationType = self::INDICATION_TYPE_SINGLE_VALUE;
 
     /**
      * @var bool
      *
      * @ODM\Field(type="boolean")
      */
-    protected $isDisadvantage;
+    private $isDisadvantage;
 
     /**
      * @var string
      *
      * @ODM\Field(name="avtg_group", type="string", nullable=true)
      */
-    protected $group = '';
+    private $group = '';
 
     public function getId()
     {

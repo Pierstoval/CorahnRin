@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Document\Advantage;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class AdvantagesFixtures extends ArrayFixture implements ORMFixtureInterface
+class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
 {
     public const ID_ISOLATED_ALLY = 1;
     public const ID_INFLUENT_ALLY = 3;

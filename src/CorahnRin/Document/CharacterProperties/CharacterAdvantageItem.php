@@ -19,43 +19,51 @@ use CorahnRin\Document\Character;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * 
  * @ODM\Document
  */
 class CharacterAdvantageItem
 {
     /**
+     * @ODM\Field(name="id", type="integer", nullable=false)
+     * @ODM\Id(type="integer", strategy="INCREMENT")
+     */
+    private int $id;
+
+    /**
      * @var Character
      *
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\Character", inversedBy="advantages")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Character", inversedBy="advantages")
      */
-    protected $character;
+    private Character $character;
 
     /**
      * @var Advantage
      *
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     * @ORM\ManyToOne(targetEntity="CorahnRin\Document\Advantage")
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Advantage")
      */
-    protected $advantage;
+    private Advantage $advantage;
 
     /**
      * @var int
      *
      * @ODM\Field(name="score", type="integer")
      */
-    protected $score;
+    private int $score;
 
     /**
      * @var string
      *
      * @ODM\Field(name="indication", type="string")
      */
-    protected $indication;
+    private string $indication;
 
     private function __construct()
     {
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public static function createFromSessionDTO(Character $character, AdvantageDTO $advantageDTO): self

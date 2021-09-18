@@ -18,7 +18,7 @@ use CorahnRin\Document\Traits\HasBook;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * 
+ *
  * @ODM\Document(repositoryClass="CorahnRin\Repository\DisciplinesRepository")
  */
 class Discipline
@@ -36,39 +36,38 @@ class Discipline
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ODM\Field(name="id", type="integer", nullable=false)
+     * @ODM\Id(type="integer", strategy="INCREMENT")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=false, unique=true)
+     * @ODM\Field(type="string")
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ODM\Field(type="string", nullable=true)
      */
-    protected $description;
+    private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ODM\Field(type="string")
      */
-    protected $rank;
+    private $rank;
 
     /**
      * @var string[]
      *
-     * @ORM\Column(name="domains", type="simple_array", nullable=true)
+     * @ODM\Field(name="domains", type="collection", nullable=true)
      */
-    protected $domains = [];
+    private $domains = [];
 
     public function __toString()
     {

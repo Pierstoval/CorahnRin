@@ -13,21 +13,19 @@ declare(strict_types=1);
 
 namespace DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use User\Document\User;
-use User\Util\CanonicalizerTrait;
+use User\Util\Canonicalizer;
 
-final class UsersFixtures extends ArrayFixture implements ORMFixtureInterface
+final class UsersFixtures extends ArrayFixture implements ODMFixtureInterface
 {
-    use CanonicalizerTrait;
-
     /**
      * @var PasswordHasherInterface
      */
-    private $passwordEncoder;
+    private PasswordHasherInterface $passwordEncoder;
 
     private int $increment = 0;
 
@@ -50,7 +48,7 @@ final class UsersFixtures extends ArrayFixture implements ORMFixtureInterface
 
     public function getMethodNameForReference(): string
     {
-        return 'getUsernameCanonical';
+        return 'getUsername';
     }
 
     public function getObjects(): iterable
@@ -73,10 +71,8 @@ final class UsersFixtures extends ArrayFixture implements ORMFixtureInterface
         }
 
         return [
-            'username' => $username,
-            'usernameCanonical' => $this->canonicalize($username),
+            'username' => Canonicalizer::urlize($username),
             'email' => $email,
-            'emailCanonical' => $this->canonicalize($email),
             'password' => $this->passwordEncoder->hash($password),
             'roles' => $roles,
             'emailConfirmed' => true,

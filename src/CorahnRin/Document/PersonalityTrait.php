@@ -31,42 +31,42 @@ class PersonalityTrait
      * @ODM\Id(type="integer", strategy="INCREMENT")
      * 
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=false)
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=false)
      */
-    protected $nameFemale;
+    private $nameFemale;
 
     /**
      * @var bool
      *
      * @ODM\Field(type="boolean")
      */
-    protected $isQuality;
+    private $isQuality;
 
     /**
      * @var bool
      *
      * @ODM\Field(name="is_major", type="boolean")
      */
-    protected $major;
+    private $major;
 
     /**
      * @var string
      *
      * @ODM\Field(name="way", type="string")
      */
-    protected $way;
+    private $way;
 
     public function getId(): int
     {

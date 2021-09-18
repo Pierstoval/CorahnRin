@@ -24,37 +24,37 @@ class HealthCondition
     /**
      * @var int
      *
-     * @ODM\Field(name="good", type="smallint")
+     * @ODM\Field(name="good", type="integer")
      */
-    protected $good;
+    private $good;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="okay", type="smallint")
+     * @ODM\Field(name="okay", type="integer")
      */
-    protected $okay;
+    private $okay;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="bad", type="smallint")
+     * @ODM\Field(name="bad", type="integer")
      */
-    protected $bad;
+    private $bad;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="critical", type="smallint")
+     * @ODM\Field(name="critical", type="integer")
      */
-    protected $critical;
+    private $critical;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="agony", type="smallint")
+     * @ODM\Field(name="agony", type="integer")
      */
-    protected $agony;
+    private $agony;
 
     public function __construct(int $good = 5, int $okay = 5, int $bad = 4, int $critical = 4, int $agony = 1)
     {

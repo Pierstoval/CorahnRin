@@ -20,7 +20,7 @@ trait HasBook
     /**
      * @ODM\Field(type="int", nullable=true)
      */
-    protected ?int $bookId = null;
+    private ?int $bookId = null;
 
     public function getBookId(): ?int
     {

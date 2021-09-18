@@ -15,11 +15,11 @@ namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Document\Game;
 use DataFixtures\UsersFixtures;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class GamesFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class GamesFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public const ID_EMPTY = 1;
     public const ID_WITH_CHARACTER = 2;

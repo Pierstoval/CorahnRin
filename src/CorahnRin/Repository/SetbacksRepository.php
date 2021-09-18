@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace CorahnRin\Repository;
 
 use CorahnRin\Document\Setback;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,7 +22,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Setback[]    findBy(array $criteria, array $orderBy = null)
  * @method null|Setback find($id, $lockMode = null, $lockVersion = null)
  */
-class SetbacksRepository extends ServiceEntityRepository
+class SetbacksRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

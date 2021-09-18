@@ -109,9 +109,9 @@ test-db: wait-for-db ## Create a proper database for testing
 	@echo "doctrine:database:create"
 	@APP_ENV=test $(SYMFONY_CONSOLE) --env=test doctrine:database:create
 	@echo "doctrine:schema:create"
-	@APP_ENV=test $(SYMFONY_CONSOLE) --env=test doctrine:migrations:migrate --no-interaction
-	@echo "doctrine:fixtures:load"
-	@APP_ENV=test $(SYMFONY_CONSOLE) --env=test doctrine:fixtures:load --append --no-interaction
+	@APP_ENV=test $(SYMFONY_CONSOLE) --env=test doctrine:migrations:migrate --no-interaction --allow-no-migration
+	@echo "doctrine:mongodb:fixtures:load"
+	@APP_ENV=test $(SYMFONY_CONSOLE) --env=test doctrine:mongodb:fixtures:load --append --no-interaction
 .PHONY: test-db
 
 legacy-db: wait-for-db ## Create a legacy database based on the provided sample
@@ -150,11 +150,11 @@ var/dump.sql:
 	ssh ${CORAHNRIN_DEPLOY_REMOTE} ${CORAHNRIN_DEPLOY_DIR}/../dump_db.bash > var/dump.sql
 
 migrations:
-	$(SYMFONY_CONSOLE) doctrine:migrations:migrate --no-interaction
+	-$(SYMFONY_CONSOLE) doctrine:migrations:migrate --no-interaction --allow-no-migration
 .PHONY: migrations
 
 fixtures:
-	$(SYMFONY_CONSOLE) doctrine:fixtures:load --append --no-interaction
+	$(SYMFONY_CONSOLE) doctrine:mongodb:fixtures:load --append --no-interaction
 .PHONY: fixtures
 
 watch: ## Run Webpack to compile assets on change

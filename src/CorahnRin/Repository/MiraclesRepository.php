@@ -15,11 +15,11 @@ namespace CorahnRin\Repository;
 
 use CorahnRin\Document\Job;
 use CorahnRin\Document\Miracle;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
-class MiraclesRepository extends ServiceEntityRepository
+class MiraclesRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
