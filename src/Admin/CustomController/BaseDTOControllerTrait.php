@@ -16,7 +16,7 @@ namespace Admin\CustomController;
 use Admin\DTO\EasyAdminDTOInterface;
 use Admin\DTO\TranslatableDTOInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
-use Gedmo\Translatable\Entity\Repository\TranslationRepository;
+use Gedmo\Translatable\Document\Repository\TranslationRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 

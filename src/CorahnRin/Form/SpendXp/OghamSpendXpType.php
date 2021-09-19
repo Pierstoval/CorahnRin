@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Form\SpendXp;
 
-use CorahnRin\Entity\Ogham;
+use CorahnRin\Document\Ogham;
 use CorahnRin\Repository\OghamRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

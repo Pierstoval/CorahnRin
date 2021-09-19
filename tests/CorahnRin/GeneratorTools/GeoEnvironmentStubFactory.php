@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Tests\CorahnRin\GeneratorTools;
 
 use CorahnRin\Data\DomainsData;
-use CorahnRin\Entity\GeoEnvironment;
+use CorahnRin\Document\GeoEnvironment;
 
 class GeoEnvironmentStubFactory
 {

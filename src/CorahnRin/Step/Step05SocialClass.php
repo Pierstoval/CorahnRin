@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Step;
 
-use CorahnRin\Entity\SocialClass;
+use CorahnRin\Document\SocialClass;
 use CorahnRin\Repository\SocialClassRepository;
 use Symfony\Component\HttpFoundation\Response;
 

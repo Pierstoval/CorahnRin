@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace User\Form\Handler;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +33,7 @@ final class ProfileHandler
      */
     private $request;
 
-    public function __construct(EntityManagerInterface $em, RouterInterface $router, TranslatorInterface $translator)
+    public function __construct(DocumentManager $em, RouterInterface $router, TranslatorInterface $translator)
     {
         $this->em = $em;
         $this->router = $router;

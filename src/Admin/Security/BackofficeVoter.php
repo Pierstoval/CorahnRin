@@ -16,7 +16,7 @@ namespace Admin\Security;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
-use User\Entity\User;
+use User\Document\User;
 
 class BackofficeVoter extends Voter
 {

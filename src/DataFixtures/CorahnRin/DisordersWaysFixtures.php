@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Data\Ways;
-use CorahnRin\Entity\MentalDisorderWay;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use CorahnRin\Document\MentalDisorderWay;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class DisordersWaysFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class DisordersWaysFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public function getDependencies()
     {

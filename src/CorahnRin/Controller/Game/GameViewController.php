@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Controller\Game;
 
-use CorahnRin\Entity\Game;
+use CorahnRin\Document\Game;
 use CorahnRin\Form\CharacterInvitationType;
 use CorahnRin\Form\Handler\InviteCharactersToGameHandler;
 use CorahnRin\Repository\GameInvitationRepository;

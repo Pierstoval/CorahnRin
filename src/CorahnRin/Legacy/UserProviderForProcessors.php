@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace CorahnRin\Legacy;
 
 use CorahnRin\Legacy\Exception\ConflictingUsersProcessorExceptionCharacter;
-use User\Entity\User;
+use User\Document\User;
 use User\Repository\UserRepository;
 
 class UserProviderForProcessors

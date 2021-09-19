@@ -20,7 +20,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use User\Entity\User;
+use User\Document\User;
 use User\Form\Type\ChangePasswordFormType;
 
 class ChangePasswordController extends AbstractController

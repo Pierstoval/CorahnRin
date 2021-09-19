@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Data\DomainsData;
-use CorahnRin\Entity\GeoEnvironment;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use CorahnRin\Document\GeoEnvironment;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class GeoEnvironmentsFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class GeoEnvironmentsFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public const ID_RURAL = 1;
     public const ID_URBAN = 2;

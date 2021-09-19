@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace CorahnRin\Step;
 
 use CorahnRin\Data\DomainsData;
-use CorahnRin\Entity\CombatArt;
+use CorahnRin\Document\CombatArt;
 use CorahnRin\GeneratorTools\DomainsCalculator;
 use CorahnRin\Repository\CombatArtsRepository;
 use CorahnRin\Repository\GeoEnvironmentsRepository;

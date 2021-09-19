@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace CorahnRin\Form\SpendXp;
 
-use CorahnRin\Entity\CharacterProperties\CharacterMiracle;
-use CorahnRin\Entity\Job;
-use CorahnRin\Entity\Miracle;
+use CorahnRin\Document\CharacterProperties\CharacterMiracle;
+use CorahnRin\Document\Job;
+use CorahnRin\Document\Miracle;
 use CorahnRin\Repository\MiraclesRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

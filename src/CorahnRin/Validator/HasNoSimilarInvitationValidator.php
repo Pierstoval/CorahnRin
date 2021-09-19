@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace CorahnRin\Validator;
 
 use CorahnRin\Constraint\HasNoSimilarInvitation;
-use CorahnRin\Entity\Character;
-use CorahnRin\Entity\Game;
+use CorahnRin\Document\Character;
+use CorahnRin\Document\Game;
 use CorahnRin\Repository\GameInvitationRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;

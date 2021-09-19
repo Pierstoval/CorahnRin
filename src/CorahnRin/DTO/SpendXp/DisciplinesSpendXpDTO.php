@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace CorahnRin\DTO\SpendXp;
 
 use CorahnRin\Data\DomainsData;
-use CorahnRin\Entity\Character;
-use CorahnRin\Entity\CharacterProperties\CharDisciplines;
-use CorahnRin\Entity\Discipline;
+use CorahnRin\Document\Character;
+use CorahnRin\Document\CharacterProperties\CharDisciplines;
+use CorahnRin\Document\Discipline;
 use CorahnRin\Exception\WronglySpentXpException;
 use Symfony\Component\Validator\Constraints as Assert;
 

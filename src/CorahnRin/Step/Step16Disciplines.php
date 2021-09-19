@@ -15,7 +15,7 @@ namespace CorahnRin\Step;
 
 use CorahnRin\Data\DomainItem;
 use CorahnRin\Data\DomainsData;
-use CorahnRin\Entity\Discipline;
+use CorahnRin\Document\Discipline;
 use CorahnRin\GeneratorTools\DomainsCalculator;
 use CorahnRin\Repository\DisciplinesRepository;
 use CorahnRin\Repository\GeoEnvironmentsRepository;

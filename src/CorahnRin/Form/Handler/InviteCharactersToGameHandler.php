@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace CorahnRin\Form\Handler;
 
-use CorahnRin\Entity\Game;
-use CorahnRin\Entity\GameInvitation;
+use CorahnRin\Document\Game;
+use CorahnRin\Document\GameInvitation;
 use CorahnRin\Mailer\CampaignInvitationMailer;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ODM\MongoDB\DocumentManager;
 
 class InviteCharactersToGameHandler
 {
@@ -25,7 +25,7 @@ class InviteCharactersToGameHandler
 
     public function __construct(
         CampaignInvitationMailer $mailer,
-        EntityManagerInterface $em
+        DocumentManager $em
     ) {
         $this->mailer = $mailer;
         $this->em = $em;

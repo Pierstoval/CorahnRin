@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\Admin;
 
-use User\Entity\User;
+use User\Document\User;
 
 class UserAdminTest extends AbstractEasyAdminTest
 {

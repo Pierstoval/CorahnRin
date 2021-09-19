@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace CorahnRin\Step;
 
-use CorahnRin\Entity\Advantage;
-use CorahnRin\Entity\Setback;
+use CorahnRin\Document\Advantage;
+use CorahnRin\Document\Setback;
 use CorahnRin\Repository\CharacterAdvantageRepository;
 use CorahnRin\Repository\SetbacksRepository;
 use Symfony\Component\HttpFoundation\Response;

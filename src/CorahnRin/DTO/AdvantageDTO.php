@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\DTO;
 
-use CorahnRin\Entity\Advantage;
+use CorahnRin\Document\Advantage;
 
 class AdvantageDTO
 {

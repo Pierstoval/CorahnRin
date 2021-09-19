@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Character;
-use CorahnRin\Entity\Game;
-use CorahnRin\Entity\GameInvitation;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
-use User\Entity\User;
+use CorahnRin\Document\Character;
+use CorahnRin\Document\Game;
+use CorahnRin\Document\GameInvitation;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
+use User\Document\User;
 
-class GameInvitationRepository extends ServiceEntityRepository
+class GameInvitationRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

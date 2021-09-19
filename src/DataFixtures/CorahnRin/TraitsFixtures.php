@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Data\Ways;
-use CorahnRin\Entity\PersonalityTrait;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use CorahnRin\Document\PersonalityTrait;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class TraitsFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class TraitsFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public const ID_THOUGHTFUL = 56;
     public const ID_WEAK_CHARACTER = 19;

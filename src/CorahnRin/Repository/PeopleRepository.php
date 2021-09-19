@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\People;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use CorahnRin\Document\People;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
-class PeopleRepository extends ServiceEntityRepository
+class PeopleRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

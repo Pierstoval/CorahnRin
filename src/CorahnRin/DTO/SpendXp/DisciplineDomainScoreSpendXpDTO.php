@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace CorahnRin\DTO\SpendXp;
 
 use CorahnRin\Data\DomainsData;
-use CorahnRin\Entity\CharacterProperties\CharDisciplines;
-use CorahnRin\Entity\Discipline;
+use CorahnRin\Document\CharacterProperties\CharDisciplines;
+use CorahnRin\Document\Discipline;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class DisciplineDomainScoreSpendXpDTO

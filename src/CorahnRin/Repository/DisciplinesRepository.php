@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Discipline;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use CorahnRin\Document\Discipline;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 /**
  * @method null|Discipline find($id, $lockMode = null, $lockVersion = null)
  */
-class DisciplinesRepository extends ServiceEntityRepository
+class DisciplinesRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

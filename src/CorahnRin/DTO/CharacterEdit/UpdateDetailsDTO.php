@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\DTO\CharacterEdit;
 
-use CorahnRin\Entity\Character;
+use CorahnRin\Document\Character;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class UpdateDetailsDTO

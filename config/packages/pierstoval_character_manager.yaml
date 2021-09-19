@@ -4,7 +4,7 @@
 pierstoval_character_manager:
     managers:
         "%corahnrin_manager_name%":
-            character_class: 'CorahnRin\Entity\Character'
+            character_class: 'CorahnRin\Document\Character'
             steps:
 
                 01_people:

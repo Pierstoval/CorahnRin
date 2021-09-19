@@ -15,8 +15,8 @@ namespace CorahnRin\Step;
 
 use CorahnRin\Data\DomainItem;
 use CorahnRin\Data\DomainsData;
-use CorahnRin\Entity\Advantage;
-use CorahnRin\Entity\Job;
+use CorahnRin\Document\Advantage;
+use CorahnRin\Document\Job;
 use CorahnRin\Repository\CharacterAdvantageRepository;
 use CorahnRin\Repository\JobsRepository;
 use Symfony\Component\HttpFoundation\Response;

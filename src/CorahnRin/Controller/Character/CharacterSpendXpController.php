@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace CorahnRin\Controller\Character;
 
 use CorahnRin\DTO\SpendXp\CharacterSpendXpDTO;
-use CorahnRin\Entity\Character;
+use CorahnRin\Document\Character;
 use CorahnRin\Form\SpendXp\CharacterSpendXpType;
 use CorahnRin\Repository\CharactersRepository;
 use CorahnRin\Repository\DisciplinesRepository;
 use CorahnRin\Security\CharacterSpendXpVoter;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Main\DependencyInjection\PublicService;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -43,7 +43,7 @@ class CharacterSpendXpController implements PublicService
         private Environment $twig,
         private AuthorizationCheckerInterface $authorizationChecker,
         private FormFactoryInterface $formFactory,
-        private EntityManagerInterface $em,
+        private DocumentManager $em,
         private UrlGeneratorInterface $router,
         private TranslatorInterface $translator
     ) {

@@ -13,16 +13,16 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Setback;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use CorahnRin\Document\Setback;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 /**
  * @method null|Setback findOneBy(array $criteria, array $orderBy = null)
  * @method Setback[]    findBy(array $criteria, array $orderBy = null)
  * @method null|Setback find($id, $lockMode = null, $lockVersion = null)
  */
-class SetbacksRepository extends ServiceEntityRepository
+class SetbacksRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

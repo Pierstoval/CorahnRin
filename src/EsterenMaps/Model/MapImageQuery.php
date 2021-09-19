@@ -20,7 +20,7 @@ class MapImageQuery
     /**
      * @var int
      *
-     * @Assert\Type(type="integer")
+     * @Assert\Type(type="int")
      * @Assert\Range(min=1 max=100)
      */
     public $ratio = 100;
@@ -28,7 +28,7 @@ class MapImageQuery
     /**
      * @var int
      *
-     * @Assert\Type(type="integer")
+     * @Assert\Type(type="int")
      * @Assert\NotBlank
      * @Assert\Range(min=50)
      */
@@ -37,7 +37,7 @@ class MapImageQuery
     /**
      * @var int
      *
-     * @Assert\Type(type="integer")
+     * @Assert\Type(type="int")
      * @Assert\NotBlank
      * @Assert\Range(min=50)
      */
@@ -46,14 +46,14 @@ class MapImageQuery
     /**
      * @var int
      *
-     * @Assert\Type(type="integer")
+     * @Assert\Type(type="int")
      */
     public $x = 0;
 
     /**
      * @var int
      *
-     * @Assert\Type(type="integer")
+     * @Assert\Type(type="int")
      */
     public $y = 0;
 

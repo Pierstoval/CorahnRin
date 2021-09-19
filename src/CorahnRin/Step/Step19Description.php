@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Step;
 
-use CorahnRin\Entity\Character;
+use CorahnRin\Document\Character;
 use Symfony\Component\HttpFoundation\Response;
 
 class Step19Description extends AbstractStepAction

@@ -17,7 +17,7 @@ use Admin\Controller\AdminController;
 use Admin\CustomController\BaseDTOControllerTrait;
 use Admin\DTO\EasyAdminDTOInterface;
 use CorahnRin\DTO\Admin\OghamAdminDTO;
-use CorahnRin\Entity\Ogham;
+use CorahnRin\Document\Ogham;
 
 class AdminOghamController extends AdminController
 {

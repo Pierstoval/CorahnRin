@@ -16,25 +16,25 @@ namespace DataFixtures\CorahnRin;
 use CorahnRin\Data\DomainsData;
 use CorahnRin\DTO\AdvantageDTO;
 use CorahnRin\DTO\SetbackDTO;
-use CorahnRin\Entity\Advantage;
-use CorahnRin\Entity\Character;
-use CorahnRin\Entity\CharacterProperties\CharacterAdvantageItem;
-use CorahnRin\Entity\CharacterProperties\CharacterDomains;
-use CorahnRin\Entity\CharacterProperties\CharDisciplines;
-use CorahnRin\Entity\CharacterProperties\CharSetbacks;
-use CorahnRin\Entity\CharacterProperties\HealthCondition;
-use CorahnRin\Entity\CharacterProperties\Money;
-use CorahnRin\Entity\CharacterProperties\Ways;
-use CorahnRin\Entity\Setback;
+use CorahnRin\Document\Advantage;
+use CorahnRin\Document\Character;
+use CorahnRin\Document\CharacterProperties\CharacterAdvantageItem;
+use CorahnRin\Document\CharacterProperties\CharacterDomains;
+use CorahnRin\Document\CharacterProperties\CharDisciplines;
+use CorahnRin\Document\CharacterProperties\CharSetbacks;
+use CorahnRin\Document\CharacterProperties\HealthCondition;
+use CorahnRin\Document\CharacterProperties\Money;
+use CorahnRin\Document\CharacterProperties\Ways;
+use CorahnRin\Document\Setback;
 use DataFixtures\UsersFixtures;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use EsterenMaps\Id\ZoneId;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class CharactersFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public const ZONE_ID_DEFAULT = 1;
 
@@ -97,8 +97,8 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
                 'hardening' => 0,
                 'age' => 24,
                 'mentalResistanceBonus' => 1,
-                'ways' => static function (Character $character, $_fixture, EntityManagerInterface $em) {
-                    $ways = Ways::create($character, 1, 4, 3, 4, 3);
+                'ways' => static function (Character $character, $_fixture, DocumentManager $em) {
+                    $ways = Ways::create(1, 4, 3, 4, 3);
                     $em->persist($ways);
 
                     return $ways;
@@ -148,10 +148,10 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
                     $shyDTO = AdvantageDTO::create($shyAdvantage, 2, '');
 
                     return [
-                        CharacterAdvantageItem::createFromSessionDTO($character, $scholarDTO),
-                        CharacterAdvantageItem::createFromSessionDTO($character, $solidMindDTO),
-                        CharacterAdvantageItem::createFromSessionDTO($character, $brilliantDTO),
-                        CharacterAdvantageItem::createFromSessionDTO($character, $shyDTO),
+                        CharacterAdvantageItem::createFromSessionDTO($scholarDTO),
+                        CharacterAdvantageItem::createFromSessionDTO($solidMindDTO),
+                        CharacterAdvantageItem::createFromSessionDTO($brilliantDTO),
+                        CharacterAdvantageItem::createFromSessionDTO($shyDTO),
                     ];
                 },
                 'domains' => function (Character $character) {
@@ -194,7 +194,7 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
                     $sessionDTO = SetbackDTO::create($fixture->getReference('corahnrin-setbacks-'.SetbacksFixtures::ID_POOR), false);
 
                     return [
-                        CharSetbacks::createFromSessionDTO($character, $sessionDTO),
+                        CharSetbacks::createFromSessionDTO($sessionDTO),
                     ];
                 },
                 'user' => $this->getReference('user-pierstoval'),
@@ -218,8 +218,8 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
                 'hardening' => 18,
                 'age' => 35,
                 'mentalResistanceBonus' => 15,
-                'ways' => static function (Character $character, $_fixture, EntityManagerInterface $em) {
-                    $ways = Ways::create($character, 5, 5, 5, 5, 5);
+                'ways' => static function (Character $character, $_fixture, DocumentManager $em) {
+                    $ways = Ways::create(5, 5, 5, 5, 5);
                     $em->persist($ways);
 
                     return $ways;
@@ -305,7 +305,7 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
 
                         $dto = AdvantageDTO::create($ref, $score, $indication);
 
-                        return CharacterAdvantageItem::createFromSessionDTO($character, $dto);
+                        return CharacterAdvantageItem::createFromSessionDTO($dto);
                     };
 
                     return [
@@ -481,7 +481,7 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
 
                         $dto = SetbackDTO::create($ref, $avoided);
 
-                        return CharSetbacks::createFromSessionDTO($character, $dto);
+                        return CharSetbacks::createFromSessionDTO($dto);
                     };
 
                     return [
@@ -610,8 +610,8 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
             'hardening' => 0,
             'age' => 20,
             'mentalResistanceBonus' => 0,
-            'ways' => static function (Character $character, $_fixture, EntityManagerInterface $em) {
-                $ways = Ways::create($character, 1, 4, 3, 4, 3);
+            'ways' => static function (Character $character, $_fixture, DocumentManager $em) {
+                $ways = Ways::create(1, 4, 3, 4, 3);
                 $em->persist($ways);
 
                 return $ways;

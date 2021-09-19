@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
-use User\Entity\User;
+use User\Document\User;
 use User\Security\FormLoginAuthenticator;
 
 class LoginController extends AbstractController

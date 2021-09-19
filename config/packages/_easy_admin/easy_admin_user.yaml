@@ -1,7 +1,7 @@
 easy_admin:
     entities:
         Users:
-            class: User\Entity\User
+            class: User\Document\User
 
             controller: Admin\CustomController\AdminUserController
 
@@ -25,9 +25,7 @@ easy_admin:
                 fields:
                     - id
                     - username
-                    - usernameCanonical
                     - email
-                    - emailCanonical
                     - roles
                     - emailConfirmed
                     - ululeUsername

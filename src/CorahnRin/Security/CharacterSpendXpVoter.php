@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace CorahnRin\Security;
 
-use CorahnRin\Entity\Character;
+use CorahnRin\Document\Character;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use User\Entity\User;
+use User\Document\User;
 
 class CharacterSpendXpVoter extends Voter
 {

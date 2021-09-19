@@ -26,7 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Security;
 use Twig\Environment;
-use User\Entity\User;
+use User\Document\User;
 
 class CreateGameController implements PublicService
 {

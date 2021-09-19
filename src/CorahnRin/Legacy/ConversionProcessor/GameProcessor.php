@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace CorahnRin\Legacy\ConversionProcessor;
 
 use CorahnRin\DTO\LegacyCharacterDTO;
-use CorahnRin\Entity\Game;
+use CorahnRin\Document\Game;
 use CorahnRin\Legacy\Exception\ProcessorException;
 use CorahnRin\Legacy\Model\LegacyCharacterData;
 use CorahnRin\Legacy\UserProviderForProcessors;

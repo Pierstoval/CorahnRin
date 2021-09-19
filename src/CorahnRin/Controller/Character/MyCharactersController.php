@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Twig\Environment;
-use User\Entity\User;
+use User\Document\User;
 
 class MyCharactersController implements PublicService
 {

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\DTO\Session;
 
-use CorahnRin\Entity\Discipline;
+use CorahnRin\Document\Discipline;
 
 class SessionDisciplineDTO
 {

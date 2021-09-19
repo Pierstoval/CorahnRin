@@ -23,7 +23,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
-use User\Entity\User;
+use User\Document\User;
 use User\Util\Canonicalizer;
 
 class RegistrationFormType extends AbstractType
@@ -58,8 +58,7 @@ class RegistrationFormType extends AbstractType
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
                 /** @var User $user */
                 $user = $event->getForm()->getData();
-                $user->setUsernameCanonical(Canonicalizer::urlize($user->getUsername()));
-                $user->setEmailCanonical(Canonicalizer::urlize($user->getEmail()));
+                $user->setUsername(Canonicalizer::urlize($user->getUsername()));
             })
         ;
     }

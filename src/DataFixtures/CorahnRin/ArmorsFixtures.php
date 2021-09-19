@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace DataFixtures\CorahnRin;
 
-use CorahnRin\Entity\Armor;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use CorahnRin\Document\Armor;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class ArmorsFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
+class ArmorsFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public function getEntityClass(): string
     {

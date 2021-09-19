@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Job;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use CorahnRin\Document\Job;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 /**
  * @method null|Job find($id, $lockMode = null, $lockVersion = null)
  */
-class JobsRepository extends ServiceEntityRepository
+class JobsRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -40,7 +40,9 @@ class JobsRepository extends ServiceEntityRepository
         $books = [];
 
         foreach ($jobs as $job) {
-            $books[$job->getBook()->getId()][$job->getId()] = $job;
+            $book = $job->getBook();
+            $bookId = $book ? $book->getId() : -1;
+            $books[$bookId][$job->getId()] = $job;
         }
 
         return $books;

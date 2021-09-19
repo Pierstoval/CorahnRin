@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Ogham;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use CorahnRin\Document\Ogham;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
-class OghamRepository extends ServiceEntityRepository
+class OghamRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

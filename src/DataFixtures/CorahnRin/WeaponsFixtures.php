@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Data\ItemAvailability;
-use CorahnRin\Entity\Weapon;
-use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
+use CorahnRin\Document\Weapon;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class WeaponsFixtures extends ArrayFixture implements ORMFixtureInterface
+class WeaponsFixtures extends ArrayFixture implements ODMFixtureInterface
 {
     protected function getEntityClass(): string
     {

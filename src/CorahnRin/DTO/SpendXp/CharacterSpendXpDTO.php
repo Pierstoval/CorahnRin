@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace CorahnRin\DTO\SpendXp;
 
-use CorahnRin\Entity\Character;
-use CorahnRin\Entity\CharacterProperties\CharacterMiracle;
-use CorahnRin\Entity\Miracle;
-use CorahnRin\Entity\Ogham;
+use CorahnRin\Document\Character;
+use CorahnRin\Document\CharacterProperties\CharacterMiracle;
+use CorahnRin\Document\Miracle;
+use CorahnRin\Document\Ogham;
 use CorahnRin\Exception\WronglySpentXpException;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;

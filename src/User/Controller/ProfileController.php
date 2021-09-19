@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use User\Entity\User;
+use User\Document\User;
 use User\Form\Handler\ProfileHandler;
 use User\Form\Type\ProfileFormType;
 

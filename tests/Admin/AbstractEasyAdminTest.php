@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\Admin;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;

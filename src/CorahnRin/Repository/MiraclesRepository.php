@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace CorahnRin\Repository;
 
-use CorahnRin\Entity\Job;
-use CorahnRin\Entity\Miracle;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use CorahnRin\Document\Job;
+use CorahnRin\Document\Miracle;
+use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
-class MiraclesRepository extends ServiceEntityRepository
+class MiraclesRepository extends ServiceDocumentRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
