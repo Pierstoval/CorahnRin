@@ -27,8 +27,8 @@ class PersonalityTrait
     /**
      * @var int
      *
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      * 
      */
     private $id;
@@ -50,14 +50,14 @@ class PersonalityTrait
     /**
      * @var bool
      *
-     * @ODM\Field(type="boolean")
+     * @ODM\Field(type="bool")
      */
     private $isQuality;
 
     /**
      * @var bool
      *
-     * @ODM\Field(name="is_major", type="boolean")
+     * @ODM\Field(name="is_major", type="bool")
      */
     private $major;
 

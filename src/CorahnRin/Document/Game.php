@@ -31,8 +31,8 @@ class Game
     /**
      * @var int
      *
-     * @ODM\Field(type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      *
      */
     private int $id;

@@ -70,8 +70,8 @@ class Character extends BaseCharacter
     ];
 
     /**
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      */
     private int $id;
 
@@ -149,27 +149,27 @@ class Character extends BaseCharacter
     private GeoEnvironment $geoLiving;
 
     /**
-     * @ODM\Field(name="temporary_trauma", type="integer")
+     * @ODM\Field(name="temporary_trauma", type="int")
      */
     private int $temporaryTrauma = 0;
 
     /**
-     * @ODM\Field(name="permanent_trauma", type="integer")
+     * @ODM\Field(name="permanent_trauma", type="int")
      */
     private int $permanentTrauma = 0;
 
     /**
-     * @ODM\Field(name="hardening", type="integer")
+     * @ODM\Field(name="hardening", type="int")
      */
     private int $hardening = 0;
 
     /**
-     * @ODM\Field(name="age", type="integer", nullable=false)
+     * @ODM\Field(name="age", type="int", nullable=false)
      */
     private int $age = 16;
 
     /**
-     * @ODM\Field(name="mental_resistance_bonus", type="integer")
+     * @ODM\Field(name="mental_resistance_bonus", type="int")
      */
     private int $mentalResistanceBonus = 0;
 
@@ -193,57 +193,57 @@ class Character extends BaseCharacter
     private HealthCondition $maxHealth;
 
     /**
-     * @ODM\Field(name="stamina", type="integer")
+     * @ODM\Field(name="stamina", type="int")
      */
     private int $stamina = 10;
 
     /**
-     * @ODM\Field(name="stamina_bonus", type="integer")
+     * @ODM\Field(name="stamina_bonus", type="int")
      */
     private int $staminaBonus = 0;
 
     /**
-     * @ODM\Field(name="survival", type="integer")
+     * @ODM\Field(name="survival", type="int")
      */
     private int $survival = 3;
 
     /**
-     * @ODM\Field(name="speed_bonus", type="integer")
+     * @ODM\Field(name="speed_bonus", type="int")
      */
     private int $speedBonus = 0;
 
     /**
-     * @ODM\Field(name="defense_bonus", type="integer")
+     * @ODM\Field(name="defense_bonus", type="int")
      */
     private int $defenseBonus = 0;
 
     /**
-     * @ODM\Field(name="rindath", type="integer")
+     * @ODM\Field(name="rindath", type="int")
      */
     private int $rindath = 0;
 
     /**
-     * @ODM\Field(name="rindathMax", type="integer")
+     * @ODM\Field(name="rindathMax", type="int")
      */
     private int $rindathMax = 0;
 
     /**
-     * @ODM\Field(name="exaltation", type="integer")
+     * @ODM\Field(name="exaltation", type="int")
      */
     private int $exaltation = 0;
 
     /**
-     * @ODM\Field(name="exaltation_max", type="integer")
+     * @ODM\Field(name="exaltation_max", type="int")
      */
     private int $exaltationMax = 0;
 
     /**
-     * @ODM\Field(name="experience_actual", type="integer")
+     * @ODM\Field(name="experience_actual", type="int")
      */
     private int $experienceActual = 0;
 
     /**
-     * @ODM\Field(name="experience_spent", type="integer")
+     * @ODM\Field(name="experience_spent", type="int")
      */
     private int $experienceSpent = 0;
 
@@ -277,7 +277,7 @@ class Character extends BaseCharacter
     /**
      * @var array<CharacterMiracle>|Collection<CharacterMiracle>
      *
-     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CharacterProperties\CharacterMiracle")
+     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CharacterProperties\CharacterMiracle")
      */
     private array|Collection $miracles;
 
@@ -350,7 +350,7 @@ class Character extends BaseCharacter
     /**
      * @var CharacterAdvantageItem[]|Collection
      *
-     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CharacterProperties\CharacterAdvantageItem")
+     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CharacterProperties\CharacterAdvantageItem")
      */
     private array|Collection|ArrayCollection $advantages;
 
@@ -362,21 +362,21 @@ class Character extends BaseCharacter
     /**
      * @var CharDisciplines[]|Collection
      *
-     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CharacterProperties\CharDisciplines")
+     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CharacterProperties\CharDisciplines")
      */
     private array|Collection|ArrayCollection $disciplines;
 
     /**
      * @var CharFlux[]|Collection
      *
-     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CharacterProperties\CharFlux")
+     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CharacterProperties\CharFlux")
      */
     private array|Collection|ArrayCollection $flux;
 
     /**
      * @var CharSetbacks[]|Collection
      *
-     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\CharacterProperties\CharSetbacks")
+     * @ODM\EmbedMany(targetDocument="CorahnRin\Document\CharacterProperties\CharSetbacks")
      */
     private array|Collection|ArrayCollection $setbacks;
 
@@ -452,10 +452,10 @@ class Character extends BaseCharacter
         $character->weapons = $characterFromSession->getWeapons();
 
         foreach ($characterFromSession->getSetbacks() as $setbackDTO) {
-            $character->setbacks->add(CharSetbacks::createFromSessionDTO($character, $setbackDTO));
+            $character->setbacks->add(CharSetbacks::createFromSessionDTO($setbackDTO));
         }
         foreach ($characterFromSession->getAdvantages() as $advantageDTO) {
-            $character->advantages->add(CharacterAdvantageItem::createFromSessionDTO($character, $advantageDTO));
+            $character->advantages->add(CharacterAdvantageItem::createFromSessionDTO($advantageDTO));
         }
         foreach ($characterFromSession->getDisciplines() as $disciplineDTO) {
             $character->disciplines->add(CharDisciplines::createFromSession($character, $disciplineDTO->getDiscipline(), $disciplineDTO->getDomain()));
@@ -547,7 +547,7 @@ class Character extends BaseCharacter
 
     public function getTags(): array
     {
-        return (array) $this->tags;
+        return $this->tags;
     }
 
     public function getMentalResistanceBonus(): int
@@ -803,7 +803,6 @@ class Character extends BaseCharacter
 
         foreach ($dto->disciplines->getAllByDomains() as $domain => $dtos) {
             foreach ($dtos as $disciplineDto) {
-                /** @var DisciplineDomainScoreSpendXpDTO $disciplineDto */
                 if (0 === $disciplineDto->score) {
                     continue;
                 }
@@ -840,7 +839,7 @@ class Character extends BaseCharacter
             }
 
             foreach ($dto->miracles[$miracleType] as $miracle) {
-                $this->miracles[] = CharacterMiracle::create($this, $miracle, 'major' === $miracleType);
+                $this->miracles[] = CharacterMiracle::create($miracle, 'major' === $miracleType);
             }
         }
 

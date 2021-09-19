@@ -16,7 +16,7 @@ namespace CorahnRin\Repository;
 use CorahnRin\Document\Character;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 use User\Document\User;
 
 class CharactersRepository extends ServiceDocumentRepository

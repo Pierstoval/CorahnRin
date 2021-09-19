@@ -8,6 +8,7 @@ doctrine_mongodb:
     types:
         zone_id: EsterenMaps\Id\ZoneIdType
     default_database: '%env(resolve:MONGODB_DB)%'
+    default_document_manager: default
     document_managers:
         default:
             auto_mapping: true

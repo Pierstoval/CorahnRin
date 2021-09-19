@@ -47,8 +47,8 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     /**
      * @var int
      *
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      */
     protected $id;
 
@@ -102,7 +102,7 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     /**
      * @var bool
      *
-     * @ODM\Field(name="email_confirmed", type="boolean")
+     * @ODM\Field(name="email_confirmed", type="bool")
      */
     private bool $emailConfirmed = false;
 

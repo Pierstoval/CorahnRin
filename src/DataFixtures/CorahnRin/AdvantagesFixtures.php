@@ -15,9 +15,10 @@ namespace DataFixtures\CorahnRin;
 
 use CorahnRin\Document\Advantage;
 use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
-class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
+class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface, DependentFixtureInterface
 {
     public const ID_ISOLATED_ALLY = 1;
     public const ID_INFLUENT_ALLY = 3;
@@ -58,11 +59,26 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
         return Advantage::class;
     }
 
+    protected function getReferencePrefix(): ?string
+    {
+        return 'corahnrin-advantage-';
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            BooksFixtures::class,
+        ];
+    }
+
     public function getObjects(): iterable
     {
+        $book = $this->getReference('corahnrin-book-'.BooksFixtures::ID_BOOK_1_UNIVERSE);
+
         return [
             [
                 'id' => self::ID_ISOLATED_ALLY,
+                'book' => $book,
                 'name' => 'Allié isolé',
                 'nameFemale' => 'Allié isolé',
                 'xp' => 20,
@@ -77,6 +93,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 2,
+                'book' => $book,
                 'name' => 'Allié mentor',
                 'nameFemale' => 'Allié mentor',
                 'xp' => 40,
@@ -91,6 +108,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_INFLUENT_ALLY,
+                'book' => $book,
                 'name' => 'Allié influent',
                 'nameFemale' => 'Allié influent',
                 'xp' => 50,
@@ -105,6 +123,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_FINANCIAL_EASE_1,
+                'book' => $book,
                 'name' => 'Aisance financière 1',
                 'nameFemale' => 'Aisance financière 1',
                 'xp' => 10,
@@ -120,6 +139,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_FINANCIAL_EASE_2,
+                'book' => $book,
                 'name' => 'Aisance financière 2',
                 'nameFemale' => 'Aisance financière 2',
                 'xp' => 20,
@@ -135,6 +155,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_FINANCIAL_EASE_3,
+                'book' => $book,
                 'name' => 'Aisance financière 3',
                 'nameFemale' => 'Aisance financière 3',
                 'xp' => 30,
@@ -150,6 +171,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_FINANCIAL_EASE_4,
+                'book' => $book,
                 'name' => 'Aisance financière 4',
                 'nameFemale' => 'Aisance financière 4',
                 'xp' => 40,
@@ -165,6 +187,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_FINANCIAL_EASE_5,
+                'book' => $book,
                 'name' => 'Aisance financière 5',
                 'nameFemale' => 'Aisance financière 5',
                 'xp' => 50,
@@ -180,6 +203,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 9,
+                'book' => $book,
                 'name' => 'Beau',
                 'nameFemale' => 'Belle',
                 'xp' => 30,
@@ -196,6 +220,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_GOOD_HEALTH,
+                'book' => $book,
                 'name' => 'Bonne santé',
                 'nameFemale' => 'Bonne santé',
                 'xp' => 40,
@@ -211,6 +236,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 11,
+                'book' => $book,
                 'name' => 'Bonne vue',
                 'nameFemale' => 'Bonne vue',
                 'xp' => 30,
@@ -227,6 +253,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 12,
+                'book' => $book,
                 'name' => 'Charismatique',
                 'nameFemale' => 'Charismatique',
                 'xp' => 30,
@@ -243,6 +270,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 13,
+                'book' => $book,
                 'name' => 'Endurant',
                 'nameFemale' => 'Endurante',
                 'xp' => 30,
@@ -259,6 +287,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_SOLID_MIND,
+                'book' => $book,
                 'name' => 'Esprit solide',
                 'nameFemale' => 'Esprit solide',
                 'xp' => 30,
@@ -274,6 +303,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_STRONG,
+                'book' => $book,
                 'name' => 'Fort',
                 'nameFemale' => 'Forte',
                 'xp' => 40,
@@ -291,6 +321,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 16,
+                'book' => $book,
                 'name' => 'Intuitif',
                 'nameFemale' => 'Intuitive',
                 'xp' => 40,
@@ -308,6 +339,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 17,
+                'book' => $book,
                 'name' => 'Leste',
                 'nameFemale' => 'Leste',
                 'xp' => 40,
@@ -325,6 +357,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 18,
+                'book' => $book,
                 'name' => 'Ouïe fine',
                 'nameFemale' => 'Ouïe fine',
                 'xp' => 20,
@@ -340,6 +373,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_FAST,
+                'book' => $book,
                 'name' => 'Rapide',
                 'nameFemale' => 'Rapide',
                 'xp' => 20,
@@ -355,6 +389,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_BRILLIANT,
+                'book' => $book,
                 'name' => 'Vif d\'esprit',
                 'nameFemale' => 'Vive d\'esprit',
                 'xp' => 40,
@@ -372,6 +407,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 21,
+                'book' => $book,
                 'name' => 'Chanceux',
                 'nameFemale' => 'Chanceuse',
                 'xp' => 30,
@@ -387,6 +423,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 22,
+                'book' => $book,
                 'name' => 'Instinct de survie',
                 'nameFemale' => 'Instinct de survie',
                 'xp' => 30,
@@ -402,6 +439,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_SCHOLAR,
+                'book' => $book,
                 'name' => 'Lettré',
                 'nameFemale' => 'Lettrée',
                 'xp' => 20,
@@ -420,6 +458,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_FINE_NOSE,
+                'book' => $book,
                 'name' => 'Nez fin',
                 'nameFemale' => 'Nez fin',
                 'xp' => 10,
@@ -435,6 +474,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 25,
+                'book' => $book,
                 'name' => 'Palais fin',
                 'nameFemale' => 'Palais fin',
                 'xp' => 10,
@@ -450,6 +490,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_CRIPPLED,
+                'book' => $book,
                 'name' => 'Boiteux',
                 'nameFemale' => 'Boiteuse',
                 'xp' => 30,
@@ -466,6 +507,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 27,
+                'book' => $book,
                 'name' => 'Dépendance',
                 'nameFemale' => 'Dépendance',
                 'xp' => 20,
@@ -481,6 +523,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 28,
+                'book' => $book,
                 'name' => 'Douillet',
                 'nameFemale' => 'Douillette',
                 'xp' => 20,
@@ -497,6 +540,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 29,
+                'book' => $book,
                 'name' => 'Ennemi',
                 'nameFemale' => 'Ennemi',
                 'xp' => 30,
@@ -511,6 +555,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 30,
+                'book' => $book,
                 'name' => 'Esprit faible',
                 'nameFemale' => 'Esprit faible',
                 'xp' => 20,
@@ -526,6 +571,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 31,
+                'book' => $book,
                 'name' => 'Faible',
                 'nameFemale' => 'Faible',
                 'xp' => 30,
@@ -543,6 +589,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 32,
+                'book' => $book,
                 'name' => 'Lent d\'esprit',
                 'nameFemale' => 'Lente d\'esprit',
                 'xp' => 30,
@@ -560,6 +607,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 33,
+                'book' => $book,
                 'name' => 'Fragile',
                 'nameFemale' => 'Fragile',
                 'xp' => 20,
@@ -575,6 +623,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 34,
+                'book' => $book,
                 'name' => 'Obtus',
                 'nameFemale' => 'Obtuse',
                 'xp' => 30,
@@ -592,6 +641,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 35,
+                'book' => $book,
                 'name' => 'Laid',
                 'nameFemale' => 'Laide',
                 'xp' => 20,
@@ -608,6 +658,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_SLOW,
+                'book' => $book,
                 'name' => 'Lent',
                 'nameFemale' => 'Lente',
                 'xp' => 10,
@@ -623,6 +674,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 37,
+                'book' => $book,
                 'name' => 'Mal entendant',
                 'nameFemale' => 'Mal entendante',
                 'xp' => 20,
@@ -638,6 +690,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_UNLUCKY,
+                'book' => $book,
                 'name' => 'Malchanceux',
                 'nameFemale' => 'Malchanceuse',
                 'xp' => 10,
@@ -653,6 +706,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_BAD_HEALTH,
+                'book' => $book,
                 'name' => 'Maladif',
                 'nameFemale' => 'Maladive',
                 'xp' => 30,
@@ -669,6 +723,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 40,
+                'book' => $book,
                 'name' => 'Maladroit',
                 'nameFemale' => 'Maladroite',
                 'xp' => 30,
@@ -686,6 +741,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_NEARSIGHTED,
+                'book' => $book,
                 'name' => 'Myope',
                 'nameFemale' => 'Myope',
                 'xp' => 20,
@@ -702,6 +758,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_POOR,
+                'book' => $book,
                 'name' => 'Pauvre',
                 'nameFemale' => 'Pauvre',
                 'xp' => 10,
@@ -716,6 +773,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_PHOBIA,
+                'book' => $book,
                 'name' => 'Phobie',
                 'nameFemale' => 'Phobie',
                 'xp' => 40,
@@ -731,6 +789,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_SHY,
+                'book' => $book,
                 'name' => 'Timide',
                 'nameFemale' => 'Timide',
                 'xp' => 10,
@@ -747,6 +806,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => self::ID_TRAUMA,
+                'book' => $book,
                 'name' => 'Traumatisme',
                 'nameFemale' => 'Traumatisme',
                 'xp' => 10,
@@ -762,6 +822,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 46,
+                'book' => $book,
                 'name' => 'Anosmie',
                 'nameFemale' => 'Anosmie',
                 'xp' => 5,
@@ -777,6 +838,7 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
             ],
             [
                 'id' => 47,
+                'book' => $book,
                 'name' => 'Agueusie',
                 'nameFemale' => 'Agueusie',
                 'xp' => 5,
@@ -791,10 +853,5 @@ class AdvantagesFixtures extends ArrayFixture implements ODMFixtureInterface
                 'group' => null,
             ],
         ];
-    }
-
-    protected function getReferencePrefix(): ?string
-    {
-        return 'corahnrin-advantage-';
     }
 }

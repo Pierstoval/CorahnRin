@@ -17,7 +17,7 @@ use CorahnRin\Document\Job;
 use CorahnRin\Document\Miracle;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 class MiraclesRepository extends ServiceDocumentRepository
 {

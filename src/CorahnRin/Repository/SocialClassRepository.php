@@ -15,7 +15,7 @@ namespace CorahnRin\Repository;
 
 use CorahnRin\Document\SocialClass;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 class SocialClassRepository extends ServiceDocumentRepository
 {

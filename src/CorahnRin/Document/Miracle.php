@@ -29,39 +29,39 @@ class Miracle
     /**
      * @var int
      *
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      *
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=false)
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      *
      * @ODM\Field(type="string", nullable=true)
      */
-    private $description;
+    private string $description;
 
     /**
      * @var Collection<Job>
      *
-     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Job")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\Job")
      */
-    private $minorForJobs;
+    private array|Collection|ArrayCollection $minorForJobs;
 
     /**
      * @var Collection<Job>
      *
-     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Job")
+     * @ODM\ReferenceMany(targetDocument="CorahnRin\Document\Job")
      */
-    private $majorForJobs;
+    private array|Collection|ArrayCollection $majorForJobs;
 
     public function __construct()
     {

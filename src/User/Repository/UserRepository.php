@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace User\Repository;
 
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,14 +49,18 @@ class UserRepository extends ServiceDocumentRepository implements UserProviderIn
 
     public function findByUsernameOrEmail(string $usernameOrEmail): ?User
     {
-        return $this->createQueryBuilder('user')
-            ->where('user.username = :username')
-            ->orWhere('user.email = :email')
-            ->setParameter('username', Canonicalizer::urlize($usernameOrEmail))
-            ->setParameter('email', $usernameOrEmail)
+        /** @var null|User $result */
+        $result = $this->createQueryBuilder()
+            ->where(\sprintf(
+                'user.username = "%s" or user.email = "%s"',
+                Canonicalizer::urlize($usernameOrEmail),
+                $usernameOrEmail
+            ))
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getSingleResult()
         ;
+
+        return $result;
     }
 
     public function findOneByEmail($email): ?User

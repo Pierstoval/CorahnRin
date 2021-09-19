@@ -64,7 +64,7 @@ class OghamAdminDTO implements EasyAdminDTOInterface
         $self->name = $entity->getName();
         $self->description = $entity->getDescription();
         $self->type = $entity->getType();
-        $self->book = $entity->getBookId();
+        $self->book = $entity->getBook();
 
         return $self;
     }

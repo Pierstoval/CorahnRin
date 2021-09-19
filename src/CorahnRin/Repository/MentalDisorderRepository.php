@@ -15,7 +15,7 @@ namespace CorahnRin\Repository;
 
 use CorahnRin\Document\MentalDisorder;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 class MentalDisorderRepository extends ServiceDocumentRepository
 {

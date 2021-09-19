@@ -27,8 +27,8 @@ class Weapon
     /**
      * @var int
      *
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      * 
      */
     private $id;
@@ -51,14 +51,14 @@ class Weapon
     /**
      * @var bool
      *
-     * @ODM\Field(type="integer")
+     * @ODM\Field(type="int")
      */
     private $damage;
 
     /**
      * @var int
      *
-     * @ODM\Field(type="integer")
+     * @ODM\Field(type="int")
      */
     private $price;
 
@@ -72,14 +72,14 @@ class Weapon
     /**
      * @var bool
      *
-     * @ODM\Field(type="boolean")
+     * @ODM\Field(type="bool")
      */
     private $melee = true;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="weapon_range", type="integer")
+     * @ODM\Field(name="weapon_range", type="int")
      */
     private $range;
 

@@ -15,7 +15,7 @@ namespace CorahnRin\Repository;
 
 use CorahnRin\Data\DomainsData;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 class DomainsRepository extends ServiceDocumentRepository
 {

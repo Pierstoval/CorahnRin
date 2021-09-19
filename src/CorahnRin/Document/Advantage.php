@@ -70,8 +70,8 @@ class Advantage
     /**
      * @var int
      *
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      *
      */
     private $id;
@@ -93,7 +93,7 @@ class Advantage
     /**
      * @var int
      *
-     * @ODM\Field(type="integer")
+     * @ODM\Field(type="int")
      */
     private $xp;
 
@@ -107,7 +107,7 @@ class Advantage
     /**
      * @var int
      *
-     * @ODM\Field(name="bonus_count", type="integer", nullable=false)
+     * @ODM\Field(name="bonus_count", type="int", nullable=false)
      */
     private $bonusCount;
 
@@ -137,7 +137,7 @@ class Advantage
     /**
      * @var bool
      *
-     * @ODM\Field(type="boolean")
+     * @ODM\Field(type="bool")
      */
     private $isDisadvantage;
 

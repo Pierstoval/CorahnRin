@@ -29,8 +29,8 @@ class Setback
     /**
      * @var int
      *
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      *
      */
     private $id;
@@ -61,7 +61,7 @@ class Setback
      *
      * @var bool
      *
-     * @ODM\Field(name="is_unlucky", type="boolean")
+     * @ODM\Field(name="is_unlucky", type="bool")
      */
     private $isUnlucky = false;
 
@@ -70,7 +70,7 @@ class Setback
      *
      * @var bool
      *
-     * @ODM\Field(name="is_lucky", type="boolean")
+     * @ODM\Field(name="is_lucky", type="bool")
      */
     private $isLucky = false;
 

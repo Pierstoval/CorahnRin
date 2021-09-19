@@ -15,7 +15,7 @@ namespace CorahnRin\Repository;
 
 use CorahnRin\Document\Weapon;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 final class WeaponsRepository extends ServiceDocumentRepository
 {

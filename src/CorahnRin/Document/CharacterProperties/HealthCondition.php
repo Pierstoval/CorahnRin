@@ -24,35 +24,35 @@ class HealthCondition
     /**
      * @var int
      *
-     * @ODM\Field(name="good", type="integer")
+     * @ODM\Field(name="good", type="int")
      */
     private $good;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="okay", type="integer")
+     * @ODM\Field(name="okay", type="int")
      */
     private $okay;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="bad", type="integer")
+     * @ODM\Field(name="bad", type="int")
      */
     private $bad;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="critical", type="integer")
+     * @ODM\Field(name="critical", type="int")
      */
     private $critical;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="agony", type="integer")
+     * @ODM\Field(name="agony", type="int")
      */
     private $agony;
 

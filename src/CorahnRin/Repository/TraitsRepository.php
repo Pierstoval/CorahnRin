@@ -16,7 +16,7 @@ namespace CorahnRin\Repository;
 use CorahnRin\Data\Ways;
 use CorahnRin\Document\PersonalityTrait;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 class TraitsRepository extends ServiceDocumentRepository
 {

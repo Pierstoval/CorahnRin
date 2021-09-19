@@ -26,21 +26,21 @@ class Money
     /**
      * @var int
      *
-     * @ODM\Field(name="ember", type="integer")
+     * @ODM\Field(name="ember", type="int")
      */
     private $ember;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="azure", type="integer")
+     * @ODM\Field(name="azure", type="int")
      */
     private $azure;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="frost", type="integer")
+     * @ODM\Field(name="frost", type="int")
      */
     private $frost;
 

@@ -15,7 +15,7 @@ namespace CorahnRin\Repository;
 
 use CorahnRin\Document\CombatArt;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 final class CombatArtsRepository extends ServiceDocumentRepository
 {

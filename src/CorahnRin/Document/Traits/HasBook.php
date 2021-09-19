@@ -13,17 +13,18 @@ declare(strict_types=1);
 
 namespace CorahnRin\Document\Traits;
 
+use CorahnRin\Document\Book;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 trait HasBook
 {
     /**
-     * @ODM\Field(type="int", nullable=true)
+     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Book")
      */
-    private ?int $bookId = null;
+    private ?Book $book = null;
 
-    public function getBookId(): ?int
+    public function getBook(): ?Book
     {
-        return $this->bookId;
+        return $this->book;
     }
 }

@@ -24,8 +24,8 @@ class MagienceArtifact
 {
     /**
      *
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      * 
      */
     private int $id;
@@ -43,29 +43,29 @@ class MagienceArtifact
 
     /**
      *
-     * @ODM\Field(type="integer")
+     * @ODM\Field(type="int")
      */
     private int $price;
 
     /**
-     * @ODM\Field(type="integer")
+     * @ODM\Field(type="int")
      */
     private int $consumption;
 
     /**
-     * @ODM\Field(type="integer")
+     * @ODM\Field(type="int")
      */
     private int $consumptionInterval;
 
     /**
      *
-     * @ODM\Field(type="integer", nullable=true)
+     * @ODM\Field(type="int", nullable=true)
      */
     private ?int $tank;
 
     /**
      *
-     * @ODM\Field(type="integer", nullable=false)
+     * @ODM\Field(type="int", nullable=false)
      */
     private int $resistance;
 
@@ -83,7 +83,7 @@ class MagienceArtifact
 
     /**
      *
-     * @ODM\Field(type="integer", nullable=true)
+     * @ODM\Field(type="int", nullable=true)
      */
     private ?int $damage;
 

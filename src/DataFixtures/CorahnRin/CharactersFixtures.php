@@ -98,7 +98,7 @@ class CharactersFixtures extends ArrayFixture implements ODMFixtureInterface, De
                 'age' => 24,
                 'mentalResistanceBonus' => 1,
                 'ways' => static function (Character $character, $_fixture, DocumentManager $em) {
-                    $ways = Ways::create($character, 1, 4, 3, 4, 3);
+                    $ways = Ways::create(1, 4, 3, 4, 3);
                     $em->persist($ways);
 
                     return $ways;
@@ -148,10 +148,10 @@ class CharactersFixtures extends ArrayFixture implements ODMFixtureInterface, De
                     $shyDTO = AdvantageDTO::create($shyAdvantage, 2, '');
 
                     return [
-                        CharacterAdvantageItem::createFromSessionDTO($character, $scholarDTO),
-                        CharacterAdvantageItem::createFromSessionDTO($character, $solidMindDTO),
-                        CharacterAdvantageItem::createFromSessionDTO($character, $brilliantDTO),
-                        CharacterAdvantageItem::createFromSessionDTO($character, $shyDTO),
+                        CharacterAdvantageItem::createFromSessionDTO($scholarDTO),
+                        CharacterAdvantageItem::createFromSessionDTO($solidMindDTO),
+                        CharacterAdvantageItem::createFromSessionDTO($brilliantDTO),
+                        CharacterAdvantageItem::createFromSessionDTO($shyDTO),
                     ];
                 },
                 'domains' => function (Character $character) {
@@ -194,7 +194,7 @@ class CharactersFixtures extends ArrayFixture implements ODMFixtureInterface, De
                     $sessionDTO = SetbackDTO::create($fixture->getReference('corahnrin-setbacks-'.SetbacksFixtures::ID_POOR), false);
 
                     return [
-                        CharSetbacks::createFromSessionDTO($character, $sessionDTO),
+                        CharSetbacks::createFromSessionDTO($sessionDTO),
                     ];
                 },
                 'user' => $this->getReference('user-pierstoval'),
@@ -219,7 +219,7 @@ class CharactersFixtures extends ArrayFixture implements ODMFixtureInterface, De
                 'age' => 35,
                 'mentalResistanceBonus' => 15,
                 'ways' => static function (Character $character, $_fixture, DocumentManager $em) {
-                    $ways = Ways::create($character, 5, 5, 5, 5, 5);
+                    $ways = Ways::create(5, 5, 5, 5, 5);
                     $em->persist($ways);
 
                     return $ways;
@@ -305,7 +305,7 @@ class CharactersFixtures extends ArrayFixture implements ODMFixtureInterface, De
 
                         $dto = AdvantageDTO::create($ref, $score, $indication);
 
-                        return CharacterAdvantageItem::createFromSessionDTO($character, $dto);
+                        return CharacterAdvantageItem::createFromSessionDTO($dto);
                     };
 
                     return [
@@ -481,7 +481,7 @@ class CharactersFixtures extends ArrayFixture implements ODMFixtureInterface, De
 
                         $dto = SetbackDTO::create($ref, $avoided);
 
-                        return CharSetbacks::createFromSessionDTO($character, $dto);
+                        return CharSetbacks::createFromSessionDTO($dto);
                     };
 
                     return [
@@ -611,7 +611,7 @@ class CharactersFixtures extends ArrayFixture implements ODMFixtureInterface, De
             'age' => 20,
             'mentalResistanceBonus' => 0,
             'ways' => static function (Character $character, $_fixture, DocumentManager $em) {
-                $ways = Ways::create($character, 1, 4, 3, 4, 3);
+                $ways = Ways::create(1, 4, 3, 4, 3);
                 $em->persist($ways);
 
                 return $ways;

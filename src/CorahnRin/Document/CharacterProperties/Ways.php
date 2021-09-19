@@ -27,8 +27,8 @@ class Ways
     /**
      * @var int
      *
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      * 
      */
     private int $id;
@@ -36,35 +36,35 @@ class Ways
     /**
      * @var int
      *
-     * @ODM\Field(name="combativeness", type="integer")
+     * @ODM\Field(name="combativeness", type="int")
      */
     private int $combativeness;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="creativity", type="integer")
+     * @ODM\Field(name="creativity", type="int")
      */
     private int $creativity;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="empathy", type="integer")
+     * @ODM\Field(name="empathy", type="int")
      */
     private int $empathy;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="reason", type="integer")
+     * @ODM\Field(name="reason", type="int")
      */
     private int $reason;
 
     /**
      * @var int
      *
-     * @ODM\Field(name="conviction", type="integer")
+     * @ODM\Field(name="conviction", type="int")
      */
     private int $conviction;
 

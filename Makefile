@@ -101,6 +101,9 @@ dev-db: wait-for-db
 	-$(SYMFONY_CONSOLE) doctrine:database:drop --if-exists --force
 	-$(SYMFONY_CONSOLE) doctrine:database:create --if-not-exists
 
+	-$(SYMFONY_CONSOLE) doctrine:database:drop --if-exists --force
+	-$(SYMFONY_CONSOLE) doctrine:database:create --if-not-exists
+
 .PHONY: dev-db
 
 test-db: wait-for-db ## Create a proper database for testing

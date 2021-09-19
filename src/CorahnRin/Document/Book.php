@@ -26,7 +26,7 @@ class Book
     /**
      * @var int
      *
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Id(type="int", strategy="INCREMENT")
      * 
      */
     private $id;

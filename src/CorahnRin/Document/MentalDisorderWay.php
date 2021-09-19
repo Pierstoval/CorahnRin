@@ -22,8 +22,8 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 class MentalDisorderWay
 {
     /**
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      */
     private int $id;
 
@@ -37,7 +37,7 @@ class MentalDisorderWay
     /**
      * @var string
      *
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Id(type="int", strategy="INCREMENT")
      * @ODM\Field(name="way", type="string")
      */
     private string $way;
@@ -45,7 +45,7 @@ class MentalDisorderWay
     /**
      * @var bool
      *
-     * @ODM\Field(type="boolean")
+     * @ODM\Field(type="bool")
      */
     private bool $major = false;
 

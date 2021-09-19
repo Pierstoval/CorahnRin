@@ -13,33 +13,21 @@ declare(strict_types=1);
 
 namespace CorahnRin\Document\CharacterProperties;
 
-use CorahnRin\Document\Character;
 use CorahnRin\Document\Miracle;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * @ODM\Document
+ * @ODM\EmbeddedDocument
  */
 class CharacterMiracle
 {
-    /**
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     */
-    private int $id;
-
-    /**
-     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Character", inversedBy="miracles")
-     */
-    private Character $character;
-
     /**
      * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Miracle")
      */
     private Miracle $miracle;
 
     /**
-     * @ODM\Field(type="integer", name="is_major", type="boolean")
+     * @ODM\Field(type="int", name="is_major", type="bool")
      */
     private bool $isMajor;
 
@@ -47,16 +35,10 @@ class CharacterMiracle
     {
     }
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public static function create(Character $character, Miracle $miracle, bool $isMajor): self
+    public static function create(Miracle $miracle, bool $isMajor): self
     {
         $self = new self();
 
-        $self->character = $character;
         $self->miracle = $miracle;
         $self->isMajor = $isMajor;
 

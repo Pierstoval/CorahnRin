@@ -17,7 +17,7 @@ use CorahnRin\Document\Character;
 use CorahnRin\Document\Game;
 use CorahnRin\Document\GameInvitation;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 use User\Document\User;
 
 class GameInvitationRepository extends ServiceDocumentRepository

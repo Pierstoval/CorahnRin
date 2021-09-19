@@ -27,8 +27,8 @@ class CombatArt
     /**
      * @var int
      *
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Field(name="id", type="int", nullable=false)
+     * @ODM\Id(type="int", strategy="INCREMENT")
      * 
      */
     private $id;
@@ -50,14 +50,14 @@ class CombatArt
     /**
      * @var bool
      *
-     * @ODM\Field(name="ranged", type="boolean")
+     * @ODM\Field(name="ranged", type="bool")
      */
     private $ranged;
 
     /**
      * @var bool
      *
-     * @ODM\Field(name="melee", type="boolean")
+     * @ODM\Field(name="melee", type="bool")
      */
     private $melee;
 

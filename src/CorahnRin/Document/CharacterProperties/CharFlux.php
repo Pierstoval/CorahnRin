@@ -13,52 +13,28 @@ declare(strict_types=1);
 
 namespace CorahnRin\Document\CharacterProperties;
 
-use CorahnRin\Document\Character;
 use CorahnRin\Document\Flux;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ODM\Document
+ * @ODM\EmbeddedDocument
  */
 class CharFlux
 {
     /**
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     */
-    private int $id;
-
-    /**
-     * @var Character
-     *
-     * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Character", inversedBy="flux")
-     * @Assert\NotNull
-     */
-    private Character $character;
-
-    /**
-     * @var Flux
-     *
-     * @ODM\Field(type="integer")
+     * @ODM\Field(type="int")
      * @ODM\ReferenceOne(targetDocument="CorahnRin\Document\Flux")
      * @Assert\NotNull
      */
     private Flux $flux;
 
     /**
-     * @var int
-     *
-     * @ODM\Field(type="integer")
+     * @ODM\Field(type="int")
      * @Assert\NotNull
      * @Assert\GreaterThanOrEqual(value=0)
      */
     private int $quantity;
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
 
     public function getFlux(): Flux
     {
@@ -68,10 +44,5 @@ class CharFlux
     public function getQuantity(): int
     {
         return $this->quantity;
-    }
-
-    public function getCharacter(): Character
-    {
-        return $this->character;
     }
 }

@@ -19,16 +19,10 @@ use CorahnRin\Document\Discipline;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * @ODM\Document
+ * @ODM\EmbeddedDocument
  */
 class CharDisciplines
 {
-    /**
-     * @ODM\Field(name="id", type="integer", nullable=false)
-     * @ODM\Id(type="integer", strategy="INCREMENT")
-     */
-    private int $id;
-
     /**
      * @var Character
      *
@@ -46,7 +40,7 @@ class CharDisciplines
     /**
      * @var string
      *
-     * @ODM\Id(type="integer", strategy="INCREMENT")
+     * @ODM\Id(type="int", strategy="INCREMENT")
      * @ODM\Field(name="domain", type="string")
      */
     private string $domain;
@@ -54,14 +48,9 @@ class CharDisciplines
     /**
      * @var int
      *
-     * @ODM\Field(type="integer")
+     * @ODM\Field(type="int")
      */
     private int $score;
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
 
     private function __construct(Character $character, Discipline $discipline, string $domain, int $score)
     {
