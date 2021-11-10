@@ -6,7 +6,7 @@ webpack_encore:
 
     # Set attributes that will be rendered on all script and link tags
     script_attributes:
-        defer: true
+        defer: false # Because Esteren Maps script initialization can't work if all other scripts are deferred.
         # Uncomment (also under link_attributes) if using Turbo Drive
         # https://turbo.hotwire.dev/handbook/drive#reloading-when-assets-change
         # 'data-turbo-track': reload
