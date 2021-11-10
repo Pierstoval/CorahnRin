@@ -37,7 +37,7 @@ echo "[DEPLOY] > Last build date: ${LAST_DATE}"
 
 echo "[DEPLOY] > Update repository branch"
 
-#git fetch --all --prune
+git fetch --all --prune
 
 CHANGELOG=$(git changelog v${LAST_VERSION}...origin/main | sed 1d)
 CHANGELOG_SIZE=$(echo "${CHANGELOG}" | wc -l)
@@ -52,10 +52,10 @@ else
 fi
 
 # Just a safety because cross-platform isn't something in NodeJS...
-#git checkout package-lock.json
+git checkout yarn.lock
 
 echo "[DEPLOY] > Applying these commits..."
-#git merge origin/main
+git merge origin/main
 
 echo "[DEPLOY] > Done!"
 
@@ -67,7 +67,7 @@ echo "[DEPLOY] > "
 # Only this "deploy.bash" script can't be updated, because it's executed on deploy.
 # But having the scripts executed like this is a nice opportunity to update the scripts between deploys.
 #
-#bash ./bin/deploy_scripts.bash
+bash ./bin/deploy_scripts.bash
 
 echo "[DEPLOY] > Done!"
 echo "[DEPLOY] > Now updating environment vars..."
