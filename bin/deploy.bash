@@ -24,7 +24,7 @@ DIR="$(pwd)"
 
 echo "Working directory: ${DIR}"
 
-ENV_FILE="${DIR}/.env.deploy.php"
+ENV_FILE="${DIR}/.env.local.php"
 CHANGELOG_FILE=${DIR}/../_tmp_changelog.txt
 
 LAST_VERSION=$(php -r "echo (require '${ENV_FILE}')['RELEASE_VERSION'];" | sed -r 's/[^0-9]+//g')
