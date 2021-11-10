@@ -223,7 +223,6 @@
                 }
             })
             .on('click', function(e){
-                debugger;
                 // Remove other active labels for this group of inputs
                 var $this = $(this);
                 var maxNumberOfSelectedInputs = $this.data('jq_max_number');
