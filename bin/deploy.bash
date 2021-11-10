@@ -105,7 +105,7 @@ echo "[DEPLOY] > Pushing it to Git..."
 git tag -s -F ${CHANGELOG_FILE} "v${NEW_VERSION}"
 git push origin "v${NEW_VERSION}"
 
-move ${CHANGELOG_FILE} "${DIR}/../changelogs/${NEW_VERSION}_${NEW_DATE}.log"
+mv ${CHANGELOG_FILE} "${DIR}/../changelogs/${NEW_VERSION}_${NEW_DATE}.log"
 
 echo "[DEPLOY] > Done!"
 echo "[DEPLOY] > Deploy finished!"
