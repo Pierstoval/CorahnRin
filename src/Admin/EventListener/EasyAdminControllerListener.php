@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class EasyAdminControllerListener implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             // Must be executed before EasyAdmin's one

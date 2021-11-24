@@ -355,7 +355,7 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
         $this->updatedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $this->updatedAt);
     }
 
-    public function isEqualTo(UserInterface $user)
+    public function isEqualTo(UserInterface $user): bool
     {
         return
             $user instanceof self

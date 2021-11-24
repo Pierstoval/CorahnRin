@@ -63,7 +63,7 @@ class OghamSpendXpType extends AbstractType
         return EntityType::class;
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'ogham_spend_xp';
     }
