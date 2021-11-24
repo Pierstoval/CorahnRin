@@ -14,9 +14,9 @@ declare(strict_types=1);
 use Doctrine\DBAL\Connection;
 use Symfony\Component\Dotenv\Dotenv;
 
-require \dirname(__DIR__).'/vendor/autoload.php';
+require dirname(__DIR__).'/vendor/autoload.php';
 
-(new Dotenv())->bootEnv(\dirname(__DIR__).'/.env');
+(new Dotenv())->bootEnv(dirname(__DIR__).'/.env');
 
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 $kernel->boot();
@@ -30,7 +30,7 @@ $chars = $stmt->fetchAll();
 $oghamList = [];
 
 foreach ($chars as $content) {
-    $content = \json_decode($content['char_content'], true, 512, \JSON_THROW_ON_ERROR);
+    $content = json_decode($content['char_content'], true, 512, \JSON_THROW_ON_ERROR);
     foreach ($content['ogham'] as $ogham) {
         if (!$ogham) {
             continue;
@@ -39,7 +39,7 @@ foreach ($chars as $content) {
     }
 }
 
-$oghamList = \array_unique(\array_map('trim', $oghamList));
-\sort($oghamList);
+$oghamList = array_unique(array_map('trim', $oghamList));
+sort($oghamList);
 
-\var_export($oghamList);
+var_export($oghamList);

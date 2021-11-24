@@ -32,6 +32,7 @@ final class ClosureSetter
                 $this->{$property} = $value;
             },
             $object,
-            $type);
+            $type
+        );
     }
 }

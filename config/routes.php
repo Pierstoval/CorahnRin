@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
  * These are necessary for prefixing and for locale.
  */
 return static function (RoutingConfigurator $routes, Kernel $kernel) {
-    $projectDir = \dirname(__DIR__);
+    $projectDir = dirname(__DIR__);
 
     $environment = $kernel->getEnvironment();
 

@@ -19,16 +19,16 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 function login(SymfonyStyle $io): HttpBrowser
 {
-    if (\is_file(__DIR__.'/creds.json')) {
-        ['username' => $username, 'password' => $password] = \json_decode(
-            \file_get_contents(__DIR__.'/creds.json'),
+    if (is_file(__DIR__.'/creds.json')) {
+        ['username' => $username, 'password' => $password] = json_decode(
+            file_get_contents(__DIR__.'/creds.json'),
             true,
             512,
             \JSON_THROW_ON_ERROR
         );
     } else {
-        $username = $_ENV['MAPS_USERNAME'] ?? $_SERVER['MAPS_USERNAME'] ?? \getenv('MAPS_USERNAME');
-        $password = $_ENV['MAPS_PASSWORD'] ?? $_SERVER['MAPS_PASSWORD'] ?? \getenv('MAPS_PASSWORD');
+        $username = $_ENV['MAPS_USERNAME'] ?? $_SERVER['MAPS_USERNAME'] ?? getenv('MAPS_USERNAME');
+        $password = $_ENV['MAPS_PASSWORD'] ?? $_SERVER['MAPS_PASSWORD'] ?? getenv('MAPS_PASSWORD');
 
         if (!$username || !$password) {
             $io->error(
@@ -55,7 +55,7 @@ function login(SymfonyStyle $io): HttpBrowser
     // 401 means login form.
     if (401 !== $response->getStatusCode()) {
         throw new RuntimeException(
-            \sprintf(
+            sprintf(
                 'Expected a 401 HTTP response, got "%s" instead.',
                 $response->getStatusCode()
             )

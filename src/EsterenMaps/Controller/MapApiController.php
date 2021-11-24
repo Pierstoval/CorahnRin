@@ -25,7 +25,7 @@ class MapApiController implements PublicService
     {
     }
 
-    public function __invoke(string | int $id): JsonResponse
+    public function __invoke(string|int $id): JsonResponse
     {
         if (!$id) {
             throw new NotFoundHttpException('Please enter a Map ID.');

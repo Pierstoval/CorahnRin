@@ -77,7 +77,7 @@ RUN set -xe \
     && runuser -l ${RUN_USER} -c 'composer global --no-interaction --no-progress require phpstan/phpstan-doctrine' \
     && runuser -l ${RUN_USER} -c 'composer global --no-interaction --no-progress require phpstan/phpstan-phpunit' \
     && runuser -l ${RUN_USER} -c 'composer global --no-interaction --no-progress require phpstan/phpstan-deprecation-rules' \
-    && curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer && chmod a+x /usr/local/bin/php-cs-fixer \
+    && curl -L https://cs.symfony.com/download/php-cs-fixer-v3.phar -o /usr/local/bin/php-cs-fixer && chmod a+x /usr/local/bin/php-cs-fixer \
     \
     && `# Rymfony` \
     && (wget https://get.symfony.com/cli/installer -O - | bash) \
