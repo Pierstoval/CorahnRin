@@ -36,8 +36,8 @@ class CharacterViewControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/characters/');
 
-        static::assertSame(200, $client->getResponse()->getStatusCode());
-        static::assertCount(1, $crawler->filter('table.table.table-condensed'));
+        self::assertSame(200, $client->getResponse()->getStatusCode());
+        self::assertCount(1, $crawler->filter('table.table.table-condensed'));
     }
 
     /**
@@ -50,7 +50,7 @@ class CharacterViewControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/characters/?order=undefined');
 
-        static::assertSame(400, $client->getResponse()->getStatusCode());
+        self::assertSame(400, $client->getResponse()->getStatusCode());
     }
 
     /**
@@ -64,7 +64,7 @@ class CharacterViewControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/characters/9999999-aaaaaaaa');
 
-        static::assertSame(404, $client->getResponse()->getStatusCode());
+        self::assertSame(404, $client->getResponse()->getStatusCode());
     }
 
     /**
@@ -79,14 +79,14 @@ class CharacterViewControllerTest extends WebTestCase
         // Check fixtures for character name & id
         $client->request('GET', '/fr/characters/1-steren-slaine');
 
-        static::assertResponseStatusCodeSame(200);
-        static::assertSelectorTextSame('h1', 'Steren Slaine');
-        static::assertSelectorExists('#character-original-page-1');
-        static::assertSelectorExists('#character-original-page-2');
-        static::assertSelectorExists('#character-original-page-3');
-        static::assertSelectorExists('#character-details-name h2 span.character-details-subtitle');
-        static::assertSelectorTextSame('#character-details-name h2 span.character-details-subtitle', 'Nom : ');
-        static::assertSelectorTextSame('#character-details-name h2 span.character-details-subitem', 'Steren Slaine');
+        self::assertResponseStatusCodeSame(200);
+        self::assertSelectorTextSame('h1', 'Steren Slaine');
+        self::assertSelectorExists('#character-original-page-1');
+        self::assertSelectorExists('#character-original-page-2');
+        self::assertSelectorExists('#character-original-page-3');
+        self::assertSelectorExists('#character-details-name h2 span.character-details-subtitle');
+        self::assertSelectorTextSame('#character-details-name h2 span.character-details-subtitle', 'Nom : ');
+        self::assertSelectorTextSame('#character-details-name h2 span.character-details-subitem', 'Steren Slaine');
 
         // Don't do all the rest, it's cumbersome,
         // and we just might create other assertions

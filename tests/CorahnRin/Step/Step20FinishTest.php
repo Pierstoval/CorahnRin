@@ -20,6 +20,6 @@ class Step20FinishTest extends AbstractStepTest
      */
     public function testStep(): void
     {
-        static::markTestIncomplete();
+        self::markTestIncomplete();
     }
 }

@@ -38,9 +38,9 @@ class FullValidStepsControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/character/generate');
 
-        static::assertSame(302, $client->getResponse()->getStatusCode());
+        self::assertSame(302, $client->getResponse()->getStatusCode());
 
-        static::assertTrue(
+        self::assertTrue(
             $client->getResponse()->isRedirect('/fr/character/generate/01_people'),
             'Could not check that generator index redirects to first step'
         );
@@ -83,7 +83,7 @@ class FullValidStepsControllerTest extends WebTestCase
 
                 $msg = 'Could not execute final step request...';
                 $msg .= $errorBlock->count() ? ("\n".$errorBlock->text('', true)) : '';
-                static::assertSame(200, $statusCode, $msg);
+                self::assertSame(200, $statusCode, $msg);
 
                 return;
             }
@@ -110,7 +110,7 @@ class FullValidStepsControllerTest extends WebTestCase
         Client $client
     ): void {
         if (!$formValues && !$expectedSessionValue) {
-            static::markTestIncomplete('Missing form values for step '.$stepName);
+            self::markTestIncomplete('Missing form values for step '.$stepName);
         }
         // We need a simple session to be sure it's updated when submitting form.
         $session = $client->getContainer()->get('session');
@@ -124,7 +124,7 @@ class FullValidStepsControllerTest extends WebTestCase
 
         $msg = 'Could not execute step request...';
         $msg .= $errorBlock->count() ? ("\n".$errorBlock->text('', true)) : '';
-        static::assertSame(200, $statusCode, $msg);
+        self::assertSame(200, $statusCode, $msg);
 
         // Prepare form values.
         $form = $crawler->filter('#generator_form')->form();
@@ -135,7 +135,7 @@ class FullValidStepsControllerTest extends WebTestCase
             try {
                 $form->setValues($formValues);
             } catch (\Exception $e) {
-                static::fail($e->getMessage()."\nWith values:\n".\str_replace("\n", '', \var_export($formValues, true)));
+                self::fail($e->getMessage()."\nWith values:\n".\str_replace("\n", '', \var_export($formValues, true)));
             }
         }
 
@@ -148,11 +148,11 @@ class FullValidStepsControllerTest extends WebTestCase
             $msg .= $crawler->filter('#flash-messages')->text('', true);
         }
 
-        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/'.$nextStep), $msg);
+        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/'.$nextStep), $msg);
 
         // We also make sure that the session has been correctly updated.
         $character = $session->get('character.corahn_rin');
-        static::assertEquals(
+        self::assertEquals(
             $expectedSessionValue,
             $character[$stepName],
             'Character values are not equal to session ones in step "'.$stepName.'"...'

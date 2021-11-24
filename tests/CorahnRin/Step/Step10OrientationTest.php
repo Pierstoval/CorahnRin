@@ -26,8 +26,8 @@ class Step10OrientationTest extends AbstractStepTest
 
         $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
-        static::assertSame(302, $client->getResponse()->getStatusCode());
-        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
+        self::assertSame(302, $client->getResponse()->getStatusCode());
+        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
     }
 
     /**
@@ -45,9 +45,9 @@ class Step10OrientationTest extends AbstractStepTest
             ],
         ]);
 
-        static::assertSame(302, $result->getResponse()->getStatusCode());
-        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/11_advantages'));
-        static::assertSame(Orientation::INSTINCTIVE, $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
+        self::assertSame(302, $result->getResponse()->getStatusCode());
+        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/11_advantages'));
+        self::assertSame(Orientation::INSTINCTIVE, $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
     }
 
     /**
@@ -65,9 +65,9 @@ class Step10OrientationTest extends AbstractStepTest
             ],
         ]);
 
-        static::assertSame(302, $result->getResponse()->getStatusCode());
-        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/11_advantages'));
-        static::assertSame(Orientation::RATIONAL, $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
+        self::assertSame(302, $result->getResponse()->getStatusCode());
+        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/11_advantages'));
+        self::assertSame(Orientation::RATIONAL, $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
     }
 
     /**
@@ -87,9 +87,9 @@ class Step10OrientationTest extends AbstractStepTest
             'gen-div-choice' => Orientation::INSTINCTIVE,
         ]);
 
-        static::assertSame(302, $result->getResponse()->getStatusCode());
-        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/11_advantages'));
-        static::assertSame(Orientation::INSTINCTIVE, $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
+        self::assertSame(302, $result->getResponse()->getStatusCode());
+        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/11_advantages'));
+        self::assertSame(Orientation::INSTINCTIVE, $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
     }
 
     /**
@@ -109,9 +109,9 @@ class Step10OrientationTest extends AbstractStepTest
             'gen-div-choice' => Orientation::RATIONAL,
         ]);
 
-        static::assertSame(302, $result->getResponse()->getStatusCode());
-        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/11_advantages'));
-        static::assertSame(Orientation::RATIONAL, $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
+        self::assertSame(302, $result->getResponse()->getStatusCode());
+        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/11_advantages'));
+        self::assertSame(Orientation::RATIONAL, $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
     }
 
     /**
@@ -131,8 +131,8 @@ class Step10OrientationTest extends AbstractStepTest
             'gen-div-choice' => 'INVALID',
         ]);
 
-        static::assertSame(200, $result->getResponse()->getStatusCode());
-        static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
-        static::assertEquals('L\'orientation de la personnalité est incorrecte, veuillez vérifier.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
+        self::assertSame(200, $result->getResponse()->getStatusCode());
+        self::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
+        self::assertEquals('L\'orientation de la personnalité est incorrecte, veuillez vérifier.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 }

@@ -110,7 +110,7 @@ class LegacyCharacterRepository
         $hasNextPage = ($currentPage * $pageSize) < $numResults;
 
         return LegacyCharacterListPaginator::create(
-            $queryBuilder->execute(),
+            $queryBuilder->executeQuery(),
             $numResults,
             $currentPage,
             $hasPreviousPage,

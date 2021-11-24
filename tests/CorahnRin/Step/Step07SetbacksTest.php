@@ -28,9 +28,9 @@ class Step07SetbacksTest extends AbstractStepTest
             '06_age' => 20,
         ]);
 
-        static::assertSame(302, $result->getResponse()->getStatusCode());
-        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/08_ways'));
-        static::assertSame([
+        self::assertSame(302, $result->getResponse()->getStatusCode());
+        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/08_ways'));
+        self::assertSame([
             '06_age' => 20,
             $this->getStepName() => [],
         ], $result->getSession()->get('character.corahn_rin'));
@@ -44,7 +44,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $client = $this->getHttpClient();
 
         /** @var SetbacksRepository $setbacksRepo */
-        $setbacksRepo = static::$container->get(SetbacksRepository::class);
+        $setbacksRepo = self::getContainer()->get(SetbacksRepository::class);
         $setbacksFromTheDb = $setbacksRepo->findBy([
             'name' => ['Séquelle'],
         ]);
@@ -53,7 +53,7 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $idOfFirstSetback = $setbacksFromTheDb[0]->getId();
 
-        static::assertSame([
+        self::assertSame([
             $idOfFirstSetback => ['id' => $idOfFirstSetback, 'avoided' => false],
         ], $setbacks);
     }
@@ -66,7 +66,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $client = $this->getHttpClient();
 
         /** @var SetbacksRepository $setbacksRepo */
-        $setbacksRepo = static::$container->get(SetbacksRepository::class);
+        $setbacksRepo = self::getContainer()->get(SetbacksRepository::class);
         $setbacksFromTheDb = $setbacksRepo->findBy([
             'name' => ['Séquelle', 'Adversaire'],
         ]);
@@ -76,7 +76,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $idOfFirstSetback = $setbacksFromTheDb[0]->getId();
         $idOfSecondSetback = $setbacksFromTheDb[1]->getId();
 
-        static::assertSame([
+        self::assertSame([
             $idOfFirstSetback => ['id' => $idOfFirstSetback, 'avoided' => false],
             $idOfSecondSetback => ['id' => $idOfSecondSetback, 'avoided' => false],
         ], $setbacks);
@@ -90,7 +90,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $client = $this->getHttpClient();
 
         /** @var SetbacksRepository $setbacksRepo */
-        $setbacksRepo = static::$container->get(SetbacksRepository::class);
+        $setbacksRepo = self::getContainer()->get(SetbacksRepository::class);
         $setbacksFromTheDb = $setbacksRepo->findBy([
             'name' => ['Séquelle', 'Adversaire', 'Rumeur'],
         ]);
@@ -101,7 +101,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $idOfSecondSetback = $setbacksFromTheDb[1]->getId();
         $idOfThirdSetback = $setbacksFromTheDb[2]->getId();
 
-        static::assertSame([
+        self::assertSame([
             $idOfFirstSetback => ['id' => $idOfFirstSetback, 'avoided' => false],
             $idOfSecondSetback => ['id' => $idOfSecondSetback, 'avoided' => false],
             $idOfThirdSetback => ['id' => $idOfThirdSetback, 'avoided' => false],
@@ -116,7 +116,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $client = $this->getHttpClient();
 
         /** @var SetbacksRepository $setbacksRepo */
-        $setbacksRepo = static::$container->get(SetbacksRepository::class);
+        $setbacksRepo = self::getContainer()->get(SetbacksRepository::class);
         // Force the order here so unlucky one is picked first
         $setbacksFromTheDb = [
             0 => $setbacksRepo->findOneBy(['name' => 'Poisse']),
@@ -128,7 +128,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $idOfFirstSetback = $setbacksFromTheDb[0]->getId();
         $idOfSecondSetback = $setbacksFromTheDb[1]->getId();
 
-        static::assertSame([
+        self::assertSame([
             $idOfFirstSetback => ['id' => $idOfFirstSetback, 'avoided' => false],
             $idOfSecondSetback => ['id' => $idOfSecondSetback, 'avoided' => false],
         ], $setbacks);
@@ -142,7 +142,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $client = $this->getHttpClient();
 
         /** @var SetbacksRepository $setbacksRepo */
-        $setbacksRepo = static::$container->get(SetbacksRepository::class);
+        $setbacksRepo = self::getContainer()->get(SetbacksRepository::class);
         // Force the order here so unlucky one is picked first
         $setbacksFromTheDb = [
             0 => $setbacksRepo->findOneBy(['name' => 'Chance']),
@@ -154,7 +154,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $idOfFirstSetback = $setbacksFromTheDb[0]->getId();
         $idOfSecondSetback = $setbacksFromTheDb[1]->getId();
 
-        static::assertSame([
+        self::assertSame([
             $idOfFirstSetback => ['id' => $idOfFirstSetback, 'avoided' => false],
             $idOfSecondSetback => ['id' => $idOfSecondSetback, 'avoided' => true],
         ], $setbacks);
@@ -169,11 +169,11 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
-        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
+        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
         $client->followRedirect();
-        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/01_people'));
+        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/01_people'));
         $crawler = $client->followRedirect();
-        static::assertEquals(
+        self::assertEquals(
             'L\'étape "07 Setbacks" dépend de "06 Age", mais celle-ci n\'est pas présente dans le personnage en cours de création...',
             $crawler->filter('#flash-messages > .card-panel.error')->text('', true)
         );
@@ -192,7 +192,7 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $crawler = $client->request('GET', '/fr/character/generate/'.$this->getStepName().'?manual=');
         $formNode = $crawler->filter('#generator_form');
-        static::assertCount(1, $formNode);
+        self::assertCount(1, $formNode);
 
         $form = $formNode->form()
             ->disableValidation()
@@ -203,9 +203,9 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $client->submit($form);
 
-        static::assertSame(302, $client->getResponse()->getStatusCode());
-        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/08_ways'));
-        static::assertSame([2 => ['id' => 2, 'avoided' => false], 3 => ['id' => 3, 'avoided' => false]], $session->get('character.corahn_rin')[$this->getStepName()]);
+        self::assertSame(302, $client->getResponse()->getStatusCode());
+        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/08_ways'));
+        self::assertSame([2 => ['id' => 2, 'avoided' => false], 3 => ['id' => 3, 'avoided' => false]], $session->get('character.corahn_rin')[$this->getStepName()]);
     }
 
     /**
@@ -221,7 +221,7 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $crawler = $client->request('GET', '/fr/character/generate/'.$this->getStepName().'?manual=');
         $formNode = $crawler->filter('#generator_form');
-        static::assertCount(1, $formNode);
+        self::assertCount(1, $formNode);
 
         $form = $formNode->form()
             ->disableValidation()
@@ -232,8 +232,8 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $crawler = $client->submit($form);
 
-        static::assertSame(200, $client->getResponse()->getStatusCode());
-        static::assertEquals(
+        self::assertSame(200, $client->getResponse()->getStatusCode());
+        self::assertEquals(
             'Veuillez entrer des revers correct(s).',
             $crawler->filter('#flash-messages > .card-panel.error')->text('', true)
         );
@@ -242,12 +242,12 @@ class Step07SetbacksTest extends AbstractStepTest
     private function getCharacterSetbacksFromStepSubmit(int $age, Client $client, array $setbacksFromTheDb)
     {
         /** @var ManualRandomSetbacksProvider $provider */
-        $provider = static::$container->get(ManualRandomSetbacksProvider::class);
+        $provider = self::getContainer()->get(ManualRandomSetbacksProvider::class);
         // Pick two so we make sure only one is picked.
         $provider->setCustomSetbacksToPick($setbacksFromTheDb);
 
         // We need a simple session to be sure it's updated when submitting form.
-        $session = static::$container->get('session');
+        $session = self::getContainer()->get('session');
         $session->set('character.corahn_rin', ['06_age' => $age]);
         $session->save();
 
@@ -259,16 +259,16 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $msg = 'Could not execute step request...';
         $msg .= $errorBlock->count() ? ("\n".$errorBlock->text('', true)) : (' For step "'.$this->getStepName().'"');
-        static::assertSame(200, $statusCode, $msg);
+        self::assertSame(200, $statusCode, $msg);
 
         // Prepare form values.
         $form = $crawler->filter('#generator_form')->form();
         $form->disableValidation()->setValues([]);
         $client->submit($form);
 
-        static::assertSame(302, $client->getResponse()->getStatusCode());
-        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/08_ways'));
+        self::assertSame(302, $client->getResponse()->getStatusCode());
+        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/08_ways'));
 
-        return static::$container->get('session')->get('character.corahn_rin')[$this->getStepName()];
+        return self::getContainer()->get('session')->get('character.corahn_rin')[$this->getStepName()];
     }
 }

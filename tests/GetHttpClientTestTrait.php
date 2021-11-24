@@ -30,15 +30,15 @@ trait GetHttpClientTestTrait
         }
 
         /** @var UserRepository $repo */
-        $repo = static::$container->get(UserRepository::class);
+        $repo = self::getContainer()->get(UserRepository::class);
 
         $user = $repo->findByUsernameOrEmail($username);
 
         if (!$user) {
-            static::fail(\sprintf('Cannot find user "%s" to log in.', $username));
+            self::fail(\sprintf('Cannot find user "%s" to log in.', $username));
         }
 
-        static::setToken($client, $user, $user->getRoles());
+        self::setToken($client, $user, $user->getRoles());
     }
 
     protected function getHttpClient(): KernelBrowser
@@ -50,7 +50,7 @@ trait GetHttpClientTestTrait
         $server = [];
 
         /** @var KernelBrowser $client */
-        $client = static::createClient([], $server);
+        $client = self::createClient([], $server);
         // Disable reboot, allows client to be reused for other requests.
         $client->disableReboot();
 
@@ -59,7 +59,7 @@ trait GetHttpClientTestTrait
 
     protected static function setToken(KernelBrowser $client, UserInterface $user, array $roles = ['ROLE_USER']): void
     {
-        if (!\is_a(static::class, KernelTestCase::class, true)) {
+        if (!\is_a(self::class, KernelTestCase::class, true)) {
             throw new \RuntimeException(\sprintf('Test case must extend %s to use Kernel features', KernelTestCase::class));
         }
 
@@ -68,7 +68,7 @@ trait GetHttpClientTestTrait
         $session = $client->getContainer()->get('session');
 
         $token = new PostAuthenticationGuardToken($user, $firewallName, $roles);
-        static::$container->get(AuthenticationManagerInterface::class)->authenticate($token);
+        self::getContainer()->get(AuthenticationManagerInterface::class)->authenticate($token);
 
         $session->set('_security_'.$firewallName, \serialize($token));
         $session->save();

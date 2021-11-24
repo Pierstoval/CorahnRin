@@ -96,24 +96,24 @@ abstract class AbstractEasyAdminTest extends WebTestCase
         // False means that we do not ever want to test this feature.
         // Allows a cleaner phpunit output.
         if (false === $wishedColumns) {
-            static::assertTrue(true);
+            self::assertTrue(true);
 
             return;
         }
 
         if (!$wishedColumns) {
-            static::markTestIncomplete('No columns to test the listing page.');
+            self::markTestIncomplete('No columns to test the listing page.');
         }
 
-        static::assertSame(200, $client->getResponse()->getStatusCode(), $entityName);
+        self::assertSame(200, $client->getResponse()->getStatusCode(), $entityName);
 
         /** @var Crawler|\DOMElement[] $nodeHeaders */
         $nodeHeaders = $crawler->filter('#main table thead tr th[class]');
 
-        static::assertCount(\count($wishedColumns), $nodeHeaders, $entityName);
+        self::assertCount(\count($wishedColumns), $nodeHeaders, $entityName);
 
         foreach ($nodeHeaders as $k => $node) {
-            static::assertArrayHasKey($k, $wishedColumns, $entityName);
+            self::assertArrayHasKey($k, $wishedColumns, $entityName);
         }
     }
 
@@ -128,12 +128,12 @@ abstract class AbstractEasyAdminTest extends WebTestCase
 
         $crawler = $client->request('GET', "/fr/admin/{$entityName}/list");
 
-        static::assertSame(200, $client->getResponse()->getStatusCode(), $entityName."\n".$crawler->filter('title')->text('', true));
+        self::assertSame(200, $client->getResponse()->getStatusCode(), $entityName."\n".$crawler->filter('title')->text('', true));
 
         $count = $crawler->filter('#main table tr[data-id]')->count();
 
         if (0 === $count) {
-            static::markTestIncomplete('No data to test the "list" action for the entity "'.$entityName.'"');
+            self::markTestIncomplete('No data to test the "list" action for the entity "'.$entityName.'"');
         }
     }
 
@@ -147,7 +147,7 @@ abstract class AbstractEasyAdminTest extends WebTestCase
         // False means that we do not ever want to test this feature.
         // Allows a cleaner phpunit output.
         if (false === $data) {
-            static::assertTrue(true);
+            self::assertTrue(true);
 
             return;
         }
@@ -166,7 +166,7 @@ abstract class AbstractEasyAdminTest extends WebTestCase
         // False means that we do not ever want to test this feature.
         // Allows a cleaner phpunit output.
         if (false === $data) {
-            static::assertTrue(true);
+            self::assertTrue(true);
 
             return;
         }
@@ -185,7 +185,7 @@ abstract class AbstractEasyAdminTest extends WebTestCase
         // False means that we do not ever want to test this feature.
         // Allows a cleaner phpunit output.
         if (false === $id) {
-            static::assertTrue(true);
+            self::assertTrue(true);
 
             return;
         }
@@ -193,7 +193,7 @@ abstract class AbstractEasyAdminTest extends WebTestCase
         $entityName = $this->getEntityName();
 
         if (!$id) {
-            static::markTestIncomplete('No data to test the "delete" action for entity "'.$entityName.'".');
+            self::markTestIncomplete('No data to test the "delete" action for entity "'.$entityName.'".');
         }
 
         $client = $this->getHttpClient();
@@ -202,22 +202,22 @@ abstract class AbstractEasyAdminTest extends WebTestCase
 
         $deleteForm = $client->request('DELETE', \sprintf('/fr/admin/%s/edit/%s?referer=/', $entityName, $id))->filter('#delete_form_submit');
 
-        static::assertCount(1, $deleteForm, $entityName);
+        self::assertCount(1, $deleteForm, $entityName);
 
         $form = $deleteForm->form();
 
         $client->submit($form);
 
         // If redirects to list, it means it's correct, else it would redirect to "list" action.
-        static::assertSame(302, $client->getResponse()->getStatusCode(), $entityName);
-        static::assertSame('/', $client->getResponse()->headers->get('location'), $entityName);
+        self::assertSame(302, $client->getResponse()->getStatusCode(), $entityName);
+        self::assertSame('/', $client->getResponse()->headers->get('location'), $entityName);
 
         /** @var EntityManager $em */
         $em = $client->getContainer()->get('doctrine')->getManager();
 
         $object = $em->find($this->getEntityClass(), $id);
 
-        static::assertFalse((bool) $object, $entityName);
+        self::assertFalse((bool) $object, $entityName);
     }
 
     /**
@@ -227,7 +227,7 @@ abstract class AbstractEasyAdminTest extends WebTestCase
     {
         $id = $dataToSubmit['id'] ?? $expectedData['id'] ?? null;
         if ('edit' === $view && !$id) {
-            static::fail('You must specify an ID for the edit mode.');
+            self::fail('You must specify an ID for the edit mode.');
         }
 
         if (!$client) {
@@ -242,14 +242,14 @@ abstract class AbstractEasyAdminTest extends WebTestCase
 
         $crawler = $client->request('GET', "/fr/admin/{$entityName}/{$view}".($id ? "/{$id}" : ''));
 
-        static::assertSame(200, $client->getResponse()->getStatusCode(), $entityName);
+        self::assertSame(200, $client->getResponse()->getStatusCode(), $entityName);
 
         $formEntityFieldName = \mb_strtolower($entityName);
 
         /** @var Crawler $formNode */
         $formNode = $crawler->filter(\sprintf('#%s-%s-form', $view, $formEntityFieldName));
 
-        static::assertCount(1, $formNode, $entityName);
+        self::assertCount(1, $formNode, $entityName);
 
         $form = $formNode->form();
 
@@ -279,22 +279,22 @@ abstract class AbstractEasyAdminTest extends WebTestCase
             }
         }
 
-        static::assertSame(302, $response->getStatusCode(), \sprintf(
+        self::assertSame(302, $response->getStatusCode(), \sprintf(
             'Not redirecting after submitting %s action %s%s',
             $view,
             $entityName,
             $message
         ));
-        static::assertSame("/fr/admin/{$entityName}/list", $response->headers->get('location'), $entityName);
+        self::assertSame("/fr/admin/{$entityName}/list", $response->headers->get('location'), $entityName);
 
         $crawler->clear();
         $client->followRedirect();
 
-        static::assertSame(200, $client->getResponse()->getStatusCode(), $entityName);
+        self::assertSame(200, $client->getResponse()->getStatusCode(), $entityName);
 
         $lastEntity = $em->getRepository($this->getEntityClass())->findOneBy($searchData);
 
-        static::assertNotNull($lastEntity);
+        self::assertNotNull($lastEntity);
 
         foreach ($expectedData as $field => $expectedValue) {
             if ('.result-data-to-find' === $field) {
@@ -323,9 +323,9 @@ abstract class AbstractEasyAdminTest extends WebTestCase
                         $valueToCompare = $valueToCompare->getId();
                     }
                 }
-                static::assertSame($expectedValue, $valueToCompare, 'Error for class property '.$entityName.'::$'.$field);
+                self::assertSame($expectedValue, $valueToCompare, 'Error for class property '.$entityName.'::$'.$field);
             } else {
-                static::fail('No getter found for property '.$entityName.'::$'.$field.'.');
+                self::fail('No getter found for property '.$entityName.'::$'.$field.'.');
             }
         }
 

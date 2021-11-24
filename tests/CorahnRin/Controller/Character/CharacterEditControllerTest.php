@@ -32,8 +32,8 @@ class CharacterEditControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/characters/4-invited-character');
         $client->clickLink('Modifier');
-        static::assertResponseIsSuccessful();
-        static::assertSame('/fr/characters/4-invited-character/edit', $client->getRequest()->getPathInfo());
+        self::assertResponseIsSuccessful();
+        self::assertSame('/fr/characters/4-invited-character/edit', $client->getRequest()->getPathInfo());
 
         $client->submit($client->getCrawler()->filter('form[name="character_edit"]')->form(), [
             'character_edit[descriptionAndFacts][description]' => 'New description',
@@ -43,18 +43,18 @@ class CharacterEditControllerTest extends WebTestCase
             'character_edit[inventory][preciousObjects][0]' => 'New first precious item',
         ]);
 
-        static::assertResponseRedirects('/fr/characters/4-invited-character', 302, 'Form values were invalid');
+        self::assertResponseRedirects('/fr/characters/4-invited-character', 302, 'Form values were invalid');
         $client->followRedirect();
-        static::assertSelectorTextSame('.card-panel.green', 'Mise à jour réussie !');
+        self::assertSelectorTextSame('.card-panel.green', 'Mise à jour réussie !');
 
         /** @var Character $character */
-        $character = static::$container->get(CharactersRepository::class)->findByIdAndSlug(4, 'invited-character');
-        static::assertInstanceOf(Character::class, $character);
-        static::assertSame('New description', $character->getDescription());
-        static::assertSame('New story', $character->getStory());
-        static::assertSame('New notable facts', $character->getFacts());
-        static::assertSame(['New first item'], $character->getInventory());
-        static::assertSame(['New first precious item'], $character->getTreasures());
+        $character = self::getContainer()->get(CharactersRepository::class)->findByIdAndSlug(4, 'invited-character');
+        self::assertInstanceOf(Character::class, $character);
+        self::assertSame('New description', $character->getDescription());
+        self::assertSame('New story', $character->getStory());
+        self::assertSame('New notable facts', $character->getFacts());
+        self::assertSame(['New first item'], $character->getInventory());
+        self::assertSame(['New first precious item'], $character->getTreasures());
     }
 
     /**
@@ -67,18 +67,18 @@ class CharacterEditControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/characters/4-invited-character');
         $client->clickLink('Modifier');
-        static::assertResponseIsSuccessful();
-        static::assertSame('/fr/characters/4-invited-character/edit', $client->getRequest()->getPathInfo());
+        self::assertResponseIsSuccessful();
+        self::assertSame('/fr/characters/4-invited-character/edit', $client->getRequest()->getPathInfo());
 
         $client->submit($client->getCrawler()->filter('form[name="character_edit"]')->form(), [
             'character_edit[inventory][items][0]' => '',
             'character_edit[inventory][preciousObjects][0]' => '',
         ]);
 
-        static::assertResponseStatusCodeSame(200, 'Form values were unexpectedly valid');
+        self::assertResponseStatusCodeSame(200, 'Form values were unexpectedly valid');
         $errors = $client->getCrawler()->filter('.card-panel.red');
-        static::assertCount(2, $errors, 'Expected 2 errors caused by "Not blank" fields.');
-        static::assertSame('Cette valeur ne doit pas être vide.', \trim($errors->getNode(0)->textContent));
-        static::assertSame('Cette valeur ne doit pas être vide.', \trim($errors->getNode(1)->textContent));
+        self::assertCount(2, $errors, 'Expected 2 errors caused by "Not blank" fields.');
+        self::assertSame('Cette valeur ne doit pas être vide.', \trim($errors->getNode(0)->textContent));
+        self::assertSame('Cette valeur ne doit pas être vide.', \trim($errors->getNode(1)->textContent));
     }
 }

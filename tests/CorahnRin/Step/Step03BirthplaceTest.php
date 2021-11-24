@@ -24,9 +24,9 @@ class Step03BirthplaceTest extends AbstractStepTest
             'region_value' => 25,
         ]);
 
-        static::assertSame(302, $result->getResponse()->getStatusCode());
-        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/04_geo'));
-        static::assertSame([$this->getStepName() => 25], $result->getSession()->get('character.corahn_rin'));
+        self::assertSame(302, $result->getResponse()->getStatusCode());
+        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/04_geo'));
+        self::assertSame([$this->getStepName() => 25], $result->getSession()->get('character.corahn_rin'));
     }
 
     /**
@@ -40,8 +40,8 @@ class Step03BirthplaceTest extends AbstractStepTest
 
         $crawler = $result->getCrawler();
 
-        static::assertSame(200, $result->getResponse()->getStatusCode(), $crawler->filter('title')->text('', true));
-        static::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
-        static::assertEquals('Veuillez choisir une région de naissance correcte.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
+        self::assertSame(200, $result->getResponse()->getStatusCode(), $crawler->filter('title')->text('', true));
+        self::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
+        self::assertEquals('Veuillez choisir une région de naissance correcte.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 }

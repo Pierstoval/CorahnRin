@@ -32,7 +32,7 @@ abstract class AbstractStepTest extends WebTestCase
 
         // Make a first request so that the Session object is instantiated.
         $client->request('GET', '/fr/character/generate');
-        static::assertResponseRedirects('/fr/character/generate/01_people');
+        self::assertResponseRedirects('/fr/character/generate/01_people');
 
         return $client;
     }
@@ -43,7 +43,7 @@ abstract class AbstractStepTest extends WebTestCase
             return \preg_replace_callback('~[A-Z]~', function ($matches) {
                 return '_'.\mb_strtolower($matches[0]);
             }, $matches[1]);
-        }, static::class);
+        }, self::class);
     }
 
     protected function submitAction(array $sessionValues = [], array $formValues = [], string $queryString = ''): StepActionTestResult
@@ -64,7 +64,7 @@ abstract class AbstractStepTest extends WebTestCase
 
         $msg = 'Could not execute step request...';
         $msg .= $errorBlock->count() ? ("\n".$errorBlock->text('', true)) : (' For step "'.$this->getStepName().'"');
-        static::assertSame(200, $statusCode, $msg);
+        self::assertSame(200, $statusCode, $msg);
 
         // Prepare form values.
         $form = $crawler->filter('#generator_form')->form();
@@ -78,7 +78,7 @@ abstract class AbstractStepTest extends WebTestCase
                     ->setValues($formValues)
                 ;
             } catch (\Exception $e) {
-                static::fail($e->getMessage()."\nWith values:\n".\preg_replace('~\s\s+~', ' ', \str_replace(["\r", "\n"], ' ', \json_encode($formValues))));
+                self::fail($e->getMessage()."\nWith values:\n".\preg_replace('~\s\s+~', ' ', \str_replace(["\r", "\n"], ' ', \json_encode($formValues))));
             }
         }
 

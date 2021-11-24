@@ -20,6 +20,6 @@ class Step16DisciplinesTest extends AbstractStepTest
      */
     public function testStep(): void
     {
-        static::markTestIncomplete();
+        self::markTestIncomplete();
     }
 }

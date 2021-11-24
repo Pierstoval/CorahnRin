@@ -105,14 +105,14 @@ class UserRoleCommandTest extends KernelTestCase
 
         $output = \explode("\n", $tester->getDisplay());
 
-        static::assertStringStartsWith(' Adding roles to Pierstoval:', $output[1] ?? '');
-        static::assertStringStartsWith(' * ROLE_SUPER_ADMIN', $output[3] ?? '');
-        static::assertStringStartsWith(' [WARNING] User already has role "ROLE_SUPER_ADMIN', $output[5] ?? '');
-        static::assertStringStartsWith(' Final roles:', $output[7] ?? '');
-        static::assertStringStartsWith('  ROLE_USER', $output[10] ?? '');
-        static::assertStringStartsWith('  ROLE_SUPER_ADMIN', $output[11] ?? '');
-        static::assertStringStartsWith(' Dry run then!', $output[16] ?? '');
-        static::assertStringStartsWith(' [OK] Done!', $output[18] ?? '');
+        self::assertStringStartsWith(' Adding roles to Pierstoval:', $output[1] ?? '');
+        self::assertStringStartsWith(' * ROLE_SUPER_ADMIN', $output[3] ?? '');
+        self::assertStringStartsWith(' [WARNING] User already has role "ROLE_SUPER_ADMIN', $output[5] ?? '');
+        self::assertStringStartsWith(' Final roles:', $output[7] ?? '');
+        self::assertStringStartsWith('  ROLE_USER', $output[10] ?? '');
+        self::assertStringStartsWith('  ROLE_SUPER_ADMIN', $output[11] ?? '');
+        self::assertStringStartsWith(' Dry run then!', $output[16] ?? '');
+        self::assertStringStartsWith(' [OK] Done!', $output[18] ?? '');
     }
 
     /**
@@ -132,21 +132,21 @@ class UserRoleCommandTest extends KernelTestCase
 
         $output = \explode("\n", $tester->getDisplay());
 
-        static::assertStringStartsWith(' Adding roles to Pierstoval:', $output[1] ?? '');
-        static::assertStringStartsWith(' * ROLE_TEST', $output[3] ?? '');
-        static::assertStringStartsWith(' Final roles:', $output[5] ?? '');
-        static::assertStringStartsWith('  ROLE_USER', $output[8] ?? '');
-        static::assertStringStartsWith('  ROLE_SUPER_ADMIN', $output[9] ?? '');
-        static::assertStringStartsWith('  ROLE_TEST', $output[10] ?? '');
-        static::assertStringStartsWith(' Saving...', $output[15] ?? '');
-        static::assertStringStartsWith(' [OK] Done!', $output[17] ?? '');
+        self::assertStringStartsWith(' Adding roles to Pierstoval:', $output[1] ?? '');
+        self::assertStringStartsWith(' * ROLE_TEST', $output[3] ?? '');
+        self::assertStringStartsWith(' Final roles:', $output[5] ?? '');
+        self::assertStringStartsWith('  ROLE_USER', $output[8] ?? '');
+        self::assertStringStartsWith('  ROLE_SUPER_ADMIN', $output[9] ?? '');
+        self::assertStringStartsWith('  ROLE_TEST', $output[10] ?? '');
+        self::assertStringStartsWith(' Saving...', $output[15] ?? '');
+        self::assertStringStartsWith(' [OK] Done!', $output[17] ?? '');
 
         /** @var UserRepository $repo */
-        $repo = static::$container->get(UserRepository::class);
+        $repo = self::getContainer()->get(UserRepository::class);
         $user = $repo->loadUserByUsername('pierstoval');
 
-        static::assertNotNull($user);
-        static::assertSame(['ROLE_USER', 'ROLE_SUPER_ADMIN', 'ROLE_TEST'], $user->getRoles());
+        self::assertNotNull($user);
+        self::assertSame(['ROLE_USER', 'ROLE_SUPER_ADMIN', 'ROLE_TEST'], $user->getRoles());
     }
 
     /**
@@ -166,19 +166,19 @@ class UserRoleCommandTest extends KernelTestCase
 
         $output = \explode("\n", $tester->getDisplay());
 
-        static::assertStringStartsWith(' Removing roles to Pierstoval:', $output[1] ?? '');
-        static::assertStringStartsWith(' * ROLE_SUPER_ADMIN', $output[3] ?? '');
-        static::assertStringStartsWith(' Final roles:', $output[5] ?? '');
-        static::assertStringStartsWith('  ROLE_USER', $output[8] ?? '');
-        static::assertStringStartsWith(' Saving...', $output[13] ?? '');
-        static::assertStringStartsWith(' [OK] Done!', $output[15] ?? '');
+        self::assertStringStartsWith(' Removing roles to Pierstoval:', $output[1] ?? '');
+        self::assertStringStartsWith(' * ROLE_SUPER_ADMIN', $output[3] ?? '');
+        self::assertStringStartsWith(' Final roles:', $output[5] ?? '');
+        self::assertStringStartsWith('  ROLE_USER', $output[8] ?? '');
+        self::assertStringStartsWith(' Saving...', $output[13] ?? '');
+        self::assertStringStartsWith(' [OK] Done!', $output[15] ?? '');
 
         /** @var UserRepository $repo */
-        $repo = static::$container->get(UserRepository::class);
+        $repo = self::getContainer()->get(UserRepository::class);
         $user = $repo->loadUserByUsername('pierstoval');
 
-        static::assertNotNull($user);
-        static::assertSame(['ROLE_USER'], $user->getRoles());
+        self::assertNotNull($user);
+        self::assertSame(['ROLE_USER'], $user->getRoles());
     }
 
     /**
@@ -198,14 +198,14 @@ class UserRoleCommandTest extends KernelTestCase
 
         $output = \explode("\n", $tester->getDisplay());
 
-        static::assertStringStartsWith(' Removing roles to Pierstoval:', $output[1] ?? '');
-        static::assertStringStartsWith(' * ROLE_INEXISTENT', $output[3] ?? '');
-        static::assertStringStartsWith(' [WARNING] User does not have role "ROLE_INEXISTENT', $output[5] ?? '');
-        static::assertStringStartsWith(' Final roles:', $output[7] ?? '');
-        static::assertStringStartsWith('  ROLE_USER', $output[10] ?? '');
-        static::assertStringStartsWith('  ROLE_SUPER_ADMIN', $output[11] ?? '');
-        static::assertStringStartsWith(' Dry run then!', $output[16] ?? '');
-        static::assertStringStartsWith(' [OK] Done!', $output[18] ?? '');
+        self::assertStringStartsWith(' Removing roles to Pierstoval:', $output[1] ?? '');
+        self::assertStringStartsWith(' * ROLE_INEXISTENT', $output[3] ?? '');
+        self::assertStringStartsWith(' [WARNING] User does not have role "ROLE_INEXISTENT', $output[5] ?? '');
+        self::assertStringStartsWith(' Final roles:', $output[7] ?? '');
+        self::assertStringStartsWith('  ROLE_USER', $output[10] ?? '');
+        self::assertStringStartsWith('  ROLE_SUPER_ADMIN', $output[11] ?? '');
+        self::assertStringStartsWith(' Dry run then!', $output[16] ?? '');
+        self::assertStringStartsWith(' [OK] Done!', $output[18] ?? '');
     }
 
     private function getCommandTester(): CommandTester
@@ -215,9 +215,9 @@ class UserRoleCommandTest extends KernelTestCase
 
     private function getCommand(): UserRoleCommand
     {
-        $cmd = (new Application(static::bootKernel()))->find('user:role');
+        $cmd = (new Application(self::bootKernel()))->find('user:role');
 
-        static::assertInstanceOf(UserRoleCommand::class, $cmd);
+        self::assertInstanceOf(UserRoleCommand::class, $cmd);
 
         return $cmd;
     }

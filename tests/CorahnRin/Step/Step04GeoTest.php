@@ -24,9 +24,9 @@ class Step04GeoTest extends AbstractStepTest
             'gen-div-choice' => 1,
         ]);
 
-        static::assertSame(302, $result->getResponse()->getStatusCode());
-        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/05_social_class'));
-        static::assertSame([$this->getStepName() => 1], $result->getSession()->get('character.corahn_rin'));
+        self::assertSame(302, $result->getResponse()->getStatusCode());
+        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/05_social_class'));
+        self::assertSame([$this->getStepName() => 1], $result->getSession()->get('character.corahn_rin'));
     }
 
     /**
@@ -40,8 +40,8 @@ class Step04GeoTest extends AbstractStepTest
 
         $crawler = $result->getCrawler();
 
-        static::assertSame(200, $result->getResponse()->getStatusCode());
-        static::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
-        static::assertEquals('Veuillez indiquer un lieu de vie géographique correct.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
+        self::assertSame(200, $result->getResponse()->getStatusCode());
+        self::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
+        self::assertEquals('Veuillez indiquer un lieu de vie géographique correct.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 }

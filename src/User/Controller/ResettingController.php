@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace User\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,17 +30,20 @@ use User\Util\TokenGenerator;
 
 class ResettingController extends AbstractController
 {
+    private EntityManagerInterface $em;
     private UserRepository $userRepository;
     private UserMailer $mailer;
     private RoleHierarchyInterface $roleHierarchy;
     private UserPasswordHasherInterface $passwordEncoder;
 
     public function __construct(
+        EntityManagerInterface $em,
         UserRepository $userRepository,
         UserMailer $mailer,
         UserPasswordHasherInterface $passwordEncoder,
         RoleHierarchyInterface $roleHierarchy
     ) {
+        $this->em = $em;
         $this->userRepository = $userRepository;
         $this->mailer = $mailer;
         $this->roleHierarchy = $roleHierarchy;
@@ -90,7 +94,7 @@ class ResettingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setConfirmationToken(null);
             $user->setPassword($this->passwordEncoder->hashPassword($user, $form->get('plainPassword')->getData()));
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             $this->addFlash('user_success', 'resetting.flash.success');
             $request->getSession()->set(Security::LAST_USERNAME, $user->getUsername());
@@ -119,7 +123,7 @@ class ResettingController extends AbstractController
 
         try {
             $this->mailer->sendResettingEmailMessage($user);
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
         } catch (\Exception $e) {
             $this->addFlash('user_error', 'resetting.email_failed');
 

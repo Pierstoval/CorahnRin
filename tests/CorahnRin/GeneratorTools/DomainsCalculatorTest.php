@@ -82,8 +82,8 @@ class DomainsCalculatorTest extends TestCase
         $values = \call_user_func_array([$this->getCalculator(), 'calculateFromGeneratorData'], $arguments);
 
         foreach ($expectedValues as $key => $value) {
-            static::assertArrayHasKey($key, $values);
-            static::assertSame($values[$key], $value, \sprintf('Key "%s" has wrong value.', $key));
+            self::assertArrayHasKey($key, $values);
+            self::assertSame($values[$key], $value, \sprintf('Key "%s" has wrong value.', $key));
         }
     }
 

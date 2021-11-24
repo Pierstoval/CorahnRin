@@ -20,6 +20,6 @@ class Step19DescriptionTest extends AbstractStepTest
      */
     public function testStep(): void
     {
-        static::markTestIncomplete();
+        self::markTestIncomplete();
     }
 }

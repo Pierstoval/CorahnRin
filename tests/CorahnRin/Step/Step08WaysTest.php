@@ -31,9 +31,9 @@ class Step08WaysTest extends AbstractStepTest
             'ways' => $ways,
         ]);
 
-        static::assertSame(302, $result->getResponse()->getStatusCode());
-        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/09_traits'));
-        static::assertSame([$this->getStepName() => $ways], $result->getSession()->get('character.corahn_rin'));
+        self::assertSame(302, $result->getResponse()->getStatusCode());
+        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/09_traits'));
+        self::assertSame([$this->getStepName() => $ways], $result->getSession()->get('character.corahn_rin'));
     }
 
     /**
@@ -54,10 +54,10 @@ class Step08WaysTest extends AbstractStepTest
 
         $crawler = $result->getCrawler();
 
-        static::assertSame(200, $result->getResponse()->getStatusCode());
-        static::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
+        self::assertSame(200, $result->getResponse()->getStatusCode());
+        self::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
         $nodeText = $crawler->filter('#flash-messages > .card-panel.error')->text('', true);
-        static::assertEquals('Veuillez indiquer vos scores de Voies.', $nodeText);
+        self::assertEquals('Veuillez indiquer vos scores de Voies.', $nodeText);
     }
 
     /**
@@ -78,10 +78,10 @@ class Step08WaysTest extends AbstractStepTest
 
         $crawler = $result->getCrawler();
 
-        static::assertSame(200, $result->getResponse()->getStatusCode());
-        static::assertCount(1, $crawler->filter('#flash-messages > .card-panel.warning'));
+        self::assertSame(200, $result->getResponse()->getStatusCode());
+        self::assertCount(1, $crawler->filter('#flash-messages > .card-panel.warning'));
         $nodeText = $crawler->filter('#flash-messages > .card-panel.warning')->text('', true);
-        static::assertEquals('La somme des voies doit être égale à 15. Merci de corriger les valeurs de certaines voies.', $nodeText);
+        self::assertEquals('La somme des voies doit être égale à 15. Merci de corriger les valeurs de certaines voies.', $nodeText);
     }
 
     /**
@@ -102,10 +102,10 @@ class Step08WaysTest extends AbstractStepTest
 
         $crawler = $result->getCrawler();
 
-        static::assertSame(200, $result->getResponse()->getStatusCode());
-        static::assertCount(1, $crawler->filter('#flash-messages > .card-panel.warning'));
+        self::assertSame(200, $result->getResponse()->getStatusCode());
+        self::assertCount(1, $crawler->filter('#flash-messages > .card-panel.warning'));
         $nodeText = $crawler->filter('#flash-messages > .card-panel.warning')->text('', true);
-        static::assertEquals('Au moins une des voies doit avoir un score de 1 ou de 5.', $nodeText);
+        self::assertEquals('Au moins une des voies doit avoir un score de 1 ou de 5.', $nodeText);
     }
 
     /**
@@ -126,10 +126,10 @@ class Step08WaysTest extends AbstractStepTest
 
         $crawler = $result->getCrawler();
 
-        static::assertSame(200, $result->getResponse()->getStatusCode());
-        static::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
+        self::assertSame(200, $result->getResponse()->getStatusCode());
+        self::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
         $nodeText = $crawler->filter('#flash-messages > .card-panel.error')->text('', true);
-        static::assertEquals('Les voies doivent être comprises entre 1 et 5.', $nodeText);
+        self::assertEquals('Les voies doivent être comprises entre 1 et 5.', $nodeText);
     }
 
     /**
@@ -149,9 +149,9 @@ class Step08WaysTest extends AbstractStepTest
             ],
         ]);
 
-        static::assertSame(200, $client->getResponse()->getStatusCode(), $crawler->filter('title')->count() > 0 ? $crawler->filter('title')->text('', true) : '');
-        static::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
+        self::assertSame(200, $client->getResponse()->getStatusCode(), $crawler->filter('title')->count() > 0 ? $crawler->filter('title')->text('', true) : '');
+        self::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
         $nodeText = \preg_replace('~(\\r)?\\n\s+~', '', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
-        static::assertEquals('Erreur dans le formulaire. Merci de vérifier les valeurs soumises. Les voies doivent être comprises entre 1 et 5.', $nodeText);
+        self::assertEquals('Erreur dans le formulaire. Merci de vérifier les valeurs soumises. Les voies doivent être comprises entre 1 et 5.', $nodeText);
     }
 }

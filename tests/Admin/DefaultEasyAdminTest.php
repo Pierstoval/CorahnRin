@@ -29,7 +29,7 @@ class DefaultEasyAdminTest extends WebTestCase
         $this->loginAsUser($client, 'standard-admin');
         $crawler = $client->request('GET', '/fr/admin');
 
-        static::assertSame(200, $client->getResponse()->getStatusCode(), \sprintf('Page title: "%s".', $crawler->filter('title')->html()));
-        static::assertSame('Studio Agate', $crawler->filter('.content-wrapper h1')->text('', true));
+        self::assertSame(200, $client->getResponse()->getStatusCode(), \sprintf('Page title: "%s".', $crawler->filter('title')->html()));
+        self::assertSame('Studio Agate', $crawler->filter('.content-wrapper h1')->text('', true));
     }
 }

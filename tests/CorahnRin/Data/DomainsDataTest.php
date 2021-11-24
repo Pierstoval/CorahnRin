@@ -37,7 +37,7 @@ class DomainsDataTest extends TestCase
     public function test validateDomain with valid domain title does not throw(string $title): void
     {
         DomainsData::validateDomain($title);
-        static::assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function test validateDomain with invalid domain title throws exception(): void
@@ -53,12 +53,12 @@ class DomainsDataTest extends TestCase
      */
     public function test isValid with valid title returns true(string $title): void
     {
-        static::assertTrue(DomainsData::isDomainValid($title));
+        self::assertTrue(DomainsData::isDomainValid($title));
     }
 
     public function test isValid with invalid domain title returns false(): void
     {
-        static::assertFalse(DomainsData::isDomainValid('inexistent_title'));
+        self::assertFalse(DomainsData::isDomainValid('inexistent_title'));
     }
 
     /**
@@ -67,7 +67,7 @@ class DomainsDataTest extends TestCase
     public function test validateShortDomain with valid short domain does not throw(string $shortDomain): void
     {
         DomainsData::validateShortDomain($shortDomain);
-        static::assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function test validateShortDomain with invalid domain throws exception(): void
@@ -84,7 +84,7 @@ class DomainsDataTest extends TestCase
     public function test validateDomainBaseValue with valid domain and valid value does not throw(string $domain, int $value): void
     {
         DomainsData::validateDomainBaseValue($domain, $value);
-        static::assertTrue(true);
+        self::assertTrue(true);
     }
 
     /**
@@ -105,11 +105,11 @@ class DomainsDataTest extends TestCase
     {
         $object = DomainsData::getAsObject($domain);
 
-        static::assertSame($domain, $object->getTitle());
+        self::assertSame($domain, $object->getTitle());
         $asArray = DomainsData::ALL[$domain];
-        static::assertSame($asArray['description'], $object->getDescription());
-        static::assertSame($asArray['short_name'], $object->getShortName());
-        static::assertSame($asArray['way'], $object->getWay());
+        self::assertSame($asArray['description'], $object->getDescription());
+        self::assertSame($asArray['short_name'], $object->getShortName());
+        self::assertSame($asArray['way'], $object->getWay());
     }
 
     /**
@@ -117,7 +117,7 @@ class DomainsDataTest extends TestCase
      */
     public function test shortNameToTitle with valid short name returns associated domain title(string $domainTitle, string $shortDomain): void
     {
-        static::assertSame($domainTitle, DomainsData::shortNameToTitle($shortDomain));
+        self::assertSame($domainTitle, DomainsData::shortNameToTitle($shortDomain));
     }
 
     /**
@@ -125,7 +125,7 @@ class DomainsDataTest extends TestCase
      */
     public function test getShortName with valid title returns associated short name(string $domainTitle, string $shortDomain): void
     {
-        static::assertSame($shortDomain, DomainsData::getShortName($domainTitle));
+        self::assertSame($shortDomain, DomainsData::getShortName($domainTitle));
     }
 
     public function test getShortNames returns valid short names(): void
@@ -133,7 +133,7 @@ class DomainsDataTest extends TestCase
         $names = DomainsData::getShortNames();
         \sort($names);
 
-        static::assertSame(['closeCombat', 'craft', 'demorthenMysteries', 'erudition', 'feats', 'magience', 'naturalEnvironment', 'occultism', 'perception', 'performance', 'prayer', 'relation', 'science', 'shootingAndThrowing', 'stealth', 'travel'], $names);
+        self::assertSame(['closeCombat', 'craft', 'demorthenMysteries', 'erudition', 'feats', 'magience', 'naturalEnvironment', 'occultism', 'perception', 'performance', 'prayer', 'relation', 'science', 'shootingAndThrowing', 'stealth', 'travel'], $names);
     }
 
     public function provide methods that use validateDomain(): \Generator

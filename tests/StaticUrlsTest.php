@@ -34,8 +34,8 @@ class StaticUrlsTest extends WebTestCase
             'HTTP_ACCEPT_LANGUAGE' => [$browserLocale],
         ]);
 
-        static::assertSame(302, $client->getResponse()->getStatusCode());
-        static::assertTrue($client->getResponse()->isRedirect("/{$browserLocale}"));
+        self::assertSame(302, $client->getResponse()->getStatusCode());
+        self::assertTrue($client->getResponse()->isRedirect("/{$browserLocale}"));
     }
 
     public function provideRootData(): ?\Generator
@@ -69,8 +69,8 @@ class StaticUrlsTest extends WebTestCase
         $req = $client->getRequest();
         $res = $client->getResponse();
 
-        static::assertSame($expectedRouteName, $req->attributes->get('_route'), 'Unexpected route name.');
-        static::assertSame($expectedStatusCode, $res->getStatusCode(), 'Unexpected status code.');
+        self::assertSame($expectedRouteName, $req->attributes->get('_route'), 'Unexpected route name.');
+        self::assertSame($expectedStatusCode, $res->getStatusCode(), 'Unexpected status code.');
 
         if ($expectedRedirectUrlOrTitleContent) {
             // See Symfony\Component\HttpFoundation\Response::isRedirect()
@@ -80,11 +80,11 @@ class StaticUrlsTest extends WebTestCase
                     $expectedRedirectUrlOrTitleContent,
                     $res->headers->get('Location')
                 );
-                static::assertTrue($res->isRedirect($expectedRedirectUrlOrTitleContent), $message);
+                self::assertTrue($res->isRedirect($expectedRedirectUrlOrTitleContent), $message);
             } else {
                 $title = $crawler->filter($cssSelectorToCheck);
-                static::assertNotNull($title, 'No node found for the CSS selector.');
-                static::assertSame($expectedRedirectUrlOrTitleContent, $title->text('', true));
+                self::assertNotNull($title, 'No node found for the CSS selector.');
+                self::assertSame($expectedRedirectUrlOrTitleContent, $title->text('', true));
             }
         }
     }

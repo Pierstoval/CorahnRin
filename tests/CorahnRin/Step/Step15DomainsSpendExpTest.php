@@ -32,8 +32,8 @@ class Step15DomainsSpendExpTest extends AbstractStepTest
 
         $errorMessage = $crawler->filter('head title')->text('', true);
 
-        static::assertSame(302, $client->getResponse()->getStatusCode(), $errorMessage);
-        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
+        self::assertSame(302, $client->getResponse()->getStatusCode(), $errorMessage);
+        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
     }
 
     /**
@@ -41,6 +41,6 @@ class Step15DomainsSpendExpTest extends AbstractStepTest
      */
     public function testStep(): void
     {
-        static::markTestIncomplete();
+        self::markTestIncomplete();
     }
 }
