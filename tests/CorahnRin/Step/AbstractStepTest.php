@@ -28,7 +28,13 @@ abstract class AbstractStepTest extends WebTestCase
      */
     protected function getHttpClient(): Client
     {
-        return $this->baseGetClient();
+        $client = $this->baseGetClient();
+
+        // Make a first request so that the Session object is instantiated.
+        $client->request('GET', '/fr/character/generate');
+        static::assertResponseRedirects('/fr/character/generate/01_people');
+
+        return $client;
     }
 
     protected function getStepName(): string
