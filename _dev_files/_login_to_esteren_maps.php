@@ -45,7 +45,7 @@ function login(SymfonyStyle $io): HttpBrowser
         }
     }
 
-    $baseUri = 'https://maps.esteren.org';
+    $baseUri = 'https://esterenmaps.pierstoval.com';
 
     $browser = new HttpBrowser();
 

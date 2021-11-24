@@ -15,7 +15,7 @@ use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-const BASE_URL = 'https://maps.esteren.org';
+const BASE_URL = 'https://esterenmaps.pierstoval.com';
 
 \define('ROOT_DIR', \dirname(__DIR__));
 
