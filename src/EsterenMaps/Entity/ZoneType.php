@@ -31,7 +31,7 @@ final class ZoneType
     /**
      * @var Collection|Zone[]
      */
-    private array | Collection $zones;
+    private array|Collection $zones;
 
     private array $children = [];
 
@@ -53,7 +53,7 @@ final class ZoneType
     /**
      * @return Collection&iterable<Zone>
      */
-    public function getZones(): array | Collection
+    public function getZones(): array|Collection
     {
         return $this->zones;
     }

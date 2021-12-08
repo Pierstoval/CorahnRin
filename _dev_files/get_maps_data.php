@@ -15,7 +15,7 @@ use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-require \dirname(__DIR__).'/vendor/autoload.php';
+require dirname(__DIR__).'/vendor/autoload.php';
 
 require __DIR__.'/_login_to_esteren_maps.php';
 
@@ -23,37 +23,27 @@ $input = new ArgvInput();
 $output = new ConsoleOutput();
 $io = new SymfonyStyle($input, $output);
 
-try {
-    $browser = login($io);
+$browser = login($io);
 
-    $browser->request('GET', 'https://maps.esteren.org/fr/api/maps/1');
-    $json = \json_decode($browser->getResponse()->getContent(), true, 512, \JSON_THROW_ON_ERROR);
+$browser->request('GET', 'https://esterenmaps.pierstoval.com/fr/api/api/maps/1');
 
-    unset(
-        $json['map']['routes'],
-        $json['map']['markers'],
-        $json['references']['markers_types'],
-        $json['references']['routes_types'],
-        $json['references']['transports'],
-        $json['templates']['LeafletPopupMarkerEditContent'],
-        $json['templates']['LeafletPopupPolylineEditContent'],
-        $json['templates']['LeafletPopupPolygonEditContent'],
-    );
+$json = json_decode($browser->getResponse()->getContent(), true, 512, \JSON_THROW_ON_ERROR);
 
-    $jsonString = \json_encode($json, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE);
+unset(
+    $json['map']['routes'],
+    $json['map']['markers'],
+    $json['references']['markers_types'],
+    $json['references']['routes_types'],
+    $json['references']['transports'],
+    $json['templates']['LeafletPopupMarkerEditContent'],
+    $json['templates']['LeafletPopupPolylineEditContent'],
+    $json['templates']['LeafletPopupPolygonEditContent'],
+);
 
-    if (!\file_put_contents(\dirname(__DIR__).'/data/map_data.json', $jsonString)) {
-        throw new \RuntimeException('Could not write maps data to file.');
-    }
+$jsonString = json_encode($json, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE);
 
-    $io->success('Done!');
-} catch (Exception $e) {
-    do {
-        $io->error($e->getMessage());
-        if ($output->isVerbose()) {
-            $io->error($e->getTrace());
-        }
-    } while ($e = $e->getPrevious());
-
-    exit(1);
+if (!file_put_contents(dirname(__DIR__).'/data/map_data.json', $jsonString)) {
+    throw new \RuntimeException('Could not write maps data to file.');
 }
+
+$io->success('Done!');

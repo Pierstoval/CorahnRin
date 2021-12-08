@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace User\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -30,15 +32,18 @@ class RegistrationController extends AbstractController
 {
     use TargetPathTrait;
 
-    private $userRepository;
-    private $registrationHandler;
+    private UserRepository $userRepository;
+    private UserRegistrator $registrationHandler;
+    private EntityManagerInterface $em;
 
     public function __construct(
+        EntityManagerInterface $em,
         UserRepository $userRepository,
         UserRegistrator $registrationHandler
     ) {
         $this->userRepository = $userRepository;
         $this->registrationHandler = $registrationHandler;
+        $this->em = $em;
     }
 
     /**
@@ -79,7 +84,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/check-email", name="user_check_email", methods={"GET"})
      */
-    public function checkEmailAction(Session $session)
+    public function checkEmailAction(Session $session): RedirectResponse|Response
     {
         $email = $session->get('user_send_confirmation_email/email');
 
@@ -102,7 +107,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register/confirm/{token}", name="user_registration_confirm", requirements={"token" = ".+"}, methods={"GET"})
      */
-    public function confirmAction(string $token)
+    public function confirmAction(string $token): RedirectResponse
     {
         /** @var null|User $user */
         $user = $this->userRepository->findOneBy(['confirmationToken' => $token]);
@@ -114,9 +119,8 @@ class RegistrationController extends AbstractController
         $user->setConfirmationToken(null);
         $user->setEmailConfirmed(true);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
+        $this->em->persist($user);
+        $this->em->flush();
 
         $this->addFlash('user_success', 'registration.confirmed');
 

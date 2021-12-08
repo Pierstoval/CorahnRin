@@ -103,6 +103,6 @@ trait StepsWithDomainsTrait
             'remaining' => $remaining,
         ];
 
-        static::assertEquals($results, $client->getContainer()->get('session')->get('character.corahn_rin')[$this->getStepName()]);
+        self::assertEquals($results, $client->getContainer()->get('session')->get('character.corahn_rin')[$this->getStepName()]);
     }
 }

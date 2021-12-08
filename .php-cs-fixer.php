@@ -20,7 +20,7 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 HEADER;
 
-$finder = PhpCsFixer\Finder::create()
+$finder = (new PhpCsFixer\Finder())
     ->exclude([
         '.php-cs-fixer.php',
         'public',
@@ -69,7 +69,11 @@ return (new PhpCsFixer\Config())
         'heredoc_to_nowdoc' => true,
         'linebreak_after_opening_tag' => true,
         'logical_operators' => true,
-        'native_function_invocation' => true,
+        'native_constant_invocation' => true,
+        'native_function_invocation' => [
+            'include' => ['@all'],
+            'scope' => 'namespaced',
+        ],
         'no_null_property_initialization' => true,
         'no_php4_constructor' => true,
         'no_superfluous_phpdoc_tags' => true,

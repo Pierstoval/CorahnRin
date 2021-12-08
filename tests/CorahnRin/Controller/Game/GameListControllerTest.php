@@ -29,7 +29,7 @@ class GameListControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/games');
 
-        static::assertResponseStatusCodeSame(401);
+        self::assertResponseStatusCodeSame(401);
     }
 
     /**
@@ -43,7 +43,7 @@ class GameListControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/games');
 
-        static::assertResponseStatusCodeSame(200);
+        self::assertResponseStatusCodeSame(200);
 
         $titles = $crawler->filter('h2');
         static::assertSame('En tant que MJ', $titles->eq(0)->text('', true));

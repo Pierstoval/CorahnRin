@@ -34,8 +34,8 @@ class CharacterSpendXpControllerTest extends WebTestCase
 
         $this->submitXpForm($client, []);
 
-        static::assertResponseStatusCodeSame(200);
-        static::assertSelectorTextContains(
+        self::assertResponseStatusCodeSame(200);
+        self::assertSelectorTextContains(
             'form[name="character_spend_xp"] .card-panel.red',
             'Vous n\'avez pas dépensé d\'expérience... 😟 Avez-vous oublié de sélectionner vos bonus ?'
         );
@@ -59,8 +59,8 @@ class CharacterSpendXpControllerTest extends WebTestCase
             '[domains][naturalEnvironment]' => 5,
         ]);
 
-        static::assertResponseStatusCodeSame(200);
-        static::assertSelectorTextContains(
+        self::assertResponseStatusCodeSame(200);
+        self::assertSelectorTextContains(
             'form[name="character_spend_xp"] .card-panel.red',
             '😏'
         );
@@ -79,8 +79,8 @@ class CharacterSpendXpControllerTest extends WebTestCase
             '[disciplines][occultism][1][score]' => 10, // Esoterism
         ]);
 
-        static::assertResponseStatusCodeSame(200);
-        static::assertSelectorTextContains(
+        self::assertResponseStatusCodeSame(200);
+        self::assertSelectorTextContains(
             'form[name="character_spend_xp"] .card-panel.red',
             '😏'
         );
@@ -99,8 +99,8 @@ class CharacterSpendXpControllerTest extends WebTestCase
             '[disciplines][craft][0][score]' => 10, // Jewellery
         ]);
 
-        static::assertResponseStatusCodeSame(200);
-        static::assertSelectorTextContains(
+        self::assertResponseStatusCodeSame(200);
+        self::assertSelectorTextContains(
             'form[name="character_spend_xp"] .card-panel.red',
             'Vous avez tenté d\'acheter une discipline pour un domaine qui n\'a qu\'un score de 3. Un score de domaine de 5 minimum est obligatoire pour pouvoir acheter une discipline.'
         );
@@ -120,8 +120,8 @@ class CharacterSpendXpControllerTest extends WebTestCase
             '[disciplines][occultism][0][score]' => $score, // Combat artifact
         ]);
 
-        static::assertResponseStatusCodeSame(200);
-        static::assertSelectorTextContains(
+        self::assertResponseStatusCodeSame(200);
+        self::assertSelectorTextContains(
             'form[name="character_spend_xp"] .card-panel.red',
             'Le score de discipline doit être compris entre 0 et 10. Veuillez vérifier les valeurs. Ou ne tentez pas de tricher.'
         );
@@ -143,7 +143,7 @@ class CharacterSpendXpControllerTest extends WebTestCase
             '[domains][naturalEnvironment]' => 0,
         ]);
 
-        static::assertResponseStatusCodeSame(200);
+        self::assertResponseStatusCodeSame(200);
         $errors = $client->getCrawler()->filter('.card-panel.red');
         static::assertCount(4, $errors);
         static::assertSame('Cette valeur doit être supérieure ou égale à 3.', \trim($errors->getNode(0)->textContent));
@@ -165,16 +165,16 @@ class CharacterSpendXpControllerTest extends WebTestCase
             '[defense]' => 10,
         ]);
 
-        static::assertResponseRedirects('/fr/characters/4-invited-character', 302);
+        self::assertResponseRedirects('/fr/characters/4-invited-character', 302);
         $client->followRedirect();
 
-        static::assertSelectorTextContains(
+        self::assertSelectorTextContains(
             '#flash-messages',
             'Vous avez dépensé avec succès 350 points d\'expérience !'
         );
 
         /** @var Character $character */
-        $character = static::$container->get(CharactersRepository::class)->findOneBy(['nameSlug' => 'invited-character']);
+        $character = self::getContainer()->get(CharactersRepository::class)->findOneBy(['nameSlug' => 'invited-character']);
         static::assertInstanceOf(Character::class, $character);
         // Remember: remaining XP for this char is 500.
         static::assertSame(350, $character->getExperienceSpent());
@@ -198,16 +198,16 @@ class CharacterSpendXpControllerTest extends WebTestCase
             '[ogham][0]' => 1, // First element: key 0 with Ogham ID = 1
         ], '6-character-to-spend-ogham-with');
 
-        static::assertResponseRedirects('/fr/characters/6-character-to-spend-ogham-with', 302);
+        self::assertResponseRedirects('/fr/characters/6-character-to-spend-ogham-with', 302);
         $client->followRedirect();
 
-        static::assertSelectorTextContains(
+        self::assertSelectorTextContains(
             '#flash-messages',
             'Vous avez dépensé avec succès 5 points d\'expérience !'
         );
 
         /** @var Character $character */
-        $character = static::$container->get(CharactersRepository::class)->findOneBy(['nameSlug' => 'character-to-spend-ogham-with']);
+        $character = self::getContainer()->get(CharactersRepository::class)->findOneBy(['nameSlug' => 'character-to-spend-ogham-with']);
         static::assertInstanceOf(Character::class, $character);
         // Remember: remaining XP for this char is 500.
         static::assertSame(5, $character->getExperienceSpent());
@@ -230,16 +230,16 @@ class CharacterSpendXpControllerTest extends WebTestCase
             '[miracles][minor][0]' => 1, // First element: key 0 with Ogham ID = 1
         ], '7-character-to-spend-miracles-with');
 
-        static::assertResponseRedirects('/fr/characters/7-character-to-spend-miracles-with', 302);
+        self::assertResponseRedirects('/fr/characters/7-character-to-spend-miracles-with', 302);
         $client->followRedirect();
 
-        static::assertSelectorTextContains(
+        self::assertSelectorTextContains(
             '#flash-messages',
             'Vous avez dépensé avec succès 5 points d\'expérience !'
         );
 
         /** @var Character $character */
-        $character = static::$container->get(CharactersRepository::class)->findOneBy(['nameSlug' => 'character-to-spend-miracles-with']);
+        $character = self::getContainer()->get(CharactersRepository::class)->findOneBy(['nameSlug' => 'character-to-spend-miracles-with']);
         static::assertInstanceOf(Character::class, $character);
         // Remember: remaining XP for this char is 500.
         static::assertSame(5, $character->getExperienceSpent());
@@ -257,7 +257,7 @@ class CharacterSpendXpControllerTest extends WebTestCase
     {
         $client->request('GET', \sprintf('/fr/characters/%s/spend-xp', $characterSlug));
 
-        static::assertResponseStatusCodeSame(200);
+        self::assertResponseStatusCodeSame(200);
 
         $form = $client->getCrawler()->filter('form[name="character_spend_xp"]');
 

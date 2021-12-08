@@ -26,19 +26,18 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 class SessionToCharacterTest extends KernelTestCase
 {
-    /** @var null|PropertyAccessor */
-    private static $propertyAccessor;
+    private static ?PropertyAccessor $propertyAccessor;
 
     public static function setUpBeforeClass(): void
     {
-        static::bootKernel();
-        static::$propertyAccessor = PropertyAccess::createPropertyAccessor();
+        self::bootKernel();
+        self::$propertyAccessor = PropertyAccess::createPropertyAccessor();
     }
 
     public static function tearDownAfterClass(): void
     {
-        static::ensureKernelShutdown();
-        static::$propertyAccessor = null;
+        self::ensureKernelShutdown();
+        self::$propertyAccessor = null;
     }
 
     /**
@@ -49,7 +48,7 @@ class SessionToCharacterTest extends KernelTestCase
         $this->expectException(CharacterException::class);
         $this->expectExceptionMessage('Character error: Generator seems not to be fully finished');
 
-        static::getCharacterFromValues([]);
+        self::getCharacterFromValues([]);
     }
 
     /**
@@ -60,9 +59,9 @@ class SessionToCharacterTest extends KernelTestCase
     {
         // This one is just here as a smoke test,
         // just like the FullValidStepsControllerTest class.
-        $character = static::getCharacterFromValues($values);
+        $character = self::getCharacterFromValues($values);
 
-        $propertyAccessor = static::$propertyAccessor;
+        $propertyAccessor = self::$propertyAccessor;
 
         $getValue = static function (string $propertyPath) use ($character, $propertyAccessor) {
             return $propertyAccessor->getValue($character, $propertyPath);
@@ -100,8 +99,8 @@ class SessionToCharacterTest extends KernelTestCase
 
     private static function createInstance(): SessionToCharacter
     {
-        static::bootKernel();
+        self::bootKernel();
 
-        return static::$container->get(SessionToCharacter::class);
+        return self::getContainer()->get(SessionToCharacter::class);
     }
 }

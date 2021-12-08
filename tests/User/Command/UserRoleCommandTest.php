@@ -142,7 +142,7 @@ class UserRoleCommandTest extends KernelTestCase
         static::assertStringStartsWith(' [OK] Done!', $output[17] ?? '');
 
         /** @var UserRepository $repo */
-        $repo = static::$container->get(UserRepository::class);
+        $repo = self::getContainer()->get(UserRepository::class);
         $user = $repo->loadUserByUsername('pierstoval');
 
         static::assertNotNull($user);
@@ -174,7 +174,7 @@ class UserRoleCommandTest extends KernelTestCase
         static::assertStringStartsWith(' [OK] Done!', $output[15] ?? '');
 
         /** @var UserRepository $repo */
-        $repo = static::$container->get(UserRepository::class);
+        $repo = self::getContainer()->get(UserRepository::class);
         $user = $repo->loadUserByUsername('pierstoval');
 
         static::assertNotNull($user);
@@ -215,7 +215,7 @@ class UserRoleCommandTest extends KernelTestCase
 
     private function getCommand(): UserRoleCommand
     {
-        $cmd = (new Application(static::bootKernel()))->find('user:role');
+        $cmd = (new Application(self::bootKernel()))->find('user:role');
 
         static::assertInstanceOf(UserRoleCommand::class, $cmd);
 

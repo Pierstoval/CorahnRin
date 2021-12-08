@@ -19,14 +19,11 @@ use Symfony\Component\Validator\Constraint;
 
 class HasNoSimilarInvitation extends Constraint
 {
-    public $message = 'corahn_rin.character_invitations.similar_exists';
+    public string $message = 'corahn_rin.character_invitations.similar_exists';
 
-    /**
-     * @var null|Game
-     */
-    public $game;
+    public ?Game $game = null;
 
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return HasNoSimilarInvitationValidator::class;
     }

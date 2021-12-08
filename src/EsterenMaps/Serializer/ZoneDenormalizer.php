@@ -25,7 +25,7 @@ class ZoneDenormalizer implements DenormalizerInterface, DenormalizerAwareInterf
 {
     use DenormalizerAwareTrait;
 
-    public function denormalize($data, string $type, string $format = null, array $context = [])
+    public function denormalize($data, string $type, string $format = null, array $context = []): Zone
     {
         $object = (new Instantiator())->instantiate(Zone::class);
         $setter = ClosureSetter::getSetter($type, $object);

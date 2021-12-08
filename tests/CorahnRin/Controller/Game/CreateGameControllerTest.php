@@ -32,7 +32,7 @@ class CreateGameControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/games/create');
 
-        static::assertResponseStatusCodeSame(200);
+        self::assertResponseStatusCodeSame(200);
 
         $client->enableProfiler();
         $client->submitForm('Créer la campagne', [
@@ -42,18 +42,18 @@ class CreateGameControllerTest extends WebTestCase
         ]);
 
         // Assert form is correctly submitted and redirects (no redirection = form errors)
-        static::assertResponseRedirects();
+        self::assertResponseRedirects();
         $location = $client->getResponse()->headers->get('Location');
         static::assertMatchesRegularExpression('~^/fr/games/\d+$~', $location);
 
         // Assert flash message is added to session
-        $flashes = static::$container->get(SessionInterface::class)->getFlashBag()->peekAll();
+        $flashes = self::getContainer()->get(SessionInterface::class)->getFlashBag()->peekAll();
         static::assertArrayHasKey('success', $flashes);
         static::assertSame(['games.create.success_message'], $flashes['success']);
 
         // Assert there's 1 invitation in the db
         /** @var GameInvitationRepository $invitationsRepo */
-        $invitationsRepo = static::$container->get(GameInvitationRepository::class);
+        $invitationsRepo = self::getContainer()->get(GameInvitationRepository::class);
         $invitations = $invitationsRepo->findAll();
         // One existing invitation in tests, + 1 here
         static::assertCount(2, $invitations);

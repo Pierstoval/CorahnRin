@@ -33,7 +33,7 @@ class GameViewControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/games/000');
 
-        static::assertResponseStatusCodeSame(404);
+        self::assertResponseStatusCodeSame(404);
     }
 
     /**
@@ -46,7 +46,7 @@ class GameViewControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/games/'.GamesFixtures::ID_EMPTY);
 
-        static::assertSelectorTextSame('#game_characters_list tr td', 'Aucun personnage');
+        self::assertSelectorTextSame('#game_characters_list tr td', 'Aucun personnage');
     }
 
     /**
@@ -59,9 +59,9 @@ class GameViewControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/games/'.GamesFixtures::ID_WITH_CHARACTER);
 
-        static::assertSelectorTextSame('h1', 'Campaign with a character');
-        static::assertSelectorTextSame('h2', 'Personnages');
-        static::assertSelectorTextSame('#game_characters_list tr td', 'Character inside a game');
+        self::assertSelectorTextSame('h1', 'Campaign with a character');
+        self::assertSelectorTextSame('h2', 'Personnages');
+        self::assertSelectorTextSame('#game_characters_list tr td', 'Character inside a game');
     }
 
     /**
@@ -74,10 +74,10 @@ class GameViewControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/games/'.GamesFixtures::ID_WITH_INVITATIONS);
 
-        static::assertSelectorTextSame('h1', 'Campaign with invitations');
-        static::assertSelectorTextSame('h2', 'Personnages');
+        self::assertSelectorTextSame('h1', 'Campaign with invitations');
+        self::assertSelectorTextSame('h2', 'Personnages');
 
-        static::assertSelectorTextSame('#game_invitations_list tr td', 'Invited character');
+        self::assertSelectorTextSame('#game_invitations_list tr td', 'Invited character');
     }
 
     /**
@@ -90,8 +90,8 @@ class GameViewControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/games/'.GamesFixtures::ID_EMPTY);
 
-        static::assertResponseStatusCodeSame(200);
-        static::assertSelectorTextSame('h1', 'Empty campaign');
+        self::assertResponseStatusCodeSame(200);
+        self::assertSelectorTextSame('h1', 'Empty campaign');
 
         $formNode = $crawler->filter('form[name="character_invitation"]');
 
@@ -107,18 +107,18 @@ class GameViewControllerTest extends WebTestCase
         ]);
 
         // Assert form is correctly submitted and redirects (no redirection = form errors)
-        static::assertResponseRedirects();
+        self::assertResponseRedirects();
         $location = $client->getResponse()->headers->get('Location');
         static::assertMatchesRegularExpression('~^/fr/games/\d+$~', $location);
 
         // Assert flash message is added to session
-        $flashes = static::$container->get(SessionInterface::class)->getFlashBag()->peekAll();
+        $flashes = self::getContainer()->get(SessionInterface::class)->getFlashBag()->peekAll();
         static::assertArrayHasKey('success', $flashes);
         static::assertSame(['games.invite_characters.success'], $flashes['success']);
 
         // Assert there's 1 invitation in the db
         /** @var GameInvitationRepository $invitationsRepo */
-        $invitationsRepo = static::$container->get(GameInvitationRepository::class);
+        $invitationsRepo = self::getContainer()->get(GameInvitationRepository::class);
         $invitations = $invitationsRepo->findAll();
         // One existing invitation in tests, + 1 here
         static::assertCount(2, $invitations);
@@ -134,8 +134,8 @@ class GameViewControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/games/'.GamesFixtures::ID_WITH_INVITATIONS);
 
-        static::assertResponseStatusCodeSame(200);
-        static::assertSelectorTextSame('h1', 'Campaign with invitations');
+        self::assertResponseStatusCodeSame(200);
+        self::assertSelectorTextSame('h1', 'Campaign with invitations');
 
         $formNode = $crawler->filter('form[name="character_invitation"]');
 
@@ -150,7 +150,7 @@ class GameViewControllerTest extends WebTestCase
         ]);
 
         // Assert form is correctly submitted and redirects (no redirection = form errors)
-        static::assertResponseStatusCodeSame(200);
+        self::assertResponseStatusCodeSame(200);
         $formNode = $crawler->filter('form[name="character_invitation"]');
         $errors = $formNode->filter('.card-panel.red');
 

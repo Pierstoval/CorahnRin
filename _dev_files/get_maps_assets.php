@@ -15,9 +15,9 @@ use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-const BASE_URL = 'https://maps.esteren.org';
+const BASE_URL = 'https://esterenmaps.pierstoval.com';
 
-\define('ROOT_DIR', \dirname(__DIR__));
+define('ROOT_DIR', dirname(__DIR__));
 
 require ROOT_DIR.'/vendor/autoload.php';
 
@@ -31,25 +31,25 @@ try {
     $browser = login($io);
 
     $browser->request('GET', BASE_URL.'/build/entrypoints.json');
-    $json = \json_decode($browser->getResponse()->getContent(), true, 512, \JSON_THROW_ON_ERROR);
+    $json = json_decode($browser->getResponse()->getContent(), true, 512, \JSON_THROW_ON_ERROR);
 
     $jsFiles = $json['entrypoints']['maps']['js'];
     $cssFiles = $json['entrypoints']['maps_styles']['css'];
 
     foreach ($jsFiles as $jsFile) {
         $browser->request('GET', BASE_URL.$jsFile);
-        \file_put_contents(ROOT_DIR.'/public'.$jsFile, $browser->getResponse()->getContent());
+        file_put_contents(ROOT_DIR.'/public'.$jsFile, $browser->getResponse()->getContent());
     }
     foreach ($cssFiles as $cssFile) {
         $browser->request('GET', BASE_URL.$cssFile);
-        \file_put_contents(ROOT_DIR.'/public'.$cssFile, $browser->getResponse()->getContent());
+        file_put_contents(ROOT_DIR.'/public'.$cssFile, $browser->getResponse()->getContent());
     }
 
     $entrypointsFile = ROOT_DIR.'/public/build/entrypoints.json';
-    $entrypointsJson = \json_decode(\file_get_contents($entrypointsFile), true, 512, \JSON_THROW_ON_ERROR);
+    $entrypointsJson = json_decode(file_get_contents($entrypointsFile), true, 512, \JSON_THROW_ON_ERROR);
     $entrypointsJson['entrypoints']['maps']['js'] = $jsFiles;
     $entrypointsJson['entrypoints']['maps_styles']['css'] = $cssFiles;
-    \file_put_contents($entrypointsFile, \json_encode($entrypointsJson, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_LINE_TERMINATORS));
+    file_put_contents($entrypointsFile, json_encode($entrypointsJson, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_LINE_TERMINATORS));
 
     //$manifestFile = ROOT_DIR.'/public/build/manifest.json';
     //$manifest = json_decode(file_get_contents($manifestFile), true, 512, JSON_THROW_ON_ERROR);

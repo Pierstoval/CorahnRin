@@ -79,14 +79,14 @@ class CharacterViewControllerTest extends WebTestCase
         // Check fixtures for character name & id
         $client->request('GET', '/fr/characters/1-steren-slaine');
 
-        static::assertResponseStatusCodeSame(200);
-        static::assertSelectorTextSame('h1', 'Steren Slaine');
-        static::assertSelectorExists('#character-original-page-1');
-        static::assertSelectorExists('#character-original-page-2');
-        static::assertSelectorExists('#character-original-page-3');
-        static::assertSelectorExists('#character-details-name h2 span.character-details-subtitle');
-        static::assertSelectorTextSame('#character-details-name h2 span.character-details-subtitle', 'Nom : ');
-        static::assertSelectorTextSame('#character-details-name h2 span.character-details-subitem', 'Steren Slaine');
+        self::assertResponseStatusCodeSame(200);
+        self::assertSelectorTextSame('h1', 'Steren Slaine');
+        self::assertSelectorExists('#character-original-page-1');
+        self::assertSelectorExists('#character-original-page-2');
+        self::assertSelectorExists('#character-original-page-3');
+        self::assertSelectorExists('#character-details-name h2 span.character-details-subtitle');
+        self::assertSelectorTextSame('#character-details-name h2 span.character-details-subtitle', 'Nom : ');
+        self::assertSelectorTextSame('#character-details-name h2 span.character-details-subitem', 'Steren Slaine');
 
         // Don't do all the rest, it's cumbersome,
         // and we just might create other assertions

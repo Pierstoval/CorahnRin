@@ -13,43 +13,26 @@ declare(strict_types=1);
 
 namespace CorahnRin\Legacy;
 
-use Doctrine\DBAL\ForwardCompatibility\DriverStatement;
+use Doctrine\DBAL\Result;
 
 class LegacyCharacterListPaginator
 {
-    /** @var DriverStatement */
-    private $results;
-
-    /** @var int */
-    private $numberOfResults;
-
-    /** @var int */
-    private $currentPage;
-
-    /** @var bool */
-    private $hasPreviousPage;
-
-    /** @var bool */
-    private $hasNextPage;
-
-    /** @var null|int */
-    private $previousPage;
-
-    /** @var null|int */
-    private $nextPage;
-
-    /** @var int */
-    private $numPages;
-
-    /** @var bool */
-    private $hasToPaginate;
+    private Result $results;
+    private int $numberOfResults;
+    private int $currentPage;
+    private bool $hasPreviousPage;
+    private bool $hasNextPage;
+    private ?int $previousPage;
+    private ?int $nextPage;
+    private int $numPages;
+    private bool $hasToPaginate;
 
     private function __construct()
     {
     }
 
     public static function create(
-        DriverStatement $results,
+        Result $results,
         int $numberOfResults,
         int $currentPage,
         bool $hasPreviousPage,

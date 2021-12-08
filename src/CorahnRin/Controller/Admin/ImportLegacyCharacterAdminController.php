@@ -53,7 +53,7 @@ class ImportLegacyCharacterAdminController implements PublicService
         }
 
         // TODO: remove this when import process is finally tested
-        dd($character);
+        \dd($character);
 
         return new Response($this->twig->render('corahn_rin/admin/import_character.html.twig'));
     }

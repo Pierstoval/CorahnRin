@@ -94,7 +94,7 @@ class CharacterPdfController implements PublicService
 
         try {
             $process->mustRun();
-        } catch (ProcessTimedOutException | ProcessFailedException | ProcessSignaledException $e) {
+        } catch (ProcessTimedOutException|ProcessFailedException|ProcessSignaledException $e) {
             $session->getFlashBag()->add('error', 'character.error.pdf_error');
             $this->logger->error('Character PDF generation failed', [
                 'character' => ['id' => $id, 'nameSlug' => $nameSlug],

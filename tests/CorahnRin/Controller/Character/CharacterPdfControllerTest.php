@@ -30,7 +30,7 @@ class CharacterPdfControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/characters/1-steren-slaine/print');
 
-        static::assertResponseStatusCodeSame(200, 'Failed to generate a PDF for current character.');
+        self::assertResponseStatusCodeSame(200, 'Failed to generate a PDF for current character.');
 
         static::assertInstanceOf(BinaryFileResponse::class, $client->getResponse());
     }

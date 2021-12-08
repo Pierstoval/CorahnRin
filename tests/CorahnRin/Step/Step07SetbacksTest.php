@@ -44,7 +44,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $client = $this->getHttpClient();
 
         /** @var SetbacksRepository $setbacksRepo */
-        $setbacksRepo = static::$container->get(SetbacksRepository::class);
+        $setbacksRepo = self::getContainer()->get(SetbacksRepository::class);
         $setbacksFromTheDb = $setbacksRepo->findBy([
             'name' => ['Séquelle'],
         ]);
@@ -66,7 +66,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $client = $this->getHttpClient();
 
         /** @var SetbacksRepository $setbacksRepo */
-        $setbacksRepo = static::$container->get(SetbacksRepository::class);
+        $setbacksRepo = self::getContainer()->get(SetbacksRepository::class);
         $setbacksFromTheDb = $setbacksRepo->findBy([
             'name' => ['Séquelle', 'Adversaire'],
         ]);
@@ -90,7 +90,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $client = $this->getHttpClient();
 
         /** @var SetbacksRepository $setbacksRepo */
-        $setbacksRepo = static::$container->get(SetbacksRepository::class);
+        $setbacksRepo = self::getContainer()->get(SetbacksRepository::class);
         $setbacksFromTheDb = $setbacksRepo->findBy([
             'name' => ['Séquelle', 'Adversaire', 'Rumeur'],
         ]);
@@ -116,7 +116,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $client = $this->getHttpClient();
 
         /** @var SetbacksRepository $setbacksRepo */
-        $setbacksRepo = static::$container->get(SetbacksRepository::class);
+        $setbacksRepo = self::getContainer()->get(SetbacksRepository::class);
         // Force the order here so unlucky one is picked first
         $setbacksFromTheDb = [
             0 => $setbacksRepo->findOneBy(['name' => 'Poisse']),
@@ -142,7 +142,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $client = $this->getHttpClient();
 
         /** @var SetbacksRepository $setbacksRepo */
-        $setbacksRepo = static::$container->get(SetbacksRepository::class);
+        $setbacksRepo = self::getContainer()->get(SetbacksRepository::class);
         // Force the order here so unlucky one is picked first
         $setbacksFromTheDb = [
             0 => $setbacksRepo->findOneBy(['name' => 'Chance']),
@@ -242,12 +242,12 @@ class Step07SetbacksTest extends AbstractStepTest
     private function getCharacterSetbacksFromStepSubmit(int $age, Client $client, array $setbacksFromTheDb)
     {
         /** @var ManualRandomSetbacksProvider $provider */
-        $provider = static::$container->get(ManualRandomSetbacksProvider::class);
+        $provider = self::getContainer()->get(ManualRandomSetbacksProvider::class);
         // Pick two so we make sure only one is picked.
         $provider->setCustomSetbacksToPick($setbacksFromTheDb);
 
         // We need a simple session to be sure it's updated when submitting form.
-        $session = static::$container->get('session');
+        $session = self::getContainer()->get('session');
         $session->set('character.corahn_rin', ['06_age' => $age]);
         $session->save();
 
@@ -269,6 +269,6 @@ class Step07SetbacksTest extends AbstractStepTest
         static::assertSame(302, $client->getResponse()->getStatusCode());
         static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/08_ways'));
 
-        return static::$container->get('session')->get('character.corahn_rin')[$this->getStepName()];
+        return self::getContainer()->get('session')->get('character.corahn_rin')[$this->getStepName()];
     }
 }

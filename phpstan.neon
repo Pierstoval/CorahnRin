@@ -18,7 +18,7 @@ parameters:
         - %currentWorkingDirectory%/vendor/bin/.phpunit/phpunit/vendor/autoload.php
         - %currentWorkingDirectory%/tests/bootstrap_phpstan.php
 
-    excludes_analyse:
+    excludePaths:
         - %currentWorkingDirectory%/src/Migrations
         - %currentWorkingDirectory%/src/DataFixtures/Internal
         - %currentWorkingDirectory%/src/CorahnRin/PDF

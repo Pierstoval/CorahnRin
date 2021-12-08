@@ -1575,7 +1575,6 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
         }
 
         $client = $this->getHttpClient();
-        $client->restart();
 
         $session = $client->getContainer()->get('session');
         $session->set('character.corahn_rin', [

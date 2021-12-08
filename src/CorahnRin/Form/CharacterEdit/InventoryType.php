@@ -56,7 +56,7 @@ class InventoryType extends AbstractType
         ]);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'update_inventory';
     }

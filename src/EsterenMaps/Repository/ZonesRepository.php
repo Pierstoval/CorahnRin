@@ -22,7 +22,7 @@ class ZonesRepository
     {
     }
 
-    public function findIdByValue(int | string $id): ?ZoneId
+    public function findIdByValue(int|string $id): ?ZoneId
     {
         $zoneId = ZoneId::from($id);
 
