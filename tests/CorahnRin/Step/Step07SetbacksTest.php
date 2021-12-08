@@ -28,9 +28,9 @@ class Step07SetbacksTest extends AbstractStepTest
             '06_age' => 20,
         ]);
 
-        self::assertSame(302, $result->getResponse()->getStatusCode());
-        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/08_ways'));
-        self::assertSame([
+        static::assertSame(302, $result->getResponse()->getStatusCode());
+        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/08_ways'));
+        static::assertSame([
             '06_age' => 20,
             $this->getStepName() => [],
         ], $result->getSession()->get('character.corahn_rin'));
@@ -53,7 +53,7 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $idOfFirstSetback = $setbacksFromTheDb[0]->getId();
 
-        self::assertSame([
+        static::assertSame([
             $idOfFirstSetback => ['id' => $idOfFirstSetback, 'avoided' => false],
         ], $setbacks);
     }
@@ -76,7 +76,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $idOfFirstSetback = $setbacksFromTheDb[0]->getId();
         $idOfSecondSetback = $setbacksFromTheDb[1]->getId();
 
-        self::assertSame([
+        static::assertSame([
             $idOfFirstSetback => ['id' => $idOfFirstSetback, 'avoided' => false],
             $idOfSecondSetback => ['id' => $idOfSecondSetback, 'avoided' => false],
         ], $setbacks);
@@ -101,7 +101,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $idOfSecondSetback = $setbacksFromTheDb[1]->getId();
         $idOfThirdSetback = $setbacksFromTheDb[2]->getId();
 
-        self::assertSame([
+        static::assertSame([
             $idOfFirstSetback => ['id' => $idOfFirstSetback, 'avoided' => false],
             $idOfSecondSetback => ['id' => $idOfSecondSetback, 'avoided' => false],
             $idOfThirdSetback => ['id' => $idOfThirdSetback, 'avoided' => false],
@@ -128,7 +128,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $idOfFirstSetback = $setbacksFromTheDb[0]->getId();
         $idOfSecondSetback = $setbacksFromTheDb[1]->getId();
 
-        self::assertSame([
+        static::assertSame([
             $idOfFirstSetback => ['id' => $idOfFirstSetback, 'avoided' => false],
             $idOfSecondSetback => ['id' => $idOfSecondSetback, 'avoided' => false],
         ], $setbacks);
@@ -154,7 +154,7 @@ class Step07SetbacksTest extends AbstractStepTest
         $idOfFirstSetback = $setbacksFromTheDb[0]->getId();
         $idOfSecondSetback = $setbacksFromTheDb[1]->getId();
 
-        self::assertSame([
+        static::assertSame([
             $idOfFirstSetback => ['id' => $idOfFirstSetback, 'avoided' => false],
             $idOfSecondSetback => ['id' => $idOfSecondSetback, 'avoided' => true],
         ], $setbacks);
@@ -169,11 +169,11 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
-        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
+        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
         $client->followRedirect();
-        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/01_people'));
+        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/01_people'));
         $crawler = $client->followRedirect();
-        self::assertEquals(
+        static::assertEquals(
             'L\'étape "07 Setbacks" dépend de "06 Age", mais celle-ci n\'est pas présente dans le personnage en cours de création...',
             $crawler->filter('#flash-messages > .card-panel.error')->text('', true)
         );
@@ -192,7 +192,7 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $crawler = $client->request('GET', '/fr/character/generate/'.$this->getStepName().'?manual=');
         $formNode = $crawler->filter('#generator_form');
-        self::assertCount(1, $formNode);
+        static::assertCount(1, $formNode);
 
         $form = $formNode->form()
             ->disableValidation()
@@ -203,9 +203,9 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $client->submit($form);
 
-        self::assertSame(302, $client->getResponse()->getStatusCode());
-        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/08_ways'));
-        self::assertSame([2 => ['id' => 2, 'avoided' => false], 3 => ['id' => 3, 'avoided' => false]], $session->get('character.corahn_rin')[$this->getStepName()]);
+        static::assertSame(302, $client->getResponse()->getStatusCode());
+        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/08_ways'));
+        static::assertSame([2 => ['id' => 2, 'avoided' => false], 3 => ['id' => 3, 'avoided' => false]], $session->get('character.corahn_rin')[$this->getStepName()]);
     }
 
     /**
@@ -221,7 +221,7 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $crawler = $client->request('GET', '/fr/character/generate/'.$this->getStepName().'?manual=');
         $formNode = $crawler->filter('#generator_form');
-        self::assertCount(1, $formNode);
+        static::assertCount(1, $formNode);
 
         $form = $formNode->form()
             ->disableValidation()
@@ -232,8 +232,8 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $crawler = $client->submit($form);
 
-        self::assertSame(200, $client->getResponse()->getStatusCode());
-        self::assertEquals(
+        static::assertSame(200, $client->getResponse()->getStatusCode());
+        static::assertEquals(
             'Veuillez entrer des revers correct(s).',
             $crawler->filter('#flash-messages > .card-panel.error')->text('', true)
         );
@@ -259,15 +259,15 @@ class Step07SetbacksTest extends AbstractStepTest
 
         $msg = 'Could not execute step request...';
         $msg .= $errorBlock->count() ? ("\n".$errorBlock->text('', true)) : (' For step "'.$this->getStepName().'"');
-        self::assertSame(200, $statusCode, $msg);
+        static::assertSame(200, $statusCode, $msg);
 
         // Prepare form values.
         $form = $crawler->filter('#generator_form')->form();
         $form->disableValidation()->setValues([]);
         $client->submit($form);
 
-        self::assertSame(302, $client->getResponse()->getStatusCode());
-        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/08_ways'));
+        static::assertSame(302, $client->getResponse()->getStatusCode());
+        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/08_ways'));
 
         return self::getContainer()->get('session')->get('character.corahn_rin')[$this->getStepName()];
     }

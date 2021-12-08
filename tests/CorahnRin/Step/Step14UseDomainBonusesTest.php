@@ -33,8 +33,8 @@ class Step14UseDomainBonusesTest extends AbstractStepTest
 
         $errorMessage = $crawler->filter('head title')->text('', true);
 
-        self::assertSame(302, $client->getResponse()->getStatusCode(), $errorMessage);
-        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
+        static::assertSame(302, $client->getResponse()->getStatusCode(), $errorMessage);
+        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
     }
 
     public function provideInvalidDependencies(): array
@@ -59,13 +59,13 @@ class Step14UseDomainBonusesTest extends AbstractStepTest
 
         $crawler = $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
-        self::assertEquals(200, $client->getResponse()->getStatusCode());
+        static::assertEquals(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->filter('#generator_form')->form();
 
         $client->submit($form);
 
-        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/15_domains_spend_exp'));
+        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/15_domains_spend_exp'));
         $this->assertSessionEquals([], 1, $client);
     }
 
@@ -78,7 +78,7 @@ class Step14UseDomainBonusesTest extends AbstractStepTest
 
         $crawler = $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
-        self::assertEquals(200, $client->getResponse()->getStatusCode());
+        static::assertEquals(200, $client->getResponse()->getStatusCode());
 
         $form = $crawler->filter('#generator_form')->form();
 
@@ -87,9 +87,9 @@ class Step14UseDomainBonusesTest extends AbstractStepTest
         $crawler = $client->submit($form);
 
         // Redirection means error
-        self::assertSame(200, $client->getResponse()->getStatusCode());
+        static::assertSame(200, $client->getResponse()->getStatusCode());
         $flashMessages = $crawler->filter('#flash-messages');
-        self::assertStringContainsString('Certaines valeurs envoyées sont incorrectes, veuillez recommencer (et sans tricher).', $flashMessages->text('', true));
+        static::assertStringContainsString('Certaines valeurs envoyées sont incorrectes, veuillez recommencer (et sans tricher).', $flashMessages->text('', true));
     }
 
     /**
@@ -97,6 +97,6 @@ class Step14UseDomainBonusesTest extends AbstractStepTest
      */
     public function testStep(): void
     {
-        self::markTestIncomplete();
+        static::markTestIncomplete();
     }
 }

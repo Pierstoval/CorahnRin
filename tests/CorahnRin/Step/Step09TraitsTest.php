@@ -24,8 +24,8 @@ class Step09TraitsTest extends AbstractStepTest
 
         $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
-        self::assertSame(302, $client->getResponse()->getStatusCode());
-        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
+        static::assertSame(302, $client->getResponse()->getStatusCode());
+        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
     }
 
     /**
@@ -44,9 +44,9 @@ class Step09TraitsTest extends AbstractStepTest
 
         $result = new StepActionTestResult($client->request('GET', '/fr/character/generate/'.$this->getStepName()), $client);
 
-        self::assertSame(302, $result->getResponse()->getStatusCode());
-        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/08_ways'));
-        self::assertSame(['Traits coming from Step 08 Ways are not correct, please check them back.'], $result->getSession()->getFlashBag()->get('error'));
+        static::assertSame(302, $result->getResponse()->getStatusCode());
+        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/08_ways'));
+        static::assertSame(['Traits coming from Step 08 Ways are not correct, please check them back.'], $result->getSession()->getFlashBag()->get('error'));
     }
 
     /**
@@ -67,9 +67,9 @@ class Step09TraitsTest extends AbstractStepTest
             'flaw' => 64,
         ]);
 
-        self::assertSame(302, $result->getResponse()->getStatusCode());
-        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/10_orientation'));
-        self::assertSame($values, $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
+        static::assertSame(302, $result->getResponse()->getStatusCode());
+        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/10_orientation'));
+        static::assertSame($values, $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
     }
 
     /**
@@ -90,8 +90,8 @@ class Step09TraitsTest extends AbstractStepTest
             'flaw' => 0,
         ]);
 
-        self::assertSame(200, $result->getResponse()->getStatusCode());
-        self::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
-        self::assertEquals('Les traits de caractère choisis sont incorrects.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $result->getResponse()->getStatusCode());
+        static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
+        static::assertEquals('Les traits de caractère choisis sont incorrects.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 }

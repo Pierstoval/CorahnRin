@@ -20,6 +20,6 @@ class Step18EquipmentTest extends AbstractStepTest
      */
     public function testStep(): void
     {
-        self::markTestIncomplete();
+        static::markTestIncomplete();
     }
 }

@@ -24,9 +24,9 @@ class Step02JobTest extends AbstractStepTest
             'job_value' => 1,
         ]);
 
-        self::assertSame(302, $result->getResponse()->getStatusCode());
-        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/03_birthplace'));
-        self::assertSame([$this->getStepName() => 1], $result->getSession()->get('character.corahn_rin'));
+        static::assertSame(302, $result->getResponse()->getStatusCode());
+        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/03_birthplace'));
+        static::assertSame([$this->getStepName() => 1], $result->getSession()->get('character.corahn_rin'));
     }
 
     /**
@@ -40,8 +40,8 @@ class Step02JobTest extends AbstractStepTest
 
         $crawler = $result->getCrawler();
 
-        self::assertSame(200, $result->getResponse()->getStatusCode());
-        self::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
-        self::assertEquals('Veuillez entrer un métier correct.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $result->getResponse()->getStatusCode());
+        static::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
+        static::assertEquals('Veuillez entrer un métier correct.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 }

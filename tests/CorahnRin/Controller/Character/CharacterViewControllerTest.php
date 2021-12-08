@@ -36,8 +36,8 @@ class CharacterViewControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/characters/');
 
-        self::assertSame(200, $client->getResponse()->getStatusCode());
-        self::assertCount(1, $crawler->filter('table.table.table-condensed'));
+        static::assertSame(200, $client->getResponse()->getStatusCode());
+        static::assertCount(1, $crawler->filter('table.table.table-condensed'));
     }
 
     /**
@@ -50,7 +50,7 @@ class CharacterViewControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/characters/?order=undefined');
 
-        self::assertSame(400, $client->getResponse()->getStatusCode());
+        static::assertSame(400, $client->getResponse()->getStatusCode());
     }
 
     /**
@@ -64,7 +64,7 @@ class CharacterViewControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/characters/9999999-aaaaaaaa');
 
-        self::assertSame(404, $client->getResponse()->getStatusCode());
+        static::assertSame(404, $client->getResponse()->getStatusCode());
     }
 
     /**

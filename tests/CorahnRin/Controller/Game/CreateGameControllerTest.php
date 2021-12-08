@@ -44,18 +44,18 @@ class CreateGameControllerTest extends WebTestCase
         // Assert form is correctly submitted and redirects (no redirection = form errors)
         self::assertResponseRedirects();
         $location = $client->getResponse()->headers->get('Location');
-        self::assertMatchesRegularExpression('~^/fr/games/\d+$~', $location);
+        static::assertMatchesRegularExpression('~^/fr/games/\d+$~', $location);
 
         // Assert flash message is added to session
         $flashes = self::getContainer()->get(SessionInterface::class)->getFlashBag()->peekAll();
-        self::assertArrayHasKey('success', $flashes);
-        self::assertSame(['games.create.success_message'], $flashes['success']);
+        static::assertArrayHasKey('success', $flashes);
+        static::assertSame(['games.create.success_message'], $flashes['success']);
 
         // Assert there's 1 invitation in the db
         /** @var GameInvitationRepository $invitationsRepo */
         $invitationsRepo = self::getContainer()->get(GameInvitationRepository::class);
         $invitations = $invitationsRepo->findAll();
         // One existing invitation in tests, + 1 here
-        self::assertCount(2, $invitations);
+        static::assertCount(2, $invitations);
     }
 }

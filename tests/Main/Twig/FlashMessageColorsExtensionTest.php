@@ -24,7 +24,7 @@ class FlashMessageColorsExtensionTest extends TestCase
      */
     public function test flash messages classes(string $expected, string $input): void
     {
-        self::assertSame($expected, $this->getExtension()->getFlashClass($input));
+        static::assertSame($expected, $this->getExtension()->getFlashClass($input));
     }
 
     public function provide flash messages()

@@ -32,8 +32,8 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
-        self::assertSame(302, $client->getResponse()->getStatusCode());
-        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
+        static::assertSame(302, $client->getResponse()->getStatusCode());
+        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
     }
 
     public function provideInvalidDependencies(): array
@@ -57,10 +57,10 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $crawler = $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
-        self::assertCount(15, $crawler->filter('[data-change="1"].domain-change'));
-        self::assertCount(15, $crawler->filter('[data-change="2"].domain-change'));
-        self::assertCount(2, $crawler->filter('[data-change="3"].domain-change'));
-        self::assertCount(16, $crawler->filter('[data-change="5"].disabled'));
+        static::assertCount(15, $crawler->filter('[data-change="1"].domain-change'));
+        static::assertCount(15, $crawler->filter('[data-change="2"].domain-change'));
+        static::assertCount(2, $crawler->filter('[data-change="3"].domain-change'));
+        static::assertCount(16, $crawler->filter('[data-change="5"].disabled'));
     }
 
     /**
@@ -73,10 +73,10 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
         $crawler = $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
         // 15 because domain 8 (Perception) is already set to score 5
-        self::assertCount(15, $crawler->filter('[data-change="1"].domain-change'));
-        self::assertCount(15, $crawler->filter('[data-change="2"].domain-change'));
-        self::assertCount(15, $crawler->filter('[data-change="3"].domain-change'));
-        self::assertCount(16, $crawler->filter('[data-change="5"].disabled'));
+        static::assertCount(15, $crawler->filter('[data-change="1"].domain-change'));
+        static::assertCount(15, $crawler->filter('[data-change="2"].domain-change'));
+        static::assertCount(15, $crawler->filter('[data-change="3"].domain-change'));
+        static::assertCount(16, $crawler->filter('[data-change="5"].disabled'));
     }
 
     /**
@@ -88,10 +88,10 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $crawler = $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
-        self::assertCount(15, $crawler->filter('[data-change="1"].domain-change'));
-        self::assertCount(15, $crawler->filter('[data-change="2"].domain-change'));
-        self::assertCount(2, $crawler->filter('[data-change="3"].domain-change'));
-        self::assertCount(16, $crawler->filter('[data-change="5"].disabled'));
+        static::assertCount(15, $crawler->filter('[data-change="1"].domain-change'));
+        static::assertCount(15, $crawler->filter('[data-change="2"].domain-change'));
+        static::assertCount(2, $crawler->filter('[data-change="3"].domain-change'));
+        static::assertCount(16, $crawler->filter('[data-change="5"].disabled'));
 
         $form = $crawler->filter('#generator_form')->form();
 
@@ -99,13 +99,13 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
         $flashText = $flashMessagesNode->text('', true);
 
-        self::assertStringContainsString('La valeur 1 doit être sélectionnée deux fois.', $flashText);
-        self::assertStringContainsString('La valeur 2 doit être sélectionnée deux fois.', $flashText);
-        self::assertStringContainsString('La valeur 3 doit être sélectionnée.', $flashText);
+        static::assertStringContainsString('La valeur 1 doit être sélectionnée deux fois.', $flashText);
+        static::assertStringContainsString('La valeur 2 doit être sélectionnée deux fois.', $flashText);
+        static::assertStringContainsString('La valeur 3 doit être sélectionnée.', $flashText);
     }
 
     /**
@@ -123,11 +123,11 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
         $flashText = $flashMessagesNode->text('', true);
 
-        self::assertStringContainsString('Les domaines envoyés sont invalides.', $flashText);
+        static::assertStringContainsString('Les domaines envoyés sont invalides.', $flashText);
     }
 
     /**
@@ -151,9 +151,9 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
-        self::assertStringContainsString('La valeur 3 ne peut être donnée qu\'à l\'un des domaines de prédilection du métier choisi.', $flashMessagesNode->text('', true));
+        static::assertStringContainsString('La valeur 3 ne peut être donnée qu\'à l\'un des domaines de prédilection du métier choisi.', $flashMessagesNode->text('', true));
     }
 
     /**
@@ -178,9 +178,9 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
-        self::assertStringContainsString('La valeur 3 ne peut être donnée qu\'une seule fois.', $flashMessagesNode->text('', true));
+        static::assertStringContainsString('La valeur 3 ne peut être donnée qu\'une seule fois.', $flashMessagesNode->text('', true));
     }
 
     /**
@@ -204,9 +204,9 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
-        self::assertStringContainsString('Le score 5 ne peut pas être attribué à un autre domaine que celui défini par votre métier.', $flashMessagesNode->text('', true));
+        static::assertStringContainsString('Le score 5 ne peut pas être attribué à un autre domaine que celui défini par votre métier.', $flashMessagesNode->text('', true));
     }
 
     /**
@@ -232,9 +232,9 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
-        self::assertStringContainsString('Le score 5 ne peut pas être attribué à un autre domaine que celui défini par votre métier.', $flashMessagesNode->text('', true));
+        static::assertStringContainsString('Le score 5 ne peut pas être attribué à un autre domaine que celui défini par votre métier.', $flashMessagesNode->text('', true));
     }
 
     /**
@@ -258,9 +258,9 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
-        self::assertStringContainsString('Le domaine principal doit avoir un score de 5, vous ne pouvez pas le changer car il est défini par votre métier.', $flashMessagesNode->text('', true));
+        static::assertStringContainsString('Le domaine principal doit avoir un score de 5, vous ne pouvez pas le changer car il est défini par votre métier.', $flashMessagesNode->text('', true));
     }
 
     /**
@@ -284,9 +284,9 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
-        self::assertStringContainsString('Le score d\'un domaine ne peut être que de 0, 1, 2 ou 3. Le score 5 est choisi par défaut en fonction de votre métier.', $flashMessagesNode->text('', true));
+        static::assertStringContainsString('Le score d\'un domaine ne peut être que de 0, 1, 2 ou 3. Le score 5 est choisi par défaut en fonction de votre métier.', $flashMessagesNode->text('', true));
     }
 
     /**
@@ -312,9 +312,9 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
-        self::assertStringContainsString('La valeur 1 ne peut être donnée que deux fois.', $flashMessagesNode->text('', true));
+        static::assertStringContainsString('La valeur 1 ne peut être donnée que deux fois.', $flashMessagesNode->text('', true));
     }
 
     /**
@@ -340,9 +340,9 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
-        self::assertStringContainsString('La valeur 2 ne peut être donnée que deux fois.', $flashMessagesNode->text('', true));
+        static::assertStringContainsString('La valeur 2 ne peut être donnée que deux fois.', $flashMessagesNode->text('', true));
     }
 
     /**
@@ -359,11 +359,11 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
         $flashMessagesNode = $crawler->filter('#flash-messages');
 
-        self::assertCount(1, $flashMessagesNode);
+        static::assertCount(1, $flashMessagesNode);
 
         $flashText = $flashMessagesNode->text('', true);
 
-        self::assertStringContainsString('Le domaine spécifié pour le service d\'Ost n\'est pas valide.', $flashText);
+        static::assertStringContainsString('Le domaine spécifié pour le service d\'Ost n\'est pas valide.', $flashText);
     }
 
     /**
@@ -383,9 +383,9 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
             $error .= "\n".$crawler->filter('#flash-messages')->text('', true);
         }
 
-        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/14_use_domain_bonuses'), $error);
+        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate/14_use_domain_bonuses'), $error);
 
-        self::assertEquals($submitted, $client->getRequest()->getSession()->get('character.corahn_rin')[$this->getStepName()]);
+        static::assertEquals($submitted, $client->getRequest()->getSession()->get('character.corahn_rin')[$this->getStepName()]);
     }
 
     public function provideValidDomainsData(): ?\Generator

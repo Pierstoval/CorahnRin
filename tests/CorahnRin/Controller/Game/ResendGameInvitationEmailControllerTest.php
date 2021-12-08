@@ -35,7 +35,7 @@ class ResendGameInvitationEmailControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/games/invitation/'.TokenGenerator::generateToken().'/send-email');
 
         self::assertResponseStatusCodeSame(404);
-        self::assertSame(
+        static::assertSame(
             'games.invitation.no_invitation_found (404 Not Found)',
             $crawler->filter('title')->text('', true)
         );
@@ -52,7 +52,7 @@ class ResendGameInvitationEmailControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/games/invitation/0/send-email');
 
         self::assertResponseStatusCodeSame(404);
-        self::assertSame(
+        static::assertSame(
             'No route found for "GET http://localhost/fr/games/invitation/0/send-email" (404 Not Found)',
             $crawler->filter('title')->text('', true)
         );
@@ -118,7 +118,7 @@ class ResendGameInvitationEmailControllerTest extends WebTestCase
         self::assertResponseRedirects('/fr/games/'.GamesFixtures::ID_WITH_INVITATIONS);
 
         $flashes = self::getContainer()->get(SessionInterface::class)->getFlashBag()->peekAll();
-        self::assertArrayHasKey('success', $flashes);
-        self::assertSame(['games.invitation.email_has_been_resent'], $flashes['success']);
+        static::assertArrayHasKey('success', $flashes);
+        static::assertSame(['games.invitation.email_has_been_resent'], $flashes['success']);
     }
 }

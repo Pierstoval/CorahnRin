@@ -20,6 +20,6 @@ class Step17CombatArtsTest extends AbstractStepTest
      */
     public function testStep(): void
     {
-        self::markTestIncomplete();
+        static::markTestIncomplete();
     }
 }

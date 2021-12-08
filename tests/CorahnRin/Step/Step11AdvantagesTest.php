@@ -41,9 +41,9 @@ class Step11AdvantagesTest extends AbstractStepTest
             ],
         ]);
 
-        self::assertSame(302, $result->getResponse()->getStatusCode());
-        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/12_mental_disorder'));
-        self::assertSame([
+        static::assertSame(302, $result->getResponse()->getStatusCode());
+        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/12_mental_disorder'));
+        static::assertSame([
             'advantages' => [
                 AdvantagesFixtures::ID_INFLUENT_ALLY => 1,
                 AdvantagesFixtures::ID_FINANCIAL_EASE_5 => 1,
@@ -78,9 +78,9 @@ class Step11AdvantagesTest extends AbstractStepTest
             ],
         ]);
 
-        self::assertSame(302, $result->getResponse()->getStatusCode());
-        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/12_mental_disorder'));
-        self::assertSame([
+        static::assertSame(302, $result->getResponse()->getStatusCode());
+        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/12_mental_disorder'));
+        static::assertSame([
             'advantages' => [
             ],
             'disadvantages' => [
@@ -112,9 +112,9 @@ class Step11AdvantagesTest extends AbstractStepTest
             ],
         ]);
 
-        self::assertSame(200, $result->getResponse()->getStatusCode());
-        self::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
-        self::assertSame('Vous n\'avez pas assez d\'expérience.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $result->getResponse()->getStatusCode());
+        static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
+        static::assertSame('Vous n\'avez pas assez d\'expérience.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
@@ -137,9 +137,9 @@ class Step11AdvantagesTest extends AbstractStepTest
             ],
         ]);
 
-        self::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
-        self::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
-        self::assertSame('Vos désavantages vous donnent un gain d\'expérience supérieur à 80.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
+        static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
+        static::assertSame('Vos désavantages vous donnent un gain d\'expérience supérieur à 80.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
@@ -166,11 +166,11 @@ class Step11AdvantagesTest extends AbstractStepTest
         } else {
             $msg = \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR);
         }
-        self::assertSame(200, $code, $msg);
-        self::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
+        static::assertSame(200, $code, $msg);
+        static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
 
         $txt = \trim($result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
-        self::assertSame('Vous ne pouvez pas combiner plusieurs avantages ou désavantages de type "advantages.group.ally".', $txt);
+        static::assertSame('Vous ne pouvez pas combiner plusieurs avantages ou désavantages de type "advantages.group.ally".', $txt);
     }
 
     public function provideAllyTests(): array
@@ -227,9 +227,9 @@ class Step11AdvantagesTest extends AbstractStepTest
         } else {
             $msg = \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR);
         }
-        self::assertSame(200, $code, $msg);
-        self::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
-        self::assertSame('Vous ne pouvez pas combiner plusieurs avantages ou désavantages de type "advantages.group.financial_ease".', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $code, $msg);
+        static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
+        static::assertSame('Vous ne pouvez pas combiner plusieurs avantages ou désavantages de type "advantages.group.financial_ease".', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     public function provideFinancialEaseTests(): array
@@ -279,9 +279,9 @@ class Step11AdvantagesTest extends AbstractStepTest
             'advantages_indications' => [],
         ]);
 
-        self::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
-        self::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
-        self::assertSame('Une valeur incorrecte a été donnée à un avantage.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
+        static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
+        static::assertSame('Une valeur incorrecte a été donnée à un avantage.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
@@ -299,9 +299,9 @@ class Step11AdvantagesTest extends AbstractStepTest
             'advantages_indications' => [],
         ]);
 
-        self::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
-        self::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
-        self::assertSame('Une valeur incorrecte a été donnée à un désavantage.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
+        static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
+        static::assertSame('Une valeur incorrecte a été donnée à un désavantage.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
@@ -325,8 +325,8 @@ class Step11AdvantagesTest extends AbstractStepTest
             'advantages_indications' => [],
         ]);
 
-        self::assertSame(200, $client->getResponse()->getStatusCode(), $crawler->filter('title')->text('', true));
-        self::assertEquals('Les avantages soumis sont incorrects.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $client->getResponse()->getStatusCode(), $crawler->filter('title')->text('', true));
+        static::assertEquals('Les avantages soumis sont incorrects.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
@@ -350,8 +350,8 @@ class Step11AdvantagesTest extends AbstractStepTest
             'advantages_indications' => [],
         ]);
 
-        self::assertSame(200, $client->getResponse()->getStatusCode(), $crawler->filter('title')->text('', true));
-        self::assertEquals('Les désavantages soumis sont incorrects.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $client->getResponse()->getStatusCode(), $crawler->filter('title')->text('', true));
+        static::assertEquals('Les désavantages soumis sont incorrects.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
@@ -375,9 +375,9 @@ class Step11AdvantagesTest extends AbstractStepTest
             ],
         ]);
 
-        self::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
-        self::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
-        self::assertSame('Vous ne pouvez pas avoir plus de 4 avantages.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
+        static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
+        static::assertSame('Vous ne pouvez pas avoir plus de 4 avantages.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
@@ -398,9 +398,9 @@ class Step11AdvantagesTest extends AbstractStepTest
             ],
         ]);
 
-        self::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
-        self::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
-        self::assertSame('Vous ne pouvez pas avoir plus de 4 désavantages.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
+        static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
+        static::assertSame('Vous ne pouvez pas avoir plus de 4 désavantages.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
@@ -421,8 +421,8 @@ class Step11AdvantagesTest extends AbstractStepTest
             'advantages_indications' => [],
         ]);
 
-        self::assertSame(200, $client->getResponse()->getStatusCode(), $crawler->filter('title')->text('', true));
-        self::assertMatchesRegularExpression('~^L\'avantage "Aisance financière \d" a été désactivé par le revers "Pauvreté".~', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $client->getResponse()->getStatusCode(), $crawler->filter('title')->text('', true));
+        static::assertMatchesRegularExpression('~^L\'avantage "Aisance financière \d" a été désactivé par le revers "Pauvreté".~', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     public function provideFinancialEaseForPoor(): array

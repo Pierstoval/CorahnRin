@@ -48,7 +48,7 @@ class AcceptGameInvitationControllerTest extends WebTestCase
         $crawler = $client->request($method, '/fr/games/invitation/'.TokenGenerator::generateToken());
 
         self::assertResponseStatusCodeSame(404);
-        self::assertSame('games.invitation.no_invitation_found (404 Not Found)', $crawler->filter('title')->text('', true));
+        static::assertSame('games.invitation.no_invitation_found (404 Not Found)', $crawler->filter('title')->text('', true));
     }
 
     /**
@@ -63,7 +63,7 @@ class AcceptGameInvitationControllerTest extends WebTestCase
         $crawler = $client->request($method, '/fr/games/invitation/0');
 
         self::assertResponseStatusCodeSame(404);
-        self::assertSame("No route found for \"{$method} http://localhost/fr/games/invitation/0\" (404 Not Found)", $crawler->filter('title')->text('', true));
+        static::assertSame("No route found for \"{$method} http://localhost/fr/games/invitation/0\" (404 Not Found)", $crawler->filter('title')->text('', true));
     }
 
     public function provide http methods(): \Generator
@@ -108,8 +108,8 @@ class AcceptGameInvitationControllerTest extends WebTestCase
 
         $gameId = $cn->fetchOne('select c.game_id from characters as c where c.name_slug = "invited-character";');
 
-        self::assertNotEmpty($gameId);
-        self::assertSame((string) GamesFixtures::ID_WITH_INVITATIONS, (string) $gameId);
+        static::assertNotEmpty($gameId);
+        static::assertSame((string) GamesFixtures::ID_WITH_INVITATIONS, (string) $gameId);
     }
 
     /**
@@ -125,8 +125,8 @@ class AcceptGameInvitationControllerTest extends WebTestCase
 
         $characterId = $cn->fetchOne('select c.id from characters as c where c.name_slug = "invited-character";');
 
-        self::assertNotNull($characterId);
-        self::assertNotFalse($characterId);
+        static::assertNotNull($characterId);
+        static::assertNotFalse($characterId);
 
         $cn->insert('game_invitations', [
             'token' => TokenGenerator::generateToken(),
@@ -150,6 +150,6 @@ class AcceptGameInvitationControllerTest extends WebTestCase
 
         $gamesCount = $cn->fetchOne('select count(gi.id) as games_count from game_invitations as gi');
 
-        self::assertSame('0', $gamesCount);
+        static::assertSame('0', $gamesCount);
     }
 }

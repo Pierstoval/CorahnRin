@@ -26,7 +26,6 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 class SessionToCharacterTest extends KernelTestCase
 {
-    /** @var null|PropertyAccessor */
     private static ?PropertyAccessor $propertyAccessor;
 
     public static function setUpBeforeClass(): void
@@ -73,7 +72,7 @@ class SessionToCharacterTest extends KernelTestCase
             if ($value instanceof Collection) {
                 $value = $value->toArray();
             }
-            self::assertEquals($data['value'], $value, \sprintf(
+            static::assertEquals($data['value'], $value, \sprintf(
                 'Property path "%s" expected value "%s" but got "%s" instead',
                 $data['property_path'],
                 \var_export($data['value'], true),

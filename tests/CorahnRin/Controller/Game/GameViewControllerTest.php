@@ -97,7 +97,7 @@ class GameViewControllerTest extends WebTestCase
 
         // Position 1 must be "character to invite". Update it if characters fixtures change.
         $charNode = $formNode->filter('select#character_invitation option')->eq(1);
-        self::assertSame('Character to invite', $charNode->text('', true));
+        static::assertSame('Character to invite', $charNode->text('', true));
 
         $client->enableProfiler();
         $client->submit($formNode->form(), [
@@ -109,19 +109,19 @@ class GameViewControllerTest extends WebTestCase
         // Assert form is correctly submitted and redirects (no redirection = form errors)
         self::assertResponseRedirects();
         $location = $client->getResponse()->headers->get('Location');
-        self::assertMatchesRegularExpression('~^/fr/games/\d+$~', $location);
+        static::assertMatchesRegularExpression('~^/fr/games/\d+$~', $location);
 
         // Assert flash message is added to session
         $flashes = self::getContainer()->get(SessionInterface::class)->getFlashBag()->peekAll();
-        self::assertArrayHasKey('success', $flashes);
-        self::assertSame(['games.invite_characters.success'], $flashes['success']);
+        static::assertArrayHasKey('success', $flashes);
+        static::assertSame(['games.invite_characters.success'], $flashes['success']);
 
         // Assert there's 1 invitation in the db
         /** @var GameInvitationRepository $invitationsRepo */
         $invitationsRepo = self::getContainer()->get(GameInvitationRepository::class);
         $invitations = $invitationsRepo->findAll();
         // One existing invitation in tests, + 1 here
-        self::assertCount(2, $invitations);
+        static::assertCount(2, $invitations);
     }
 
     /**
@@ -141,7 +141,7 @@ class GameViewControllerTest extends WebTestCase
 
         // This position must be "Invited character". Update it if characters fixtures change.
         $charNode = $formNode->filter('select#character_invitation option')->eq(4);
-        self::assertSame('Invited character', $charNode->text('', true));
+        static::assertSame('Invited character', $charNode->text('', true));
 
         $crawler = $client->submit($formNode->form(), [
             'character_invitation' => [
@@ -154,8 +154,8 @@ class GameViewControllerTest extends WebTestCase
         $formNode = $crawler->filter('form[name="character_invitation"]');
         $errors = $formNode->filter('.card-panel.red');
 
-        self::assertCount(1, $errors);
+        static::assertCount(1, $errors);
 
-        self::assertSame('Le personnage "Invited character" a déjà été invité à cette campagne.', $errors->text('', true));
+        static::assertSame('Le personnage "Invited character" a déjà été invité à cette campagne.', $errors->text('', true));
     }
 }

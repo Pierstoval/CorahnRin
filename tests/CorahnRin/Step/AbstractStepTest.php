@@ -64,7 +64,7 @@ abstract class AbstractStepTest extends WebTestCase
 
         $msg = 'Could not execute step request...';
         $msg .= $errorBlock->count() ? ("\n".$errorBlock->text('', true)) : (' For step "'.$this->getStepName().'"');
-        self::assertSame(200, $statusCode, $msg);
+        static::assertSame(200, $statusCode, $msg);
 
         // Prepare form values.
         $form = $crawler->filter('#generator_form')->form();
@@ -78,7 +78,7 @@ abstract class AbstractStepTest extends WebTestCase
                     ->setValues($formValues)
                 ;
             } catch (\Exception $e) {
-                self::fail($e->getMessage()."\nWith values:\n".\preg_replace('~\s\s+~', ' ', \str_replace(["\r", "\n"], ' ', \json_encode($formValues))));
+                static::fail($e->getMessage()."\nWith values:\n".\preg_replace('~\s\s+~', ' ', \str_replace(["\r", "\n"], ' ', \json_encode($formValues))));
             }
         }
 

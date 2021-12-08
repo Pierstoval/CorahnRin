@@ -26,8 +26,8 @@ class Step12MentalDisorderTest extends AbstractStepTest
 
         $client->request('GET', '/fr/character/generate/'.$this->getStepName());
 
-        self::assertSame(302, $client->getResponse()->getStatusCode());
-        self::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
+        static::assertSame(302, $client->getResponse()->getStatusCode());
+        static::assertTrue($client->getResponse()->isRedirect('/fr/character/generate'));
     }
 
     /**
@@ -47,9 +47,9 @@ class Step12MentalDisorderTest extends AbstractStepTest
             'gen-div-choice' => DisordersFixtures::ID_FRENZY,
         ]);
 
-        self::assertSame(302, $result->getResponse()->getStatusCode());
-        self::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/13_primary_domains'));
-        self::assertSame('1', $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
+        static::assertSame(302, $result->getResponse()->getStatusCode());
+        static::assertTrue($result->getResponse()->isRedirect('/fr/character/generate/13_primary_domains'));
+        static::assertSame('1', $result->getSession()->get('character.corahn_rin')[$this->getStepName()]);
     }
 
     /**
@@ -71,9 +71,9 @@ class Step12MentalDisorderTest extends AbstractStepTest
 
         $crawler = $result->getCrawler();
 
-        self::assertSame(200, $result->getResponse()->getStatusCode());
-        self::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
-        self::assertEquals('Veuillez choisir un désordre mental.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $result->getResponse()->getStatusCode());
+        static::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
+        static::assertEquals('Veuillez choisir un désordre mental.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
@@ -95,8 +95,8 @@ class Step12MentalDisorderTest extends AbstractStepTest
 
         $crawler = $result->getCrawler();
 
-        self::assertSame(200, $result->getResponse()->getStatusCode());
-        self::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
-        self::assertEquals('Le désordre mental choisi n\'existe pas.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
+        static::assertSame(200, $result->getResponse()->getStatusCode());
+        static::assertCount(1, $crawler->filter('#flash-messages > .card-panel.error'));
+        static::assertEquals('Le désordre mental choisi n\'existe pas.', $crawler->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 }

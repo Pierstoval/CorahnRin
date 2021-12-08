@@ -27,7 +27,7 @@ class BonusesTest extends TestCase
     {
         Bonuses::validateBonus($bonus);
 
-        self::assertTrue(true);
+        static::assertTrue(true);
     }
 
     public function provide valid bonuses(): \Generator

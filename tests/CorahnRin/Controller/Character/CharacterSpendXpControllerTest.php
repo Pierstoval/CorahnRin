@@ -145,11 +145,11 @@ class CharacterSpendXpControllerTest extends WebTestCase
 
         self::assertResponseStatusCodeSame(200);
         $errors = $client->getCrawler()->filter('.card-panel.red');
-        self::assertCount(4, $errors);
-        self::assertSame('Cette valeur doit être supérieure ou égale à 3.', \trim($errors->getNode(0)->textContent));
-        self::assertSame('Cette valeur doit être supérieure ou égale à 1.', \trim($errors->getNode(1)->textContent));
-        self::assertSame('Cette valeur doit être supérieure ou égale à 3.', \trim($errors->getNode(2)->textContent));
-        self::assertSame('Cette valeur doit être supérieure ou égale à 1.', \trim($errors->getNode(3)->textContent));
+        static::assertCount(4, $errors);
+        static::assertSame('Cette valeur doit être supérieure ou égale à 3.', \trim($errors->getNode(0)->textContent));
+        static::assertSame('Cette valeur doit être supérieure ou égale à 1.', \trim($errors->getNode(1)->textContent));
+        static::assertSame('Cette valeur doit être supérieure ou égale à 3.', \trim($errors->getNode(2)->textContent));
+        static::assertSame('Cette valeur doit être supérieure ou égale à 1.', \trim($errors->getNode(3)->textContent));
     }
 
     /**
@@ -175,12 +175,12 @@ class CharacterSpendXpControllerTest extends WebTestCase
 
         /** @var Character $character */
         $character = self::getContainer()->get(CharactersRepository::class)->findOneBy(['nameSlug' => 'invited-character']);
-        self::assertInstanceOf(Character::class, $character);
+        static::assertInstanceOf(Character::class, $character);
         // Remember: remaining XP for this char is 500.
-        self::assertSame(350, $character->getExperienceSpent());
-        self::assertSame(150, $character->getExperienceActual());
-        self::assertSame(5, $character->getSpeedBonus());
-        self::assertSame(10, $character->getDefenseBonus());
+        static::assertSame(350, $character->getExperienceSpent());
+        static::assertSame(150, $character->getExperienceActual());
+        static::assertSame(5, $character->getSpeedBonus());
+        static::assertSame(10, $character->getDefenseBonus());
     }
 
     public function provide discipline scores out of range(): ?\Generator
@@ -208,17 +208,17 @@ class CharacterSpendXpControllerTest extends WebTestCase
 
         /** @var Character $character */
         $character = self::getContainer()->get(CharactersRepository::class)->findOneBy(['nameSlug' => 'character-to-spend-ogham-with']);
-        self::assertInstanceOf(Character::class, $character);
+        static::assertInstanceOf(Character::class, $character);
         // Remember: remaining XP for this char is 500.
-        self::assertSame(5, $character->getExperienceSpent());
-        self::assertSame(495, $character->getExperienceActual());
+        static::assertSame(5, $character->getExperienceSpent());
+        static::assertSame(495, $character->getExperienceActual());
 
         $ogham = $character->getOgham();
         if ($ogham instanceof Collection) {
             $ogham = $ogham->toArray();
         }
-        self::assertCount(1, $ogham);
-        self::assertSame(1, \current($ogham)->getId());
+        static::assertCount(1, $ogham);
+        static::assertSame(1, \current($ogham)->getId());
     }
 
     public function test spending xp to buy miracles(): void
@@ -240,17 +240,17 @@ class CharacterSpendXpControllerTest extends WebTestCase
 
         /** @var Character $character */
         $character = self::getContainer()->get(CharactersRepository::class)->findOneBy(['nameSlug' => 'character-to-spend-miracles-with']);
-        self::assertInstanceOf(Character::class, $character);
+        static::assertInstanceOf(Character::class, $character);
         // Remember: remaining XP for this char is 500.
-        self::assertSame(5, $character->getExperienceSpent());
-        self::assertSame(495, $character->getExperienceActual());
+        static::assertSame(5, $character->getExperienceSpent());
+        static::assertSame(495, $character->getExperienceActual());
 
         $miracles = $character->getMiracles();
         if ($miracles instanceof Collection) {
             $miracles = $miracles->toArray();
         }
-        self::assertCount(1, $miracles);
-        self::assertSame(1, \current($miracles)->getMiracleId());
+        static::assertCount(1, $miracles);
+        static::assertSame(1, \current($miracles)->getMiracleId());
     }
 
     private function submitXpForm(KernelBrowser $client, array $formData, string $characterSlug = '4-invited-character'): void
@@ -261,7 +261,7 @@ class CharacterSpendXpControllerTest extends WebTestCase
 
         $form = $client->getCrawler()->filter('form[name="character_spend_xp"]');
 
-        self::assertCount(1, $form, 'No spend xp form found');
+        static::assertCount(1, $form, 'No spend xp form found');
 
         $form = $form->form();
         foreach ($formData as $key => $value) {

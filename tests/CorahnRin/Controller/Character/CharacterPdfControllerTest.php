@@ -32,6 +32,6 @@ class CharacterPdfControllerTest extends WebTestCase
 
         self::assertResponseStatusCodeSame(200, 'Failed to generate a PDF for current character.');
 
-        self::assertInstanceOf(BinaryFileResponse::class, $client->getResponse());
+        static::assertInstanceOf(BinaryFileResponse::class, $client->getResponse());
     }
 }
