@@ -43,7 +43,7 @@ abstract class AbstractStepTest extends WebTestCase
             return \preg_replace_callback('~[A-Z]~', function ($matches) {
                 return '_'.\mb_strtolower($matches[0]);
             }, $matches[1]);
-        }, self::class);
+        }, static::class);
     }
 
     protected function submitAction(array $sessionValues = [], array $formValues = [], string $queryString = ''): StepActionTestResult
