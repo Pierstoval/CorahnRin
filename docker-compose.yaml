@@ -7,9 +7,7 @@ volumes:
 services:
 
     php:
-        build:
-            dockerfile: ./docker/php/Dockerfile
-            context: .
+        image: 'pierstoval/corahnrin:latest'
         working_dir: /srv/
         volumes:
             - ./:/srv
