@@ -47,14 +47,10 @@ trait GetHttpClientTestTrait
             throw new \RuntimeException(\sprintf('Test case must extend %s to use Kernel features', KernelTestCase::class));
         }
 
-        $server = [];
-
         /** @var KernelBrowser $client */
-        $client = self::createClient([], $server);
+        return self::createClient();
         // Disable reboot, allows client to be reused for other requests.
-        $client->disableReboot();
-
-        return $client;
+//        $client->disableReboot();
     }
 
     protected static function setToken(KernelBrowser $client, UserInterface $user, array $roles = ['ROLE_USER']): void
