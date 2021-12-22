@@ -49,6 +49,8 @@ class Step07SetbacksTest extends AbstractStepTest
             'name' => ['Séquelle'],
         ]);
 
+        self::assertCount(1, $setbacksFromTheDb);
+
         $setbacks = $this->getCharacterSetbacksFromStepSubmit(21, $client, $setbacksFromTheDb);
 
         $idOfFirstSetback = $setbacksFromTheDb[0]->getId();
