@@ -124,6 +124,15 @@
     "doctrine/sql-formatter": {
         "version": "1.1.1"
     },
+    "dunglas/doctrine-json-odm": {
+        "version": "1.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.1",
+            "ref": "c2ab78f625df0c89af5908d50a28602ff8c4919f"
+        }
+    },
     "easycorp/easyadmin-bundle": {
         "version": "2.0",
         "recipe": {

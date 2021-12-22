@@ -30,7 +30,6 @@ use DataFixtures\UsersFixtures;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\ORM\EntityManagerInterface;
 use EsterenMaps\Id\ZoneId;
 use Orbitale\Component\ArrayFixture\ArrayFixture;
 
@@ -97,12 +96,7 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
                 'hardening' => 0,
                 'age' => 24,
                 'mentalResistanceBonus' => 1,
-                'ways' => static function (Character $character, $_fixture, EntityManagerInterface $em) {
-                    $ways = Ways::create($character, 1, 4, 3, 4, 3);
-                    $em->persist($ways);
-
-                    return $ways;
-                },
+                'ways' => Ways::create(1, 4, 3, 4, 3),
                 'health' => new HealthCondition(),
                 'maxHealth' => new HealthCondition(),
                 'stamina' => 10,
@@ -218,12 +212,7 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
                 'hardening' => 18,
                 'age' => 35,
                 'mentalResistanceBonus' => 15,
-                'ways' => static function (Character $character, $_fixture, EntityManagerInterface $em) {
-                    $ways = Ways::create($character, 5, 5, 5, 5, 5);
-                    $em->persist($ways);
-
-                    return $ways;
-                },
+                'ways' => Ways::create(5, 5, 5, 5, 5),
                 'health' => new HealthCondition(),
                 'maxHealth' => new HealthCondition(),
                 'stamina' => 10,
@@ -610,12 +599,7 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
             'hardening' => 0,
             'age' => 20,
             'mentalResistanceBonus' => 0,
-            'ways' => static function (Character $character, $_fixture, EntityManagerInterface $em) {
-                $ways = Ways::create($character, 1, 4, 3, 4, 3);
-                $em->persist($ways);
-
-                return $ways;
-            },
+            'ways' => Ways::create(1, 4, 3, 4, 3),
             'health' => new HealthCondition(),
             'maxHealth' => new HealthCondition(),
             'stamina' => 10,

@@ -4,3 +4,11 @@ doctrine_migrations:
         # as migrations classes should NOT be autoloaded
         'DoctrineMigrations': '%kernel.project_dir%/migrations'
     enable_profiler: '%kernel.debug%'
+
+services:
+    Main\Migrations\MigrationFactoryDecorator:
+        decorates: Doctrine\Migrations\Version\MigrationFactory
+        autowire: false
+        arguments:
+            - Main\Migrations\MigrationFactoryDecorator.inner
+            - doctrine.orm.default_entity_manager

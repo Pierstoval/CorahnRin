@@ -198,8 +198,7 @@ class Character extends BaseCharacter
     protected $mentalResistanceBonus = 0;
 
     /**
-     * @ORM\OneToOne(targetEntity="CorahnRin\Entity\CharacterProperties\Ways", inversedBy="character", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="ways_id", referencedColumnName="id", nullable=true, unique=true)
+     * @ORM\Column(name="ways", type="json_document")
      */
     protected Ways $ways;
 
@@ -534,7 +533,7 @@ class Character extends BaseCharacter
         $character->story = $characterFromSession->getStory();
         $character->survival = $characterFromSession->getSurvival();
         $character->user = $characterFromSession->getUser();
-        $character->ways = Ways::createFromSession($character, $characterFromSession->getWays());
+        $character->ways = Ways::createFromSession($characterFromSession->getWays());
         $character->weapons = $characterFromSession->getWeapons();
 
         foreach ($characterFromSession->getSetbacks() as $setbackDTO) {

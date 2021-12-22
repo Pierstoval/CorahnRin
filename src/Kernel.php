@@ -12,6 +12,7 @@ declare(strict_types=1);
  */
 
 use Admin\DependencyInjection\AdminRouteParamPass;
+use CorahnRin\DependencyInjection\Compiler\JsonDenormalizersPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -27,6 +28,7 @@ class Kernel extends BaseKernel
         parent::build($container);
 
         $container->addCompilerPass(new AdminRouteParamPass());
+        $container->addCompilerPass(new JsonDenormalizersPass());
     }
 
     protected function configureContainer(ContainerConfigurator $container): void

@@ -22,6 +22,8 @@ class DomainsDataTest extends TestCase
 {
     /**
      * @dataProvider provide methods that use validateDomain
+     *
+     * @group unit
      */
     public function test method that use validateDomain throw exception with invalid domain(string $method, array $arguments): void
     {
@@ -33,6 +35,8 @@ class DomainsDataTest extends TestCase
 
     /**
      * @dataProvider provide valid titles
+     *
+     * @group unit
      */
     public function test validateDomain with valid domain title does not throw(string $title): void
     {
@@ -40,6 +44,9 @@ class DomainsDataTest extends TestCase
         static::assertTrue(true);
     }
 
+    /**
+     * @group unit
+     */
     public function test validateDomain with invalid domain title throws exception(): void
     {
         $this->expectException(InvalidDomain::class);
@@ -50,6 +57,8 @@ class DomainsDataTest extends TestCase
 
     /**
      * @dataProvider provide valid titles
+     *
+     * @group unit
      */
     public function test isValid with valid title returns true(string $title): void
     {

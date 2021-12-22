@@ -15,74 +15,21 @@ namespace CorahnRin\Entity\CharacterProperties;
 
 use CorahnRin\Data\Ways as WaysData;
 use CorahnRin\DTO\WaysDTO;
-use CorahnRin\Entity\Character;
 use CorahnRin\Exception\InvalidWay;
-use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="characters_ways")
- */
 class Ways
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
-     * @var Character
-     *
-     * @ORM\OneToOne(targetEntity="CorahnRin\Entity\Character", mappedBy="ways")
-     * @ORM\JoinColumn(name="character_id", referencedColumnName="id", nullable=true, unique=true)
-     */
-    protected $character;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="combativeness", type="smallint")
-     */
-    protected $combativeness;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="creativity", type="smallint")
-     */
-    protected $creativity;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="empathy", type="smallint")
-     */
-    protected $empathy;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="reason", type="smallint")
-     */
-    protected $reason;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="conviction", type="smallint")
-     */
-    protected $conviction;
+    private int $combativeness;
+    private int $creativity;
+    private int $empathy;
+    private int $reason;
+    private int $conviction;
 
     private function __construct()
     {
     }
 
     public static function create(
-        Character $character,
         int $combativeness,
         int $creativity,
         int $empathy,
@@ -91,7 +38,6 @@ class Ways
     ): self {
         $self = new self();
 
-        $self->character = $character;
         $self->combativeness = $combativeness;
         $self->creativity = $creativity;
         $self->empathy = $empathy;
@@ -101,10 +47,9 @@ class Ways
         return $self;
     }
 
-    public static function createFromSession(Character $character, WaysDTO $dto): self
+    public static function createFromSession(WaysDTO $dto): self
     {
         return self::create(
-            $character,
             $dto->getCombativeness(),
             $dto->getCreativity(),
             $dto->getEmpathy(),
@@ -117,35 +62,14 @@ class Ways
     {
         WaysData::validateWay($way);
 
-        switch ($way) {
-            case WaysData::COMBATIVENESS:
-                return $this->combativeness;
-
-            case WaysData::CREATIVITY:
-                return $this->creativity;
-
-            case WaysData::EMPATHY:
-                return $this->empathy;
-
-            case WaysData::REASON:
-                return $this->reason;
-
-            case WaysData::CONVICTION:
-                return $this->conviction;
-
-            default:
-                throw new InvalidWay($way);
-        }
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getCharacter(): Character
-    {
-        return $this->character;
+        return match ($way) {
+            WaysData::COMBATIVENESS => $this->combativeness,
+            WaysData::CREATIVITY => $this->creativity,
+            WaysData::EMPATHY => $this->empathy,
+            WaysData::REASON => $this->reason,
+            WaysData::CONVICTION => $this->conviction,
+            default => throw new InvalidWay($way),
+        };
     }
 
     public function getCombativeness(): int
@@ -171,5 +95,25 @@ class Ways
     public function getConviction(): int
     {
         return $this->conviction;
+    }
+
+    /**
+     * @return array{
+     *     "ways.combativeness": int
+     *     "ways.creativity": int
+     *     "ways.empathy": int
+     *     "ways.reason": int
+     *     "ways.conviction": int
+     * }
+     */
+    public function toArray(): array
+    {
+        return [
+            WaysData::COMBATIVENESS => $this->combativeness,
+            WaysData::CREATIVITY => $this->creativity,
+            WaysData::EMPATHY => $this->empathy,
+            WaysData::REASON => $this->reason,
+            WaysData::CONVICTION => $this->conviction,
+        ];
     }
 }
