@@ -2,10 +2,6 @@ name: PHP
 
 on: [push]
 
-env:
-    MAPS_USERNAME: ${{ secrets.MAPS_USERNAME }}
-    MAPS_PASSWORD: ${{ secrets.MAPS_PASSWORD }}
-
 jobs:
     build:
         name: Corahn-Rin CI
@@ -41,8 +37,7 @@ jobs:
             - name: '[Run] Install the project'
               id: install
               run: |
-                cp docker-compose.override.yaml.ci.dist docker-compose.override.yaml
-                make -e MAPS_USERNAME=${{ secrets.MAPS_USERNAME }} MAPS_PASSWORD=${{ secrets.MAPS_PASSWORD }} install-php
+                make install-php
 
             - name: '[Run] 🚀 QA'
               run: make qa
