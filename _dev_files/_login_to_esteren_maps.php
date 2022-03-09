@@ -52,31 +52,14 @@ function login(SymfonyStyle $io): HttpBrowser
     $crawler = $browser->request('GET', $baseUri.'/fr/map-tri-kazel');
     $response = $browser->getResponse();
 
-    // 401 means login form.
-    if (401 !== $response->getStatusCode()) {
+    // 200 means map is visible.
+    if (200 !== $response->getStatusCode()) {
         throw new RuntimeException(
             sprintf(
-                'Expected a 401 HTTP response, got "%s" instead.',
+                'Expected a 200 HTTP response, got "%s" instead.',
                 $response->getStatusCode()
             )
         );
-    }
-
-    $csrfToken = $crawler->filter('input[name="_csrf_token"]')->attr('value');
-
-    $crawler = $browser->request(
-        'POST',
-        $baseUri.'/fr/login_check',
-        [
-            '_csrf_token' => $csrfToken,
-            '_username_or_email' => $username,
-            '_password' => $password,
-        ]
-    );
-
-    $flash = $crawler->filter('#flash-messages');
-    if ($flash && $flash->count()) {
-        throw new RuntimeException($flash->text(null, true));
     }
 
     return $browser;

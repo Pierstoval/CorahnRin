@@ -25,7 +25,7 @@ $io = new SymfonyStyle($input, $output);
 
 $browser = login($io);
 
-$browser->request('GET', 'https://esterenmaps.pierstoval.com/fr/api/api/maps/1');
+$browser->request('GET', 'https://esterenmaps.pierstoval.com/fr/api/maps/1');
 
 $json = json_decode($browser->getResponse()->getContent(), true, 512, \JSON_THROW_ON_ERROR);
 

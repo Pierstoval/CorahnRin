@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class MapOptions
 {
     public const TILE_SIZE = 168;
-    public const MAP_API_DOMAIN = 'maps.esteren.org';
+    public const MAP_API_DOMAIN = 'esterenmaps.pierstoval.com';
     public const ESTEREN_MAPS_STEP_3_ZONES = [
         25,
         56,
