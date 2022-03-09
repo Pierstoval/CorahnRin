@@ -99,10 +99,10 @@ class Ways
 
     /**
      * @return array{
-     *     "ways.combativeness": int
-     *     "ways.creativity": int
-     *     "ways.empathy": int
-     *     "ways.reason": int
+     *     "ways.combativeness": int,
+     *     "ways.creativity": int,
+     *     "ways.empathy": int,
+     *     "ways.reason": int,
      *     "ways.conviction": int
      * }
      */
