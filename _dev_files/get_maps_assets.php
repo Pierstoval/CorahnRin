@@ -51,12 +51,6 @@ try {
     $entrypointsJson['entrypoints']['maps_styles']['css'] = $cssFiles;
     file_put_contents($entrypointsFile, json_encode($entrypointsJson, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_LINE_TERMINATORS));
 
-    //$manifestFile = ROOT_DIR.'/public/build/manifest.json';
-    //$manifest = json_decode(file_get_contents($manifestFile), true, 512, JSON_THROW_ON_ERROR);
-    //$manifest['build/maps.js'] = $jsFile;
-    //$manifest['build/maps_styles.css'] = $cssFile;
-    //file_put_contents($manifestFile, json_encode($manifest, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT | JSON8_JSON_UNESCAPED_LINE_TERMINATORS));
-
     $io->success('Done!');
 } catch (Exception $e) {
     do {

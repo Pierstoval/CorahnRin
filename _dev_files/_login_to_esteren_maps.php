@@ -49,7 +49,7 @@ function login(SymfonyStyle $io): HttpBrowser
 
     $browser = new HttpBrowser();
 
-    $crawler = $browser->request('GET', $baseUri.'/fr/map-tri-kazel');
+    $browser->request('GET', $baseUri.'/fr/map-tri-kazel');
     $response = $browser->getResponse();
 
     // 200 means map is visible.
