@@ -19,9 +19,6 @@ $HOME/bin/composer install --no-dev --no-scripts --prefer-dist --optimize-autolo
 php bin/console cache:clear --no-warmup
 php bin/console cache:warmup
 
-php _dev_files/get_maps_assets.php
-php _dev_files/get_maps_data.php
-
 php bin/console doctrine:migrations:migrate --no-interaction
 
 php bin/console doctrine:schema:validate || echo 'Doctrine schema not valid, please make sure it is correct.'
@@ -29,3 +26,7 @@ php bin/console doctrine:schema:validate || echo 'Doctrine schema not valid, ple
 yarn install
 
 yarn run build
+
+# Execute these AFTER yarn build, because it modifies the generated JSON manifest.
+php _dev_files/get_maps_assets.php
+php _dev_files/get_maps_data.php
