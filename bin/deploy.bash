@@ -59,6 +59,12 @@ git merge origin/main
 
 echo "[DEPLOY] > Done!"
 
+if [[ -f "${DIR}/../pre_deploy.bash" ]]
+then
+    echo "[DEPLOY] > Executing pre-deploy scripts"
+    bash ../pre_deploy.bash
+fi
+
 echo "[DEPLOY] > Executing scripts..."
 echo "[DEPLOY] > "
 
