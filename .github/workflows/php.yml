@@ -40,7 +40,9 @@ jobs:
 
             - name: '[Run] Install the project'
               id: install
-              run: make -e MAPS_USERNAME=${{ secrets.MAPS_USERNAME }} MAPS_PASSWORD=${{ secrets.MAPS_PASSWORD }} install-php
+              run: |
+                cp docker-compose.override.yaml.ci.dist docker-compose.override.yaml
+                make -e MAPS_USERNAME=${{ secrets.MAPS_USERNAME }} MAPS_PASSWORD=${{ secrets.MAPS_PASSWORD }} install-php
 
             - name: '[Run] 🚀 QA'
               run: make qa
