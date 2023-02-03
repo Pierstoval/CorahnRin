@@ -4,7 +4,7 @@ DOCKER_COMPOSE  = docker-compose
 
 EXEC_JS         = $(DOCKER_COMPOSE) exec -T node entrypoint
 EXEC_DB         = $(DOCKER_COMPOSE) exec -T database
-EXEC_QA         = $(DOCKER_COMPOSE) run -T -e APP_ENV=test --rm php
+EXEC_QA         = $(DOCKER_COMPOSE) exec -T --env=APP_ENV=test php entrypoint
 EXEC_PHP        = $(DOCKER_COMPOSE) exec -e MAPS_USERNAME="Backer" -e MAPS_PASSWORD="EsterenBacker" -T php entrypoint
 
 SYMFONY_CONSOLE = $(EXEC_PHP) php bin/console
@@ -25,18 +25,18 @@ _ERROR := "\033[31m[%s]\033[0m %s\n" # Red text
 
 ##
 ## Project
-## ───────
+## -------
 ##
 
 .DEFAULT_GOAL := help
 help: ## Show this help message
-	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf " \033[32m%-25s\033[0m%s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
+	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-25s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 .PHONY: help
 
 install: build node_modules start vendor check-map-credentials db test-db legacy-db legacy-test-db get-maps-data assets ## Install and start the project
 .PHONY: install
 
-build:
+build: ## Build the Docker images
 	@$(DOCKER_COMPOSE) pull --include-deps
 	@$(DOCKER_COMPOSE) build --force-rm --compress
 .PHONY: build
@@ -54,11 +54,13 @@ stop: ## Stop all containers and the PHP server
 restart: stop start ## Restart the containers & the PHP server
 .PHONY: restart
 
-kill:
-	@$(DOCKER_COMPOSE) kill
+kill: ## Stop all containers
+	$(DOCKER_COMPOSE) kill
+	$(DOCKER_COMPOSE) down --volumes --remove-orphans
 .PHONY: kill
 
 clean: ## Stop the project and remove generated files and configuration
+clean: kill
 	@printf $(_ERROR) "WARNING" "This will remove ALL containers, data, cache, to make a fresh project! Use at your own risk!"
 
 	@if [[ -z "$(RESET)" ]]; then \
@@ -86,7 +88,7 @@ full-reset: kill install ## Clean the project and start a fresh install of it
 
 ##
 ## Tools
-## ─────
+## -----
 ##
 
 cc: ## Clear and warmup PHP cache
@@ -138,7 +140,7 @@ prod-db: var/dump.sql dev-db ## Installs production database if it has been save
 	fi;
 .PHONY: prod-db
 
-var/dump.sql:
+var/dump.sql: ## Tries to download a database from production environment
 	@if [ "${CORAHNRIN_DEPLOY_REMOTE}" = "" ]; then \
 		echo "[ERROR] Please specify the CORAHNRIN_DEPLOY_REMOTE env var to connect to a remote" ;\
 		exit 1 ;\
@@ -149,12 +151,14 @@ var/dump.sql:
 	fi; \
 	ssh ${CORAHNRIN_DEPLOY_REMOTE} ${CORAHNRIN_DEPLOY_DIR}/../dump_db.bash > var/dump.sql
 
-migrations:
+migrations: ## Reset the database
 	$(SYMFONY_CONSOLE) doctrine:migrations:migrate --no-interaction
 .PHONY: migrations
 
-fixtures:
+fixtures: ## Install all dev fixtures in the database
 	$(SYMFONY_CONSOLE) doctrine:fixtures:load --append --no-interaction
+	@[[ -d public/uploads/portal/ ]] || $(EXEC_PHP) mkdir -p public/uploads/portal/
+	@[[ -d var/uploads/products/ ]] || $(EXEC_PHP) mkdir -p var/uploads/products/
 .PHONY: fixtures
 
 watch: ## Run Webpack to compile assets on change
@@ -171,9 +175,9 @@ vendor: ## Install PHP vendors
 	$(COMPOSER) install
 .PHONY: vendor
 
-node_modules:
+node_modules: yarn.lock ## Install JS vendors
 	@mkdir -p public/build/
-	$(DOCKER_COMPOSE) run --rm --entrypoint=/bin/entrypoint node yarn install --unsafe-perm=true
+	$(DOCKER_COMPOSE) run --rm --entrypoint=/bin/entrypoint node yarn install
 	$(DOCKER_COMPOSE) up -d node
 .PHONY: node_modules
 
@@ -194,9 +198,33 @@ start-node:
 	$(DOCKER_COMPOSE) up --force-recreate --no-deps -d node
 .PHONY: start-node
 
+full-reset:
+	@printf $(_ERROR) "WARNING" "This will remove ALL containers, data, cache, to make a fresh project! Use at your own risk!"
+
+	@if [[ -z "$(RESET)" ]]; then \
+		printf $(_ERROR) "WARNING" "If you are 100% sure of what you are doing, re-run with $(MAKE) -e RESET=1 full-reset" ; \
+		exit 0 ; \
+	fi ; \
+	\
+	$(DOCKER_COMPOSE) down --volumes --remove-orphans && \
+	rm -rf \
+		"var/cache/*" \
+		"var/uploads/*" \
+		"var/log/*" \
+		"var/sessions/*" \
+		public/build \
+		public/bundles \
+		public/uploads \
+		node_modules \
+		vendor \
+	&& \
+	\
+	printf $(_TITLE) "OK" "Done!"
+.PHONY: full-reset
+
 ##
 ## Tests
-## ─────
+## -----
 ##
 
 ci-vendor:
@@ -217,7 +245,7 @@ phpstan: start-php check-phpunit
 	@echo "Clear & warmup test environment cache because phpstan may use it..."
 	$(EXEC_QA) bin/console cache:clear --no-warmup
 	$(EXEC_QA) bin/console cache:warmup
-	$(EXEC_QA) phpstan analyse -c phpstan.neon
+	$(EXEC_QA) phpstan analyse -c phpstan.neon --xdebug
 .PHONY: phpstan
 
 check-phpunit:
@@ -238,11 +266,12 @@ node-tests: start ## Execute checks & tests
 .PHONY: node-tests
 
 qa: ## Execute CS, linting, security checks, etc
-	$(EXEC_QA) bin/console lint:twig templates src templates
-	$(EXEC_QA) bin/console lint:yaml --parse-tags config translations
+	$(EXEC_QA) bin/console lint:twig templates src
+	$(EXEC_QA) bin/console lint:yaml --parse-tags config
+	$(EXEC_QA) bin/console lint:yaml --parse-tags src
 .PHONY: qa
 
-setup-phpunit: check-phpunit
+setup-phpunit: check-phpunit ## Setup PHPUnit before running it
 
 phpunit: check-phpunit ## Execute all PHPUnit tests
 	$(EXEC_QA) bin/phpunit

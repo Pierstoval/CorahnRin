@@ -1,31 +1,42 @@
-version: '3'
+version: "3.4"
 
 volumes:
-    node_modules:
     db_data:
+    php_socket:
 
 services:
-
     php:
-        image: 'pierstoval/corahnrin:latest'
+        build:
+            context: ./docker/php/
         working_dir: /srv/
         volumes:
-            - ./:/srv
-        links:
-            - database
-            - mailer
+            - "./:/srv"
+            - "php_socket:/var/run/php"
+
+    caddy:
+        build:
+            context: ./docker/caddy/
+        working_dir: /srv/
+        volumes:
+            - "php_socket:/var/run/php"
+            - "./backend/:/srv/"
+        ports:
+            - "80:80"
+            - "443:443"
+            - "443:443/udp"
 
     mailer:
-        build: ./docker/mailcatcher/
+        image: mailhog/mailhog
 
     node:
         build: ./docker/node/
         working_dir: /srv/
+        ports:
+            - "3000:3000"
         volumes:
-            - ./:/srv
+            - "./:/srv"
         command: 'sleep 99999d'
 
-    # Dump can be saved in data/ that's why it's the only directory we share
     database:
         image: 'mysql:5.7'
         working_dir: /srv/

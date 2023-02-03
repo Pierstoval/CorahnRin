@@ -36,3 +36,4 @@ parameters:
         - { message: '#.*#', path: %currentWorkingDirectory%/src/CorahnRin/Command/ImportLegacyCharactersCommand.php }
         - { message: '#.*#', path: %currentWorkingDirectory%/tests/Stubs/ExecutionContextStubFactory.php }
         - { message: '#since Symfony 5\.3, use the new authenticator system instead#', path: %currentWorkingDirectory% }
+        - { message: '#Call to deprecated method#', path: %currentWorkingDirectory% }

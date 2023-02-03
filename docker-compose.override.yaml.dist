@@ -2,37 +2,15 @@ version: '3'
 
 services:
 
-    # Use this file if you want to use blackfire, or customize other containers
-
-    php:
-        ports:
-            - '8000:8000'
-        links:
-            - blackfire
-        environment:
-            BLACKFIRE_SOCKET: tcp://blackfire:8707
-            BLACKFIRE_CLIENT_ID:
-            BLACKFIRE_CLIENT_TOKEN:
-            BLACKFIRE_SERVER_ID:
-            BLACKFIRE_SERVER_TOKEN:
-
-    # Add your credentials here to run blackfire in HTTP with the Companion
-    blackfire:
-        image: blackfire/blackfire
-        environment:
-            BLACKFIRE_CLIENT_ID:
-            BLACKFIRE_CLIENT_TOKEN:
-            BLACKFIRE_SERVER_ID:
-            BLACKFIRE_SERVER_TOKEN:
-
     mailer:
         ports:
-            - '11080:1080'
+            - '8025:8025'
 
     database:
         ports:
-            - '11306:3306'
+            - '3306:3306'
 
-    #gotenberg:
-    #    ports:
-    #        - '11000:3000'
+    caddy:
+        ports:
+            - "8000:443"
+            - "8000:443/udp"

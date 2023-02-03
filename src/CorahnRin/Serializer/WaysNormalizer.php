@@ -51,12 +51,12 @@ class WaysNormalizer implements DenormalizerInterface, NormalizerInterface
      * @param Ways $object
      *
      * @return array{
-     *     "ways.combativeness": int,
-     *     "ways.creativity": int,
-     *     "ways.empathy": int,
-     *     "ways.reason": int,
-     *     "ways.conviction": int
-     * }
+     *                "ways.combativeness": int,
+     *                "ways.creativity": int,
+     *                "ways.empathy": int,
+     *                "ways.reason": int,
+     *                "ways.conviction": int
+     *                }
      */
     public function normalize($object, string $format = null, array $context = []): array
     {

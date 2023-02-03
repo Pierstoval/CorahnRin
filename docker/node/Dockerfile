@@ -1,6 +1,6 @@
 FROM node:14
 
-ENV GOSU_VERSION=1.12 \
+ENV GOSU_VERSION=1.14 \
     RUN_USER="node"
 
 COPY bin/entrypoint.sh /bin/entrypoint

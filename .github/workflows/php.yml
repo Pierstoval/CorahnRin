@@ -37,7 +37,7 @@ jobs:
             - name: '[Run] Install the project'
               id: install
               run: |
-                make install-php
+                make install
 
             - name: '[Run] 🚀 QA'
               run: make qa
