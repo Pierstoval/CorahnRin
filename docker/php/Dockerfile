@@ -4,9 +4,9 @@ LABEL maintainer="pierstoval@gmail.com"
 
 WORKDIR /srv
 
-CMD ["php-fpm8.0"]
+CMD ["php-fpm8.1"]
 
-ENV PHP_VERSION=8.0 \
+ENV PHP_VERSION=8.1 \
     GOSU_VERSION=1.14 \
     PANTHER_NO_SANDBOX=1 \
     PATH=/home/.composer/vendor/bin:$PATH \

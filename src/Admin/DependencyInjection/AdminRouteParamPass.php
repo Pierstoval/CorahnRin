@@ -24,11 +24,13 @@ class AdminRouteParamPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container): void
     {
+        /* // FIXME/TODO
         $easyadminConfig = $container->getParameter('easyadmin.config');
         $entities = \array_keys($easyadminConfig['entities']);
 
         $regex = \sprintf('(?:%s)', \implode('|', $entities));
 
         $container->setParameter('easyadmin_entities_list_regex', $regex);
+        */
     }
 }

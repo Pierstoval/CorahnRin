@@ -24,15 +24,15 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\HttpUtils;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use User\Entity\User;
 use User\Repository\UserRepository;
 
-final class FormLoginAuthenticator extends AbstractGuardAuthenticator
+final class FormLoginAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
@@ -59,21 +59,24 @@ final class FormLoginAuthenticator extends AbstractGuardAuthenticator
         'pierstoval_tools_assets_jstranslations',
     ];
 
-    private $httpKernel;
-    private $httpUtils;
-    private $router;
-    private $encoder;
+    private HttpKernelInterface $httpKernel;
+    private HttpUtils $httpUtils;
+    private RouterInterface $router;
+    private UserPasswordHasherInterface $encoder;
+    private UserRepository $userRepository;
 
     public function __construct(
         HttpKernelInterface $kernel,
         HttpUtils $httpUtils,
         RouterInterface $router,
-        UserPasswordHasherInterface $encoder
+        UserPasswordHasherInterface $encoder,
+        UserRepository $userRepository,
     ) {
         $this->httpKernel = $kernel;
         $this->httpUtils = $httpUtils;
         $this->router = $router;
         $this->encoder = $encoder;
+        $this->userRepository = $userRepository;
     }
 
     public function start(Request $request, AuthenticationException $authException = null): Response
@@ -85,7 +88,7 @@ final class FormLoginAuthenticator extends AbstractGuardAuthenticator
         }
 
         // Forward the request to the login controller, to avoid too many redirections.
-        $subRequest = $this->httpUtils->createRequest($request, $this->getLoginUrl());
+        $subRequest = $this->httpUtils->createRequest($request, $this->getLoginUrl($request));
 
         $response = $this->httpKernel->handle($subRequest, HttpKernelInterface::SUB_REQUEST);
         if (200 === $response->getStatusCode()) {
@@ -117,14 +120,10 @@ final class FormLoginAuthenticator extends AbstractGuardAuthenticator
         );
     }
 
-    /**
-     * @param UsernamePasswordCredentials $credentials
-     * @param UserRepository              $userProvider
-     */
-    public function getUser($credentials, UserProviderInterface $userProvider): UserInterface
+    public function getUser(UsernamePasswordCredentials $credentials): User
     {
         try {
-            $user = $userProvider->loadUserByUsername($credentials->getUsernameOrEmail());
+            $user = $this->userRepository->loadUserByUsername($credentials->getUsernameOrEmail());
         } catch (UserNotFoundException $e) {
             throw new BadCredentialsException('security.bad_credentials');
         }
@@ -132,11 +131,7 @@ final class FormLoginAuthenticator extends AbstractGuardAuthenticator
         return $user;
     }
 
-    /**
-     * @param UsernamePasswordCredentials $credentials
-     * @param User|UserInterface          $user
-     */
-    public function checkCredentials($credentials, UserInterface $user): bool
+    public function checkCredentials(UsernamePasswordCredentials $credentials, User $user): bool
     {
         if (!$this->encoder->isPasswordValid($user, $credentials->getPassword())) {
             throw new BadCredentialsException('security.bad_credentials');
@@ -145,11 +140,11 @@ final class FormLoginAuthenticator extends AbstractGuardAuthenticator
         return true;
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): RedirectResponse
     {
         $session = $request->getSession();
 
-        $targetPath = $this->getTargetPath($session, $providerKey);
+        $targetPath = $this->getTargetPath($session, $firewallName);
 
         if (!$targetPath) {
             $targetPath = \rtrim($this->router->generate('root'), '/').'/'.$request->getLocale();
@@ -157,7 +152,7 @@ final class FormLoginAuthenticator extends AbstractGuardAuthenticator
 
         // Make sure username is not stored for next login
         $session->remove(Security::LAST_USERNAME);
-        $this->removeTargetPath($session, $providerKey);
+        $this->removeTargetPath($session, $firewallName);
 
         return new RedirectResponse($targetPath);
     }
@@ -168,7 +163,7 @@ final class FormLoginAuthenticator extends AbstractGuardAuthenticator
             $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
         }
 
-        $url = $this->getLoginUrl();
+        $url = $this->getLoginUrl($request);
 
         return new RedirectResponse($url);
     }
@@ -178,8 +173,16 @@ final class FormLoginAuthenticator extends AbstractGuardAuthenticator
         return true;
     }
 
-    protected function getLoginUrl(): string
+    protected function getLoginUrl(Request $request): string
     {
-        return $this->router->generate(static::LOGIN_ROUTE);
+        return $this->router->generate(self::LOGIN_ROUTE);
+    }
+
+    public function authenticate(Request $request): SelfValidatingPassport
+    {
+        $credentials = $this->getCredentials($request);
+        $user = $this->getUser($credentials);
+
+        return new SelfValidatingPassport(new UserBadge($user->getUserIdentifier(), fn() => $user));
     }
 }

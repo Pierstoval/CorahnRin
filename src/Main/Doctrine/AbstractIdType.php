@@ -34,7 +34,7 @@ abstract class AbstractIdType extends IntegerType
             return $value;
         }
 
-        return $class::fromString($value);
+        return $class::fromString((string) $value);
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?int

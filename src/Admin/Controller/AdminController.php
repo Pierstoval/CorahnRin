@@ -14,14 +14,13 @@ declare(strict_types=1);
 namespace Admin\Controller;
 
 use Admin\DependencyInjection\AdminRouteParamPass;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Main\DependencyInjection\PublicService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminController extends EasyAdminController implements PublicService
+class AdminController implements PublicService
 {
     /**
      * The "easyadmin_entities_list_regex" param is defined in the AdminRouteParamPass compiler pass.
@@ -36,9 +35,6 @@ class AdminController extends EasyAdminController implements PublicService
      *         "entity" = null,
      *         "action" = null,
      *         "id" = null
-     *     },
-     *     requirements={
-     *         "entity" = "%easyadmin_entities_list_regex%"
      *     }
      * )
      */
@@ -48,7 +44,7 @@ class AdminController extends EasyAdminController implements PublicService
             throw $this->createNotFoundException('An id must be specified for this action.');
         }
 
-        return parent::indexAction($request);
+        return new Response('TODO: remove this');
     }
 
     protected function redirectToBackendHomepage(): RedirectResponse|Response

@@ -1,7 +1,7 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
-    enable_authenticator_manager: false # TODO: set this to true when using the new auth manager
+    enable_authenticator_manager: true
 
     # http://symfony.com/doc/current/security.html#encoding-the-user-s-password
     password_hashers:
@@ -32,7 +32,6 @@ security:
             security: false
         main:
             pattern: ^/
-            anonymous: true
             lazy: true
             provider: user_provider
             entry_point: User\Security\FormLoginAuthenticator
@@ -45,9 +44,6 @@ security:
                 invalidate_session: false
                 path: user_logout
                 target: root
-            guard:
-                authenticators:
-                    - User\Security\FormLoginAuthenticator
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
@@ -55,6 +51,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: '^/(?:%locales_regex%)/(login|register|resetting)', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/(?:%locales_regex%)/(login|register|resetting)', role: PUBLIC_ACCESS }
         - { path: '^/(?:%locales_regex%)/(profile|games)',            role: ROLE_USER }
         - { path: '^/(?:%locales_regex%)/admin',                      role: EASYADMIN_BACKEND }

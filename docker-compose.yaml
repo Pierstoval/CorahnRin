@@ -19,7 +19,7 @@ services:
         working_dir: /srv/
         volumes:
             - "php_socket:/var/run/php"
-            - "./backend/:/srv/"
+            - "./:/srv/"
         ports:
             - "80:80"
             - "443:443"
@@ -31,8 +31,6 @@ services:
     node:
         build: ./docker/node/
         working_dir: /srv/
-        ports:
-            - "3000:3000"
         volumes:
             - "./:/srv"
         command: 'sleep 99999d'
