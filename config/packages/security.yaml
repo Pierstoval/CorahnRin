@@ -44,7 +44,8 @@ security:
                 invalidate_session: false
                 path: user_logout
                 target: root
-
+            custom_authenticators:
+                - User\Security\FormLoginAuthenticator
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
