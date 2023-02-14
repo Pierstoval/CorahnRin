@@ -22,11 +22,11 @@ class JsonDenormalizersPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-//        $def = $container->getDefinition('dunglas_doctrine_json_odm.serializer');
-//
-//        /** @var array $normalizers */
-//        $normalizers = $def->getArgument(0);
-//        \array_unshift($normalizers, new Reference(WaysNormalizer::class));
-//        $def->setArgument(0, $normalizers);
+        $def = $container->getDefinition('dunglas_doctrine_json_odm.serializer');
+
+        /** @var array $normalizers */
+        $normalizers = $def->getArgument(0);
+        \array_unshift($normalizers, new Reference(WaysNormalizer::class));
+        $def->setArgument(0, $normalizers);
     }
 }

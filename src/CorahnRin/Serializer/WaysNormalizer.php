@@ -15,13 +15,14 @@ namespace CorahnRin\Serializer;
 
 use CorahnRin\Data\Ways as WaysData;
 use CorahnRin\Entity\CharacterProperties\Ways;
+use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class WaysNormalizer implements DenormalizerInterface, NormalizerInterface
 {
     /**
-     * @param array{
+     * @param Ways|array{
      *     "ways.combativeness": int,
      *     "ways.creativity": int,
      *     "ways.empathy": int,
@@ -31,6 +32,18 @@ class WaysNormalizer implements DenormalizerInterface, NormalizerInterface
      */
     public function denormalize($data, string $type, string $format = null, array $context = []): Ways
     {
+        if ($data instanceof Ways) {
+            return $data;
+        }
+
+        if (!$data || !is_array($data)) {
+            throw new UnexpectedValueException(\sprintf(
+                'Ways data to denormalize have to be an array or an instance of "%s", "%s" given.',
+                Ways::class,
+                get_debug_type($data),
+            ));
+        }
+
         [
             WaysData::COMBATIVENESS => $combativeness,
             WaysData::CREATIVITY => $creativity,
