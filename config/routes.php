@@ -79,7 +79,7 @@ return static function (RoutingConfigurator $routes, Kernel $kernel) {
         ->controller(MapApiController::class)
     ;
 
-    $_import($projectDir.'/src/Admin/Controller/AdminController.php')
+    $_import($projectDir.'/src/Admin/Controller/')
         ->prefix('/{_locale}/admin', false)
     ;
 

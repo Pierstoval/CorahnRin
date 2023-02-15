@@ -1,4 +1,6 @@
 framework:
     uid:
-        default_uuid_version: 7
-        time_based_uuid_version: 7
+#        default_uuid_version: 7
+#        time_based_uuid_version: 7
+        default_uuid_version: 6 # FIXME: remove with SF6
+        time_based_uuid_version: 6 # FIXME: remove with SF6

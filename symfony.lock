@@ -137,17 +137,11 @@
     "egulias/email-validator": {
         "version": "3.1.1"
     },
-    "friendsofphp/proxy-manager-lts": {
-        "version": "v1.0.5"
-    },
     "gedmo/doctrine-extensions": {
         "version": "v3.1.0"
     },
     "joshtronic/php-loremipsum": {
         "version": "1.0.6"
-    },
-    "laminas/laminas-code": {
-        "version": "4.4.2"
     },
     "monolog/monolog": {
         "version": "2.3.2"
