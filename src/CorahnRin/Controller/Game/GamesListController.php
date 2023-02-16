@@ -16,9 +16,9 @@ namespace CorahnRin\Controller\Game;
 use CorahnRin\Repository\GameInvitationRepository;
 use CorahnRin\Repository\GameRepository;
 use Main\DependencyInjection\PublicService;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\SecurityBundle\Security;
 use Twig\Environment;
 use User\Entity\User;
 

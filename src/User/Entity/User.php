@@ -129,6 +129,27 @@ class User implements UserInterface, EquatableInterface, PasswordAuthenticatedUs
         return (string) $this->username;
     }
 
+    public function __serialize()
+    {
+        return [
+            $this->id,
+            $this->createdAt->format('Y-m-d H:i:s'),
+            $this->updatedAt->format('Y-m-d H:i:s'),
+        ];
+    }
+
+    public function __unserialize($serialized): void
+    {
+        [
+            $this->id,
+            $createdAt,
+            $updatedAt,
+        ] = $serialized;
+
+        $this->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $createdAt);
+        $this->updatedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $updatedAt);
+    }
+
     public static function create(string $username, string $email, string $encodedPassword): self
     {
         $user = new self();
@@ -338,27 +359,6 @@ class User implements UserInterface, EquatableInterface, PasswordAuthenticatedUs
     public function getConfirmationToken(): ?string
     {
         return $this->confirmationToken;
-    }
-
-    public function __serialize()
-    {
-        return [
-            $this->id,
-            $this->createdAt->format('Y-m-d H:i:s'),
-            $this->updatedAt->format('Y-m-d H:i:s'),
-        ];
-    }
-
-    public function __unserialize($serialized): void
-    {
-        [
-            $this->id,
-            $createdAt,
-            $updatedAt,
-        ] = $serialized;
-
-        $this->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $createdAt);
-        $this->updatedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $updatedAt);
     }
 
     public function isEqualTo(UserInterface $user): bool

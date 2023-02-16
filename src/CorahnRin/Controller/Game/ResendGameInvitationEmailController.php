@@ -16,6 +16,7 @@ namespace CorahnRin\Controller\Game;
 use CorahnRin\Mailer\CampaignInvitationMailer;
 use CorahnRin\Repository\GameInvitationRepository;
 use Main\DependencyInjection\PublicService;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -23,7 +24,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Bundle\SecurityBundle\Security;
 use User\Entity\User;
 
 class ResendGameInvitationEmailController implements PublicService

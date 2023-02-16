@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace User\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use User\Entity\User;
 use User\Security\FormLoginAuthenticator;
