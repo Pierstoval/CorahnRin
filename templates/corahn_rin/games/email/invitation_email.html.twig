@@ -15,7 +15,6 @@
             '%invited_character_name%': invitation.characterName
         })|raw|nl2br }}
         <br>
-        {{ macros.link_btn_center(path('game_invitation_accept', {'token': invitation.token}), 'games.mail.invitation.link'|trans) }}
+        {{ macros.link_btn_center(url('game_invitation_accept', {'token': invitation.token}), 'games.mail.invitation.link'|trans) }}
     {% endapply -%}
 {%- endblock %}
-
