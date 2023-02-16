@@ -18,6 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="disorders_ways")
+ *
  * @ORM\Entity
  */
 class MentalDisorderWay
@@ -26,6 +27,7 @@ class MentalDisorderWay
      * @var MentalDisorder
      *
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\MentalDisorder")
      */
     protected $disorder;
@@ -34,6 +36,7 @@ class MentalDisorderWay
      * @var string
      *
      * @ORM\Id
+     *
      * @ORM\Column(name="way", type="string")
      */
     protected $way;

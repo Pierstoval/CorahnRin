@@ -20,6 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  * SocialClass.
  *
  * @ORM\Table(name="social_class")
+ *
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\SocialClassRepository")
  */
 class SocialClass
@@ -28,7 +29,9 @@ class SocialClass
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

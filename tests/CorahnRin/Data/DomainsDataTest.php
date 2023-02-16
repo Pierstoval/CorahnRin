@@ -150,67 +150,114 @@ class DomainsDataTest extends TestCase
         $invalidDomainName = 'invalid_domain';
 
         yield 'validateDomainBaseValue' => ['validateDomainBaseValue', [$invalidDomainName, 0]];
+
         yield 'getAsObject' => ['getAsObject', [$invalidDomainName]];
+
         yield 'getShortName' => ['getShortName', [$invalidDomainName]];
     }
 
     public function provide valid titles(): \Generator
     {
         yield 'domains.craft' => ['domains.craft'];
+
         yield 'domains.close_combat' => ['domains.close_combat'];
+
         yield 'domains.stealth' => ['domains.stealth'];
+
         yield 'domains.magience' => ['domains.magience'];
+
         yield 'domains.natural_environment' => ['domains.natural_environment'];
+
         yield 'domains.demorthen_mysteries' => ['domains.demorthen_mysteries'];
+
         yield 'domains.occultism' => ['domains.occultism'];
+
         yield 'domains.perception' => ['domains.perception'];
+
         yield 'domains.prayer' => ['domains.prayer'];
+
         yield 'domains.feats' => ['domains.feats'];
+
         yield 'domains.relation' => ['domains.relation'];
+
         yield 'domains.performance' => ['domains.performance'];
+
         yield 'domains.science' => ['domains.science'];
+
         yield 'domains.shooting_and_throwing' => ['domains.shooting_and_throwing'];
+
         yield 'domains.travel' => ['domains.travel'];
+
         yield 'domains.erudition' => ['domains.erudition'];
     }
 
     public function provide valid short domains(): \Generator
     {
         yield 'craft' => ['craft'];
+
         yield 'closeCombat' => ['closeCombat'];
+
         yield 'stealth' => ['stealth'];
+
         yield 'magience' => ['magience'];
+
         yield 'naturalEnvironment' => ['naturalEnvironment'];
+
         yield 'demorthenMysteries' => ['demorthenMysteries'];
+
         yield 'occultism' => ['occultism'];
+
         yield 'perception' => ['perception'];
+
         yield 'prayer' => ['prayer'];
+
         yield 'feats' => ['feats'];
+
         yield 'relation' => ['relation'];
+
         yield 'performance' => ['performance'];
+
         yield 'science' => ['science'];
+
         yield 'shootingAndThrowing' => ['shootingAndThrowing'];
+
         yield 'travel' => ['travel'];
+
         yield 'erudition' => ['erudition'];
     }
 
     public function provide valid titles and short names(): \Generator
     {
         yield 'domains.craft / craft' => ['domains.craft', 'craft'];
+
         yield 'domains.close_combat / closeCombat' => ['domains.close_combat', 'closeCombat'];
+
         yield 'domains.stealth / stealth' => ['domains.stealth', 'stealth'];
+
         yield 'domains.magience / magience' => ['domains.magience', 'magience'];
+
         yield 'domains.natural_environment / naturalEnvironment' => ['domains.natural_environment', 'naturalEnvironment'];
+
         yield 'domains.demorthen_mysteries / demorthenMysteries' => ['domains.demorthen_mysteries', 'demorthenMysteries'];
+
         yield 'domains.occultism / occultism' => ['domains.occultism', 'occultism'];
+
         yield 'domains.perception / perception' => ['domains.perception', 'perception'];
+
         yield 'domains.prayer / prayer' => ['domains.prayer', 'prayer'];
+
         yield 'domains.feats / feats' => ['domains.feats', 'feats'];
+
         yield 'domains.relation / relation' => ['domains.relation', 'relation'];
+
         yield 'domains.performance / performance' => ['domains.performance', 'performance'];
+
         yield 'domains.science / science' => ['domains.science', 'science'];
+
         yield 'domains.shooting_and_throwing / shootingAndThrowing' => ['domains.shooting_and_throwing', 'shootingAndThrowing'];
+
         yield 'domains.travel / travel' => ['domains.travel', 'travel'];
+
         yield 'domains.erudition / erudition' => ['domains.erudition', 'erudition'];
     }
 
@@ -226,6 +273,7 @@ class DomainsDataTest extends TestCase
     public function provide invalid domains and invalid values(): \Generator
     {
         yield 'domains.craft / -1' => ['domains.craft', -1];
+
         yield 'domains.craft / 6' => ['domains.craft', 6];
     }
 }

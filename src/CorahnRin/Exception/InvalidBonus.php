@@ -14,9 +14,8 @@ declare(strict_types=1);
 namespace CorahnRin\Exception;
 
 use CorahnRin\Entity\CharacterProperties\Bonuses;
-use InvalidArgumentException;
 
-class InvalidBonus extends InvalidArgumentException
+class InvalidBonus extends \InvalidArgumentException
 {
     public function __construct(string $domain)
     {

@@ -20,6 +20,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 {
     /**
      * @dataProvider provideInvalidDependencies
+     *
      * @group functional
      */
     public function testStepDependency($dependencies): void
@@ -368,6 +369,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
 
     /**
      * @dataProvider provideValidDomainsData
+     *
      * @group functional
      */
     public function testValidDomains($jobId, array $submitted): void
@@ -432,6 +434,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 1 => [
             JobsFixtures::ID_ARTISAN,
             [
@@ -456,6 +459,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 2 => [
             JobsFixtures::ID_BARD,
             [
@@ -480,6 +484,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 3 => [
             JobsFixtures::ID_BARD,
             [
@@ -504,6 +509,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 4 => [
             JobsFixtures::ID_HUNTER,
             [
@@ -528,6 +534,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 5 => [
             JobsFixtures::ID_HUNTER,
             [
@@ -552,6 +559,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 6 => [
             JobsFixtures::ID_KNIGHT,
             [
@@ -576,6 +584,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 7 => [
             JobsFixtures::ID_KNIGHT,
             [
@@ -600,6 +609,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 8 => [
             JobsFixtures::ID_FIGHTER,
             [
@@ -624,6 +634,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 9 => [
             JobsFixtures::ID_FIGHTER,
             [
@@ -648,6 +659,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 10 => [
             JobsFixtures::ID_MERCHANT,
             [
@@ -672,6 +684,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 11 => [
             JobsFixtures::ID_MERCHANT,
             [
@@ -696,6 +709,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 12 => [
             JobsFixtures::ID_DEMORTHEN,
             [
@@ -720,6 +734,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 13 => [
             JobsFixtures::ID_DEMORTHEN,
             [
@@ -744,6 +759,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 14 => [
             JobsFixtures::ID_SCHOLAR,
             [
@@ -768,6 +784,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 15 => [
             JobsFixtures::ID_SCHOLAR,
             [
@@ -792,6 +809,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 16 => [
             JobsFixtures::ID_SPY,
             [
@@ -816,6 +834,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 17 => [
             JobsFixtures::ID_SPY,
             [
@@ -840,6 +859,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 18 => [
             JobsFixtures::ID_SPY,
             [
@@ -864,6 +884,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 19 => [
             JobsFixtures::ID_SPY,
             [
@@ -888,6 +909,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 20 => [
             JobsFixtures::ID_SPY,
             [
@@ -912,6 +934,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 21 => [
             JobsFixtures::ID_SPY,
             [
@@ -936,6 +959,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 22 => [
             JobsFixtures::ID_SPY,
             [
@@ -960,6 +984,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 23 => [
             JobsFixtures::ID_SPY,
             [
@@ -984,6 +1009,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 24 => [
             JobsFixtures::ID_SPY,
             [
@@ -1008,6 +1034,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 25 => [
             JobsFixtures::ID_SPY,
             [
@@ -1032,6 +1059,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 26 => [
             JobsFixtures::ID_SPY,
             [
@@ -1056,6 +1084,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 27 => [
             JobsFixtures::ID_SPY,
             [
@@ -1080,6 +1109,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 28 => [
             JobsFixtures::ID_SPY,
             [
@@ -1104,6 +1134,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 29 => [
             JobsFixtures::ID_SPY,
             [
@@ -1128,6 +1159,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 30 => [
             JobsFixtures::ID_SPY,
             [
@@ -1152,6 +1184,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 31 => [
             JobsFixtures::ID_EXPLORER,
             [
@@ -1176,6 +1209,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 32 => [
             JobsFixtures::ID_EXPLORER,
             [
@@ -1200,6 +1234,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 33 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1224,6 +1259,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 34 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1248,6 +1284,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 35 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1272,6 +1309,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 36 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1296,6 +1334,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 37 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1320,6 +1359,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 38 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1344,6 +1384,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 39 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1368,6 +1409,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 40 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1392,6 +1434,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 41 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1416,6 +1459,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 42 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1440,6 +1484,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 43 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1464,6 +1509,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 44 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1488,6 +1534,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 45 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1512,6 +1559,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 46 => [
             JobsFixtures::ID_INVESTIGATOR,
             [
@@ -1536,6 +1584,7 @@ class Step13PrimaryDomainsTest extends AbstractStepTest
                 ],
             ],
         ];
+
         yield 47 => [
             JobsFixtures::ID_INVESTIGATOR,
             [

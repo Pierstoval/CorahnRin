@@ -22,7 +22,9 @@ class UpdateInventoryDTO
      * @var array|string[]
      *
      * @Assert\All({
+     *
      *     @Assert\Type("string"),
+     *
      *     @Assert\NotBlank
      * })
      */
@@ -32,7 +34,9 @@ class UpdateInventoryDTO
      * @var array|string[]
      *
      * @Assert\All({
+     *
      *     @Assert\Type("string"),
+     *
      *     @Assert\NotBlank
      * })
      */

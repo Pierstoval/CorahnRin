@@ -20,7 +20,9 @@ trait HasBook
 {
     /**
      * @var Book
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Book")
+     *
      * @ORM\JoinColumn(name="book_id", nullable=true)
      */
     protected $book;

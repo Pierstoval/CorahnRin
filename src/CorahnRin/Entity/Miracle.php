@@ -20,6 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="miracles")
+ *
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\MiraclesRepository")
  */
 class Miracle
@@ -30,7 +31,9 @@ class Miracle
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -53,6 +56,7 @@ class Miracle
      * @var Collection<Job>
      *
      * @ORM\ManyToMany(targetEntity="CorahnRin\Entity\Job")
+     *
      * @ORM\JoinTable(name="minor_miracles_jobs",
      *     joinColumns={@ORM\JoinColumn(name="miracle_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="job_id", referencedColumnName="id")}
@@ -64,6 +68,7 @@ class Miracle
      * @var Collection<Job>
      *
      * @ORM\ManyToMany(targetEntity="CorahnRin\Entity\Job")
+     *
      * @ORM\JoinTable(name="major_miracles_jobs",
      *     joinColumns={@ORM\JoinColumn(name="miracle_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="job_id", referencedColumnName="id")}

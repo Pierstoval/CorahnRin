@@ -24,6 +24,7 @@ class DisciplineDomainScoreSpendXpDTO
      * @var Discipline
      *
      * @Assert\NotBlank
+     *
      * @Assert\Type(Discipline::class)
      */
     public $discipline;
@@ -32,7 +33,9 @@ class DisciplineDomainScoreSpendXpDTO
      * @var string
      *
      * @Assert\NotBlank
+     *
      * @Assert\Type("string")
+     *
      * @Assert\Choice(DomainsData::CHOICES)
      */
     public $domain;
@@ -41,6 +44,7 @@ class DisciplineDomainScoreSpendXpDTO
      * @var int
      *
      * @Assert\Type("numeric")
+     *
      * @Assert\Range(min="0", max="10")
      */
     public $score;

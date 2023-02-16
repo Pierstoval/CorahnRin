@@ -13,17 +13,14 @@ declare(strict_types=1);
 
 namespace EsterenMaps\Serializer;
 
-use Closure;
-use InvalidArgumentException;
-
 final class ClosureSetter
 {
-    public static function getSetter(string $type, object $object): Closure
+    public static function getSetter(string $type, object $object): \Closure
     {
-        return Closure::bind(
+        return \Closure::bind(
             function (string $property, mixed $value): void {
                 if (!\property_exists($this, $property)) {
-                    throw new InvalidArgumentException(\sprintf(
+                    throw new \InvalidArgumentException(\sprintf(
                         'Property "%s" does not exist in class "%s".',
                         $property,
                         static::class,

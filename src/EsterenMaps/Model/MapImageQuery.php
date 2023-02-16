@@ -21,6 +21,7 @@ class MapImageQuery
      * @var int
      *
      * @Assert\Type(type="integer")
+     *
      * @Assert\Range(min=1 max=100)
      */
     public $ratio = 100;
@@ -29,7 +30,9 @@ class MapImageQuery
      * @var int
      *
      * @Assert\Type(type="integer")
+     *
      * @Assert\NotBlank
+     *
      * @Assert\Range(min=50)
      */
     public $width = 100;
@@ -38,7 +41,9 @@ class MapImageQuery
      * @var int
      *
      * @Assert\Type(type="integer")
+     *
      * @Assert\NotBlank
+     *
      * @Assert\Range(min=50)
      */
     public $height = 100;

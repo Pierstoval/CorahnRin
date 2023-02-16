@@ -21,6 +21,7 @@ class BonusesTest extends TestCase
 {
     /**
      * @dataProvider provide valid bonuses
+     *
      * @group unit
      */
     public function test valid bonus(string $bonus): void
@@ -33,19 +34,33 @@ class BonusesTest extends TestCase
     public function provide valid bonuses(): \Generator
     {
         yield 'speed' => ['speed'];
+
         yield 'mental_resistance' => ['mental_resistance'];
+
         yield 'health' => ['health'];
+
         yield 'survival' => ['survival'];
+
         yield 'stamina' => ['stamina'];
+
         yield 'trauma' => ['trauma'];
+
         yield 'defense' => ['defense'];
+
         yield 'luck' => ['luck'];
+
         yield 'money_0' => ['money_0'];
+
         yield 'money_azure_20' => ['money_azure_20'];
+
         yield 'money_azure_50' => ['money_azure_50'];
+
         yield 'money_frost_10' => ['money_frost_10'];
+
         yield 'money_frost_20' => ['money_frost_20'];
+
         yield 'money_frost_50' => ['money_frost_50'];
+
         yield 'money_frost_100' => ['money_frost_100'];
     }
 

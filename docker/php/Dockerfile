@@ -74,7 +74,7 @@ RUN set -xe \
     && runuser -l ${RUN_USER} -c 'composer global --no-interaction --no-progress require phpstan/phpstan-doctrine' \
     && runuser -l ${RUN_USER} -c 'composer global --no-interaction --no-progress require phpstan/phpstan-phpunit' \
     && runuser -l ${RUN_USER} -c 'composer global --no-interaction --no-progress require phpstan/phpstan-deprecation-rules' \
-    && curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer && chmod a+x /usr/local/bin/php-cs-fixer \
+    && runuser -l ${RUN_USER} -c 'composer global --no-interaction --no-progress require friendsofphp/php-cs-fixer' \
     \
     \
     && `# Clean apt and remove unused libs/packages to make image smaller` \

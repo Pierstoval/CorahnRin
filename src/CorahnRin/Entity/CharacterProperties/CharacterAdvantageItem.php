@@ -20,6 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="characters_avantages")
+ *
  * @ORM\Entity
  */
 class CharacterAdvantageItem
@@ -28,6 +29,7 @@ class CharacterAdvantageItem
      * @var Character
      *
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Character", inversedBy="advantages")
      */
     protected $character;
@@ -36,6 +38,7 @@ class CharacterAdvantageItem
      * @var Advantage
      *
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Advantage")
      */
     protected $advantage;

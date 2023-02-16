@@ -51,7 +51,7 @@ class Step20Finish extends AbstractStepAction
 
         if ($token) {
             $user = $token->getUser();
-            if (!($user instanceof User)) {
+            if (!$user instanceof User) {
                 $user = null;
             }
         }

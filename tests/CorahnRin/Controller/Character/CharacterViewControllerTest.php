@@ -27,6 +27,7 @@ class CharacterViewControllerTest extends WebTestCase
 
     /**
      * @see CharacterViewController::listAction
+     *
      * @group functional
      */
     public function testList(): void
@@ -55,6 +56,7 @@ class CharacterViewControllerTest extends WebTestCase
 
     /**
      * @see CharacterViewController::viewAction
+     *
      * @group functional
      */
     public function testView404(): void
@@ -69,6 +71,7 @@ class CharacterViewControllerTest extends WebTestCase
 
     /**
      * @see CharacterViewController::viewAction
+     *
      * @group functional
      */
     public function testView(): void

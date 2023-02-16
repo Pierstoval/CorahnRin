@@ -41,8 +41,10 @@ use User\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\CharactersRepository")
+ *
  * @ORM\Table(name="characters",
  *     uniqueConstraints={
+ *
  *         @ORM\UniqueConstraint(name="idcUnique", columns={"name_slug", "user_id"})
  *     }
  * )
@@ -72,7 +74,9 @@ class Character extends BaseCharacter
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -88,6 +92,7 @@ class Character extends BaseCharacter
      * @var string
      *
      * @ORM\Column(name="name_slug", type="string", length=255, nullable=false)
+     *
      * @Gedmo\Slug(fields={"name"}, unique=false)
      */
     protected $nameSlug;
@@ -312,6 +317,7 @@ class Character extends BaseCharacter
      * @var array<Armor>|Collection<Armor>
      *
      * @ORM\ManyToMany(targetEntity="CorahnRin\Entity\Armor")
+     *
      * @ORM\JoinTable(name="characters_armors",
      *     joinColumns={@ORM\JoinColumn(name="characters_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="armors_id", referencedColumnName="id", unique=true)}
@@ -323,6 +329,7 @@ class Character extends BaseCharacter
      * @var array<MagienceArtifact>|Collection<MagienceArtifact>
      *
      * @ORM\ManyToMany(targetEntity="CorahnRin\Entity\MagienceArtifact")
+     *
      * @ORM\JoinTable(name="characters_artifacts",
      *     joinColumns={@ORM\JoinColumn(name="characters_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="artifacts_id", referencedColumnName="id", unique=true)}
@@ -341,6 +348,7 @@ class Character extends BaseCharacter
      * @var array<Ogham>|Collection<Ogham>
      *
      * @ORM\ManyToMany(targetEntity="CorahnRin\Entity\Ogham")
+     *
      * @ORM\JoinTable(name="characters_ogham",
      *     joinColumns={@ORM\JoinColumn(name="characters_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="ogham_id", referencedColumnName="id", unique=true)}
@@ -352,6 +360,7 @@ class Character extends BaseCharacter
      * @var array<Weapon>|Collection<Weapon>
      *
      * @ORM\ManyToMany(targetEntity="CorahnRin\Entity\Weapon")
+     *
      * @ORM\JoinTable(name="characters_weapons",
      *     joinColumns={@ORM\JoinColumn(name="characters_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="weapons_id", referencedColumnName="id", unique=true)}
@@ -363,6 +372,7 @@ class Character extends BaseCharacter
      * @var array<CombatArt>|Collection<CombatArt>
      *
      * @ORM\ManyToMany(targetEntity="CorahnRin\Entity\CombatArt")
+     *
      * @ORM\JoinTable(name="characters_combat_arts",
      *     joinColumns={@ORM\JoinColumn(name="characters_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="combat_arts_id", referencedColumnName="id", unique=true)}
@@ -419,14 +429,18 @@ class Character extends BaseCharacter
 
     /**
      * @var PersonalityTrait
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\PersonalityTrait")
+     *
      * @ORM\JoinColumn(name="trait_flaw_id")
      */
     protected $flaw;
 
     /**
      * @var PersonalityTrait
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\PersonalityTrait")
+     *
      * @ORM\JoinColumn(name="trait_quality_id")
      */
     protected $quality;
@@ -440,6 +454,7 @@ class Character extends BaseCharacter
 
     /**
      * @ORM\OneToOne(targetEntity="CorahnRin\Entity\CharacterProperties\CharacterDomains", inversedBy="character", cascade={"persist", "remove"})
+     *
      * @ORM\JoinColumn(name="domains_id", referencedColumnName="id", nullable=true, unique=true)
      */
     protected CharacterDomains $domains;
@@ -467,12 +482,14 @@ class Character extends BaseCharacter
 
     /**
      * @var User
+     *
      * @ORM\ManyToOne(targetEntity="User\Entity\User")
      */
     protected $user;
 
     /**
      * @var null|Game
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Game", inversedBy="characters")
      */
     protected $game;

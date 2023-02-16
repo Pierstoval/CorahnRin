@@ -36,14 +36,14 @@ class HasNoSimilarInvitationValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, HasNoSimilarInvitation::class);
         }
 
-        if (!($constraint->game instanceof Game)) {
+        if (!$constraint->game instanceof Game) {
             // Cannot validate if we have an already existing game.
 
             return;
         }
 
         foreach ($characters as $character) {
-            if (!($character instanceof Character)) {
+            if (!$character instanceof Character) {
                 throw new UnexpectedTypeException($character, Character::class);
             }
         }

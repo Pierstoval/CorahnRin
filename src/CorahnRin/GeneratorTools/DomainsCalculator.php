@@ -135,7 +135,7 @@ final class DomainsCalculator
 
         foreach ($allDomains as $id => $domain) {
             // First, validate arguments.
-            if (!($domain instanceof DomainItem)) {
+            if (!$domain instanceof DomainItem) {
                 throw new \InvalidArgumentException(\sprintf(
                     'Invalid %s argument sent. It must be an array of %s instances, %s given.',
                     '$allDomains',

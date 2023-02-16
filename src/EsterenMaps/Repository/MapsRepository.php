@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace EsterenMaps\Repository;
 
 use EsterenMaps\Entity\Map;
-use const JSON_THROW_ON_ERROR;
 use Main\DependencyInjection\PublicService;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\VarExporter\VarExporter;
@@ -47,9 +46,9 @@ class MapsRepository implements PublicService
 
     private function generatePhpMapFile(): void
     {
-        $json = \json_decode(\file_get_contents($this->mapJsonFile), true, 512, JSON_THROW_ON_ERROR);
+        $json = \json_decode(\file_get_contents($this->mapJsonFile), true, 512, \JSON_THROW_ON_ERROR);
 
-        $data = $this->serializer->deserialize(\json_encode($json['map'], JSON_THROW_ON_ERROR), Map::class, 'json');
+        $data = $this->serializer->deserialize(\json_encode($json['map'], \JSON_THROW_ON_ERROR), Map::class, 'json');
 
         $export = VarExporter::export($data);
 

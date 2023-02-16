@@ -18,6 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="combat_arts")
+ *
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\CombatArtsRepository")
  */
 class CombatArt
@@ -28,7 +29,9 @@ class CombatArt
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;

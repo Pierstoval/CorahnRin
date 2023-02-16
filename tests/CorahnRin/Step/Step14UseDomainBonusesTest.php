@@ -19,6 +19,7 @@ class Step14UseDomainBonusesTest extends AbstractStepTest
 
     /**
      * @dataProvider provideInvalidDependencies
+     *
      * @group functional
      */
     public function testStepDependency($dependencies): void

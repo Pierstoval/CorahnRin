@@ -14,9 +14,8 @@ declare(strict_types=1);
 namespace CorahnRin\Exception;
 
 use CorahnRin\Data\DomainsData;
-use InvalidArgumentException;
 
-class InvalidDomain extends InvalidArgumentException
+class InvalidDomain extends \InvalidArgumentException
 {
     public function __construct(string $domain, array $values = null)
     {

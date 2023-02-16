@@ -22,6 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * CharFlux.
  *
  * @ORM\Table(name="characters_flux")
+ *
  * @ORM\Entity
  */
 class CharFlux
@@ -30,7 +31,9 @@ class CharFlux
      * @var Character
      *
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Character", inversedBy="flux")
+     *
      * @Assert\NotNull
      */
     protected $character;
@@ -39,8 +42,11 @@ class CharFlux
      * @var Flux
      *
      * @ORM\Column(type="integer")
+     *
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Flux")
+     *
      * @Assert\NotNull
      */
     protected $flux;
@@ -49,7 +55,9 @@ class CharFlux
      * @var int
      *
      * @ORM\Column(type="smallint")
+     *
      * @Assert\NotNull
+     *
      * @Assert\GreaterThanOrEqual(value=0)
      */
     protected $quantity;

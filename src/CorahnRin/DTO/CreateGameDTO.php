@@ -26,7 +26,9 @@ class CreateGameDTO
 
     /**
      * @Assert\All({
+     *
      *     @Assert\NotBlank,
+     *
      *     @Assert\Type("CorahnRin\Entity\Character"),
      * })
      */

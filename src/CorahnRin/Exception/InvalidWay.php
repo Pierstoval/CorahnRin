@@ -14,9 +14,8 @@ declare(strict_types=1);
 namespace CorahnRin\Exception;
 
 use CorahnRin\Data\Ways;
-use InvalidArgumentException;
 
-class InvalidWay extends InvalidArgumentException
+class InvalidWay extends \InvalidArgumentException
 {
     public function __construct(string $way)
     {

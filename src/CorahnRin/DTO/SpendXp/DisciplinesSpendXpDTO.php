@@ -26,7 +26,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -36,7 +38,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -46,7 +50,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -56,7 +62,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -66,7 +74,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -76,7 +86,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -86,7 +98,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -96,7 +110,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -106,7 +122,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -116,7 +134,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -126,7 +146,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -136,7 +158,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -146,7 +170,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -156,7 +182,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -166,7 +194,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */
@@ -176,7 +206,9 @@ class DisciplinesSpendXpDTO
      * @var array<DisciplineDomainScoreSpendXpDTO>
      *
      * @Assert\NotBlank(groups={"base"})
+     *
      * @Assert\All(groups={"base"}, constraints={
+     *
      *     @Assert\Type(DisciplineDomainScoreSpendXpDTO::class)
      * })
      */

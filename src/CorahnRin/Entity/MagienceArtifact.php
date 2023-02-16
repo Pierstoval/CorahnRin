@@ -18,6 +18,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="artifacts")
+ *
  * @ORM\Entity
  */
 class MagienceArtifact
@@ -26,7 +27,9 @@ class MagienceArtifact
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -40,6 +43,7 @@ class MagienceArtifact
 
     /**
      * @var string
+     *
      * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
@@ -53,12 +57,14 @@ class MagienceArtifact
 
     /**
      * @var int
+     *
      * @ORM\Column(type="smallint")
      */
     protected $consumption;
 
     /**
      * @var int
+     *
      * @ORM\Column(type="smallint")
      */
     protected $consumptionInterval;
@@ -102,20 +108,25 @@ class MagienceArtifact
      * @var Flux
      *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Flux")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     protected $flux;
 
     /**
      * @var \DateTime
+     *
      * @Gedmo\Timestampable(on="create")
+     *
      * @ORM\Column(type="datetime", nullable=false)
      */
     protected $created;
 
     /**
      * @var \DateTime
+     *
      * @Gedmo\Timestampable(on="update")
+     *
      * @ORM\Column(type="datetime", nullable=false)
      */
     protected $updated;

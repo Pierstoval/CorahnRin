@@ -20,6 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="avantages")
+ *
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\CharacterAdvantageRepository")
  */
 class Advantage
@@ -71,7 +72,9 @@ class Advantage
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

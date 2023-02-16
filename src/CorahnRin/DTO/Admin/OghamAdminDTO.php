@@ -23,32 +23,27 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 class OghamAdminDTO implements FormDTOInterface
 {
     /**
-     * @var string
-     *
      * @Assert\NotBlank
+     *
      * @Assert\Type("string")
      */
     public string $name = '';
 
     /**
-     * @var string
-     *
      * @Assert\Type("string")
+     *
      * @Assert\Choice(OghamType::ALL)
      */
     public string $type = '';
 
     /**
-     * @var string
-     *
      * @Assert\Type("string")
      */
     public string $description = '';
 
     /**
-     * @var Book
-     *
      * @Assert\NotBlank
+     *
      * @Assert\Type("CorahnRin\Entity\Book")
      */
     public Book $book;

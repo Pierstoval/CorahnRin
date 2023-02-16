@@ -13,9 +13,7 @@ declare(strict_types=1);
 
 namespace CorahnRin\Exception;
 
-use InvalidArgumentException;
-
-class InvalidDomainValue extends InvalidArgumentException
+class InvalidDomainValue extends \InvalidArgumentException
 {
     public function __construct(string $way)
     {

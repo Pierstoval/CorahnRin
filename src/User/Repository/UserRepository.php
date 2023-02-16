@@ -80,7 +80,7 @@ class UserRepository extends ServiceEntityRepository implements UserProviderInte
      */
     public function refreshUser(UserInterface $user): User
     {
-        if (!($user instanceof User)) {
+        if (!$user instanceof User) {
             throw new UnsupportedUserException(\sprintf('Expected an instance of %s, but got "%s".', User::class, \get_class($user)));
         }
 

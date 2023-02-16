@@ -18,6 +18,7 @@ use User\Util\TokenGenerator;
 
 /**
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\GameInvitationRepository")
+ *
  * @ORM\Table(name="game_invitations")
  */
 class GameInvitation
@@ -26,7 +27,9 @@ class GameInvitation
      * @var int
      *
      * @ORM\Column(type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -35,6 +38,7 @@ class GameInvitation
      * @var Game
      *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Game")
+     *
      * @ORM\JoinColumn(name="game_id", referencedColumnName="id", nullable=false)
      */
     private $game;
@@ -43,6 +47,7 @@ class GameInvitation
      * @var Character
      *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Character")
+     *
      * @ORM\JoinColumn(name="character_id", referencedColumnName="id", nullable=false)
      */
     private $character;

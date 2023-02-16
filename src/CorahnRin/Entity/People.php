@@ -18,6 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="peoples")
+ *
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\PeopleRepository")
  */
 class People
@@ -28,7 +29,9 @@ class People
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

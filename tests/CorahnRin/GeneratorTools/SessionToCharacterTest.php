@@ -17,7 +17,6 @@ use CorahnRin\Entity\Character;
 use CorahnRin\Exception\CharacterException;
 use CorahnRin\GeneratorTools\SessionToCharacter;
 use Doctrine\Common\Collections\Collection;
-use Generator;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -53,6 +52,7 @@ class SessionToCharacterTest extends KernelTestCase
 
     /**
      * @dataProvider provideCharacterFiles
+     *
      * @group integration
      */
     public function test base working characters(array $values, array $expectedValues): void
@@ -81,13 +81,14 @@ class SessionToCharacterTest extends KernelTestCase
         }
     }
 
-    public function provideCharacterFiles(): Generator
+    public function provideCharacterFiles(): \Generator
     {
         /** @var Finder|SplFileInfo[] $files */
         $files = (new Finder())->name('*.php')->in(__DIR__.'/session_to_character_tests/');
 
         foreach ($files as $file) {
             $fileData = require $file;
+
             yield $file->getBasename('.php') => [$fileData['values'], $fileData['expected_values']];
         }
     }

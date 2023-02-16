@@ -38,6 +38,7 @@ class AcceptGameInvitationControllerTest extends WebTestCase
 
     /**
      * @dataProvider provide http methods
+     *
      * @group functional
      */
     public function test inexistent token returns custom 404(string $method): void
@@ -53,6 +54,7 @@ class AcceptGameInvitationControllerTest extends WebTestCase
 
     /**
      * @dataProvider provide http methods
+     *
      * @group functional
      */
     public function test token with wrong length returns native 404(string $method): void
@@ -69,6 +71,7 @@ class AcceptGameInvitationControllerTest extends WebTestCase
     public function provide http methods(): \Generator
     {
         yield 'GET' => ['GET'];
+
         yield 'POST' => ['POST'];
     }
 

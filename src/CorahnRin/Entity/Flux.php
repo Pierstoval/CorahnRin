@@ -19,6 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Flux.
  *
  * @ORM\Table(name="flux")
+ *
  * @ORM\Entity
  */
 class Flux
@@ -27,7 +28,9 @@ class Flux
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

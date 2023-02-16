@@ -22,6 +22,7 @@ use User\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\GameRepository")
+ *
  * @ORM\Table(name="games", uniqueConstraints={@ORM\UniqueConstraint(name="idgUnique", columns={"name", "game_master_id"})})
  */
 class Game
@@ -32,7 +33,9 @@ class Game
      * @var int
      *
      * @ORM\Column(type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -62,6 +65,7 @@ class Game
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="User\Entity\User")
+     *
      * @ORM\JoinColumn(name="game_master_id", nullable=false)
      */
     private $gameMaster;

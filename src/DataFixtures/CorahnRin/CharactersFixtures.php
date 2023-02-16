@@ -129,10 +129,13 @@ class CharactersFixtures extends ArrayFixture implements ORMFixtureInterface, De
                 'advantages' => static function (Character $character, ArrayFixture $fixture) {
                     /** @var Advantage $scholarAdvantage */
                     $scholarAdvantage = $fixture->getReference('corahnrin-advantage-'.AdvantagesFixtures::ID_SCHOLAR);
+
                     /** @var Advantage $solidMindAdvantage */
                     $solidMindAdvantage = $fixture->getReference('corahnrin-advantage-'.AdvantagesFixtures::ID_SOLID_MIND);
+
                     /** @var Advantage $brilliantAdvantage */
                     $brilliantAdvantage = $fixture->getReference('corahnrin-advantage-'.AdvantagesFixtures::ID_BRILLIANT);
+
                     /** @var Advantage $shyAdvantage */
                     $shyAdvantage = $fixture->getReference('corahnrin-advantage-'.AdvantagesFixtures::ID_SHY);
 

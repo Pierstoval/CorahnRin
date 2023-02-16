@@ -36,11 +36,11 @@ class WaysNormalizer implements DenormalizerInterface, NormalizerInterface
             return $data;
         }
 
-        if (!$data || !is_array($data)) {
+        if (!$data || !\is_array($data)) {
             throw new UnexpectedValueException(\sprintf(
                 'Ways data to denormalize have to be an array or an instance of "%s", "%s" given.',
                 Ways::class,
-                get_debug_type($data),
+                \get_debug_type($data),
             ));
         }
 

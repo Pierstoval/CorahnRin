@@ -80,9 +80,9 @@ class TraitsRepository extends ServiceEntityRepository
      *
      * @param string[] $ways
      *
-     * @throws \Exception
-     *
      * @return array
+     *
+     * @throws \Exception
      */
     public function findAllDependingOnWays(array $ways)
     {

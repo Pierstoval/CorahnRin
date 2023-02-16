@@ -39,6 +39,7 @@ class CharacterSpendXpDTO
      *     groups={"base"},
      *     notInRangeMessage="corahn_rin.character_spend_xp.speed"
      * )
+     *
      * @Assert\GreaterThanOrEqual(propertyPath="baseSpeed", groups={"base"})
      */
     public $speed = 0;
@@ -50,6 +51,7 @@ class CharacterSpendXpDTO
      *     groups={"base"},
      *     notInRangeMessage="corahn_rin.character_spend_xp.defense"
      * )
+     *
      * @Assert\GreaterThanOrEqual(propertyPath="baseDefense", groups={"base"})
      */
     public $defense = 0;
@@ -90,6 +92,7 @@ class CharacterSpendXpDTO
 
     /** @var DomainsSpendXpDTO */
     private $baseDomains;
+
     /** @var DisciplinesSpendXpDTO */
     private $baseDisciplines;
 

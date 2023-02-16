@@ -24,7 +24,9 @@ use User\Util\Canonicalizer;
 
 /**
  * @ORM\Entity(repositoryClass="User\Repository\UserRepository")
+ *
  * @ORM\Table(name="fos_user_user")
+ *
  * @UniqueEntity("emailCanonical", message="user.email.already_used")
  * @UniqueEntity("usernameCanonical", message="user.username.already_used")
  */
@@ -37,14 +39,18 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
 
     /**
      * @var int
+     *
      * @ORM\Id
+     *
      * @ORM\Column(type="integer")
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var string
+     *
      * @ORM\Column(name="username", type="string")
      *
      * @Assert\NotBlank
@@ -64,7 +70,8 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
      * @ORM\Column(name="email", type="string")
      *
      * @Assert\NotBlank
-     * @Assert\Email()
+     *
+     * @Assert\Email
      */
     protected $email;
 

@@ -73,6 +73,7 @@ class DomainsCalculatorTest extends TestCase
 
     /**
      * @dataProvider provideTestsWithoutBonuses
+     *
      * @group unit
      */
     public function test calculator with fixtures data(array $arguments, array $expectedValues): void
@@ -94,6 +95,7 @@ class DomainsCalculatorTest extends TestCase
 
         foreach ($files as $file) {
             $fileData = require $file;
+
             yield $file->getBasename('.php') => [$fileData['calculator_arguments'], $fileData['expected_values']];
         }
     }

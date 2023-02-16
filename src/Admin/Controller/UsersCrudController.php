@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the Corahn-Rin package.
+ *
+ * (c) Alexandre Rock Ancelet <pierstoval@gmail.com> and Studio Agate.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Admin\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,7 +26,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -44,7 +54,8 @@ class UsersCrudController extends AbstractCrudController
         return $crud
             ->setSearchFields(['id', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'confirmationToken', 'roles'])
             ->setPaginatorPageSize(50)
-            ->overrideTemplate('layout', 'easy_admin/layout.html.twig');
+            ->overrideTemplate('layout', 'easy_admin/layout.html.twig')
+        ;
     }
 
     public function configureActions(Actions $actions): Actions

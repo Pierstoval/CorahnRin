@@ -13,10 +13,7 @@ declare(strict_types=1);
 
 namespace Main\Id;
 
-use InvalidArgumentException;
-use Stringable;
-
-abstract class AbstractId implements Stringable
+abstract class AbstractId implements \Stringable
 {
     private int $id;
 
@@ -50,7 +47,7 @@ abstract class AbstractId implements Stringable
             return static::fromString($id);
         }
 
-        throw new InvalidArgumentException(\sprintf(
+        throw new \InvalidArgumentException(\sprintf(
             'Unsupported ID type "%s".',
             \get_debug_type($id),
         ));

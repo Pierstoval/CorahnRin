@@ -19,6 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Books.
  *
  * @ORM\Table(name="books")
+ *
  * @ORM\Entity
  */
 class Book
@@ -27,7 +28,9 @@ class Book
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

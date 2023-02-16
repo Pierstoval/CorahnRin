@@ -23,6 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * CharSetbacks.
  *
  * @ORM\Table(name="characters_setbacks")
+ *
  * @ORM\Entity
  */
 class CharSetbacks
@@ -31,7 +32,9 @@ class CharSetbacks
      * @var Character
      *
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Character", inversedBy="setbacks")
+     *
      * @Assert\NotNull
      */
     protected $character;
@@ -40,7 +43,9 @@ class CharSetbacks
      * @var Setback
      *
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Setback")
+     *
      * @Assert\NotNull
      */
     protected $setback;

@@ -28,7 +28,7 @@ trait TranslatableDTOTrait
         }
 
         if (!$this->_accessor) {
-            $this->_accessor = (PropertyAccess::createPropertyAccessor());
+            $this->_accessor = PropertyAccess::createPropertyAccessor();
         }
 
         [

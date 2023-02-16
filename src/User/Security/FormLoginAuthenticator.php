@@ -173,16 +173,16 @@ final class FormLoginAuthenticator extends AbstractLoginFormAuthenticator
         return true;
     }
 
-    protected function getLoginUrl(Request $request): string
-    {
-        return $this->router->generate(self::LOGIN_ROUTE);
-    }
-
     public function authenticate(Request $request): SelfValidatingPassport
     {
         $credentials = $this->getCredentials($request);
         $user = $this->getUser($credentials);
 
-        return new SelfValidatingPassport(new UserBadge($user->getUserIdentifier(), fn() => $user));
+        return new SelfValidatingPassport(new UserBadge($user->getUserIdentifier(), fn () => $user));
+    }
+
+    protected function getLoginUrl(Request $request): string
+    {
+        return $this->router->generate(self::LOGIN_ROUTE);
     }
 }

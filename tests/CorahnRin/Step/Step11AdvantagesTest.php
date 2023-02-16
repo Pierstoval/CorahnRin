@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Tests\CorahnRin\Step;
 
 use DataFixtures\CorahnRin\AdvantagesFixtures;
-use const JSON_THROW_ON_ERROR;
 
 class Step11AdvantagesTest extends AbstractStepTest
 {
@@ -137,13 +136,14 @@ class Step11AdvantagesTest extends AbstractStepTest
             ],
         ]);
 
-        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
+        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), \JSON_THROW_ON_ERROR));
         static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
         static::assertSame('Vos désavantages vous donnent un gain d\'expérience supérieur à 80.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
      * @dataProvider provideAllyTests
+     *
      * @group functional
      */
     public function testCannotChoseAllyMultipleTimes($values, array $indications): void
@@ -164,7 +164,7 @@ class Step11AdvantagesTest extends AbstractStepTest
         if (500 === $code) {
             $msg = $result->getCrawler()->filter('title')->text('', true);
         } else {
-            $msg = \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR);
+            $msg = \json_encode($result->getSession()->get('character.corahn_rin'), \JSON_THROW_ON_ERROR);
         }
         static::assertSame(200, $code, $msg);
         static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
@@ -202,6 +202,7 @@ class Step11AdvantagesTest extends AbstractStepTest
 
     /**
      * @dataProvider provideFinancialEaseTests
+     *
      * @group functional
      */
     public function testCannotChoseFinancialEaseMultipleTimes($values): void
@@ -225,7 +226,7 @@ class Step11AdvantagesTest extends AbstractStepTest
         if (500 === $code) {
             $msg = $result->getCrawler()->filter('title')->text('', true);
         } else {
-            $msg = \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR);
+            $msg = \json_encode($result->getSession()->get('character.corahn_rin'), \JSON_THROW_ON_ERROR);
         }
         static::assertSame(200, $code, $msg);
         static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
@@ -279,7 +280,7 @@ class Step11AdvantagesTest extends AbstractStepTest
             'advantages_indications' => [],
         ]);
 
-        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
+        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), \JSON_THROW_ON_ERROR));
         static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
         static::assertSame('Une valeur incorrecte a été donnée à un avantage.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
@@ -299,7 +300,7 @@ class Step11AdvantagesTest extends AbstractStepTest
             'advantages_indications' => [],
         ]);
 
-        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
+        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), \JSON_THROW_ON_ERROR));
         static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
         static::assertSame('Une valeur incorrecte a été donnée à un désavantage.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
@@ -375,7 +376,7 @@ class Step11AdvantagesTest extends AbstractStepTest
             ],
         ]);
 
-        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
+        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), \JSON_THROW_ON_ERROR));
         static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
         static::assertSame('Vous ne pouvez pas avoir plus de 4 avantages.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
@@ -398,13 +399,14 @@ class Step11AdvantagesTest extends AbstractStepTest
             ],
         ]);
 
-        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), JSON_THROW_ON_ERROR));
+        static::assertSame(200, $result->getResponse()->getStatusCode(), \json_encode($result->getSession()->get('character.corahn_rin'), \JSON_THROW_ON_ERROR));
         static::assertCount(1, $result->getCrawler()->filter('#flash-messages > .card-panel.error'));
         static::assertSame('Vous ne pouvez pas avoir plus de 4 désavantages.', $result->getCrawler()->filter('#flash-messages > .card-panel.error')->text('', true));
     }
 
     /**
      * @dataProvider provideFinancialEaseForPoor
+     *
      * @group functional
      */
     public function testPoorCannotUseFinancialEase($values): void

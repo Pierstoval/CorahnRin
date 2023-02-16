@@ -91,7 +91,7 @@ class CharacterSpendXpControllerTest extends WebTestCase
      */
     public function test spend xp on discipline which domain is less than 5 returns error(): void
     {
-        //character_spend_xp[disciplines][craft][0][score]
+        // character_spend_xp[disciplines][craft][0][score]
         $client = $this->getHttpClient();
         $this->loginAsUser($client, 'lambda-user');
 
@@ -108,11 +108,12 @@ class CharacterSpendXpControllerTest extends WebTestCase
 
     /**
      * @dataProvider provide discipline scores out of range
+     *
      * @group functional
      */
     public function test spend xp on discipline with score out of range returns error(int $score): void
     {
-        //character_spend_xp[disciplines][craft][0][score]
+        // character_spend_xp[disciplines][craft][0][score]
         $client = $this->getHttpClient();
         $this->loginAsUser($client, 'lambda-user');
 
@@ -186,6 +187,7 @@ class CharacterSpendXpControllerTest extends WebTestCase
     public function provide discipline scores out of range(): ?\Generator
     {
         yield [-1 => -1];
+
         yield [11 => 11];
     }
 

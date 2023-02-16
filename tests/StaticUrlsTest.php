@@ -41,6 +41,7 @@ class StaticUrlsTest extends WebTestCase
     public function provideRootData(): ?\Generator
     {
         yield 0 => ['en'];
+
         yield 1 => ['fr'];
     }
 
@@ -92,7 +93,9 @@ class StaticUrlsTest extends WebTestCase
     public function provideTestUrls(): ?\Generator
     {
         yield '/fr' => ['/fr', 'corahn_rin_home', 200, 'Corahn-Rin, le générateur de personnage pour Les Ombres d\'Esteren', 'title'];
+
         yield '/en' => ['/en', 'corahn_rin_home', 200, 'Corahn-Rin, the character manager for Shadows of Esteren', 'title'];
+
         yield '/fr/js/translations' => ['/fr/js/translations', 'pierstoval_tools_assets_jstranslations', 200];
     }
 }

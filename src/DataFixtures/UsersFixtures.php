@@ -58,11 +58,17 @@ final class UsersFixtures extends ArrayFixture implements ORMFixtureInterface
         $this->increment = 0;
 
         yield $this->user('Pierstoval', ['ROLE_USER', 'ROLE_SUPER_ADMIN'], 'admin', 'alex@orbitale.io');
+
         yield $this->user('map-subscribed', ['ROLE_USER']);
+
         yield $this->user('lambda-user', ['ROLE_USER']);
+
         yield $this->user('game-master', ['ROLE_USER']);
+
         yield $this->user('standard-admin', ['ROLE_ADMIN']);
+
         yield $this->user('vermine-admin', ['ROLE_PRODUCTS_ADMIN']);
+
         yield $this->user('vermine-builder', ['ROLE_VERMINE_BUILDER']);
     }
 

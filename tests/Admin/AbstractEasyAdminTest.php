@@ -157,6 +157,7 @@ abstract class AbstractEasyAdminTest extends WebTestCase
 
     /**
      * @depends testNewAction
+     *
      * @group functional
      */
     public function testEditAction(): void
@@ -176,6 +177,7 @@ abstract class AbstractEasyAdminTest extends WebTestCase
 
     /**
      * @depends testNewAction
+     *
      * @group functional
      */
     public function testDeleteAction(): void

@@ -20,6 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="setbacks")
+ *
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\SetbacksRepository")
  */
 class Setback
@@ -30,7 +31,9 @@ class Setback
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -80,6 +83,7 @@ class Setback
      * @var Advantage[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="CorahnRin\Entity\Advantage")
+     *
      * @ORM\JoinTable(
      *     name="setbacks_advantages",
      *     joinColumns={@ORM\JoinColumn(name="setback_id", referencedColumnName="id")},

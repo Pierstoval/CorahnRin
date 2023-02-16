@@ -22,6 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CharDisciplines.
  *
  * @ORM\Table(name="characters_disciplines")
+ *
  * @ORM\Entity
  */
 class CharDisciplines
@@ -30,6 +31,7 @@ class CharDisciplines
      * @var Character
      *
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Character", inversedBy="disciplines")
      */
     protected $character;
@@ -38,6 +40,7 @@ class CharDisciplines
      * @var Discipline
      *
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Discipline")
      */
     protected $discipline;
@@ -46,6 +49,7 @@ class CharDisciplines
      * @var string
      *
      * @ORM\Id
+     *
      * @ORM\Column(name="domain", type="string", length=100)
      */
     protected $domain;

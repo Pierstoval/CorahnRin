@@ -60,6 +60,7 @@ class ResendGameInvitationEmailControllerTest extends WebTestCase
 
     /**
      * @dataProvider provide tokens
+     *
      * @group functional
      */
     public function test not logged in returns 401(string $token): void
@@ -74,6 +75,7 @@ class ResendGameInvitationEmailControllerTest extends WebTestCase
     public function provide tokens(): \Generator
     {
         yield 'random token' => [TokenGenerator::generateToken()];
+
         yield 'default fixture token' => [GamesInvitationsFixtures::DEFAULT_INVITATION_TOKEN];
     }
 

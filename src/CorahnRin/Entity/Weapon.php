@@ -20,6 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Weapons.
  *
  * @ORM\Table(name="weapons")
+ *
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\WeaponsRepository")
  */
 class Weapon
@@ -28,7 +29,9 @@ class Weapon
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -37,6 +40,7 @@ class Weapon
      * @var string
      *
      * @ORM\Column(type="string", length=50, nullable=false, unique=true)
+     *
      * @Assert\NotBlank
      */
     protected $name;

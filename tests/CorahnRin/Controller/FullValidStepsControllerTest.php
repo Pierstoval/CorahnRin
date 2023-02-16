@@ -29,6 +29,7 @@ class FullValidStepsControllerTest extends WebTestCase
 
     /**
      * @see StepController::indexAction
+     *
      * @group functional
      */
     public function testIndex(): void
@@ -48,7 +49,9 @@ class FullValidStepsControllerTest extends WebTestCase
 
     /**
      * @see StepController::stepAction
+     *
      * @dataProvider provide valid steps from file
+     *
      * @group functional
      */
     public function test all valid steps from file(array $steps): void
@@ -97,6 +100,7 @@ class FullValidStepsControllerTest extends WebTestCase
 
         foreach ($files as $file) {
             $steps = require $file;
+
             yield $file->getBasename('.php') => [$steps];
         }
     }

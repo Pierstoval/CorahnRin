@@ -21,6 +21,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Ogham.
  *
  * @ORM\Table(name="ogham")
+ *
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\OghamRepository")
  */
 class Ogham
@@ -31,7 +32,9 @@ class Ogham
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected ?int $id;

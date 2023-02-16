@@ -19,6 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="geo_environments")
+ *
  * @ORM\Entity(repositoryClass="CorahnRin\Repository\GeoEnvironmentsRepository")
  */
 class GeoEnvironment
@@ -29,7 +30,9 @@ class GeoEnvironment
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

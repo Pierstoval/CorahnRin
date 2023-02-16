@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the Corahn-Rin package.
+ *
+ * (c) Alexandre Rock Ancelet <pierstoval@gmail.com> and Studio Agate.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Admin\Controller;
 
 use CorahnRin\Data\OghamType;
@@ -32,7 +43,7 @@ class OghamCrudController extends BaseCrudDtoController
     }
 
     /**
-     * @param Ogham $entity
+     * @param Ogham         $entity
      * @param OghamAdminDTO $dto
      */
     public function updateEntityFromDto(object $entity, object $dto): void

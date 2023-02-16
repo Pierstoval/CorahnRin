@@ -19,20 +19,25 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="characters_miracles")
+ *
  * @ORM\Entity
  */
 class CharacterMiracle
 {
     /**
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Character", inversedBy="miracles")
+     *
      * @ORM\JoinColumn(name="character_id", nullable=false)
      */
     private Character $character;
 
     /**
      * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="CorahnRin\Entity\Miracle")
+     *
      * @ORM\JoinColumn(name="miracle_id", nullable=false)
      */
     private Miracle $miracle;

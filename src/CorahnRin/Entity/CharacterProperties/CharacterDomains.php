@@ -23,6 +23,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ *
  * @ORM\Table(name="characters_domains")
  */
 class CharacterDomains
@@ -31,7 +32,9 @@ class CharacterDomains
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
+     *
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -40,6 +43,7 @@ class CharacterDomains
      * @var Character
      *
      * @ORM\OneToOne(targetEntity="CorahnRin\Entity\Character", mappedBy="domains")
+     *
      * @ORM\JoinColumn(name="character_id", referencedColumnName="id", nullable=true, unique=true)
      */
     private $character;
