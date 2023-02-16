@@ -440,7 +440,7 @@ games.invitation.accept.form.sessions_removal_warning: |
     A character can be present in only one campaign at a time.
 
     If you want your character to join another campaign, you will have to make your character leave the current campaign
-    first, and then as the game master to invite you to the new campaign.
+    first, and then ask the game master to invite you to the new campaign.
 games.invitation.email_has_been_resent: Invitation email has been successfully resent!
 
 games.invite_characters.title: 'Invite characters to your campaign'
