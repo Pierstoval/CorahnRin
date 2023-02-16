@@ -190,7 +190,7 @@ character:
         standard: Standard
         offensive: Offensive
         defensive: Defensive
-        quick: quick
+        quick: Quick
         movement: Movement
         sheet_explanation: |
             First attack score is for close combat, and second is for ranged combat.
