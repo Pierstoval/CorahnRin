@@ -8,6 +8,11 @@
     <li><a class="login_link" href="{{ path('user_login') }}">{{ 'layout.login' | trans({}, 'user') }}</a></li>
     <li><a class="register_link" href="{{ path('user_register') }}">{{ 'layout.register' | trans({}, 'user') }}</a></li>
 {% else %}
+    <li class="separator"></li>
+
+    {{- menu_macros.tooltipped_list_link('corahnrin_my_characters', path('corahnrin_my_characters'), 'menu.my_characters' | trans, 'users') -}}
+    {{- menu_macros.tooltipped_list_link('my_games', path('my_games'), 'menu.my_games' | trans, 'dragon') -}}
+
     {% set links %}
         {% if not is_granted('ROLE_VISITOR') %}
             {{- menu_macros.tooltipped_list_link('user_profile_edit', path('user_profile_edit'), 'layout.profile' | trans({}, 'user'), 'user-circle', '', 'profile_link') -}}
