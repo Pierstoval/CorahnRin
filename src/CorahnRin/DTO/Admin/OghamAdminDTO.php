@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace CorahnRin\DTO\Admin;
 
-use Admin\DTO\EasyAdminDTOInterface;
+use Admin\DTO\FormDTOInterface;
 use CorahnRin\Data\OghamType;
 use CorahnRin\Entity\Book;
 use CorahnRin\Entity\Ogham;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-class OghamAdminDTO implements EasyAdminDTOInterface
+class OghamAdminDTO implements FormDTOInterface
 {
     /**
      * @var string
@@ -28,7 +28,7 @@ class OghamAdminDTO implements EasyAdminDTOInterface
      * @Assert\NotBlank
      * @Assert\Type("string")
      */
-    public $name = '';
+    public string $name = '';
 
     /**
      * @var string
@@ -36,14 +36,14 @@ class OghamAdminDTO implements EasyAdminDTOInterface
      * @Assert\Type("string")
      * @Assert\Choice(OghamType::ALL)
      */
-    public $type = '';
+    public string $type = '';
 
     /**
      * @var string
      *
      * @Assert\Type("string")
      */
-    public $description = '';
+    public string $description = '';
 
     /**
      * @var Book
@@ -51,9 +51,14 @@ class OghamAdminDTO implements EasyAdminDTOInterface
      * @Assert\NotBlank
      * @Assert\Type("CorahnRin\Entity\Book")
      */
-    public $book;
+    public Book $book;
 
-    public static function createFromEntity(object $entity, array $options = []): self
+    public static function getEntityMutatorMethodName(): string
+    {
+        return 'updateFromAdmin';
+    }
+
+    public static function createFromEntity(object $entity): static
     {
         if (!$entity instanceof Ogham) {
             throw new UnexpectedTypeException($entity, Ogham::class);
@@ -67,10 +72,5 @@ class OghamAdminDTO implements EasyAdminDTOInterface
         $self->book = $entity->getBook();
 
         return $self;
-    }
-
-    public static function createEmpty(): self
-    {
-        return new self();
     }
 }

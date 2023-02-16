@@ -1,6 +1,6 @@
 {
 	# Debug mode: uncomment if you need it in the Caddy container
-	debug
+	#debug
 
 	# Allows making calls with no TLS
 	auto_https disable_redirects

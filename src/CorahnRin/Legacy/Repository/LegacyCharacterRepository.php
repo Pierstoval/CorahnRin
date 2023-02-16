@@ -92,7 +92,7 @@ class LegacyCharacterRepository
     public function paginateLegacyCharactersForAdminList(int $currentPage): LegacyCharacterListPaginator
     {
         // Should be enough.
-        $pageSize = 5;
+        $pageSize = 10;
 
         $currentPage = $currentPage < 1 ? 1 : $currentPage;
         $firstResult = ($currentPage - 1) * $pageSize;

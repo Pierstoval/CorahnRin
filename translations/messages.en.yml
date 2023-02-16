@@ -220,3 +220,11 @@ voucher.redeem.success: Thanks for using this code!
 
 product.downloadable_files.title: 'Downloadable files:'
 product.no_products_yet: "No downloadable products yet"
+
+ogham_type.air: Air
+ogham_type.animal: Animal
+ogham_type.earth: Earth
+ogham_type.fire: Fire
+ogham_type.life: Life
+ogham_type.vegetal: Vegetal
+ogham_type.water: Water

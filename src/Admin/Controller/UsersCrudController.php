@@ -1,10 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace Admin\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
+use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -12,10 +17,23 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use User\Entity\User;
+use User\Mailer\UserMailer;
+use User\Util\Canonicalizer;
+use User\Util\TokenGenerator;
 
 class UsersCrudController extends AbstractCrudController
 {
+    public function __construct(
+        private UserPasswordHasherInterface $passwordEncoder,
+        private UserMailer $mailer,
+    ) {
+    }
+
     public static function getEntityFqcn(): string
     {
         return User::class;
@@ -32,7 +50,48 @@ class UsersCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            ->disable('edit', 'delete');
+            ->setPermission(Action::NEW, 'ROLE_SUPER_ADMIN')
+            ->disable('edit', 'delete')
+        ;
+    }
+
+    public function createNewFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
+    {
+        $builder = parent::createNewFormBuilder($entityDto, $formOptions, $context);
+
+        $builder
+            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
+                /** @var User $user */
+                $user = $event->getForm()->getData();
+                $user->setUsernameCanonical(Canonicalizer::urlize((string) $user->getUsername()));
+                $user->setEmailCanonical(Canonicalizer::urlize((string) $user->getEmail()));
+            })
+        ;
+
+        return $builder;
+    }
+
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        if (!$entityInstance instanceof User) {
+            throw new \RuntimeException('Unexpected non-user error. Maybe the framework is broken :)');
+        }
+
+        if (!$hasPassword = $entityInstance->getPlainPassword()) {
+            $entityInstance->setConfirmationToken(TokenGenerator::generateToken());
+            $entityInstance->setPlainPassword(TokenGenerator::generateToken());
+        }
+        $entityInstance->setPassword($this->passwordEncoder->hashPassword($entityInstance, $entityInstance->getPlainPassword()));
+        $entityInstance->setEmailConfirmed(true);
+        $entityInstance->eraseCredentials();
+
+        // Causes the persist + flush
+        parent::persistEntity($entityManager, $entityInstance);
+
+        if (!$hasPassword) {
+            // With no password, we send a "reset password" email to the user
+            $this->mailer->sendResettingEmailMessage($entityInstance);
+        }
     }
 
     public function configureFields(string $pageName): iterable
@@ -45,19 +104,24 @@ class UsersCrudController extends AbstractCrudController
         $password = TextField::new('password');
         $confirmationToken = TextField::new('confirmationToken');
         $roles = ArrayField::new('roles');
-        $emailConfirmed = BooleanField::new('emailConfirmed');
+        $emailConfirmed = BooleanField::new('emailConfirmed')->renderAsSwitch(false);
         $createdAt = DateTimeField::new('createdAt');
         $updatedAt = DateTimeField::new('updatedAt');
         $id = IntegerField::new('id', 'ID');
-        $ululeUsername = TextareaField::new('ululeUsername');
 
         if (Crud::PAGE_INDEX === $pageName) {
             return [$id, $username, $email, $roles, $emailConfirmed, $createdAt];
-        } elseif (Crud::PAGE_DETAIL === $pageName) {
-            return [$id, $username, $usernameCanonical, $email, $emailCanonical, $roles, $emailConfirmed, $ululeUsername, $createdAt, $updatedAt];
-        } elseif (Crud::PAGE_NEW === $pageName) {
+        }
+
+        if (Crud::PAGE_DETAIL === $pageName) {
+            return [$id, $username, $usernameCanonical, $email, $emailCanonical, $roles, $emailConfirmed, $createdAt, $updatedAt];
+        }
+
+        if (Crud::PAGE_NEW === $pageName) {
             return [$username, $email, $plainPassword];
-        } elseif (Crud::PAGE_EDIT === $pageName) {
+        }
+
+        if (Crud::PAGE_EDIT === $pageName) {
             return [$username, $usernameCanonical, $email, $emailCanonical, $password, $confirmationToken, $roles, $emailConfirmed, $createdAt, $updatedAt];
         }
     }

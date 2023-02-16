@@ -10,26 +10,17 @@
     <table class="table datagrid">
         <thead>
             <tr>
-
-                <th>
-                    <span>#</span>
-                </th>
-                <th>
-                    <span>Name</span>
-                </th>
+                <th><span>#</span></th>
+                <th><span>Name</span></th>
+                <th><span>Actions</span></th>
             </tr>
         </thead>
 
         <tbody>
             {% for item in legacy_characters_paginator.results %}
                 <tr>
-                    <td>
-                        {{ item.id }}
-                    </td>
-                    <td>
-                        {{ item.name }}
-                    </td>
-
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
                     <td class="actions">
                         <a title="action title" href="{{ path('admin_import_character', {id: item.id}) }}">
                             <i class="fa fa-fw fa-file-import"></i>
@@ -46,29 +37,25 @@
             {% endfor %}
         </tbody>
     </table>
-{% endblock %}
-
-{% block content_footer %}
     <div class="list-pagination">
         <div class="list-pagination-counter">
-            {{ 'paginator.results'|transchoice(legacy_characters_paginator.numberOfResults, {}, 'EasyAdminBundle')|raw }}
+            {{ 'paginator.results'|trans({'%count%': legacy_characters_paginator.numberOfResults}, 'EasyAdminBundle')|raw }}
         </div>
 
         <nav class="pager list-pagination-paginator {{ not legacy_characters_paginator.hasPreviousPage ? 'first-page' }} {{ not legacy_characters_paginator.hasNextPage ? 'last-page' }}">
             <ul class="pagination">
                 <li class="page-item {{ not legacy_characters_paginator.hasPreviousPage ? 'disabled' }}">
-                    <a class="page-link" href="{{ not legacy_characters_paginator.hasPreviousPage ? '#' : path('admin_legacy_characters', {page: legacy_characters_paginator.previousPage}) }}">
-                        <i class="fa fa-angle-left mx-1"></i> <span class="btn-label">{{ 'paginator.previous'|trans({}, 'EasyAdminBundle') }}</span>
+                    <a class="page-link" href="{{ not legacy_characters_paginator.hasPreviousPage ? '#' : ea_url({page: legacy_characters_paginator.previousPage}) }}">
+                        <i class="fa fa-angle-left mx-1"></i> <span class="btn-label">{{ 'paginator.previous'|trans({}, 'EasyAdminBundle')|raw }}</span>
                     </a>
                 </li>
 
                 <li class="page-item {{ not legacy_characters_paginator.hasNextPage ? 'disabled' }}">
-                    <a class="page-link" href="{{ not legacy_characters_paginator.hasNextPage ? '#' : path('admin_legacy_characters', {page: legacy_characters_paginator.nextPage}) }}">
-                        <span class="btn-label">{{ 'paginator.next'|trans({}, 'EasyAdminBundle') }}</span> <i class="fa fa-angle-right mx-1"></i>
+                    <a class="page-link" href="{{ not legacy_characters_paginator.hasNextPage ? '#' : ea_url({page: legacy_characters_paginator.nextPage}) }}">
+                        <span class="btn-label">{{ 'paginator.next'|trans({}, 'EasyAdminBundle')|raw }}</span> <i class="fa fa-angle-right mx-1"></i>
                     </a>
                 </li>
             </ul>
         </nav>
     </div>
-
 {% endblock %}

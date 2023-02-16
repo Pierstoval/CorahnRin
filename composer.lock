@@ -4,8 +4,82 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f4999ebe08776bb8883046fded7658d",
+    "content-hash": "9dea95d8e60218d71333209dc767b577",
     "packages": [
+        {
+            "name": "azjezz/psl",
+            "version": "2.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/azjezz/psl.git",
+                "reference": "eacc90cfdfd7eafffd630e81ab69b113309e594b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/azjezz/psl/zipball/eacc90cfdfd7eafffd630e81ab69b113309e594b",
+                "reference": "eacc90cfdfd7eafffd630e81ab69b113309e594b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "ext-intl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-sodium": "*",
+                "php": "~8.1.0 || ~8.2.0",
+                "revolt/event-loop": "^1.0.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.4.0",
+                "php-coveralls/php-coveralls": "^2.5.2",
+                "php-standard-library/psalm-plugin": "^2.2",
+                "phpbench/phpbench": "^1.2.3",
+                "phpunit/phpunit": "^9.5.16",
+                "roave/infection-static-analysis-plugin": "^1.26.0",
+                "squizlabs/php_codesniffer": "^3.6.2",
+                "vimeo/psalm": "^5.0.0"
+            },
+            "suggest": {
+                "php-standard-library/psalm-plugin": "Psalm integration"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "name": "hhvm/hsl",
+                    "url": "https://github.com/hhvm/hsl"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Psl\\": "src/Psl"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "azjezz",
+                    "email": "azjezz@protonmail.com"
+                }
+            ],
+            "description": "PHP Standard Library",
+            "support": {
+                "issues": "https://github.com/azjezz/psl/issues",
+                "source": "https://github.com/azjezz/psl/tree/2.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/php-standard-library",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2023-01-26T12:53:04+00:00"
+        },
         {
             "name": "behat/transliterator",
             "version": "v1.5.0",
@@ -1604,16 +1678,16 @@
         },
         {
             "name": "easycorp/easyadmin-bundle",
-            "version": "v4.5.2",
+            "version": "v4.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-                "reference": "7ae836d9da53a8da115ea92583be7a6ffe06a388"
+                "reference": "9c00e8128b99000e8e400315abe740f864d3e6e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/7ae836d9da53a8da115ea92583be7a6ffe06a388",
-                "reference": "7ae836d9da53a8da115ea92583be7a6ffe06a388",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/9c00e8128b99000e8e400315abe740f864d3e6e4",
+                "reference": "9c00e8128b99000e8e400315abe740f864d3e6e4",
                 "shasum": ""
             },
             "require": {
@@ -1685,7 +1759,7 @@
             ],
             "support": {
                 "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",
-                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.5.2"
+                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.5.1"
             },
             "funding": [
                 {
@@ -1693,7 +1767,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-06T19:25:46+00:00"
+            "time": "2023-01-19T19:18:11+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -2182,6 +2256,97 @@
             "time": "2023-02-06T22:04:27+00:00"
         },
         {
+            "name": "protung/easyadmin-plus-bundle",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/protung/easyadmin-plus-bundle.git",
+                "reference": "f78e11e97f1bd380f101cfcaa4e879e34f2c6738"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/protung/easyadmin-plus-bundle/zipball/f78e11e97f1bd380f101cfcaa4e879e34f2c6738",
+                "reference": "f78e11e97f1bd380f101cfcaa4e879e34f2c6738",
+                "shasum": ""
+            },
+            "require": {
+                "azjezz/psl": "^2.3.1",
+                "easycorp/easyadmin-bundle": "~4.5.1",
+                "ext-dom": "*",
+                "php": "~8.1.0 || ~8.2.0",
+                "symfony/asset": "^5.4 || ^6.2",
+                "symfony/cache": "^5.4 || ^6.2",
+                "symfony/config": "^5.4 || ^6.2",
+                "symfony/dependency-injection": "^5.4 || ^6.2",
+                "symfony/dom-crawler": "^5.4 || ^6.2",
+                "symfony/event-dispatcher": "^5.4 || ^6.2",
+                "symfony/filesystem": "^5.4 || ^6.2",
+                "symfony/form": "^5.4 || ^6.2",
+                "symfony/framework-bundle": "^5.4 || ^6.2",
+                "symfony/http-foundation": "^5.4 || ^6.2",
+                "symfony/http-kernel": "^5.4 || ^6.2",
+                "symfony/property-access": "^5.4 || ^6.2",
+                "symfony/service-contracts": "^2.4 || ^3.0",
+                "symfony/translation": "^5.4 || ^6.2",
+                "symfony/twig-bundle": "^5.4 || ^6.2"
+            },
+            "conflict": {
+                "easycorp/easyadmin-bundle": ">=4.5.2"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^11.1",
+                "ergebnis/composer-normalize": "^2.29",
+                "php-standard-library/psalm-plugin": "^2.2.1",
+                "phpunit/phpunit": "^9.6.3",
+                "psalm/plugin-phpunit": "^0.18.4",
+                "psalm/plugin-symfony": "^5.0.1",
+                "speicher210/functional-test-bundle": "^2.x-dev",
+                "vimeo/psalm": "^5.6"
+            },
+            "suggest": {
+                "speicher210/functional-test-bundle": "For testing support."
+            },
+            "default-branch": true,
+            "type": "symfony-bundle",
+            "extra": {
+                "composer-normalize": {
+                    "indent-size": 2,
+                    "indent-style": "space"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Protung\\EasyAdminPlusBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dragos Protung",
+                    "email": "dragos@protung.de"
+                },
+                {
+                    "name": "Cezary Stepkowski",
+                    "email": "cezary.stepkowski@protonmail.com"
+                }
+            ],
+            "description": "This bundle provides some extensions to easycorp/easyadmin-bundle",
+            "homepage": "https://github.com/protung/easyadmin-plus-bundle",
+            "keywords": [
+                "admin",
+                "backend",
+                "generator"
+            ],
+            "support": {
+                "issues": "https://github.com/protung/easyadmin-plus-bundle/issues",
+                "source": "https://github.com/protung/easyadmin-plus-bundle"
+            },
+            "time": "2023-02-09T11:44:56+00:00"
+        },
+        {
             "name": "psr/cache",
             "version": "3.0.0",
             "source": {
@@ -2382,6 +2547,78 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.0"
             },
             "time": "2021-07-14T16:46:02+00:00"
+        },
+        {
+            "name": "revolt/event-loop",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/revoltphp/event-loop.git",
+                "reference": "81dd825a0a7fa7a39cae25ef731bb944f3e18295"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/revoltphp/event-loop/zipball/81dd825a0a7fa7a39cae25ef731bb944f3e18295",
+                "reference": "81dd825a0a7fa7a39cae25ef731bb944f3e18295",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "jetbrains/phpstorm-stubs": "^2019.3",
+                "phpunit/phpunit": "^9",
+                "psalm/phar": "^4.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Revolt\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Piotrowski",
+                    "email": "aaron@trowski.com"
+                },
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "ceesjank@gmail.com"
+                },
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering"
+                },
+                {
+                    "name": "Niklas Keller",
+                    "email": "me@kelunik.com"
+                }
+            ],
+            "description": "Rock-solid event loop for concurrent PHP applications.",
+            "keywords": [
+                "async",
+                "asynchronous",
+                "concurrency",
+                "event",
+                "event-loop",
+                "non-blocking",
+                "scheduler"
+            ],
+            "support": {
+                "issues": "https://github.com/revoltphp/event-loop/issues",
+                "source": "https://github.com/revoltphp/event-loop/tree/v1.0.0"
+            },
+            "time": "2022-11-02T21:46:22+00:00"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -8719,7 +8956,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "protung/easyadmin-plus-bundle": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

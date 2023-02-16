@@ -11,7 +11,6 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Admin\DependencyInjection\AdminRouteParamPass;
 use CorahnRin\DependencyInjection\Compiler\JsonDenormalizersPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
@@ -28,7 +27,6 @@ class Kernel extends BaseKernel
     {
         parent::build($container);
 
-        $container->addCompilerPass(new AdminRouteParamPass());
         $container->addCompilerPass(new JsonDenormalizersPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 100);
     }
 

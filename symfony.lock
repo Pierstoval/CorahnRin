@@ -176,6 +176,9 @@
             "src/Entity/Character.php"
         ]
     },
+    "protung/easyadmin-plus-bundle": {
+        "version": "dev-main"
+    },
     "psr/cache": {
         "version": "2.0.0"
     },

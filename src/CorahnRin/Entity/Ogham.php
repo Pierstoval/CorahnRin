@@ -53,10 +53,6 @@ class Ogham
      */
     protected string $type;
 
-    private function __construct()
-    {
-    }
-
     public static function fromAdmin(OghamAdminDTO $dto): self
     {
         $self = new self();

@@ -222,3 +222,11 @@ voucher.redeem.success: Merci d'avoir utilisé votre code !
 
 product.downloadable_files.title: 'Fichiers téléchargeables :'
 product.no_products_yet: "Aucun produit téléchargeable pour l'instant"
+
+ogham_type.air: Air
+ogham_type.animal: Animal
+ogham_type.earth: Terre
+ogham_type.fire: Feu
+ogham_type.life: Vie
+ogham_type.vegetal: Végétal
+ogham_type.water: Aquatique

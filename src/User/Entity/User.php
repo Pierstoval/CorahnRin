@@ -64,6 +64,7 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
      * @ORM\Column(name="email", type="string")
      *
      * @Assert\NotBlank
+     * @Assert\Email()
      */
     protected $email;
 
