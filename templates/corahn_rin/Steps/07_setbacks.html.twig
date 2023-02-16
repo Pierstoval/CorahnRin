@@ -9,7 +9,7 @@
         {%- endset %}
 
         <div class="card-panel teal darken-4">
-            {{ 'setback.quantity' | transchoice(setbacks_number, {'%age%':age}, 'corahn_rin') | raw }}
+            {{ 'setback.quantity' | trans({'%count%': setbacks_number, '%age%':age}, 'corahn_rin') | raw }}
             <br>
 
             <br>
