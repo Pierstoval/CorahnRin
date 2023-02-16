@@ -44,8 +44,6 @@ class Step20Finish extends AbstractStepAction
     {
         $this->updateCharacterStep(true);
 
-        $character = null;
-
         $user = null;
         $token = $this->tokenStorage->getToken();
 
@@ -74,8 +72,10 @@ class Step20Finish extends AbstractStepAction
             $this->request->isMethod('POST')
         ) {
             if ($canSaveCharacter) {
+                $this->clearAllStepsValues();
                 $this->em->persist($character);
                 $this->em->flush();
+
 
                 return new RedirectResponse($this->router->generate('corahnrin_characters_view', [
                     'id' => $character->getId(),

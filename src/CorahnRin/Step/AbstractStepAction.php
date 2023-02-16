@@ -35,4 +35,10 @@ abstract class AbstractStepAction extends BaseAbstractStepAction
 
         return new Response($this->twig->render($template, $parameters));
     }
+
+    protected function clearAllStepsValues(): void
+    {
+        $this->getSession()->remove('step.'.$this->managerName);
+        $this->getSession()->remove('character.'.$this->managerName);
+    }
 }

@@ -10,8 +10,11 @@
 {% else %}
     <li class="separator"></li>
 
-    {{- menu_macros.tooltipped_list_link('corahnrin_my_characters', path('corahnrin_my_characters'), 'menu.my_characters' | trans, 'users') -}}
-    {{- menu_macros.tooltipped_list_link('my_games', path('my_games'), 'menu.my_games' | trans, 'dragon') -}}
+    {{ menu_macros.tooltipped_list_link('pierstoval_character_generator_step', path('pierstoval_character_generator_index'), 'menu.character_create' | trans({}, 'corahn_rin'), 'user-plus') }}
+    {{- menu_macros.tooltipped_list_link('corahnrin_my_characters', path('corahnrin_my_characters'), 'menu.my_characters' | trans({}, 'corahn_rin'), 'users') -}}
+    {{- menu_macros.tooltipped_list_link('my_games', path('my_games'), 'menu.my_games' | trans({}, 'corahn_rin'), 'campground') -}}
+
+    <li class="separator"></li>
 
     {% set links %}
         {% if not is_granted('ROLE_VISITOR') %}

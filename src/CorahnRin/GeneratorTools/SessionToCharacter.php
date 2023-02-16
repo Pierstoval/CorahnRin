@@ -500,7 +500,11 @@ final class SessionToCharacter
                         break;
 
                     case Bonuses::STAMINA:
-                        $character->setStaminaBonus($character->getStaminaBonus() + ($charAdvantage->getScore() * $disadvantageRatio));
+                        $stamina = $character->getStaminaBonus() + ($charAdvantage->getScore() * $disadvantageRatio);
+                        if ($stamina < 0) {
+                            $stamina = 0;
+                        }
+                        $character->setStaminaBonus($stamina);
 
                         break;
 
