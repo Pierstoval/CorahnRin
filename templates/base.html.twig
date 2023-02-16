@@ -162,7 +162,8 @@
                                                     {{- loc | trans({}, 'Languages') -}}
                                                 </span>
                                             {%- else -%}
-                                                <a class="locale-link" href="{{ path(route_name, (route_params | merge({'_locale':loc})) ) }}">
+                                                {% set merged_route_params = route_params | merge({'_locale':loc}) %}
+                                                <a class="locale-link" href="{{ path(route_name, merged_route_params) }}">
                                                     <img class="change-language-flag" src="{{ asset('build/flags/'~loc~'.svg') }}" alt="">
                                                     {{ loc | trans({}, 'Languages') }}
                                                 </a>

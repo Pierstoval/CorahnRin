@@ -30,7 +30,7 @@ use User\Util\Canonicalizer;
  * @UniqueEntity("emailCanonical", message="user.email.already_used")
  * @UniqueEntity("usernameCanonical", message="user.username.already_used")
  */
-class User implements UserInterface, \Serializable, EquatableInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, EquatableInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
 
@@ -340,27 +340,25 @@ class User implements UserInterface, \Serializable, EquatableInterface, Password
         return $this->confirmationToken;
     }
 
-    public function serialize()
+    public function __serialize()
     {
-        return \serialize([
+        return [
             $this->id,
             $this->createdAt->format('Y-m-d H:i:s'),
             $this->updatedAt->format('Y-m-d H:i:s'),
-        ]);
+        ];
     }
 
-    public function unserialize($serialized): void
+    public function __unserialize($serialized): void
     {
-        $data = \unserialize($serialized, ['allowed_classes' => false]);
-
         [
             $this->id,
-            $this->createdAt,
-            $this->updatedAt,
-        ] = $data;
+            $createdAt,
+            $updatedAt,
+        ] = $serialized;
 
-        $this->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $this->createdAt);
-        $this->updatedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $this->updatedAt);
+        $this->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $createdAt);
+        $this->updatedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $updatedAt);
     }
 
     public function isEqualTo(UserInterface $user): bool

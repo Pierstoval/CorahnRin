@@ -11,6 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+use CorahnRin\Controller\CorahnRinHomeController;
 use EsterenMaps\Controller\MapApiController;
 use Main\Controller\RootController;
 use Symfony\Component\Routing\Loader\Configurator\ImportConfigurator;
@@ -50,7 +51,7 @@ return static function (RoutingConfigurator $routes, Kernel $kernel) {
     };
 
     $_import($projectDir.'/src/Main/Controller/AssetsController.php')
-        ->prefix('/{_locale}', false)
+        ->prefix('/{_locale}/', false)
     ;
 
     $_route('user_login_check', '/{_locale}/login_check')
@@ -65,7 +66,18 @@ return static function (RoutingConfigurator $routes, Kernel $kernel) {
         ->prefix('/{_locale}', false)
     ;
 
-    $_import($projectDir.'/src/CorahnRin/Controller/')
+    $_route('corahn_rin_home', '/{_locale}/')
+        ->methods(['GET'])
+        ->controller(CorahnRinHomeController::class)
+    ;
+
+    $_import($projectDir.'/src/CorahnRin/Controller/Admin/')
+        ->prefix('/{_locale}', false)
+    ;
+    $_import($projectDir.'/src/CorahnRin/Controller/Character/')
+        ->prefix('/{_locale}', false)
+    ;
+    $_import($projectDir.'/src/CorahnRin/Controller/Game/')
         ->prefix('/{_locale}', false)
     ;
 
