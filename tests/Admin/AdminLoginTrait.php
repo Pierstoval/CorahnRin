@@ -2,6 +2,7 @@
 
 namespace Tests\Admin;
 
+use Protung\EasyAdminPlusBundle\Test\Controller\AdminControllerWebTestCase;
 use User\Repository\UserRepository;
 
 trait AdminLoginTrait
@@ -11,7 +12,9 @@ trait AdminLoginTrait
         parent::setUp();
 
         self::$authenticationFirewallContext = 'main';
-        self::$easyAdminRoutePath = '/fr/admin';
+        if (is_a(self::class, AdminControllerWebTestCase::class, true)) {
+            self::$easyAdminRoutePath = '/fr/admin';
+        }
 
         self::bootKernel();
         $user = self::getContainer()->get(UserRepository::class)->findByUsernameOrEmail('Pierstoval');
