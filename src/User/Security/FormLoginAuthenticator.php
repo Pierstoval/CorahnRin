@@ -59,32 +59,21 @@ final class FormLoginAuthenticator extends AbstractLoginFormAuthenticator
         'pierstoval_tools_assets_jstranslations',
     ];
 
-    private HttpKernelInterface $httpKernel;
-    private HttpUtils $httpUtils;
-    private RouterInterface $router;
-    private UserPasswordHasherInterface $encoder;
-    private UserRepository $userRepository;
-
     public function __construct(
-        HttpKernelInterface $kernel,
-        HttpUtils $httpUtils,
-        RouterInterface $router,
-        UserPasswordHasherInterface $encoder,
-        UserRepository $userRepository,
+        private readonly HttpKernelInterface $httpKernel,
+        private readonly HttpUtils $httpUtils,
+        private readonly RouterInterface $router,
+        private readonly UserPasswordHasherInterface $encoder,
+        private readonly UserRepository $userRepository,
     ) {
-        $this->httpKernel = $kernel;
-        $this->httpUtils = $httpUtils;
-        $this->router = $router;
-        $this->encoder = $encoder;
-        $this->userRepository = $userRepository;
     }
 
     public function start(Request $request, AuthenticationException $authException = null): Response
     {
-        if (\in_array($request->attributes->get('_route'), static::NO_REFERER_ROUTES, true)) {
-            $this->removeTargetPath($request->getSession(), static::PROVIDER_KEY);
-        } elseif (!$this->getTargetPath($request->getSession(), static::PROVIDER_KEY)) {
-            $this->saveTargetPath($request->getSession(), static::PROVIDER_KEY, $request->getUri());
+        if (\in_array($request->attributes->get('_route'), self::NO_REFERER_ROUTES, true)) {
+            $this->removeTargetPath($request->getSession(), self::PROVIDER_KEY);
+        } elseif (!$this->getTargetPath($request->getSession(), self::PROVIDER_KEY)) {
+            $this->saveTargetPath($request->getSession(), self::PROVIDER_KEY, $request->getUri());
         }
 
         // Forward the request to the login controller, to avoid too many redirections.

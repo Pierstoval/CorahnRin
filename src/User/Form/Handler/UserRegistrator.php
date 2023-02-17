@@ -24,21 +24,12 @@ use User\Util\TokenGenerator;
 
 class UserRegistrator
 {
-    private UserPasswordHasherInterface $passwordEncoder;
-    private UserMailer $mailer;
-    private EntityManagerInterface $em;
-    private TranslatorInterface $translator;
-
     public function __construct(
-        UserPasswordHasherInterface $passwordEncoder,
-        EntityManagerInterface $em,
-        TranslatorInterface $translator,
-        UserMailer $mailer
+        private readonly UserPasswordHasherInterface $passwordEncoder,
+        private readonly EntityManagerInterface $em,
+        private readonly TranslatorInterface $translator,
+        private readonly UserMailer $mailer
     ) {
-        $this->passwordEncoder = $passwordEncoder;
-        $this->mailer = $mailer;
-        $this->em = $em;
-        $this->translator = $translator;
     }
 
     public function registerNewUser(User $user, Session $session): void

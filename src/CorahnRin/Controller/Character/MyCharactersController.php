@@ -15,24 +15,20 @@ namespace CorahnRin\Controller\Character;
 
 use CorahnRin\Repository\CharactersRepository;
 use Main\DependencyInjection\PublicService;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Environment;
 use User\Entity\User;
 
 class MyCharactersController implements PublicService
 {
-    private CharactersRepository $charactersRepository;
-    private Environment $twig;
-    private Security $security;
-
-    public function __construct(CharactersRepository $charactersRepository, Environment $twig, Security $security)
-    {
-        $this->charactersRepository = $charactersRepository;
-        $this->twig = $twig;
-        $this->security = $security;
+    public function __construct(
+        private readonly CharactersRepository $charactersRepository,
+        private readonly Environment $twig,
+        private readonly TokenStorageInterface $security,
+    ) {
     }
 
     /**
@@ -41,7 +37,7 @@ class MyCharactersController implements PublicService
     public function __invoke(Request $request): Response
     {
         /** @var User $currentUser */
-        $currentUser = $this->security->getUser();
+        $currentUser = $this->security->getToken()->getUser();
 
         $characters = $this->charactersRepository->findForUser($currentUser);
 

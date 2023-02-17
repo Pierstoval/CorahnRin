@@ -18,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,30 +31,19 @@ use User\Util\TokenGenerator;
 
 class ResettingController extends AbstractController
 {
-    private EntityManagerInterface $em;
-    private UserRepository $userRepository;
-    private UserMailer $mailer;
-    private RoleHierarchyInterface $roleHierarchy;
-    private UserPasswordHasherInterface $passwordEncoder;
-
     public function __construct(
-        EntityManagerInterface $em,
-        UserRepository $userRepository,
-        UserMailer $mailer,
-        UserPasswordHasherInterface $passwordEncoder,
-        RoleHierarchyInterface $roleHierarchy
+        private readonly EntityManagerInterface $em,
+        private readonly UserRepository $userRepository,
+        private readonly UserMailer $mailer,
+        private readonly UserPasswordHasherInterface $passwordEncoder,
+        private readonly RoleHierarchyInterface $roleHierarchy
     ) {
-        $this->em = $em;
-        $this->userRepository = $userRepository;
-        $this->mailer = $mailer;
-        $this->roleHierarchy = $roleHierarchy;
-        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
      * @Route("/resetting/request", name="user_resetting_request", methods={"GET"})
      */
-    public function requestAction(): \Symfony\Component\HttpFoundation\Response
+    public function requestAction(): Response
     {
         return $this->render('user/Resetting/request.html.twig');
     }
@@ -79,7 +69,7 @@ class ResettingController extends AbstractController
     /**
      * @Route("/resetting/reset/{token}", name="user_resetting_reset", methods={"GET", "POST"})
      */
-    public function resetAction(Request $request, $token)
+    public function resetAction(Request $request, $token): RedirectResponse|Response
     {
         $user = $this->userRepository->findOneByConfirmationToken($token);
 
@@ -124,7 +114,7 @@ class ResettingController extends AbstractController
         try {
             $this->mailer->sendResettingEmailMessage($user);
             $this->em->flush();
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $this->addFlash('user_error', 'resetting.email_failed');
 
             return new RedirectResponse($this->generateUrl('user_resetting_request'));

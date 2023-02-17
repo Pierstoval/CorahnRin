@@ -16,33 +16,24 @@ namespace CorahnRin\Controller\Game;
 use CorahnRin\Mailer\CampaignInvitationMailer;
 use CorahnRin\Repository\GameInvitationRepository;
 use Main\DependencyInjection\PublicService;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use User\Entity\User;
 
 class ResendGameInvitationEmailController implements PublicService
 {
-    private CampaignInvitationMailer $mailer;
-    private UrlGeneratorInterface $router;
-    private Security $security;
-    private GameInvitationRepository $invitationRepository;
-
     public function __construct(
-        CampaignInvitationMailer $mailer,
-        UrlGeneratorInterface $router,
-        Security $security,
-        GameInvitationRepository $invitationRepository
+        private readonly CampaignInvitationMailer $mailer,
+        private readonly UrlGeneratorInterface $router,
+        private readonly TokenStorageInterface $security,
+        private readonly GameInvitationRepository $invitationRepository
     ) {
-        $this->mailer = $mailer;
-        $this->router = $router;
-        $this->security = $security;
-        $this->invitationRepository = $invitationRepository;
     }
 
     /**
@@ -57,7 +48,7 @@ class ResendGameInvitationEmailController implements PublicService
         }
 
         /** @var User $user */
-        $user = $this->security->getUser();
+        $user = $this->security->getToken()->getUser();
 
         if ($user->getId() !== $invitation->getGameMasterId()) {
             throw new AccessDeniedException('games.invitation.only_game_master_can_resend_email');

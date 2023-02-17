@@ -17,7 +17,6 @@ use CorahnRin\DTO\CreateGameDTO;
 use CorahnRin\Form\CreateGameType;
 use CorahnRin\Form\Handler\CreateGameHandler;
 use Main\DependencyInjection\PublicService;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,29 +24,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Environment;
 use User\Entity\User;
 
 class CreateGameController implements PublicService
 {
-    private FormFactoryInterface $formFactory;
-    private UrlGeneratorInterface $router;
-    private Environment $twig;
-    private Security $security;
-    private CreateGameHandler $createGameHandler;
-
     public function __construct(
-        FormFactoryInterface $formFactory,
-        Security $security,
-        CreateGameHandler $createGameHandler,
-        Environment $twig,
-        UrlGeneratorInterface $router
+        private readonly FormFactoryInterface $formFactory,
+        private readonly TokenStorageInterface $security,
+        private readonly CreateGameHandler $createGameHandler,
+        private readonly Environment $twig,
+        private readonly UrlGeneratorInterface $router
     ) {
-        $this->formFactory = $formFactory;
-        $this->router = $router;
-        $this->twig = $twig;
-        $this->security = $security;
-        $this->createGameHandler = $createGameHandler;
     }
 
     /**
@@ -60,7 +49,7 @@ class CreateGameController implements PublicService
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var User $user */
-            $user = $this->security->getUser();
+            $user = $this->security->getToken()->getUser();
 
             $game = $this->createGameHandler->handle($gameDto, $user, $request->getHost());
 

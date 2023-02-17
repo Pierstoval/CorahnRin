@@ -16,29 +16,20 @@ namespace CorahnRin\Controller\Game;
 use CorahnRin\Repository\GameInvitationRepository;
 use CorahnRin\Repository\GameRepository;
 use Main\DependencyInjection\PublicService;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Environment;
 use User\Entity\User;
 
 class GamesListController implements PublicService
 {
-    private $security;
-    private $gameRepository;
-    private $twig;
-    private $invitationRepository;
-
     public function __construct(
-        Security $security,
-        Environment $twig,
-        GameRepository $gameRepository,
-        GameInvitationRepository $invitationRepository
+        private readonly TokenStorageInterface $security,
+        private readonly Environment $twig,
+        private readonly GameRepository $gameRepository,
+        private readonly GameInvitationRepository $invitationRepository
     ) {
-        $this->security = $security;
-        $this->gameRepository = $gameRepository;
-        $this->twig = $twig;
-        $this->invitationRepository = $invitationRepository;
     }
 
     /**
@@ -47,7 +38,7 @@ class GamesListController implements PublicService
     public function __invoke(): Response
     {
         /** @var User $user */
-        $user = $this->security->getUser();
+        $user = $this->security->getToken()->getUser();
 
         $gamesAsGameMaster = $this->gameRepository->findAsGameMaster($user);
         $gamesAsPlayer = $this->gameRepository->findAsPlayer($user);
