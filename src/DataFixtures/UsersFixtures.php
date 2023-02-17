@@ -75,10 +75,11 @@ final class UsersFixtures extends ArrayFixture implements ORMFixtureInterface
     private function user(string $username, array $roles = [], string $password = 'foobar', ?string $email = null): array
     {
         if (!$email) {
-            $email = 'foo'.($this->increment++).'@bar.com';
+            $email = 'foo'.$this->increment.'@bar.com';
         }
 
         return [
+            'id' => ++$this->increment,
             'username' => $username,
             'usernameCanonical' => $this->canonicalize($username),
             'email' => $email,

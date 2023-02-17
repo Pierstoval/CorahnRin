@@ -18,4 +18,5 @@ return [
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
     Dunglas\DoctrineJsonOdm\Bundle\DunglasDoctrineJsonOdmBundle::class => ['all' => true],
     Protung\EasyAdminPlusBundle\ProtungEasyAdminPlusBundle::class => ['all' => true],
+    Speicher210\FunctionalTestBundle\Speicher210FunctionalTestBundle::class => ['dev' => true, 'test' => true],
 ];

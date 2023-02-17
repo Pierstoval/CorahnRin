@@ -13,61 +13,103 @@ declare(strict_types=1);
 
 namespace Tests\Admin;
 
-use User\Entity\User;
+use Admin\Controller\UsersCrudController;
+use Protung\EasyAdminPlusBundle\Test\Controller\NewActionTestCase;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use User\Repository\UserRepository;
 
-class UserAdminTest extends AbstractEasyAdminTest
+class UserAdminTest extends NewActionTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getEntityName()
+    use AdminLoginTrait;
+
+    protected static ?string $expectedPageTitle = 'Créer "User"';
+
+    protected function controllerUnderTest(): string
     {
-        return 'Users';
+        return UsersCrudController::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getEntityClass()
-    {
-        return User::class;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function provideListingFields()
+    public function getEmptyData(): array
     {
         return [
-            'id',
-            'username',
-            'email',
-            'roles',
-            'emailConfirmed',
-            'createdAt',
+            'username' => '',
+            'email' => '',
+            'plainPassword' => '',
+        ];
+    }
+
+    public function testDefaultEmptyData(): void
+    {
+        $this->assertShowingEntityDefaultData($this->getEmptyData());
+    }
+
+    public function provideErrorSets(): \Generator
+    {
+        $emptyData = $this->getEmptyData();
+
+        yield 'empty everything' => [
+            [
+                'username' => ['Cette valeur ne doit pas être vide.'],
+                'email' => ['Cette valeur ne doit pas être vide.'],
+                'plainPassword' => [],
+            ],
+            $emptyData,
+        ];
+
+        yield 'empty everything except invalid email' => [
+            [
+                'username' => ['Cette valeur ne doit pas être vide.'],
+                'email' => ['Cette valeur n\'est pas une adresse email valide.'],
+                'plainPassword' => [],
+            ],
+            array_merge($emptyData, [
+                'email' => 'something',
+            ])
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * @dataProvider provideErrorSets
      */
-    public function provideNewFormData()
+    public function testNewWithErrors(array $expectedFormErrors, array $formData): void
     {
-        return [
-            'data_to_submit' => $data = [
+        $this->assertSubmittingFormAndShowingValidationErrors($expectedFormErrors, $formData);
+    }
+
+    public function testWithValidEntityAndNoPassword(): void
+    {
+        $this->assertSavingEntityAndRedirectingToIndexAction(
+            [
                 'username' => 'new-user-from-admin',
                 'email' => 'new-user-from-admin@domain.local',
             ],
-            'search_data' => $data,
-            'expected_data' => $data,
-        ];
+        );
+
+        $user = self::getContainer()->get(UserRepository::class)->findOneBy([], ['id' => 'DESC']);
+        self::assertNotNull($user);
+        self::assertSame('new-user-from-admin', $user->getUsername());
+        self::assertSame('new-user-from-admin@domain.local', $user->getEmail());
+        self::assertNotNull($user->getConfirmationToken());
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function provideEditFormData()
+    public function testWithValidEntityAndCustomPassword(): void
     {
-        return false;
+        $password = 'foobar';
+
+        $this->assertSavingEntityAndRedirectingToIndexAction(
+            [
+                'username' => 'new-user-from-admin',
+                'email' => 'new-user-from-admin@domain.local',
+                'plainPassword' => $password,
+            ],
+        );
+
+        $user = self::getContainer()->get(UserRepository::class)->findOneBy([], ['id' => 'DESC']);
+        self::assertNotNull($user);
+        self::assertSame('new-user-from-admin', $user->getUsername());
+        self::assertSame('new-user-from-admin@domain.local', $user->getEmail());
+        self::assertNull($user->getConfirmationToken());
+        self::assertTrue(self::getContainer()->get(PasswordHasherFactoryInterface::class)->getPasswordHasher($user)->verify($user->getPassword(), $password));
     }
 }
