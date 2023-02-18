@@ -42,6 +42,7 @@ RUN set -xe \
     && apt-get install -y \
         php${PHP_VERSION} \
         php${PHP_VERSION}-apcu \
+        php${PHP_VERSION}-bcmath \
         php${PHP_VERSION}-curl \
         php${PHP_VERSION}-fpm \
         php${PHP_VERSION}-gd \
