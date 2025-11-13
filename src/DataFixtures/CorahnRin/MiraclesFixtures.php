@@ -34,7 +34,7 @@ class MiraclesFixtures extends ArrayFixture implements ORMFixtureInterface, Depe
     public const ID_HOLY_VIGOR = 11;
     public const ID_VISION_OF_LIMBO = 12;
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             JobsFixtures::class,

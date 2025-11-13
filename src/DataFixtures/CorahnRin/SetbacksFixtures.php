@@ -32,7 +32,7 @@ class SetbacksFixtures extends ArrayFixture implements ORMFixtureInterface, Depe
     public const ID_POOR = 9;
     public const ID_LUCKY = 10;
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             BooksFixtures::class,

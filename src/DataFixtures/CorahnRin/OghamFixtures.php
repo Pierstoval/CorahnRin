@@ -324,7 +324,7 @@ class OghamFixtures extends ArrayFixture implements ORMFixtureInterface, Depende
         ];
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             BooksFixtures::class,

@@ -9,13 +9,14 @@
         "php": ">=8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/annotations": "^2.0",
         "doctrine/common": "^3.1.0",
         "doctrine/dbal": "^3.6",
         "doctrine/doctrine-bundle": "^2.3",
         "doctrine/doctrine-migrations-bundle": "^3.1",
         "doctrine/inflector": "^2.0",
         "doctrine/migrations": "^3.1",
-        "doctrine/orm": "^2.9|^3.0",
+        "doctrine/orm": "^2.9",
         "dunglas/doctrine-json-odm": "^1.2",
         "easycorp/easyadmin-bundle": "^4.0",
         "orbitale/array-fixture": "^1.2",
@@ -142,7 +143,7 @@
         "symfony": {
             "id": "\uD83D\uDD95\uD93D\uDDD0\uDB01\uDE7C�\uD801\uDF40Θ鲽6!뼱\uD9FD\uDFA3�]␒/\uDB19\uDF9F쌘ȦA=\uD95B\uDE2A˔`\uD9D5\uDFDDOⰘ\uD9CE\uDDC7\uD8F4\uDEC9$향⪏欼\uD93D\uDCB0",
             "allow-contrib": true,
-            "require": "6.2.*"
+            "require": "6.4.*"
         }
     },
     "authors": [

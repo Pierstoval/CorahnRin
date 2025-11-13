@@ -51,7 +51,7 @@ class GeoEnvironmentsFixtures extends ArrayFixture implements ORMFixtureInterfac
         ];
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             BooksFixtures::class,

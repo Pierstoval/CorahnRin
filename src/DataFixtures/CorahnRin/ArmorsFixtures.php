@@ -168,7 +168,7 @@ class ArmorsFixtures extends ArrayFixture implements ORMFixtureInterface, Depend
         ];
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             BooksFixtures::class,

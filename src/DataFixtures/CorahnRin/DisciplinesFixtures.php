@@ -1247,7 +1247,7 @@ class DisciplinesFixtures extends ArrayFixture implements ORMFixtureInterface, D
         ];
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             BooksFixtures::class,

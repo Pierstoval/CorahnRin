@@ -65,7 +65,7 @@ class GamesFixtures extends ArrayFixture implements ORMFixtureInterface, Depende
         ];
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             UsersFixtures::class,

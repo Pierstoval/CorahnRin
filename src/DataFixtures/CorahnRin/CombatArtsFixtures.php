@@ -73,7 +73,7 @@ class CombatArtsFixtures extends ArrayFixture implements ORMFixtureInterface, De
         ];
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             BooksFixtures::class,

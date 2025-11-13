@@ -392,7 +392,7 @@ Il se spécialise dans les armes à distance',
         ];
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             BooksFixtures::class,

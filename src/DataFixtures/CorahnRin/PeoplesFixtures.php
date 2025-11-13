@@ -62,7 +62,7 @@ class PeoplesFixtures extends ArrayFixture implements ORMFixtureInterface, Depen
         ];
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             BooksFixtures::class,

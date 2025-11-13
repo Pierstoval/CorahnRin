@@ -40,7 +40,7 @@ class GamesInvitationsFixtures extends ArrayFixture implements ORMFixtureInterfa
         ];
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             GamesFixtures::class,

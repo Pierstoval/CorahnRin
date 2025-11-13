@@ -21,7 +21,7 @@ use Orbitale\Component\ArrayFixture\ArrayFixture;
 
 class DisordersWaysFixtures extends ArrayFixture implements ORMFixtureInterface, DependentFixtureInterface
 {
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             DisordersFixtures::class,
